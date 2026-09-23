@@ -1,0 +1,152 @@
+/* See the Tailwind configuration guide for advanced usage
+   https://tailwindcss.com/docs/configuration */
+
+@import "tailwindcss" source(none);
+@import "phoenix-colocated/id_didi_sh/colocated.css";
+@import "./theme.css";
+@source "../css";
+@source "../js";
+@source "../../lib/id_didi_sh_web";
+/* Required for Tailwind to automatically pick up changes in colocated CSS files in dev */
+@source "../../_build/dev/phoenix-colocated/id_didi_sh/*/";
+
+/* A Tailwind plugin that makes "hero-#{ICON}" classes available.
+   The heroicons installation itself is managed by your mix.exs */
+@plugin "../vendor/heroicons";
+
+/* daisyUI Tailwind Plugin. You can update this file by fetching the latest version with:
+   curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.js
+   Make sure to look at the daisyUI changelog: https://daisyui.com/docs/changelog/ */
+@plugin "../vendor/daisyui" {
+  themes: false;
+}
+
+/* daisyUI theme plugin. The three didi.sh modes, per splash/DESIGN.md.
+   The brand maps ONTO daisyUI's slots rather than sitting beside them, so
+   every daisyUI component inherits credential colour without markup changes.
+   Raw values live in css/theme.css as Tier-1 --color__* tokens; they are
+   spelled literally here because the plugin resolves at build time. */
+
+/* dark — "the vault": engraved verdigris + copper on deep green-black. */
+@plugin "../vendor/daisyui-theme" {
+  name: "dark";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: #060a08;
+  --color-base-200: #0b110e;
+  --color-base-300: #1a2620;
+  --color-base-content: #ecf3ee;
+  --color-primary: #4ecf95;
+  --color-primary-content: #060a08;
+  --color-secondary: #4fbfae;
+  --color-secondary-content: #060a08;
+  --color-accent: #d29a62;
+  --color-accent-content: #060a08;
+  --color-neutral: #33443c;
+  --color-neutral-content: #e0eae4;
+  --color-info: #55e0d2;
+  --color-info-content: #060a08;
+  --color-success: #4ecf95;
+  --color-success-content: #060a08;
+  --color-warning: #ffb547;
+  --color-warning-content: #060a08;
+  --color-error: #e5484d;
+  --color-error-content: #f6eeee;
+  --radius-selector: 0.125rem;
+  --radius-field: 0.1875rem;
+  --radius-box: 0.3125rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* light — "security paper": pale green-white stock, engraved ink. */
+@plugin "../vendor/daisyui-theme" {
+  name: "light";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: #f3f6f2;
+  --color-base-200: #e9efe8;
+  --color-base-300: #dbe5da;
+  --color-base-content: #14201a;
+  --color-primary: #1f9a63;
+  --color-primary-content: #f3f6f2;
+  --color-secondary: #2a7f74;
+  --color-secondary-content: #f3f6f2;
+  --color-accent: #a86f3d;
+  --color-accent-content: #f3f6f2;
+  --color-neutral: #33443c;
+  --color-neutral-content: #f3f6f2;
+  --color-info: #2a7f74;
+  --color-info-content: #f3f6f2;
+  --color-success: #1f9a63;
+  --color-success-content: #f3f6f2;
+  --color-warning: #b7791f;
+  --color-warning-content: #f3f6f2;
+  --color-error: #c62828;
+  --color-error-content: #f3f6f2;
+  --radius-selector: 0.125rem;
+  --radius-field: 0.1875rem;
+  --radius-box: 0.3125rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* vibrant — "the UV lamp": the blacklight check. Hidden features fluoresce
+   violet while the verdigris thread stays lit. DARK-BASED by contract: the
+   surface goes violet-black, it never inherits light's paper. */
+@plugin "../vendor/daisyui-theme" {
+  name: "vibrant";
+  default: false;
+  prefersdark: false;
+  color-scheme: "dark";
+  --color-base-100: #07060f;
+  --color-base-200: #0c0a17;
+  --color-base-300: #17132a;
+  --color-base-content: #f0ecfb;
+  --color-primary: #9d7bff;
+  --color-primary-content: #07060f;
+  --color-secondary: #55f0a6;
+  --color-secondary-content: #07060f;
+  --color-accent: #55e0d2;
+  --color-accent-content: #07060f;
+  --color-neutral: #4e4570;
+  --color-neutral-content: #f0ecfb;
+  --color-info: #55e0d2;
+  --color-info-content: #07060f;
+  --color-success: #55f0a6;
+  --color-success-content: #07060f;
+  --color-warning: #ffb547;
+  --color-warning-content: #07060f;
+  --color-error: #ff5c7a;
+  --color-error-content: #1a0510;
+  --radius-selector: 0.125rem;
+  --radius-field: 0.1875rem;
+  --radius-box: 0.3125rem;
+  --size-selector: 0.21875rem;
+  --size-field: 0.21875rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* Add variants based on LiveView classes */
+@custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
+@custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
+@custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
+
+/* Use the data attribute for dark mode  */
+/* vibrant is dark-based, so it rides the dark: variant too. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *, [data-theme=vibrant], [data-theme=vibrant] *));
+
+/* Make LiveView wrapper divs transparent for layout */
+[data-phx-session], [data-phx-teleported-src] { display: contents }
+
+/* This file is for your main application CSS */

@@ -1,0 +1,50 @@
+import { defineConfig } from '@rsbuild/core';
+import { pluginSvelte } from '@rsbuild/plugin-svelte';
+import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
+
+// The design-system portal. Exposed as a federation remote so the shell can
+// mount it under its own header, AND runnable standalone on :3020.
+//
+// It is still not in DESIGN.md's member registry — it documents the system
+// rather than consuming it as a product surface, so the per-member contract
+// (prefix, root_class, tiering, its own DESIGN.md) does not apply.
+//
+// It is now a federation HOST as well as a remote: the components view mounts
+// each member's `./gallery` expose. Note what that does NOT mean — the portal
+// does not import any member's components. It loads a library the member built
+// and shipped, from the member's own bundle. Aggregation without ownership; the
+// index is central, the libraries are not.
+//
+// Note what is NOT a remote here: packages/shared-ui. The FEDERAL library is a
+// workspace package, so it arrives through an ordinary import and is bundled
+// into this app — there is no server on the other end of a package. That is the
+// one library the portal can render with nothing else running.
+const CORPORA_CURATOR_REMOTE =
+  process.env.PUBLIC_CORPORA_CURATOR_REMOTE || 'http://localhost:3017/remoteEntry.js';
+const REQUEST_REVIEWER_REMOTE =
+  process.env.PUBLIC_REQUEST_REVIEWER_REMOTE || 'http://localhost:3004/remoteEntry.js';
+
+export default defineConfig({
+  plugins: [
+    pluginSvelte(),
+    pluginModuleFederation({
+      name: 'designSystem',
+      filename: 'remoteEntry.js',
+      exposes: { './mount': './src/mount.ts' },
+      remotes: {
+        corporaCurator: `corporaCurator@${CORPORA_CURATOR_REMOTE}`,
+        requestReviewer: `requestReviewer@${REQUEST_REVIEWER_REMOTE}`,
+      },
+      dts: false,
+    }),
+  ],
+  source: { entry: { index: './src/index.ts' } },
+  output: {
+    target: 'web',
+    overrideBrowserslist: ['last 2 Chrome versions', 'last 2 Firefox versions', 'last 2 Safari versions'],
+  },
+  tools: { swc: { jsc: { target: 'es2022' } } },
+  html: { title: 'augment-it · design system' },
+  server: { port: 3020, cors: { origin: ['http://localhost:3100'] } },
+  dev: { assetPrefix: 'http://localhost:3020' },
+});

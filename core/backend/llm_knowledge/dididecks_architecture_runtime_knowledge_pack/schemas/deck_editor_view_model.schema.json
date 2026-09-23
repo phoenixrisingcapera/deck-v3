@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeckEditorViewModel",
+  "type": "object",
+  "required": [
+    "deck",
+    "slides",
+    "activeSlide",
+    "activeVariant",
+    "blocks",
+    "persistentFields",
+    "fieldUsages"
+  ],
+  "properties": {
+    "deck": {
+      "type": "object"
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "activeSlide": {
+      "type": "object"
+    },
+    "activeVariant": {
+      "type": "object"
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "$ref": "deck_block.schema.json"
+      }
+    },
+    "persistentFields": {
+      "type": "array",
+      "items": {
+        "$ref": "persistent_field.schema.json"
+      }
+    },
+    "fieldUsages": {
+      "type": "array",
+      "items": {
+        "$ref": "field_usage.schema.json"
+      }
+    },
+    "comments": {
+      "type": "array"
+    },
+    "versions": {
+      "type": "array"
+    },
+    "exports": {
+      "type": "array"
+    },
+    "surfaceReviewSummary": {
+      "type": "object"
+    }
+  }
+}

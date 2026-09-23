@@ -1,0 +1,3 @@
+[submodule "apps/memopop-orchestrator"]
+	path = apps/memopop-orchestrator
+	url = https://github.com/lossless-group/investment-memo-orchestrator.git

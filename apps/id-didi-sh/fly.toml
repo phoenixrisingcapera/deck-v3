@@ -1,0 +1,45 @@
+# fly.toml — the didi.sh identity service at id.didi.sh
+#
+# The libSQL/SQLite file lives on a Fly Volume mounted at /data — which is
+# also why migrations run at BOOT (the [processes] command below), never as
+# a release_command: Fly release commands run on an ephemeral machine that
+# does NOT mount the volume.
+#
+# Secrets (set via `fly secrets set`, never here):
+#   SECRET_KEY_BASE   — mix phx.gen.secret
+#   ID_SIGNING_JWK    — mix id.gen.keypair (the private JWK JSON)
+# Later increments add: email API key, OAuth client secrets, R2 creds
+# (Litestream).
+
+app = 'id-didi-sh'
+primary_region = 'lax'
+
+[build]
+
+[env]
+  PHX_HOST = 'id.didi.sh'
+  PORT = '8080'
+  DATABASE_PATH = '/data/id_didi_sh.db'
+  ID_ISSUER = 'https://id.didi.sh'
+  ID_COOKIE_DOMAIN = '.didi.sh'
+
+[processes]
+  app = "sh -c '/app/bin/migrate && /app/bin/server'"
+
+[mounts]
+  source = 'idds_data'
+  destination = '/data'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # The identity plane should not cold-start: JWKS fetches and silent
+  # refreshes across every service land here.
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '512mb'

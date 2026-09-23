@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Inside the Sovereign Shell — nineteen modules, no imports",
+    "output": "sovereign-tier.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1280,
+      720
+    ],
+    "views": [
+      {
+        "id": "no-imports",
+        "label": "What they never do",
+        "focus": [
+          "intake",
+          "resolve",
+          "fire"
+        ],
+        "note": "No module imports another. The only shared imports in the tier are three federal packages; grep a sibling's name and get nothing."
+      },
+      {
+        "id": "what-operator-does",
+        "label": "What the operator does",
+        "focus": [
+          "review",
+          "windows"
+        ],
+        "note": "The reviewer hands off to a window action. Nothing is committed by the pipeline itself — a person decides what the response data becomes."
+      },
+      {
+        "id": "three-places",
+        "label": "One or more of three",
+        "focus": [
+          "windows",
+          "worktarget",
+          "db"
+        ],
+        "note": "An action lands in one or more of three stores: the working set, the canonical entity graph, or a corpus file on disk."
+      },
+      {
+        "id": "where-state-lives",
+        "label": "Where the state lives",
+        "focus": [
+          "worktarget",
+          "db",
+          "corpora"
+        ],
+        "note": "Three stores, three jobs. A key for what is being worked on, SurrealDB for canonical entities, and an on-disk mirror of every write."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "intake",
+      "type": "frontend",
+      "label": "Intake",
+      "sublabel": "record-collector · search-and-add",
+      "pos": [
+        50,
+        132
+      ],
+      "size": [
+        218,
+        88
+      ]
+    },
+    {
+      "id": "resolve",
+      "type": "frontend",
+      "label": "Resolvers",
+      "sublabel": "person · record · affiliation",
+      "pos": [
+        370,
+        132
+      ],
+      "size": [
+        218,
+        88
+      ]
+    },
+    {
+      "id": "fire",
+      "type": "frontend",
+      "label": "Prompt firing",
+      "sublabel": "template-manager · pack-runner",
+      "pos": [
+        690,
+        132
+      ],
+      "size": [
+        200,
+        88
+      ]
+    },
+    {
+      "id": "review",
+      "type": "frontend",
+      "label": "Review and promote",
+      "sublabel": "response-reviewer · records-surface",
+      "pos": [
+        990,
+        132
+      ],
+      "size": [
+        238,
+        88
+      ]
+    },
+    {
+      "id": "windows",
+      "type": "frontend",
+      "label": "Workspace Window Actions",
+      "sublabel": "feature- and flow-driven UIs",
+      "tag": "what the operator does with a response",
+      "pos": [
+        460,
+        310
+      ],
+      "size": [
+        360,
+        100
+      ]
+    },
+    {
+      "id": "worktarget",
+      "type": "database",
+      "label": "active-record-set",
+      "sublabel": "localStorage · read by five",
+      "pos": [
+        531,
+        550
+      ],
+      "size": [
+        218,
+        100
+      ],
+      "tag": "read by five modules on mount"
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "Multi-Modal DB",
+      "sublabel": "SurrealDB · canonical entities",
+      "pos": [
+        191,
+        550
+      ],
+      "size": [
+        218,
+        100
+      ]
+    },
+    {
+      "id": "corpora",
+      "type": "database",
+      "label": "Local Corpora",
+      "sublabel": "markdown, yaml, json on disk",
+      "pos": [
+        956,
+        550
+      ],
+      "size": [
+        218,
+        100
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Sovereign Shell — nineteen modules, none imports another",
+      "wraps": [
+        "intake",
+        "resolve",
+        "fire",
+        "review"
+      ],
+      "pad": 44
+    },
+    {
+      "kind": "region",
+      "label": "Flow Selector + Window Loader — a flow picks the windows and their order",
+      "wraps": [
+        "intake",
+        "resolve",
+        "fire",
+        "review"
+      ],
+      "pad": 18
+    }
+  ],
+  "connections": [
+    {
+      "id": "intake-resolve",
+      "from": "intake",
+      "to": "resolve",
+      "label": "raw rows"
+    },
+    {
+      "id": "resolve-fire",
+      "from": "resolve",
+      "to": "fire",
+      "label": "resolved"
+    },
+    {
+      "id": "resolve-windows",
+      "from": "resolve",
+      "to": "windows",
+      "label": "act on it now",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "fire-review",
+      "from": "fire",
+      "to": "review",
+      "label": "responses"
+    },
+    {
+      "id": "review-windows",
+      "from": "review",
+      "to": "windows",
+      "label": "the operator acts",
+      "variant": "emphasis"
+    },
+    {
+      "id": "resolve-db",
+      "from": "resolve",
+      "to": "db",
+      "label": "straight to canonical",
+      "fromSide": "left",
+      "toSide": "top",
+      "via": [
+        [
+          300,
+          176
+        ]
+      ],
+      "labelAt": [
+        300,
+        430
+      ]
+    },
+    {
+      "id": "act-db",
+      "from": "windows",
+      "to": "db",
+      "label": "write the entity",
+      "labelAt": [
+        470,
+        480
+      ]
+    },
+    {
+      "id": "act-worktarget",
+      "from": "windows",
+      "to": "worktarget",
+      "label": "re-target the set",
+      "labelAt": [
+        640,
+        480
+      ]
+    },
+    {
+      "id": "act-corpora",
+      "from": "windows",
+      "to": "corpora",
+      "label": "write a corpus file",
+      "labelAt": [
+        1065,
+        480
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Nineteen modules, zero imports",
+      "items": [
+        "The only shared imports are three federal packages",
+        "Each builds, tests and deploys on its own"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "The operator commits",
+      "items": [
+        "Review hands off to an action, not to a store",
+        "One action can land in all three at once"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Three places state lives",
+      "items": [
+        "One key names the record set everyone works on",
+        "SurrealDB is canonical; every write mirrors to disk"
+      ]
+    }
+  ]
+}

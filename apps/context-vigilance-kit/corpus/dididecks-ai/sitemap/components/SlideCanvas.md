@@ -1,0 +1,70 @@
+---
+title: SlideCanvas — pure-CSS 16:9 wrapper that scales a 1920×1080 stage to fit any
+  canvas
+lede: Pure-CSS 16:9 stage — container queries scale a 1920×1080 design size to any
+  canvas, so the Play-UI scaling pipeline needs no JS.
+artifact_kind: component
+ownership: shell
+mode: play-ui
+status: shipped
+shell_version_introduced: 0.1.0-rc.0
+composes: []
+composed_by:
+- /play/[deckSlug]/[variantSlug]/[slot] route
+theming_tokens_consumed: []
+plan_of_record: '[[../../plans/Phase-A-Plus-Plus-Play-Fidelity-In-Play-Ranking-and-Variant-URL-Safety]]'
+file: apps/deck-shell/src/components/SlideCanvas.astro
+authors:
+- Michael Staton
+date_authored_initial_draft: 2026-05-13
+date_last_updated: 2026-05-15
+at_semantic_version: 0.1.0
+status_tags:
+- Shipped
+- Pure-CSS
+- No-ContentFit-Yet
+date_created: 2026-05-13
+date_modified: 2026-05-15
+publish: true
+site_uuid: aa84d68d-9e5b-466a-8cf6-b31e147e1770
+hex_code: 2s6ach
+date_authored_current_draft: 2026-05-13
+source_root: /Users/mpstaton/code/lossless-monorepo/ai-labs/dididecks-ai/context-v
+source_relative_path: sitemap/components/SlideCanvas.md
+source_repo_slug: dididecks-ai
+collated_at: '2026-08-24'
+source_path: "ai-labs/dididecks-ai/context-v/sitemap/components/SlideCanvas.md"
+---
+
+# SlideCanvas
+
+## Props
+
+```ts
+interface Props {
+  designWidth?: number;   // default 1920
+  designHeight?: number;  // default 1080
+  title?: string;
+  background?: string;
+}
+```
+
+## Why pure-CSS (no JS)
+
+The Play-UI contract: rendered play decks are static HTML/CSS so they ship clean to any host, share-link, or PDF-export pipeline. CSS container queries (`100cqw`, `100cqh`) make script-free aspect-ratio scaling possible. Calmstorm's `ContentFit` (ResizeObserver + scale-transform) is the JS-driven equivalent — A++.3 lifted `SlideCanvas` only; `ContentFit` remains unlifted and will be needed for slides whose content size isn't known at author-time.
+
+## Reveal-animation note
+
+Scroll-deck reveal animations (`[data-reveal]`, `.reveal-item`) depend on IntersectionObserver and don't run inside the static canvas. A global CSS rule pins their visible state so reveal-opt-in slides still render correctly in Play.
+
+## Status
+
+- ✅ Shipped pure-CSS scaling.
+- ⚠️ `ContentFit` sibling primitive not yet lifted from calmstorm (A++.3 partial).
+- ⚠️ Composed by `/play/[slot]` route today; will be composed by `DeckOverlay--Play-UI` once the route migrates.
+
+## Related
+
+- [[DeckOverlay--Play-UI]] — target composition parent.
+- [[../routes/play-slot]] — current direct consumer.
+- [[../../plans/Phase-A-Plus-Plus-Play-Fidelity-In-Play-Ranking-and-Variant-URL-Safety]] — origin plan (A++.3 + A++.4).

@@ -1,0 +1,588 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   theme.css — id-didi-sh/splash
+   Two-tier token system + three-mode contract per the Astro Knots convention.
+
+   Tier 1: NAMED tokens  (--color__verdigris, --font__display)
+           Mode-invariant raw values.
+
+   Tier 2: SEMANTIC tokens (--color-bg, --color-accent)
+           Reference Tier 1; rebound per <html data-mode="...">.
+
+   POSTURE — "credential": this splash is for an identity service, so it
+   dresses like an identity document. Guilloche line-work (the engraved
+   rosettes on banknotes and passports) as the background ornament, stamp
+   chrome for statuses, mono-forward data fields, terse datasheet voice.
+
+   Modes (dark is the default — the vault):
+   - dark    : default; "vault" — engraved verdigris + copper on deep
+               green-black, banknote-intaglio feel.
+   - light   : "security paper" — pale green-white stock, engraved ink.
+   - vibrant : "UV lamp" — the blacklight check; hidden features fluoresce
+               violet while the verdigris thread stays lit.
+
+   The brand spine — verdigris + copper + security-teal — is the currency-
+   engraving palette. Distinct from memopop (cyan + plum), augment-it
+   (magenta-iris), lfm (ink-violet + sienna + moss), ai-labs (violet family).
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Tier 1: NAMED tokens — raw values, mode-invariant ──────────────── */
+
+  /* Brand spine — intaglio inks */
+  --color__verdigris:       #4ecf95;
+  --color__verdigris-deep:  #1f9a63;
+  --color__verdigris-soft:  #b5eed3;
+  --color__copper:          #d29a62;
+  --color__copper-deep:     #a86f3d;
+  --color__copper-soft:     #eed3b2;
+  --color__teal:            #4fbfae;
+  --color__teal-deep:       #2a7f74;
+  --color__teal-soft:       #b8e8e1;
+
+  /* Signal hues */
+  --color__thread:          #55e0d2;  /* the security thread */
+  --color__uv:              #9d7bff;  /* fluoresces under the vibrant lamp */
+  --color__uv-soft:         #c9b3ff;
+  --color__amber:           #ffb547;
+
+  /* Editorial neutrals — the vault-ink axis (green-black, not blue-black) */
+  --color__vault-deep:      #060a08;
+  --color__vault:           #0b110e;
+  --color__vault-soft:      #121a16;
+  --color__moss-800:        #1a2620;
+  --color__sage-700:        #33443c;
+  --color__sage-500:        #5c7268;
+  --color__sage-400:        #7a9186;
+  --color__sage-300:        #9db1a7;
+  --color__sage-200:        #c2d2c9;
+  --color__sage-100:        #e0eae4;
+  --color__paper:           #f3f6f2;
+  --color__paper-soft:      #e9efe8;
+  --color__paper-deep:      #dbe5da;
+
+  /* Typography — Tier 1.
+     Display: Space Grotesk (engraved-caps headline duty).
+     Sans:    IBM Plex Sans (institutional document body).
+     Mono:    IBM Plex Mono (the data fields on the credential). */
+  --font__display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font__sans:    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font__mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing — invariant */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Radii — documents are square. Pills stay round. */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 5px;
+  --radius-xl: 8px;
+  --radius-pill: 999px;
+
+  --transition-fast: 160ms ease;
+  --transition-mid:  320ms ease;
+
+  /* Guilloche ring pitch — the engraving line spacing. */
+  --guilloche-pitch: 11px;
+
+  color-scheme: dark;
+}
+
+/* ─── Tier 2: SEMANTIC — DARK MODE (default; "the vault") ─────────────── */
+:root,
+:root[data-mode='dark'] {
+  --color-bg:           var(--color__vault-deep);
+  --color-bg-soft:      var(--color__vault);
+  --color-bg-elevated:  var(--color__moss-800);
+  --color-bg-card:      rgba(18, 26, 22, 0.82);
+  --color-bg-code:      #040705;
+
+  --color-text:         #ecf3ee;
+  --color-text-soft:    var(--color__sage-200);
+  --color-text-dim:     var(--color__sage-400);
+  --color-text-dimmer:  #64796e;
+  --color-text-faint:   #465850;
+
+  --color-accent:       var(--color__verdigris);
+  --color-accent-soft:  var(--color__verdigris-soft);
+  --color-accent-warm:  var(--color__copper);
+  --color-accent-hot:   var(--color__verdigris-deep);
+
+  --color-thread:       var(--color__thread);
+  --color-thread-soft:  #aef0e9;
+
+  --color-border:       rgba(78, 207, 149, 0.14);
+  --color-border-strong: rgba(78, 207, 149, 0.32);
+  --color-border-accent: rgba(78, 207, 149, 0.58);
+
+  --shadow-glow:     0 0 70px rgba(78, 207, 149, 0.14);
+  --shadow-card:     0 18px 40px -22px rgba(0, 0, 0, 0.72), 0 1px 0 rgba(78, 207, 149, 0.10);
+  --shadow-elevated: 0 30px 70px -28px rgba(31, 154, 99, 0.35);
+
+  --gradient-thread:
+    linear-gradient(110deg,
+      var(--color__verdigris) 0%,
+      var(--color__teal) 48%,
+      var(--color__copper) 100%);
+
+  --gradient-mesh-1: radial-gradient(ellipse at 12% 8%,  color-mix(in oklab, var(--color__verdigris-deep) 16%, transparent), transparent 55%);
+  --gradient-mesh-2: radial-gradient(ellipse at 88% 14%, color-mix(in oklab, var(--color__teal-deep) 16%, transparent), transparent 60%);
+  --gradient-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--color__copper-deep) 12%, transparent), transparent 60%);
+
+  color-scheme: dark;
+}
+
+/* ─── Tier 2: SEMANTIC — LIGHT MODE ("security paper") ────────────────── */
+:root[data-mode='light'] {
+  --color-bg:           var(--color__paper);
+  --color-bg-soft:      var(--color__paper-soft);
+  --color-bg-elevated:  #ffffff;
+  --color-bg-card:      rgba(255, 255, 255, 0.92);
+  --color-bg-code:      var(--color__paper-deep);
+
+  --color-text:         #14201a;
+  --color-text-soft:    var(--color__sage-700);
+  --color-text-dim:     var(--color__sage-500);
+  --color-text-dimmer:  #6f8378;
+  --color-text-faint:   var(--color__sage-400);
+
+  --color-accent:       var(--color__verdigris-deep);
+  --color-accent-soft:  #167a4d;
+  --color-accent-warm:  var(--color__copper-deep);
+  --color-accent-hot:   var(--color__verdigris);
+
+  --color-thread:       var(--color__teal-deep);
+  --color-thread-soft:  #58a89d;
+
+  --color-border:       rgba(20, 32, 26, 0.12);
+  --color-border-strong: rgba(20, 32, 26, 0.24);
+  --color-border-accent: rgba(31, 154, 99, 0.42);
+
+  --shadow-glow:     0 0 40px rgba(31, 154, 99, 0.08);
+  --shadow-card:     0 1px 0 rgba(20, 32, 26, 0.06), 0 12px 24px -16px rgba(20, 32, 26, 0.18);
+  --shadow-elevated: 0 1px 0 rgba(20, 32, 26, 0.08), 0 24px 48px -22px rgba(20, 32, 26, 0.22);
+
+  --gradient-thread:
+    linear-gradient(110deg,
+      var(--color__verdigris-deep) 0%,
+      var(--color__teal-deep) 48%,
+      var(--color__copper-deep) 100%);
+
+  --gradient-mesh-1: radial-gradient(ellipse at 12% 6%,  color-mix(in oklab, var(--color__verdigris) 7%, transparent), transparent 55%);
+  --gradient-mesh-2: radial-gradient(ellipse at 88% 14%, color-mix(in oklab, var(--color__teal) 7%, transparent), transparent 60%);
+  --gradient-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--color__copper) 6%, transparent), transparent 60%);
+
+  color-scheme: light;
+}
+
+/* ─── Tier 2: SEMANTIC — VIBRANT MODE ("UV lamp") ─────────────────────── */
+:root[data-mode='vibrant'] {
+  --color-bg:           #07060f;
+  --color-bg-soft:      #0c0a17;
+  --color-bg-elevated:  #17132a;
+  --color-bg-card:      rgba(20, 16, 40, 0.80);
+  --color-bg-code:      #050410;
+
+  --color-text:         #f0ecfb;
+  --color-text-soft:    #cfc6e8;
+  --color-text-dim:     #9187b3;
+  --color-text-dimmer:  #6d6390;
+  --color-text-faint:   #4e4570;
+
+  --color-accent:       var(--color__uv);
+  --color-accent-soft:  var(--color__uv-soft);
+  --color-accent-warm:  var(--color__thread);
+  --color-accent-hot:   #7e54f0;
+
+  --color-thread:       #55f0a6;
+  --color-thread-soft:  #b2f9d4;
+
+  --color-border:       rgba(157, 123, 255, 0.18);
+  --color-border-strong: rgba(157, 123, 255, 0.38);
+  --color-border-accent: rgba(157, 123, 255, 0.62);
+
+  --shadow-glow:     0 0 90px rgba(157, 123, 255, 0.26);
+  --shadow-card:     0 18px 40px -22px rgba(0, 0, 0, 0.75), 0 1px 0 rgba(157, 123, 255, 0.14);
+  --shadow-elevated: 0 30px 70px -28px rgba(126, 84, 240, 0.5);
+
+  --gradient-thread:
+    linear-gradient(110deg,
+      var(--color__uv) 0%,
+      #55f0a6 55%,
+      var(--color__thread) 100%);
+
+  --gradient-mesh-1: radial-gradient(ellipse at 10% 8%,  color-mix(in oklab, var(--color__uv) 22%, transparent), transparent 55%);
+  --gradient-mesh-2: radial-gradient(ellipse at 90% 16%, color-mix(in oklab, #55f0a6 14%, transparent), transparent 60%);
+  --gradient-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, #7e54f0 22%, transparent), transparent 60%);
+
+  color-scheme: dark;
+}
+
+/* ─── Reset & base ────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+  transition: background var(--transition-mid);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font__sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+  transition: background var(--transition-mid), color var(--transition-mid);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font__display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; }
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+  color: var(--color-text);
+}
+
+/* ─── Background ornament — guilloche rosettes ──────────────────────────
+   Two engraved rosettes of fine concentric rings, the way banknote
+   corners carry them. Pure CSS: repeating-radial-gradient at hairline
+   pitch, masked to fade. The mesh gradients underneath stay soft. */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    var(--gradient-mesh-1),
+    var(--gradient-mesh-2),
+    var(--gradient-mesh-3);
+  transition: background var(--transition-mid);
+}
+
+.bg-mesh::before {
+  /* rosette — upper right */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-radial-gradient(
+      circle at 86% 6%,
+      transparent 0,
+      transparent calc(var(--guilloche-pitch) - 1px),
+      color-mix(in oklab, var(--color-accent) 30%, transparent) calc(var(--guilloche-pitch) - 1px),
+      color-mix(in oklab, var(--color-accent) 30%, transparent) var(--guilloche-pitch)
+    );
+  opacity: 0.16;
+  mask-image: radial-gradient(circle at 86% 6%, #000 0%, #000 12%, transparent 38%);
+  -webkit-mask-image: radial-gradient(circle at 86% 6%, #000 0%, #000 12%, transparent 38%);
+}
+
+.bg-mesh::after {
+  /* rosette — lower left, offset pitch so the pair reads engraved, not tiled */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-radial-gradient(
+      circle at 6% 96%,
+      transparent 0,
+      transparent calc(var(--guilloche-pitch) * 1.4 - 1px),
+      color-mix(in oklab, var(--color-accent-warm) 30%, transparent) calc(var(--guilloche-pitch) * 1.4 - 1px),
+      color-mix(in oklab, var(--color-accent-warm) 30%, transparent) calc(var(--guilloche-pitch) * 1.4)
+    );
+  opacity: 0.13;
+  mask-image: radial-gradient(circle at 6% 96%, #000 0%, #000 10%, transparent 34%);
+  -webkit-mask-image: radial-gradient(circle at 6% 96%, #000 0%, #000 10%, transparent 34%);
+}
+
+:root[data-mode='light'] .bg-mesh::before { opacity: 0.12; }
+:root[data-mode='light'] .bg-mesh::after  { opacity: 0.10; }
+:root[data-mode='vibrant'] .bg-mesh::before { opacity: 0.24; }
+:root[data-mode='vibrant'] .bg-mesh::after  { opacity: 0.20; }
+
+body > :not(.bg-mesh) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Utility primitives ─────────────────────────────────────────────── */
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.mono    { font-family: var(--font__mono); }
+.display { font-family: var(--font__display); }
+
+.eyebrow {
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+/* Section folio — the document's field label: "SEC.02 · THE SERVICES". */
+.folio {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+.folio::before {
+  content: attr(data-num);
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  padding: 1px 6px;
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--color-accent) 8%, transparent);
+}
+
+.gradient-text {
+  background: var(--gradient-thread);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font__mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-soft);
+  background: color-mix(in oklab, var(--color-text) 4%, transparent);
+}
+.pill[data-status='Active'],
+.pill[data-status='Stable'],
+.pill[data-status='live'],
+.pill[data-status='Implementing'] {
+  color: var(--color-thread);
+  border-color: color-mix(in oklab, var(--color-thread) 50%, transparent);
+  background: color-mix(in oklab, var(--color-thread) 12%, transparent);
+}
+.pill[data-status='Beta'] {
+  color: var(--color-accent);
+  border-color: color-mix(in oklab, var(--color-accent) 50%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 12%, transparent);
+}
+.pill[data-status='Alpha'],
+.pill[data-status='Experiment'],
+.pill[data-status='planned'],
+.pill[data-status='Draft'] {
+  color: var(--color-accent-warm);
+  border-color: color-mix(in oklab, var(--color-accent-warm) 50%, transparent);
+  background: color-mix(in oklab, var(--color-accent-warm) 12%, transparent);
+}
+
+/* Stamp — the credential posture's signature chrome. A rubber/ink stamp:
+   double rule, uppercase mono, a hair of rotation. Use for statuses on
+   document surfaces (service cards, the specimen ID). */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 2px double currentColor;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-thread);
+  transform: rotate(-2deg);
+  background: color-mix(in oklab, currentColor 6%, transparent);
+}
+.stamp[data-ink='copper'] { color: var(--color-accent-warm); }
+.stamp[data-ink='accent'] { color: var(--color-accent); }
+.stamp[data-ink='dim']    { color: var(--color-text-dim); }
+
+.from-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-thread);
+  background: color-mix(in oklab, var(--color-thread) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-thread) 35%, transparent);
+}
+.from-tag::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-thread);
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.82em;
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  white-space: nowrap;
+}
+
+.ver-chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  border: 1px solid color-mix(in oklab, var(--color-accent) 36%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 8%, transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font__sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+}
+.btn:hover {
+  border-color: var(--color-accent);
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+.btn-primary:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Sign in ──────────────────────────────────────────────────────────
+   The header's one action. Deliberately quieter than `.btn-primary`: on a
+   marketing page the hero owns the loud call, and a second loud button beside
+   the mode toggle competes with it rather than reinforcing it. It reads as a
+   control until hovered, then commits. */
+.site-header__auth {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid var(--color-border-strong, var(--color-border));
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background var(--transition-fast, 120ms),
+    border-color var(--transition-fast, 120ms),
+    color var(--transition-fast, 120ms);
+}
+.site-header__auth:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.credential__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4, 16px);
+  margin-top: var(--space-6, 24px);
+}
+.credential__cta-note {
+  font-size: 0.78rem;
+  opacity: 0.65;
+}
+
+@media (max-width: 720px) {
+  .site-header__auth {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}

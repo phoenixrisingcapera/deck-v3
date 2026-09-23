@@ -1,0 +1,43 @@
+/* MemoPop Global Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties for runtime theming */
+:root {
+  --color-primary: #1a3a52;
+  --color-secondary: #1dd3d3;
+  --color-accent: #f59e0b;
+  --color-background: #ffffff;
+  --color-background-alt: #f8fafc;
+  --color-foreground: #1a2332;
+  --color-foreground-muted: #64748b;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', Menlo, monospace;
+}
+
+/* Base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  line-height: 1.6;
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}

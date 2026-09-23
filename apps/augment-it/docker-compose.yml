@@ -1,0 +1,215 @@
+services:
+  nats:
+    image: nats:2.10-alpine
+    ports:
+      - "4222:4222"     # client connections
+      - "8222:8222"     # monitoring — the dashboard the client looks at
+    # Config file holds max_payload: 8MB (default 1MB) — the response.list
+    # reply payload grew past 1MB during Entity Pulse fan-out on 2026-06-02
+    # and crashed response-store. Inline flags didn't parse cleanly in
+    # docker compose; config file is the safe path.
+    volumes:
+      - ./nats.conf:/etc/nats/nats.conf:ro
+    command: ["-c", "/etc/nats/nats.conf"]
+
+  workspace-service:
+    build: ./services/workspace
+    ports:
+      - "3001:3001"
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+      SESSION_STORE_PATH: /data/sessions.json
+      # Operator's last workspace pick, restored on boot — without it every
+      # container rebuild reset the active workspace to the alphabetically
+      # first slug and every surface followed it into the wrong tenant.
+      ACTIVE_STORE_PATH: /data/active-workspace.json
+      # The search-results queue registry — agent searches as async jobs,
+      # surviving every client failure mode on the same durable volume.
+      # Per context-v/specs/Search-Results-Queue-Remote.md D1.
+      SEARCH_STORE_PATH: /data/searches.json
+      PORT: "3001"
+      # Workspace registry — each child of /clients is a workspace, per
+      # [[Workspaces-as-Tenant-Primitive]]. ACTIVE_CLIENT_ID is optional;
+      # absent → persisted last pick, then first slug alphabetically.
+      CLIENTS_ROOT: /clients
+      ACTIVE_CLIENT_ID: ${ACTIVE_CLIENT_ID:-}
+      # didi.sh identity (spec increment 2) — verify the didi_session
+      # cookie on WS upgrade against the id service's JWKS. Local dev runs
+      # the id service on the HOST at :4000 (mix phx.server in id-didi-sh),
+      # reached from this container via host.docker.internal. 'optional'
+      # keeps the legacy continuity-token flow working; flip to 'required'
+      # once operators are didi users. Prod swaps the URLs to id.didi.sh.
+      ID_JWKS_URL: ${ID_JWKS_URL:-http://host.docker.internal:4000/.well-known/jwks.json}
+      ID_ISSUER: ${ID_ISSUER:-http://localhost:4000}
+      DIDI_AUTH: ${DIDI_AUTH:-optional}
+      # Step 3's membership gate: in required mode, identity must also hold
+      # a membership in this org (or superuser anywhere). Unset → identity
+      # alone suffices. The single-tenant deploy sets humain.vc.
+      REQUIRED_ORG_ID: ${REQUIRED_ORG_ID:-}
+    volumes:
+      - workspace-data:/data
+      - ./clients:/clients:ro
+
+  row-store:
+    build: ./services/row-store
+    # depends_on workspace-service so the migration on first boot lands
+    # under the right tenant slug. row-store queries workspace-service's
+    # workspace.active.requested over NATS at boot; without ordering, the
+    # request can fire before workspace-service has subscribed and the
+    # retry budget burns unnecessarily. Plain depends_on guarantees start
+    # order, not health — the retry loop in server.ts still handles the
+    # boot race within workspace-service's own startup.
+    depends_on:
+      - nats
+      - workspace-service
+    restart: on-failure
+    environment:
+      NATS_URL: nats://nats:4222
+      # Workspace-scoped: rows.json now lives at /clients/<slug>/rows.json
+      # per [[Workspaces-as-Tenant-Primitive]]. CLIENTS_ROOT mirrors the
+      # workspace-service convention. LEGACY_ROW_STORE_PATH triggers a
+      # one-shot copy of the pre-workspace single-tenant file into the
+      # active workspace on first boot; safe to keep set after migration.
+      CLIENTS_ROOT: /clients
+      LEGACY_ROW_STORE_PATH: /data/rows.json
+    volumes:
+      - row-store-data:/data
+      - ./clients:/clients
+
+  ingest:
+    build: ./services/ingest
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+
+  xlsx-ingest:
+    build: ./services/xlsx-ingest
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+
+  prompt-store:
+    build: ./services/prompt-store
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+      PROMPT_STORE_PATH: /data/prompts.json
+    volumes:
+      - prompt-store-data:/data
+
+  prompt-runner:
+    build: ./services/prompt-runner
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+      # The only container that holds the API key. Sourced from
+      # augment-it/.env (gitignored; Docker Compose auto-reads it).
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      # Default model when a prompt.run names none. Per-request `model` from
+      # request-reviewer overrides this. Override to claude-sonnet-4-6 for
+      # cheaper large per-row batches.
+      LLM_MODEL: ${LLM_MODEL:-claude-opus-4-7}
+
+  response-store:
+    build: ./services/response-store
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+      RESPONSE_STORE_PATH: /data/responses.json
+    volumes:
+      - response-store-data:/data
+
+  # Self-hosted metasearch aggregator — the default provider for social packs.
+  # No API key, free. Reached by social-search at searxng:8080 on the internal
+  # network. The mounted settings.yml enables the JSON API and disables the
+  # limiter (both off by default in the upstream image).
+  searxng:
+    image: searxng/searxng:latest
+    environment:
+      # Any non-empty string; this instance is internal-only.
+      SEARXNG_SECRET: ${SEARXNG_SECRET:-augment-it-local-dev-secret}
+    volumes:
+      - ./services/social-search/searxng:/etc/searxng:rw
+    ports:
+      # Exposed for debugging the JSON API directly; not required by the stack.
+      - "8080:8080"
+
+  social-search:
+    build: ./services/social-search
+    depends_on:
+      - nats
+      - searxng
+    environment:
+      NATS_URL: nats://nats:4222
+      # Default provider for every social pack — no key needed.
+      SEARXNG_URL: http://searxng:8080
+      # Tavily stays wired in as a peer connector (content-RAG packs). Only
+      # packs routed to Tavily need this; sourced from augment-it/.env.
+      TAVILY_API_KEY: ${TAVILY_API_KEY}
+      # Firecrawl — used by the Records Surface (firecrawl-nav-scan,
+      # firecrawl-nav-agent) and by the Entity Pulse official-blog-pack.
+      FIRECRAWL_API_KEY: ${FIRECRAWL_API_KEY}
+      # Exa — neural/keyword web search, a peer connector in the registry
+      # (Augment-from-DB search.fire). Sourced from augment-it/.env, where
+      # the key already lives under this exact name.
+      EXA_AI_API_KEY: ${EXA_AI_API_KEY:-}
+      # SerpApi — used by the Records Surface (serpapi-site-search) and by
+      # the Entity Pulse official-blog-pack's find-index stage.
+      # The repo .env keeps this as SERP_API_KEY (historical name with an
+      # underscore between SERP and API); the container code reads
+      # SERPAPI_API_KEY, so we map either spelling through here.
+      SERPAPI_API_KEY: ${SERPAPI_API_KEY:-${SERP_API_KEY:-}}
+      # Anthropic — used by the firecrawl-nav-agent connector to classify
+      # nav links via Haiku. Falls back to deterministic nav-scan when unset.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      # Cap concurrent search calls — the Tavily free tier is rate-limited, and
+      # bursting SearXNG can trip upstream-engine throttling.
+      SOCIAL_SEARCH_CONCURRENCY: ${SOCIAL_SEARCH_CONCURRENCY:-4}
+
+  # Content ingest — Jina-pull markdown + write per-client corpus markdown
+  # files. The /clients mount maps to the host's clients/ directory so
+  # corpus.add lands files directly inside the per-client repo (e.g.
+  # clients/reach-edu/corpus/<funder>/<date>_<slug>.md) and the operator
+  # commits via the per-client repo's own git history. Per
+  # context-v/specs/Funder-Content-Corpus-Workflow.md.
+  content-ingest:
+    build: ./services/content-ingest
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+      CLIENTS_ROOT: /clients
+      # Optional — Jina free tier needs no auth; a key bumps the rate
+      # limit and grants premium endpoints.
+      JINA_API_KEY: ${JINA_API_KEY:-}
+    volumes:
+      - ./clients:/clients
+
+  # Record ↔ DB Resolver — operator-driven match/create bridge from row-store
+  # records to canonical SurrealDB organizations. The FIRST service to talk
+  # SurrealDB server-side; reads SURREAL_* from the repo-root .env (same vars
+  # the scripts + browser apps use). Per context-v/specs/Record-DB-Resolver.md.
+  record-surrealdb-resolver:
+    build: ./services/record-surrealdb-resolver
+    depends_on:
+      - nats
+    environment:
+      NATS_URL: nats://nats:4222
+      SURREAL_URL: ${SURREAL_URL:-}
+      SURREAL_NS: ${SURREAL_NS:-}
+      SURREAL_DB: ${SURREAL_DB:-}
+      SURREAL_USER: ${SURREAL_USER:-}
+      SURREAL_PASS: ${SURREAL_PASS:-}
+
+volumes:
+  workspace-data:
+  row-store-data:
+  prompt-store-data:
+  response-store-data:

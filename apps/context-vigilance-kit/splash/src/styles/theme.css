@@ -1,0 +1,497 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   theme.css — context-vigilance-kit/splash
+   Two-tier token system + three-mode contract per the Astro Knots convention.
+
+   Posture: engineer's clipboard.
+   - Dark default ("worked-in-the-night"). Mono-display: JetBrains Mono is
+     the headline font, not just the chip font. Inter for body. Amber as the
+     "highlighter" accent, lime as the "live/stable" thread, sodium-orange
+     as the warm signal. Differentiated from sibling splashes:
+       memopop      → dark, sans, cyan/aquamarine/plum, radial mesh, matter-of-fact
+       content-farm → similar to memopop
+       lfm          → light, serif (Newsreader), violet/sienna/moss, paper grain, literary
+       cvk (this)   → dark, mono-display, amber/sodium/lime, dot-grid + drift, datasheet voice
+
+   Modes:
+   - dark    : default; "operator". Ink + amber highlighter.
+   - light   : "daylight". Paper-cream + ink, same accent family.
+   - vibrant : "demo". Neon amber + sodium + iris on near-black.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Tier 1: NAMED tokens — raw values, mode-invariant ──────────────── */
+
+  /* Brand spine — amber, sodium, lime. "Highlighter ink on graph paper." */
+  --color__amber:        #fbbf24;
+  --color__amber-deep:   #b45309;
+  --color__amber-soft:   #fde68a;
+  --color__sodium:       #f97316;
+  --color__sodium-deep:  #9a3412;
+  --color__sodium-soft:  #fed7aa;
+  --color__lime:         #a3e635;
+  --color__lime-deep:    #4d7c0f;
+  --color__lime-soft:    #d9f99d;
+
+  /* Vibrant-mode signal hues — pushed into neon territory */
+  --color__neon-amber:   #ffd60a;
+  --color__neon-sodium:  #ff7a1a;
+  --color__iris:         #818cf8;
+
+  /* Engineer neutrals — ink axis, slightly cool */
+  --color__paper:        #f7f6f1;     /* warm off-white for light mode */
+  --color__paper-soft:   #efece2;
+  --color__paper-deep:   #e2dfd1;
+  --color__ink:          #0a0c10;     /* near-black, very slight blue */
+  --color__ink-soft:     #11141b;
+  --color__ink-deep:     #060709;
+  --color__charcoal:     #161a23;
+  --color__slate-700:    #2a2f3a;
+  --color__slate-600:    #3b414f;
+  --color__slate-500:    #5b6273;
+  --color__slate-400:    #8b91a3;
+  --color__slate-300:    #b4b9c7;
+  --color__slate-200:    #d4d8e0;
+  --color__slate-100:    #e8eaef;
+
+  /* Typography — Tier 1.
+     Display: JetBrains Mono (display-mono move; mono is the headline font).
+     Sans:    Inter (body).
+     Mono:    JetBrains Mono (chips/meta — same family as display, different size). */
+  --font__display: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font__sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font__mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing — invariant */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Radii — squarer than memopop, squarer than lfm. Datasheet feel. */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 6px;
+  --radius-xl: 10px;
+  --radius-pill: 999px;
+
+  --transition-fast: 140ms ease;
+  --transition-mid:  280ms ease;
+
+  /* Dot-grid pitch — used by .bg-grid as the ornament. */
+  --grid-pitch: 28px;
+
+  color-scheme: dark;
+}
+
+/* ─── Tier 2: SEMANTIC — DARK MODE (default; "operator") ──────────────── */
+:root,
+:root[data-mode='dark'] {
+  --color-bg:           var(--color__ink);
+  --color-bg-soft:      var(--color__ink-soft);
+  --color-bg-elevated:  var(--color__charcoal);
+  --color-bg-card:      rgba(22, 26, 35, 0.78);
+  --color-bg-code:      var(--color__ink-deep);
+
+  --color-text:         #e8eaef;
+  --color-text-soft:    var(--color__slate-200);
+  --color-text-dim:     var(--color__slate-400);
+  --color-text-dimmer:  var(--color__slate-500);
+  --color-text-faint:   var(--color__slate-600);
+
+  --color-accent:       var(--color__amber);
+  --color-accent-soft:  var(--color__amber-soft);
+  --color-accent-warm:  var(--color__sodium);
+  --color-accent-hot:   var(--color__sodium-deep);
+
+  --color-thread:       var(--color__lime);
+  --color-thread-soft:  var(--color__lime-soft);
+
+  --color-border:       rgba(232, 234, 239, 0.08);
+  --color-border-strong: rgba(232, 234, 239, 0.18);
+  --color-border-accent: rgba(251, 191, 36, 0.45);
+
+  --color-grid-dot:     rgba(232, 234, 239, 0.06);
+
+  --shadow-glow:     0 0 60px rgba(251, 191, 36, 0.10);
+  --shadow-card:     0 18px 36px -22px rgba(0, 0, 0, 0.72);
+  --shadow-elevated: 0 24px 60px -28px rgba(0, 0, 0, 0.85);
+
+  --gradient-thread:
+    linear-gradient(110deg,
+      var(--color__amber) 0%,
+      var(--color__sodium) 55%,
+      var(--color__lime) 100%);
+
+  /* Operator wash — very low-key amber+sodium glow at the page corners. */
+  --gradient-mesh-1: radial-gradient(ellipse at 8% 0%,  color-mix(in oklab, var(--color__amber) 10%, transparent), transparent 55%);
+  --gradient-mesh-2: radial-gradient(ellipse at 92% 8%, color-mix(in oklab, var(--color__sodium) 8%, transparent), transparent 60%);
+  --gradient-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--color__lime) 6%, transparent), transparent 65%);
+
+  color-scheme: dark;
+}
+
+/* ─── Tier 2: SEMANTIC — LIGHT MODE ("daylight") ──────────────────────── */
+:root[data-mode='light'] {
+  --color-bg:           var(--color__paper);
+  --color-bg-soft:      var(--color__paper-soft);
+  --color-bg-elevated:  #fffefa;
+  --color-bg-card:      rgba(255, 254, 250, 0.9);
+  --color-bg-code:      var(--color__paper-deep);
+
+  --color-text:         var(--color__ink);
+  --color-text-soft:    var(--color__slate-700);
+  --color-text-dim:     var(--color__slate-500);
+  --color-text-dimmer:  #6b7280;
+  --color-text-faint:   var(--color__slate-400);
+
+  --color-accent:       var(--color__amber-deep);
+  --color-accent-soft:  var(--color__amber);
+  --color-accent-warm:  var(--color__sodium-deep);
+  --color-accent-hot:   var(--color__sodium);
+
+  --color-thread:       var(--color__lime-deep);
+  --color-thread-soft:  var(--color__lime);
+
+  --color-border:       rgba(10, 12, 16, 0.10);
+  --color-border-strong: rgba(10, 12, 16, 0.22);
+  --color-border-accent: rgba(180, 83, 9, 0.45);
+
+  --color-grid-dot:     rgba(10, 12, 16, 0.06);
+
+  --shadow-glow:     0 0 40px rgba(180, 83, 9, 0.06);
+  --shadow-card:     0 1px 0 rgba(10, 12, 16, 0.05), 0 12px 24px -16px rgba(10, 12, 16, 0.16);
+  --shadow-elevated: 0 1px 0 rgba(10, 12, 16, 0.07), 0 24px 48px -22px rgba(10, 12, 16, 0.22);
+
+  --gradient-thread:
+    linear-gradient(110deg,
+      var(--color__amber-deep) 0%,
+      var(--color__sodium-deep) 55%,
+      var(--color__lime-deep) 100%);
+
+  --gradient-mesh-1: radial-gradient(ellipse at 8% 0%,  color-mix(in oklab, var(--color__amber) 6%, transparent), transparent 55%);
+  --gradient-mesh-2: radial-gradient(ellipse at 92% 8%, color-mix(in oklab, var(--color__sodium) 5%, transparent), transparent 60%);
+  --gradient-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--color__lime) 4%, transparent), transparent 65%);
+
+  color-scheme: light;
+}
+
+/* ─── Tier 2: SEMANTIC — VIBRANT MODE ("demo") ────────────────────────── */
+:root[data-mode='vibrant'] {
+  --color-bg:           var(--color__ink-deep);
+  --color-bg-soft:      #0a0a14;
+  --color-bg-elevated:  #14122a;
+  --color-bg-card:      rgba(20, 18, 42, 0.74);
+  --color-bg-code:      #050410;
+
+  --color-text:         #fff8e8;
+  --color-text-soft:    #f0e0b8;
+  --color-text-dim:     #c8b890;
+  --color-text-dimmer:  #807058;
+  --color-text-faint:   #4a4030;
+
+  --color-accent:       var(--color__neon-amber);
+  --color-accent-soft:  #ffe55a;
+  --color-accent-warm:  var(--color__neon-sodium);
+  --color-accent-hot:   var(--color__iris);
+
+  --color-thread:       var(--color__lime);
+  --color-thread-soft:  #c8ff5a;
+
+  --color-border:       rgba(255, 214, 10, 0.16);
+  --color-border-strong: rgba(255, 214, 10, 0.36);
+  --color-border-accent: rgba(255, 122, 26, 0.6);
+
+  --color-grid-dot:     rgba(255, 214, 10, 0.10);
+
+  --shadow-glow:     0 0 80px rgba(255, 214, 10, 0.28);
+  --shadow-card:     0 22px 60px -28px rgba(255, 122, 26, 0.5);
+  --shadow-elevated: 0 30px 80px -30px rgba(129, 140, 248, 0.55);
+
+  --gradient-thread:
+    linear-gradient(110deg,
+      var(--color__neon-amber) 0%,
+      var(--color__neon-sodium) 50%,
+      var(--color__iris) 100%);
+
+  --gradient-mesh-1: radial-gradient(ellipse at 8% 0%,  color-mix(in oklab, var(--color__neon-amber) 22%, transparent), transparent 55%);
+  --gradient-mesh-2: radial-gradient(ellipse at 92% 8%, color-mix(in oklab, var(--color__neon-sodium) 22%, transparent), transparent 60%);
+  --gradient-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--color__iris) 20%, transparent), transparent 65%);
+
+  color-scheme: dark;
+}
+
+/* ─── Reset & base ────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+  transition: background var(--transition-mid);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font__sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-feature-settings: 'cv11' on, 'ss01' on;   /* Inter humanist forms */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+  transition: background var(--transition-mid), color var(--transition-mid);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /* Display-mono: JetBrains Mono in the headline slot. The whole brand voice
+     leans on this. Tracking tightened, weight at 500 to keep mono headlines
+     from feeling brutalist. */
+  font-family: var(--font__display);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+}
+h1 { font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 600; letter-spacing: -0.035em; }
+h2 { font-size: clamp(1.4rem, 2.6vw, 1.85rem); }
+h3 { font-size: 1.15rem; }
+h4 { font-size: 1rem; font-weight: 600; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; }
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 38%, transparent);
+  color: var(--color-text);
+}
+
+/* ─── Background ornament — dot-grid + ambient drift ──────────────────── */
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    var(--gradient-mesh-1),
+    var(--gradient-mesh-2),
+    var(--gradient-mesh-3),
+    radial-gradient(circle, var(--color-grid-dot) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    var(--grid-pitch) var(--grid-pitch);
+  background-position: 0 0, 0 0, 0 0, 0 0;
+  animation: grid-drift 80s linear infinite;
+  transition: background var(--transition-mid);
+}
+
+@keyframes grid-drift {
+  /* The only animated layer is the dot grid (the 4th background). The mesh
+     gradients stay anchored. Subtle: 1 grid pitch over 80s in each axis. */
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to   { background-position: 0 0, 0 0, 0 0, var(--grid-pitch) var(--grid-pitch); }
+}
+
+body > :not(.bg-grid) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Utility primitives ─────────────────────────────────────────────── */
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.mono    { font-family: var(--font__mono); }
+.display { font-family: var(--font__display); }
+
+.eyebrow {
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+/* Section folio — the manuscript-style chapter mark. Reused across sections.
+   Renders the section number from a data-num attribute. */
+.folio {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+.folio::before {
+  content: attr(data-num);
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0;
+}
+
+.gradient-text {
+  background: var(--gradient-thread);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Highlighter — the brand move. Wrap a short phrase to give it the
+   "marker through the line" effect that ties to the engineer-notebook posture. */
+.highlight {
+  background-image: linear-gradient(180deg, transparent 58%, color-mix(in oklab, var(--color-accent) 38%, transparent) 58%);
+  padding: 0 0.05em;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font__mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-soft);
+  background: color-mix(in oklab, var(--color-text) 4%, transparent);
+}
+.pill[data-status='Active'],
+.pill[data-status='Stable'],
+.pill[data-status='live'],
+.pill[data-status='worked-on'] {
+  color: var(--color-thread);
+  border-color: color-mix(in oklab, var(--color-thread) 50%, transparent);
+  background: color-mix(in oklab, var(--color-thread) 14%, transparent);
+}
+.pill[data-status='Beta'],
+.pill[data-status='idea-started'] {
+  color: var(--color-accent);
+  border-color: color-mix(in oklab, var(--color-accent) 50%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 12%, transparent);
+}
+.pill[data-status='Alpha'],
+.pill[data-status='Experiment'],
+.pill[data-status='planned'],
+.pill[data-status='Draft'],
+.pill[data-status='stub'] {
+  color: var(--color-accent-warm);
+  border-color: color-mix(in oklab, var(--color-accent-warm) 50%, transparent);
+  background: color-mix(in oklab, var(--color-accent-warm) 12%, transparent);
+}
+
+/* "From <repo>" chip — used both inline and as a Pagefind facet display. */
+.from-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-thread);
+  background: color-mix(in oklab, var(--color-thread) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-thread) 35%, transparent);
+}
+.from-tag::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-thread);
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.82em;
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  white-space: nowrap;
+}
+
+/* Buttons — squared corners, hairline borders. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font__mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+}
+.btn:hover {
+  border-color: var(--color-accent);
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color__ink);
+}
+.btn-primary:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

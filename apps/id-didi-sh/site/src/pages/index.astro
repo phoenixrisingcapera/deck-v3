@@ -1,0 +1,443 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { STATIC_SEO } from '@lib/seo';
+
+const base = import.meta.env.BASE_URL;
+const SPLASH = 'https://lossless-group.github.io/id-didi-sh/';
+
+// The three services — curated cards, content near-copied from ai-labs/splash.
+const services = (await getCollection('service-highlights'))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+// The credential contract — the three artifacts a consumer ever sees.
+const artifacts = [
+  {
+    num: '01',
+    field: 'COOKIE',
+    name: 'didi_session',
+    detail:
+      'One EdDSA-signed session on the .didi.sh domain. Sign in anywhere, you are signed in everywhere — no redirect dance, one logout.',
+  },
+  {
+    num: '02',
+    field: 'API',
+    name: 'id.didi.sh/api/*',
+    detail:
+      'Headless-first. You create your ID from inside the app you arrived at — the service owns the pixels, the identity service owns the record.',
+  },
+  {
+    num: '03',
+    field: 'JWKS',
+    name: '/.well-known/jwks.json',
+    detail:
+      'Every service verifies your session locally against the public key. Only the identity service can mint; nothing else ever holds the pen.',
+  },
+];
+---
+<BaseLayout title={STATIC_SEO.root.title} description={STATIC_SEO.root.description}>
+  <section class="hero">
+    <div class="container hero__split">
+      <div class="hero__pitch">
+        <p class="eyebrow">didi.sh · one credential, three services</p>
+        <h1>
+          One login to fast-track<br/>
+          <span class="gradient-text">DD-ready</span> materials.
+        </h1>
+        <p class="lede">
+          The didi.sh services produce diligence-grade material for venture work —
+          <strong>memos</strong> that cite their sources, <strong>decks</strong> that hold up
+          in the data room, and <strong>augment-it</strong>, the research corpus that grounds
+          them both. One didi.sh ID opens all three.
+        </p>
+        <div class="hero__cta-row">
+          <a class="btn btn-primary" href="https://id.didi.sh/auth">Sign in to didi.sh →</a>
+          <a class="btn" href="#credential">How the ID works</a>
+        </div>
+        <p class="hero__fine mono">
+          Invite-only while in build — the identity service is live in walking-skeleton
+          form; invites open with increment 3. <a href={SPLASH + 'changelog/'}>Follow the build log.</a>
+        </p>
+        <ul class="meta-strip" role="list">
+          <li><strong>3</strong>&nbsp;services</li>
+          <li><strong>1</strong>&nbsp;credential</li>
+          <li><strong>0</strong>&nbsp;passwords</li>
+          <li><strong>invite</strong>-only</li>
+        </ul>
+      </div>
+
+      <aside class="hero__card-slot" aria-label="Specimen didi.sh ID">
+        <div class="id-card" role="img" aria-label="A specimen didi.sh identity card">
+          <header class="id-card__head">
+            <span class="id-card__brand">didi<span class="id-card__brand-dot">.</span>sh</span>
+            <span class="stamp" data-ink="copper">specimen</span>
+          </header>
+          <div class="id-card__band" aria-hidden="true"></div>
+          <dl class="id-card__fields">
+            <div class="id-card__row">
+              <dt>sub</dt>
+              <dd>019f3917-e316-70a1-8ca2-49a9…</dd>
+            </div>
+            <div class="id-card__row">
+              <dt>alg</dt>
+              <dd>EdDSA · Ed25519</dd>
+            </div>
+            <div class="id-card__row">
+              <dt>iss</dt>
+              <dd>https://id.didi.sh</dd>
+            </div>
+            <div class="id-card__row">
+              <dt>scope</dt>
+              <dd>memos · decks · augment-it</dd>
+            </div>
+          </dl>
+          <footer class="id-card__foot">
+            <span class="id-card__signed">▣ signed</span>
+            <span class="id-card__valid mono">valid across *.didi.sh</span>
+          </footer>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <p class="folio" data-num="SEC.01">the services</p>
+      <h2>Three doors. One key.</h2>
+      <p class="lede">
+        Each service stands alone — its own repo, its own deploy, its own job. The
+        credential is the only thing they share.
+      </p>
+      <div class="grid--services">
+        {services.map((s) => (
+          <article class="doc-card">
+            <header class="doc-card__head">
+              <span class="doc-card__service mono">{s.data.service}</span>
+              <span class="stamp" data-ink={s.data.stamp_ink ?? 'accent'}>{s.data.status}</span>
+            </header>
+            <h3>{s.data.title}</h3>
+            <p class="doc-card__lede">{s.data.lede}</p>
+            {s.data.tags && s.data.tags.length > 0 && (
+              <ul class="tags" aria-label="Tags">
+                {s.data.tags.map((t: string) => <li class="chip">{t}</li>)}
+              </ul>
+            )}
+            <p class="doc-card__links">
+              {s.data.repo && <a href={s.data.repo} target="_blank" rel="noopener">repo →</a>}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="credential">
+    <div class="container">
+      <p class="folio" data-num="SEC.02">the credential</p>
+      <h2>How the didi.sh ID works.</h2>
+      <p class="lede">
+        A consumer service ever sees three artifacts. If you can read a datasheet,
+        you know the whole system.
+      </p>
+      <ul class="artifact-ledger" role="list">
+        {artifacts.map((a) => (
+          <li class="artifact-row">
+            <span class="artifact-row__num mono">{a.num}</span>
+            <span class="artifact-row__field mono">{a.field}</span>
+            <span class="artifact-row__name mono">{a.name}</span>
+            <span class="artifact-row__detail">{a.detail}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="credential__posture">
+        No passwords, ever. No self-serve signup — every holder is invited. Accounts are
+        created <em>from the app you're working in</em>, not on a portal you get bounced
+        through. Spec of record:&nbsp;
+        <a
+          href="https://github.com/lossless-group/lossless-ai-labs/blob/main/context-v/specs/Id-Didi-Sh-Identity-Service.md"
+          target="_blank"
+          rel="noopener"
+        >Id-Didi-Sh-Identity-Service</a>.
+      </p>
+      <div class="credential__cta">
+        <a class="btn btn-primary" href="https://id.didi.sh/auth">Sign in to didi.sh →</a>
+        <span class="credential__cta-note mono">No password — a single-use link by email.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="build">
+    <div class="container">
+      <p class="folio" data-num="SEC.03">the build log</p>
+      <h2>Stamped as it ships.</h2>
+      <p class="lede">
+        The identity service is built in the open — every increment lands on the
+        record, on the repo's own pages.
+      </p>
+      <p class="buildlog__more">
+        <a href={SPLASH + 'changelog/'}>build log →</a>
+        <a href="https://github.com/lossless-group/id-didi-sh" target="_blank" rel="noopener">source →</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  section { padding: var(--space-16) 0 var(--space-8); }
+
+  h2 {
+    margin-top: var(--space-4);
+    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  }
+
+  .lede {
+    margin-top: var(--space-4);
+    max-width: 58ch;
+    color: var(--color-text-soft);
+    font-size: 1.05rem;
+  }
+
+  /* ─── Hero ─────────────────────────────────────────────────────────── */
+  .hero { padding-top: var(--space-20); }
+
+  .hero__split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .hero h1 {
+    margin-top: var(--space-4);
+    font-size: clamp(2.1rem, 5vw, 3.3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+  }
+
+  .hero__cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .hero__fine {
+    margin-top: var(--space-4);
+    font-size: 0.74rem;
+    color: var(--color-text-dim);
+    letter-spacing: 0.02em;
+    max-width: 52ch;
+  }
+
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+    padding-top: var(--space-5);
+    border-top: 1px dashed var(--color-border-strong);
+    font-family: var(--font__mono);
+    font-size: 0.8rem;
+    color: var(--color-text-dim);
+  }
+  .meta-strip strong { color: var(--color-accent); font-weight: 600; }
+
+  /* ─── The specimen ID card ─────────────────────────────────────────── */
+  .hero__card-slot { display: flex; justify-content: center; }
+
+  .id-card {
+    width: min(360px, 100%);
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-xl);
+    background:
+      linear-gradient(150deg,
+        color-mix(in oklab, var(--color-accent) 7%, var(--color-bg-elevated)),
+        var(--color-bg-card) 55%);
+    box-shadow: var(--shadow-elevated), var(--shadow-glow);
+    transform: rotate(2.2deg);
+    position: relative;
+  }
+  .id-card::before {
+    /* certificate inner rule */
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px dashed color-mix(in oklab, var(--color-accent) 30%, transparent);
+    border-radius: calc(var(--radius-xl) - 4px);
+    pointer-events: none;
+  }
+
+  .id-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .id-card__brand {
+    font-family: var(--font__display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+  }
+  .id-card__brand-dot { color: var(--color-accent); }
+
+  .id-card__band {
+    margin: var(--space-4) 0;
+    height: 14px;
+    border-radius: 2px;
+    background:
+      repeating-linear-gradient(
+        100deg,
+        color-mix(in oklab, var(--color-accent) 55%, transparent) 0 1px,
+        transparent 1px 5px
+      );
+    opacity: 0.75;
+  }
+
+  .id-card__fields { display: grid; gap: var(--space-2); }
+  .id-card__row {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: var(--space-3);
+    font-family: var(--font__mono);
+    font-size: 0.78rem;
+  }
+  .id-card__row dt {
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.66rem;
+    padding-top: 2px;
+  }
+  .id-card__row dd { color: var(--color-text); overflow-wrap: anywhere; }
+
+  .id-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+  .id-card__signed {
+    font-family: var(--font__mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-thread);
+  }
+  .id-card__valid { font-size: 0.66rem; color: var(--color-text-dim); }
+
+  /* ─── Service cards — document chrome ──────────────────────────────── */
+  .grid--services {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+  }
+
+  .doc-card {
+    position: relative;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-card);
+    box-shadow: var(--shadow-card);
+  }
+  .doc-card::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed color-mix(in oklab, var(--color-accent) 22%, transparent);
+    border-radius: calc(var(--radius-lg) - 3px);
+    pointer-events: none;
+  }
+  .doc-card > * { position: relative; }
+
+  .doc-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+  .doc-card__service {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .doc-card h3 { font-size: 1.15rem; }
+  .doc-card__lede {
+    margin-top: var(--space-3);
+    color: var(--color-text-soft);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+  .doc-card__links {
+    margin-top: var(--space-4);
+    font-family: var(--font__mono);
+    font-size: 0.8rem;
+  }
+
+  /* ─── The credential ledger ────────────────────────────────────────── */
+  .artifact-ledger {
+    margin-top: var(--space-8);
+    border-top: 1px solid var(--color-border-strong);
+  }
+  .artifact-row {
+    display: grid;
+    grid-template-columns: 40px 90px 250px 1fr;
+    gap: var(--space-5);
+    align-items: baseline;
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .artifact-row__num { color: var(--color-text-faint); font-size: 0.8rem; }
+  .artifact-row__field {
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+  .artifact-row__name { color: var(--color-text); font-size: 0.85rem; overflow-wrap: anywhere; }
+  .artifact-row__detail { color: var(--color-text-soft); font-size: 0.92rem; }
+
+  .credential__posture {
+    margin-top: var(--space-6);
+    max-width: 64ch;
+    color: var(--color-text-soft);
+    font-size: 0.95rem;
+  }
+
+  /* ─── Build log ────────────────────────────────────────────────────── */
+  .buildlog__more {
+    margin-top: var(--space-5);
+    display: flex;
+    gap: var(--space-6);
+    font-family: var(--font__mono);
+    font-size: 0.85rem;
+  }
+
+  /* ─── Responsive ───────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero__split { grid-template-columns: 1fr; }
+    .hero__card-slot { justify-content: flex-start; }
+    .id-card { transform: rotate(1deg); }
+    .grid--services { grid-template-columns: 1fr; }
+    .artifact-row {
+      grid-template-columns: 40px 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .artifact-row__name { grid-column: 2; }
+    .artifact-row__detail { grid-column: 2; }
+  }
+</style>

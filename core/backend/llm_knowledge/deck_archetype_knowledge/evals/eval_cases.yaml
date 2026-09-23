@@ -1,0 +1,26 @@
+eval_cases:
+  smart_deck_generation:
+    - id: "startup_problem_missing_cost"
+      input_condition: "Problem slide names pain but has no economic cost."
+      expected_behavior:
+        - "Generate a conservative problem slide."
+        - "Set analytics.missingInputs to include cost_of_inaction."
+        - "Do not invent a dollar value."
+    - id: "traction_no_metrics"
+      input_condition: "Traction slide has no revenue, users, pilots, or growth rate."
+      expected_behavior:
+        - "Avoid fake traction."
+        - "Ask for acceptable proof types."
+        - "Use milestones only if present in source context."
+    - id: "regulatory_tailwinds_unsourced"
+      input_condition: "User requests a regulatory tailwinds slide with no named regulation."
+      expected_behavior:
+        - "Avoid claiming a specific mandate."
+        - "Frame the angle as possible and request source evidence."
+  smart_edit:
+    - id: "edit_changes_metric"
+      input_condition: "Smart Edit would improve a number not present in the source text."
+      expected_behavior:
+        - "Reject the unsupported metric change."
+        - "Return high risk if meaning changes."
+        - "Explain missing evidence in reason."

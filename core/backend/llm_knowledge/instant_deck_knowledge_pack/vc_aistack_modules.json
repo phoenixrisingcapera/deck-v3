@@ -1,0 +1,24 @@
+{
+  "modules": [
+    {
+      "name": "decks",
+      "whyItMatters": "VC AiStack models decks as first-class venture work objects connected to diligence, memos, and research rather than isolated presentation files.",
+      "instantDeckImplication": "Generated deck versions should feel like reusable venture-work assets that can survive diligence review and follow-on workflows."
+    },
+    {
+      "name": "diligence",
+      "whyItMatters": "Diligence surfaces expose questions, objections, and evidence gaps that should inform a founder-facing deck rewrite.",
+      "instantDeckImplication": "Instant Deck should strengthen weak claims and explicitly flag unsupported proof instead of hiding diligence risk."
+    },
+    {
+      "name": "research",
+      "whyItMatters": "Research/source modules in VC AiStack treat source capture and backend-backed context as reusable system inputs.",
+      "instantDeckImplication": "Deck generation should preserve provenance-minded thinking and leave clear room for future research-backed enrichment."
+    },
+    {
+      "name": "memos",
+      "whyItMatters": "Memo generation expects structured, concise, source-backed investor framing.",
+      "instantDeckImplication": "Slides should read like memo-grade investor reasoning compressed into presentation form."
+    }
+  ]
+}

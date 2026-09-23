@@ -1,0 +1,661 @@
+---
+title: id.didi.sh — the Didi Identity Service
+lede: 'One owned identity service: headless-first API, a signed session cookie on
+  `.didi.sh`, invite-only accounts — built on Elixir/Phoenix.'
+date_created: 2026-07-06
+date_modified: 2026-08-23
+authors:
+- Michael Staton
+augmented_with:
+- Claude Code on Claude Fable 5
+semantic_version: 0.0.3.0
+status: Implementing
+category: Specification
+tags:
+- Spec
+- Didi-Platform
+- Identity-Service
+- Auth
+- SSO
+- Elixir
+- Phoenix
+- Headless-API
+- Magic-Link
+- OAuth
+- Invite-Only
+- Org-Model
+- Multi-Tenant
+site_uuid: a01b23e6-1ff7-49bb-92e8-37f34e4c5de2
+hex_code: v163au
+date_authored_initial_draft: 2026-07-06
+date_authored_current_draft: 2026-08-23
+publish: true
+source_root: /Users/mpstaton/code/lossless-monorepo/ai-labs/context-v
+source_relative_path: specs/Id-Didi-Sh-Identity-Service.md
+source_repo_slug: ai-labs
+collated_at: '2026-08-24'
+source_path: "ai-labs/context-v/specs/Id-Didi-Sh-Identity-Service.md"
+---
+
+# id.didi.sh — the Didi Identity Service
+
+The central identity plane from [[../explorations/Didi-sh-One-Login-One-Agent-Three-Services|Didi-sh-One-Login-One-Agent-Three-Services]]:
+one account, created **from inside whichever service the user is working in**,
+valid across memos / decks / augment-it via a single `.didi.sh` session
+cookie. This spec pins the contract (what consumers see), the internals
+(schema, session model, API), the stack, and the implementation increments.
+
+It supersedes the package-extraction destination in
+[[../explorations/Shared-Auth-for-Applied-AI-Labs|Shared-Auth-for-Applied-AI-Labs]]
+§Decisions while carrying its architecture over nearly verbatim — credential
+pathways, domain-as-id orgs, roles, the stable person id, the scale posture
+(invite-only, tens of people, code we own, no Auth0/Clerk).
+`dididecks-ai/context-v/specs/Calmstorm-Auth-Inventory.md` is the behavioral
+reference for token/session/invite mechanics; because this spec picks a
+non-TS stack, calmstorm contributes **semantics, not code**.
+
+### Second prior-art site: fullstack-vc (audited 2026-07-06)
+
+`astro-knots/sites/fullstack-vc` runs a working Turso-backed identity today —
+Astro DB (Drizzle over libSQL), **three live OAuth providers (GitHub,
+LinkedIn, Google)** with a battle-tested multi-provider account-linking flow
+(`src/lib/user-record.ts`: provider-sub lookups + email-array union merges),
+stateless HS256 JWT sessions (`src/lib/session.ts`), and authorization via a
+roster JSON. The decision on reuse: **import, don't share.** Its schema is
+shaped for a roster-gated community site (row `id` is the lowercased roster
+email — the mutable-key problem `didi_id` exists to avoid) and its symmetric
+HS256 session model can't serve a multi-consumer platform (any verifier could
+mint). What it contributes: its **user rows are imported by email → `didi_id`
+when id.didi.sh goes live**, its **account-linking semantics** port as
+reference behavior alongside calmstorm's, **LinkedIn** joins the OAuth
+roadmap (already proven, and the right provider for a VC audience), and
+fullstack-vc itself becomes a future *federated* consumer (own domain — no
+`.didi.sh` cookie; provider-mode, per the exploration's clarification).
+
+## The contract — all a consumer ever sees
+
+Three artifacts. If these are stable, the implementation behind them is free
+to be anything (which is what makes the stack choice below safe):
+
+1. **A cookie**: `didi_session`, `Domain=.didi.sh`, `HttpOnly`, `Secure`,
+   `SameSite=Lax`. Value is a **signed token** (see Session model) any
+   `*.didi.sh` backend can verify locally.
+2. **A JSON API** at `https://id.didi.sh/api/*` — headless-first, called by
+   each service's own branded signup/login UI. The service owns the pixels;
+   id.didi.sh owns the record and the session (the GTM hard requirement from
+   the exploration).
+3. **A public key set** at `https://id.didi.sh/.well-known/jwks.json` for
+   local verification, plus `GET /api/me` for identity claims (orgs, roles).
+
+## Stack: Elixir / Phoenix
+
+The operator wants a non-typical stack here, and this is the right service to
+do it on — not despite the estate being TypeScript, but because of how this
+service relates to the estate:
+
+**Why it's safe here specifically.** The headless-first contract means no
+consumer imports this service's code — by design there is no shared library,
+no shared types, no shared runtime with the TS estate. Consumers see HTTP, a
+cookie, and a public key. This is the *only* service in the family with that
+property (the didi agent, by contrast, is shared packages and must stay TS).
+An unusual stack anywhere else leaks; here it can't.
+
+**Why the BEAM actually fits.** An identity service is a small, long-running,
+session-heavy, low-throughput, must-not-fall-over service — which is the
+BEAM's native shape: supervision trees restart what crashes, one node is
+plenty for tens of users, and the operational story is a single release in a
+container. Concretely:
+
+- **Phoenix** (1.8.x) — `phx.gen.auth` now generates **magic-link-first**
+  authentication out of the box; our primary credential pathway is the
+  framework default, not a bolt-on.
+- **Assent** for the OAuth *client* flows (GitHub, Google Workspace) — the
+  `arctic` equivalent: minimal provider plumbing, we own sessions and storage.
+- **JOSE (erlang-jose)** for token signing (see Session model).
+- **Ecto + a libSQL file** (decided 2026-07-06) — `ecto_sqlite3`/`exqlite`
+  compiled against the **libSQL** amalgamation instead of vanilla SQLite.
+  libSQL is a compliant fork (same file format, same C API), so the full
+  Ecto + `phx.gen.auth` story works unchanged on a libSQL file — and the
+  Turso door stays open by construction. **Litestream replicating to R2** is
+  the backup layer (bucket + credentials recipe already verified in
+  [[../../augment-it/context-v/explorations/JuiceFS-Pinned-Path-Off-Local-Substrate|JuiceFS-Pinned-Path-Off-Local-Substrate]]).
+  The nuance that shaped the decision, pinned: **libSQL's compliance is in
+  the file and the C API; the remote conveniences (embedded replicas with
+  sync, Hrana-over-HTTP) live in Turso's client SDKs, which have no official
+  Elixir member** — so libSQL-local is cheap and real today, and flipping the
+  file to a Turso-synced replica is the *named upgrade path* for when an
+  Elixir client matures, not a v1 dependency. Postgres remains the
+  config-swap fallback if the hosting target makes it compelling.
+- **Swoosh** for transactional email (magic links) with a Resend or Postmark
+  adapter — provider decision open below.
+- **Phoenix LiveView for the admin console** — invites, orgs, memberships,
+  roles, sessions-kill, auth-event log, served at `id.didi.sh/admin` behind
+  `superuser`. This is the "secondary account console" from the exploration,
+  and it comes nearly free with the stack — a genuine point in Elixir's
+  favor, since headless service + admin UI would otherwise mean a second
+  frontend project.
+- **Bandit** as the HTTP server; a standard multi-stage Dockerfile producing
+  an OTP release; deploys wherever the augment-it deploy plan lands.
+
+**The honest costs, named:**
+
+- One more language in the estate. Contained by the no-shared-code property,
+  but debugging/extending this service means Elixir competence, and agents
+  working the tree should know this repo is the polyglot exception.
+- Calmstorm's audited TS auth code cannot be extracted — only ported. The
+  inventory becomes a behavioral checklist (token single-use semantics,
+  session expiry, DB-unavailable graceful degradation), which is honestly
+  most of its value anyway.
+- Smaller ecosystem for oddball needs. Mitigated by how boring this service's
+  needs are: HTTP, crypto, SQL, email.
+
+## Session model
+
+Two layers: a **stateless verify path** (so services never block on
+id.didi.sh) and a **stateful authority** (so sessions are revocable and
+refreshable).
+
+### The token in the cookie
+
+The `didi_session` cookie value is a compact signed token (JWT, **EdDSA /
+Ed25519**; ES256 is the fallback if any consumer's JWT library balks):
+
+```json
+{
+  "sub": "<didi_id>",          // stable person id (UUIDv7)
+  "sid": "<session_id>",       // row in sessions table
+  "iat": 1720281600,
+  "exp": 1720324800,           // ~12h
+  "iss": "https://id.didi.sh"
+}
+```
+
+**Deliberately not in the token:** orgs, roles, email. Claims stay small and
+role changes propagate fast — consumers fetch `GET /api/me` (ETag-cached)
+when they need org/role context, which for most requests they've already
+cached per `sid`.
+
+### Verification (consumer-side, local)
+
+A service verifies the signature against the JWKS public key and checks
+`exp`. No network call per request. Key rotation: keys carry `kid`; JWKS is
+cached with a sane TTL; rotation keeps the outgoing key published until all
+tokens signed by it have expired.
+
+### Refresh and revocation
+
+- **Refresh.** Sessions are long-lived server-side (30-day rolling in the
+  `sessions` table); the cookie token is short-lived (~12h). Any app seeing
+  `exp` within a threshold triggers a silent same-site
+  `fetch('https://id.didi.sh/api/session/refresh', { credentials: 'include' })`
+  — id.didi.sh checks the session row and re-sets the cookie with a fresh
+  token. No user-visible hop.
+- **Revocation.** Killing a session (admin, or user "log out everywhere")
+  deletes/expires the session row — refresh then fails and the token dies at
+  its `exp`. **Accepted revocation lag: up to the token TTL (~12h).** At
+  tens-of-users scale with invite-only accounts this is a documented
+  trade, not a gap; if it ever matters, the escalation is a short denylist
+  endpoint consumers poll — named, not built.
+- **Logout** (`DELETE /api/session`) kills the session row *and* clears the
+  cookie at `Domain=.didi.sh` — one logout, everywhere, matching the
+  one-session promise.
+
+### Minting authority
+
+Only id.didi.sh mints and sets `didi_session`. Any `*.didi.sh` host *can*
+technically set a parent-domain cookie — signed values make a forged cookie
+inert (no valid signature → rejected) — but the trust-boundary rule from the
+exploration stands regardless: nothing untrusted ever runs on `*.didi.sh`.
+
+## Schema
+
+Carried from [[../explorations/Shared-Auth-for-Applied-AI-Labs|Shared-Auth-for-Applied-AI-Labs]]
+with the central-service simplifications applied:
+
+| Table | Notes |
+|---|---|
+| `users` | `didi_id` (UUIDv7, **pinned — this is the rename of `lossless_id`**, minted here and only here), `primary_email` (unique, citext), profile fields (name, handle, avatar), timestamps. |
+| `organizations` | **`id` = canonical email domain** (locked convention: `lossless.group`, `trychroma.com`, `personal` bucket), `slug`, `name`, apex-stripped. |
+| `firm_profiles` | 1:1 nullable extension on organizations (firm_kind, brand fields). Same firm==org dual-vocabulary. |
+| `memberships` | `(didi_id, org_id, role)`; role ∈ `superuser` / `org_owner` / `org_admin` / `editor` / `viewer`. Org-wide roles, no per-resource ACLs (v1 posture unchanged). |
+| `oauth_accounts` | 1:N under users — provider, provider_uid, raw profile snapshot. |
+| `user_emails` | Alt emails (added 2026-07-06): `(didi_id, email)`, unique on lowered email across all aliases; magic links to any alias authenticate the same `didi_id`. One person, many addresses — the fullstack-vc lesson normalized preemptively. |
+| `login_tokens` | The unified single-use table: `kind` ∈ `magic_link` / `invite`, hashed token, `expires_at`, `claimed_at`, `issued_by`, `org_id` + `role` (for invites), delivery-channel metadata. Magic-link and invite are the same code path with different delivery — the Fork 4 insight, kept. |
+| `sessions` | `sid`, `didi_id`, created/last_seen/expires, user-agent + IP snapshot, revoked_at. The refresh/revocation authority. |
+| `auth_events` | Born central (the outbox collapse): `occurred_at`, `didi_id`, `app_slug`, `org_id`, `event_type`, payload. `app_slug` comes from the calling service's registered app record. |
+| `apps` | The registered consumers: `slug` (`augment-it`, `decks`, `memos`), display name, allowed `next` redirect prefixes, enabled flag. Small but load-bearing — it's what stops an open-redirect via the `next` param and what stamps `app_slug` on events. |
+
+### Amendment 2026-08-09 — workspaces become first-class; domain is demoted
+
+**Superseded:** this section previously read *"Per-service authorization state
+(augment-it's workspaces, decks' deck ownership) stays in the services. id.didi.sh
+answers who you are and what org-roles you hold."* That held while orgs were the
+only tenancy notion and every consumer mapped org-roles onto its own resources.
+It does not survive contact with how the operator actually works.
+
+> *"While org emails are a good way to allow new user registrations, I live in a
+> world where it's anything but strict. For instance, I created accounts for
+> palmer-ai with a human.vc email. I'm supporting many organizations with
+> sometimes their email and sometimes not. But I'm often even setting them up as
+> an admin."*
+>
+> *"This happens all the time. Every startup I've been at you end up with service
+> providers, advisors, investors, etc."*
+
+The people who most need access to a client's workspace are precisely the ones
+whose address will never match its domain: fractional operators, advisors,
+investors, agencies, and the person administering the whole thing from another
+company's address. **Derive membership from an email domain and you have built a
+system that structurally cannot express an advisor.**
+
+Four rulings follow.
+
+**1. The workspace is the tenancy boundary, and the boundary secrets attach to.**
+Not the org. A workspace has a parent org, a slug, a display name.
+
+**2. Membership is explicit and email-domain-independent.** Anyone may be granted
+any role in any workspace, whatever address they hold. This is an **invariant**,
+stated here so a later reader does not "simplify" it back into a domain check.
+
+**3. A domain is a self-signup convenience on the workspace, never an identity.**
+`workspaces.default_domain` means *"an address at this domain may self-join at
+`default_role` without an invite"* — a way to avoid hand-inviting forty people at
+one company. It is **never consulted when deciding whether an existing member has
+access.** Auto-join writes an ordinary membership row; from that moment the row,
+not the domain, is the authority. Changing or clearing a domain therefore cannot
+revoke anyone.
+
+**4. Organizations survive, demoted.** Still useful for grouping, billing, and
+firm profiles. They stop being the access boundary.
+
+> **Amended 2026-08-23 — the handle is the identity, not the domain.** Ruling 4
+> originally read *"still domain-as-id."* That cannot hold for the same reason
+> ruling 2 exists: `palmer-ai` is not an email domain, and the account was made
+> on a `human.vc` address. An org keyed on a domain it does not own is a row
+> that has to be faked before it can be created.
+>
+> `organizations.slug` already exists and is the handle — `[palmer-ai]`,
+> `[reach-edu]`, `[humain-vc]`, `[nextladder]`. **It becomes the identity;
+> `domain` becomes a nullable self-signup hint on the org exactly as
+> `default_domain` already is on the workspace.** One argument, applied twice.
+>
+> **An entity may exist with no corpus, no bucket, and no domain.** NextLadder
+> is the worked case: an org somebody is a member of before anything has been
+> provisioned for it. Any code that assumes *entity ⇒ storage* breaks on the
+> first one, so entity creation and resource provisioning stay separate steps.
+
+This is the shape Slack, Notion and Linear each converged on, for the same
+reason: optional domain-based auto-join plus explicit invitations that ignore it
+entirely.
+
+### Amended 2026-08-23 — a session holds SEVERAL entities at once
+
+The workspace picker in
+[[../plans/Didi-Login-and-Workspace-Config-for-Corpora]] is single-select. That
+is wrong for the actual work:
+
+> *"When someone like me is authorized, they WILL be able to view corpora for
+> multiple organizations if they choose … consulting, multiple workspaces,
+> multiple projects. A lot of times a source has broad applications."*
+
+So membership resolution is **a set, not a choice**. `GET /api/entities` returns
+everything the caller may act in, with role; the client decides how many to hold
+open. Reach Edu, Palmer AI and NextLadder are expected to carry *massively
+overlapping* corpora, and the overlap is the point rather than a duplication to
+resolve.
+
+Two consequences that bind on any consumer:
+
+- **Read is the union; write names exactly one.** With three tenants open,
+  *"file this"* has no default, and inferring one is how a client's material
+  ends up in another client's corpus.
+- **Credentials become a set.** The brokered short-lived credentials of the
+  2026-08-08 plan are per-tenant, so a client holds a map keyed by handle with
+  independent expiries — not one credential.
+
+### Resolved 2026-08-23 — one `entities` table, keyed by slug
+
+The schema question is answered: **`entities`**, per
+[[Flexible-Entity-Relationships-to-Mirror-Messy-IRL-Collaboration]] Ruling 1 —
+one table, `kind` a display label, **no `parent_id`**. `organizations` and
+`workspaces` reconcile toward it rather than standing beside it.
+
+**`entities.slug` is the identity** — `[reach-edu]`, `[humain-vc]`,
+`[palmer-ai]`, `[nextladder]`. Not the email domain, which becomes a nullable
+self-signup hint, and not a UUID in any surface a person reads.
+
+**Parenthood is invoked, never stored.** An entity referenced by its slug alone
+is independent. A *chained* reference — `organization:palmer-ai:workspace:q3` —
+is a different act, and writing the chain is what authorises parent-child
+behaviour in the UX and in how data is fetched and transformed. The record does
+not change; the reference does. See that spec's *"The cascade is invoked, not
+stored."*
+
+This is what lets one workspace be invoked under Palmer AI on Monday and under a
+joint venture on Tuesday with **neither invocation more true than the other** —
+the case containment was retracted to make cheap.
+
+**What stays in the services.** Per-resource state — which deck, which memo,
+which corpus domain — remains theirs. What moves here is the *tenant* and its
+membership, because that is what secrets and configuration must attach to.
+augment-it's [[../../augment-it/context-v/specs/Workspaces-as-Tenant-Primitive|Workspaces-as-Tenant-Primitive]]
+is the closest existing definition and should be reconciled toward this one
+rather than a parallel notion invented here.
+
+### Schema added by this amendment
+
+| Table | Notes |
+|---|---|
+| `workspaces` | `id` (UUIDv7), `slug` (unique), `name`, `org_id` (parent, nullable — a workspace may outlive or precede an org), `default_domain` (nullable; self-signup hint only), `default_role` (role granted on auto-join), timestamps. |
+| `workspace_memberships` | `(didi_id, workspace_id, role)`, unique on the pair. Role vocabulary shared with `memberships`. `granted_by` (didi_id, nullable) and `via` ∈ `invite` / `auto_join` / `seed` — so an audit can answer *how* someone got in, which is the question that matters when an advisor still has access a year later. |
+
+`memberships` (org-level) is retained. Existing rows migrate to memberships of
+their org's default workspace; the org-level table stays for org-wide roles like
+`superuser`.
+
+## API surface
+
+All JSON under `/api`, CORS restricted to `https://*.didi.sh` with
+credentials. Invite-only: **there is no open create-account endpoint** —
+accounts come into existence by redeeming an invite or (for a known email) a
+magic link.
+
+### Session + identity
+
+| Endpoint | Does |
+|---|---|
+| `GET /api/me` | Identity + org memberships + roles for the presented cookie. ETag-cached. |
+| `POST /api/session/refresh` | Re-mint the cookie token if the session row is alive. |
+| `DELETE /api/session` | Logout: kill session row, clear cookie domain-wide. |
+| `GET /.well-known/jwks.json` | Public keys for local verification. |
+
+### Credential pathways (called from each app's own UI)
+
+| Endpoint | Does |
+|---|---|
+| `POST /api/magic-links` | `{ email, app, next }` → if the email belongs to a known user, issue + send a magic link. Always 202 (no account enumeration). |
+| `POST /api/magic-links/redeem` | `{ token }` → validate single-use + TTL, mint session, set cookie, return `{ next }` for the app to navigate. |
+| `POST /api/invites/redeem` | `{ token }` + profile fields → **creates the account** (this is signup), attaches the membership the invite carried, mints session, sets cookie. |
+| `GET /api/oauth/:provider/start?app=&next=` | Begin OAuth (GitHub / Google). 302 to provider. The one flow that must leave the app — the provider callback needs a stable redirect URI on id.didi.sh. |
+| `GET /oauth/:provider/callback` | Complete OAuth: match or link `oauth_accounts` (Google Workspace per-org domain allowlist enforced here), mint session, set cookie, 302 to validated `next`. Existing-account match only — OAuth against an unknown identity does not create an account (invite-only). |
+
+The redeem endpoints are `fetch`-able from app pages (same-site), so signup
+and login render entirely inside the app's own UI — the GTM requirement. A
+minimal hosted fallback page exists at `id.didi.sh/access` for edge cases
+(expired-link recovery on a device with no app context), styled quiet.
+
+### Admin (LiveView console at `/admin`, plus API for automation)
+
+Invites (create with org+role, list, revoke), orgs + firm profiles CRUD,
+memberships + role changes, sessions (list, kill), auth-event log, app
+registry. `superuser` only; every superuser action writes an `auth_events`
+row with the acting user (the audit-trail requirement from the original
+exploration).
+
+## Amendment 2026-08-20 — didi.sh becomes an authorization server (OAuth 2.1 + OIDC)
+
+**Status: proposed. O1–O6 need sign-off before implementation.**
+
+### The direction confusion this must not create
+
+didi.sh **already speaks OAuth — in the opposite direction.**
+`GET /api/oauth/:provider/start` and `GET /oauth/:provider/callback` are didi.sh
+acting as an OAuth **client**, consuming Google and GitHub to log a person in.
+
+This amendment makes didi.sh an OAuth **authorization server**: other apps send
+people *here* to log in, and receive tokens they can verify.
+
+Same word, opposite direction, and the existing routes already occupy `/oauth/*`.
+Getting this wrong produces a route collision and a permanent source of
+confusion for anyone reading the router.
+
+### Why now
+
+Two consumers need it, and neither is hypothetical:
+
+- **Onyx SSO.** palmer-ai runs Onyx with `AUTH_TYPE=basic` and open
+  registration, deliberately time-boxed. Onyx ships multi-provider OIDC in
+  `backend/onyx/server/oidc_multi.py` — the **MIT** path, not `ee/` — so didi.sh
+  can become its login with no enterprise licence.
+- **MCP connectors.** `self-host-stack`'s homebase spec, amendment **A1**
+  (2026-08-20), makes didi.sh the authorization server for the one-connector-per-
+  client plane. Claude Desktop speaks OAuth 2.1 and requires dynamic client
+  registration.
+
+`context-v/explorations/Serving-Secrets-Server-Side-as-an-MCP-Capability-Plane.md`
+line 52 flagged this surface as *"a contract addition → parent spec first."*
+This is that.
+
+### Decisions proposed
+
+| # | Decision | Why |
+|---|---|---|
+| **O1** | **New authorization-server endpoints live under `/oauth2/`.** The existing inbound `/oauth/:provider/*` client routes are untouched. | Avoids a route collision and a breaking rename of endpoints consumers already call. `/oauth2/authorize` is unambiguous; `/oauth/authorize` beside `/oauth/google/callback` is not. |
+| **O2** | **Access tokens are short-lived EdDSA JWTs verified via the existing JWKS, carrying the `sid` (session id). The session row stays the revocation authority.** No new token store. | This is the session model the service already has — *"30-day server-side sessions as the revocation authority, short-lived EdDSA tokens verified locally via JWKS."* An OAuth access token becomes another audience of the same machinery rather than a parallel one. Killing a session kills its tokens. |
+| **O3** | **Dynamic Client Registration (RFC 7591) is supported and open, rate-limited rather than gated.** | Claude Desktop registers itself against servers nobody pre-registered it with; without DCR the MCP path does not work at all. Openness is the requirement, not a convenience — mitigate with rate limits and short unused-client expiry, not with an approval queue. |
+| **O4** | **OIDC on top: `id_token` + `/oauth2/userinfo`.** `/api/me` remains as-is. | Onyx needs identity claims to create a user row, which OAuth alone does not provide. `userinfo` is the standards-shaped view of what `/api/me` already returns; the existing endpoint keeps its own contract for existing consumers. |
+| **O5** | **Every URL in the discovery documents must be absolute `https://`.** | Measured, on a sibling stack: Twenty behind Railway's proxy advertised `http://` endpoints and Claude Desktop's DCR died with *"Couldn't register with …'s sign-in service."* didi.sh sits behind Fly's proxy. Verify the rendered `.well-known` output, not the config. |
+| **O6** | **Scopes start minimal — `openid`, `profile`, `email`.** Entity/workspace-scoped grants are deferred. | Do not invent a scope grammar before the model that needs it lands. See [[Flexible-Entity-Relationships-to-Mirror-Messy-IRL-Collaboration]], which defines the entities scopes would eventually name. |
+
+### Endpoints added
+
+| Endpoint | Does |
+|---|---|
+| `GET /.well-known/openid-configuration` | OIDC discovery. Absolute https URLs (O5). |
+| `GET /.well-known/oauth-authorization-server` | RFC 8414 metadata, same content shaped for OAuth-only clients. |
+| `GET /oauth2/authorize` | Authorization-code flow with PKCE. Reuses the existing `didi_session` cookie when present; otherwise falls through to the magic-link flow we already have, then returns here. Renders the consent step. |
+| `POST /oauth2/token` | Code → access token (+ `id_token` when `openid` was requested) + refresh token. PKCE `code_verifier` required. |
+| `POST /oauth2/register` | RFC 7591 dynamic client registration (O3). |
+| `GET /oauth2/userinfo` | OIDC claims for the bearer token (O4). |
+| `POST /oauth2/revoke` | RFC 7009. Revokes a refresh token; killing the session remains the stronger lever. |
+
+`/.well-known/jwks.json` is unchanged and already serves the verification keys.
+
+### Schema added by this amendment
+
+| Table | Notes |
+|---|---|
+| `oauth_clients` | `client_id`, hashed `client_secret` (nullable — public clients use PKCE only), `redirect_uris` (exact-match allowlist), `client_name`, `grant_types`, `token_endpoint_auth_method`, `registered_via ∈ dcr / manual`, `created_at`, `last_used_at`. `last_used_at` exists so unused DCR clients can be reaped (O3). |
+| `oauth_authorization_codes` | Hashed `code`, `client_id`, `didi_id`, `sid`, `redirect_uri`, `scope`, `code_challenge` + `code_challenge_method`, `expires_at`, `claimed_at`. Single-use, short TTL — the same hashed-single-use discipline as `login_tokens`. |
+| `oauth_refresh_tokens` | Hashed token, `client_id`, `didi_id`, `sid`, `scope`, `expires_at`, `revoked_at`, `rotated_to`. Tied to `sid` so session revocation cascades (O2). |
+
+No changes to `users`, `sessions`, `organizations`, `workspaces`,
+`workspace_memberships`, `login_tokens`, or `apps`.
+
+### Implementation increments
+
+Appended to the list above. Ordered cheapest-risk-first, so the step most likely
+to fail opaquely is proven before anything is built on it.
+
+1. **Discovery documents only.** Both `.well-known` routes, rendering absolute
+   https URLs. Deploy and curl them from outside. **Gate: the rendered JSON shows
+   `https://` for every endpoint, from behind Fly's proxy** (O5). This is an
+   afternoon and it de-risks the failure that killed a sibling deployment's DCR.
+2. **Schema + migration** for the three tables above.
+3. **`/oauth2/authorize` + `/oauth2/token`** with PKCE, reusing `didi_session`
+   and falling through to magic-link when absent. **Gate: a scripted client
+   completes the code exchange and verifies the token against JWKS.**
+4. **`/oauth2/register`** (DCR). **Gate: Claude Desktop adds the connector
+   without a manually created client.**
+5. **`id_token` + `/oauth2/userinfo`.** **Gate: claims validate against the OIDC
+   spec's required set.**
+6. **Onyx as first consumer.** Add didi.sh as an OIDC provider row in
+   palmer-ai's Onyx. **Gate: three real people sign into Onyx with didi.sh, and
+   `AUTH_TYPE=basic` plus open registration are retired.**
+
+### Open questions this amendment adds
+
+1. **Consent screen for first-party clients** — does an app we registered
+   ourselves still show *"allow this app…"*, or auto-approve? Auto-approval is
+   friendlier and removes a step the persona will misread as an error; showing it
+   is more honest about what is being granted.
+2. **Refresh-token rotation** — rotate on every use (safer, detects replay) or
+   long-lived (simpler)? Interacts with the 30-day session, which may make
+   refresh tokens nearly redundant.
+3. **Abuse controls on open DCR** — rate limit per IP, cap unused clients,
+   expiry for never-used registrations. Needed before this is internet-facing.
+4. **Does `/api/me` eventually collapse into `/oauth2/userinfo`?** Two endpoints
+   returning the same identity is a divergence risk, but `/api/me` has existing
+   consumers and returns more than OIDC standard claims.
+
+This amendment answers parent exploration **OQ#4** (*"how much of the OAuth
+surface do the desktop clients actually exercise"*) only partially — increments 1
+and 4 are where that gets measured rather than assumed.
+
+## Consumer adapters
+
+Each consumer adds a **thin verification adapter + env vars** — no
+rearchitecture (the deploy-independence clarification in the exploration):
+
+| Consumer | Adapter |
+|---|---|
+| **augment-it** (first) | TS: parse `didi_session` on the workspace WS upgrade, verify via `jose` (npm) + cached JWKS, attach `{ didi_id, sid }` to the socket session; per-capability authorization consults cached `/api/me` org-roles mapped onto workspaces. Replaces the flat token map in `services/workspace/src/auth.ts`. The shell's login/signup panel calls the credential endpoints directly. |
+| **decks** (second) | Astro middleware port of the calmstorm gate: same cookie parse + `jose` verify; `Organization`/`Membership` reads move to `/api/me`. Calmstorm's passcode flow retires in favor of invites. |
+| **memos web** (third) | Same TS adapter on its web endpoints. |
+| **memos desktop (Tauri)** | No cookie jar: system-browser OAuth/magic-link against id.didi.sh with a deep-link back carrying a one-time code → exchanged for a long-lived token held in the OS keychain → presented as `Authorization: Bearer` to the FastAPI sidecar, which verifies with `PyJWT` + JWKS. The token-exchange endpoint (`POST /api/device/exchange`) is the one Tauri-specific addition. |
+
+A tiny per-language verify snippet (TS `jose`, Python `PyJWT`, ~30 lines
+each) ships as *documentation in this spec's repo*, not as a published
+package — consumers copy it in, per the no-shared-code property.
+
+## Repo + deploy shape
+
+- **New child repo `ai-labs/id-didi-sh/`** (submodule, per pseudomonorepo
+  discipline), scaffolded with `context-v/` + `changelog/`. The polyglot
+  exception in the tree — its CLAUDE.md says so and points here.
+- Single container (multi-stage Dockerfile → OTP release), SQLite volume +
+  Litestream sidecar (or supervised process) replicating to a dedicated R2
+  bucket. Secrets: signing keypair, R2 creds, email API key, OAuth client
+  secrets — via the deploy host's secret store, never in the repo.
+- Deploys beside augment-it under the same deploy plan
+  ([[../explorations/Two-Clients-One-Flow-Corpora-Auth-and-Deployment-Converge|Two-Clients-One-Flow]]
+  Thread 3); DNS `id.didi.sh` → this container. It must be deployed for the
+  cookie to be real — there is no meaningful laptop-only mode beyond dev
+  (`localhost` dev uses a host-only cookie and a dev keypair).
+
+## Implementation increments
+
+1. **Walking skeleton. ✅ DONE 2026-07-06** (`id-didi-sh@3e9f90e`). Full
+   schema in one migration, Ed25519 keypair + JWKS, magic-link issue →
+   redeem → `didi_session` cookie → `/api/me` → refresh → logout. 19 tests
+   green; proven live by `scripts/prove-skeleton.sh` (including
+   reuse-rejected and post-logout-rejected). Deviation from the plan as
+   written: `phx.gen.auth` was NOT used — its generated code assumes
+   browser-session flows (Phoenix signed sessions, LiveView forms), not our
+   JWT-cookie + JSON-API contract, so the contexts are hand-rolled while
+   mirroring its token-hashing discipline. Gotchas logged in the repo's
+   changelog `2026-07-06_02`: config appended below `import_config`
+   silently overrides every per-env file; schemaless `insert_all` needs
+   maps JSON-encoded by hand on SQLite.
+2. **First consumer: augment-it.**
+   > **Update 2026-07-06 — the WS-gate half is DONE, dev mode**
+   > (`augment-it@b642fba`, proven by `scripts/prove-didi-auth.mjs`):
+   > the workspace upgrade verifies `didi_session` locally (jose + JWKS,
+   > EdDSA-only), attaches `didi_id` to the session, with a
+   > `DIDI_AUTH=off|optional|required` posture flag (dev default:
+   > optional — legacy continuity tokens keep working). Local-dev
+   > topology mirrors prod: host-only localhost cookies ignore ports, so
+   > the dev id at `:4000` plays the role of `.didi.sh`; the container
+   > fetches JWKS via `host.docker.internal`. **Update, same day: the shell half is DONE too**
+   > (`augment-it@ebf1339` + id CORS plug): header DidiBadge with
+   > server-verified state and the in-app magic-link sign-in popover,
+   > over config-driven exact-origin CORS. **Remaining in this
+   > increment:** the per-capability `didi_id` → org-role → workspace
+   > mapping. `required` mode flips after increment 3's invites.
+
+   Concretely, picking up from increment 1:
+   - **Replace the flat token map** in
+     `augment-it/services/workspace/src/auth.ts` (a `sessions.json`
+     token→created_at map today) with a verify adapter: parse the
+     `didi_session` cookie on the workspace **WS upgrade**, verify locally
+     via `jose` (npm) against a cached JWKS fetch from the id service
+     (re-fetch on unknown `kid`), and attach `{ didi_id, sid }` to the
+     socket session.
+   - **Per-capability check**: map `didi_id` → org memberships (cached
+     `GET /api/me`, ETag) → workspace access, per
+     [[../../augment-it/context-v/specs/Workspaces-as-Tenant-Primitive|Workspaces-as-Tenant-Primitive]].
+   - **The shell's access panel** calls `POST /api/magic-links` +
+     `/api/magic-links/redeem` directly (headless contract; the panel owns
+     the pixels). Dev-mode: id at `http://localhost:4000`, augment-it
+     pointing at it via env (`ID_ISSUER_URL`, `ID_JWKS_URL`), host-only
+     cookie on localhost.
+   - Dev users come from `mix id.seed` until increment 3's invites.
+3. **Invites + admin console.** `login_tokens(kind=invite)`, the LiveView
+   admin (invites, orgs, memberships, sessions), auth events. This is the
+   increment that makes reach-edu + humain-vc onboarding real: mint invites,
+   deliver by WhatsApp/1Password/email.
+4. **OAuth.** GitHub (team fast-path), then Google Workspace with the per-org
+   domain allowlist; LinkedIn follows (fullstack-vc's wiring as reference).
+   Assent wiring + account-linking rules ported from the fullstack-vc merge
+   chain.
+5. **Deploy.** id.didi.sh live per the deploy plan; augment-it flips from dev
+   id to prod id; **fullstack-vc identities imported (email → `didi_id`)**;
+   first real client invites go out.
+   > **Update 2026-07-06 — the hosting half landed early.** id-didi-sh runs
+   > on Fly.io (`lax`, volume-mounted libSQL, migrate-at-boot, auto_stop
+   > off), secrets set without exposure, JWKS live at `id-didi-sh.fly.dev`;
+   > TLS cert issued for `id.didi.sh` pending two DNS records in Vercel
+   > (the didi.sh registrar). The import + invite halves stay with
+   > increments 3–4. Litestream→R2 is the named follow-up before real
+   > client accounts exist. See the repo changelog `2026-07-06_04`.
+   > **Same day, later: `https://id.didi.sh` is LIVE** — DNS + TLS
+   > validated, Resend domain-verified (`no-reply@didi.sh`, unrestricted
+   > recipients), the scanner-proof `/access` landing deployed, and the
+   > full loop operator-clicked in production. Changelog `2026-07-06_07`.
+6. **Consumers two and three.** decks middleware port (calmstorm retires its
+   own gate), memos web, then the Tauri device-exchange flow.
+
+## Acceptance criteria
+
+1. An invited user opens an invite link **in the app that invited them**,
+   completes signup without ever seeing an id.didi.sh page, and lands
+   authenticated — cookie set for `.didi.sh`.
+2. That user opens a second service and is **already logged in** — no click,
+   no redirect.
+3. Every service verifies sessions **locally** (signature + exp); id.didi.sh
+   being briefly down breaks new logins and refreshes only, not existing
+   traffic.
+4. Logout in any app logs out of all apps; an admin can kill any session,
+   effective within the token TTL.
+5. Accounts exist only via invite redemption; magic links and OAuth
+   authenticate existing accounts only; there is no self-serve signup path
+   anywhere.
+6. Google Workspace sign-in for an org with a domain allowlist rejects
+   identities outside the domain; the `next` param only redirects to
+   registered app prefixes.
+7. Every superuser admin action and every sign-in/out lands in `auth_events`
+   with `app_slug`; the LiveView console can answer "every sign-in for user X
+   across all services" — the roll-up dashboard question, natively.
+8. augment-it's capability gate authorizes by `didi_id` → org-role →
+   workspace; the flat `sessions.json` token map is deleted.
+9. The Tauri flow yields a keychain-held bearer token the FastAPI sidecar
+   verifies offline via JWKS.
+
+## Open questions
+
+1. **Hosting target** — inherited from the deploy plan (Railway vs
+   Hetzner/DO box). The store is decided (libSQL file + Litestream→R2);
+   the host just needs a persistent volume. Managed Postgres is the fallback
+   only if the chosen host makes volumes painful.
+2. **Email provider** for magic links (Resend vs Postmark; Swoosh supports
+   both). Needed by increment 1's end.
+3. **EdDSA vs ES256** — confirm EdDSA verifies cleanly in the exact `jose`
+   (npm) and `PyJWT` versions the consumers pin, else drop to ES256. One-time
+   check in increment 2.
+4. **`didi_id` pinned here** — flagged rather than open: this spec commits to
+   the rename; object before increment 1 mints the first row.
+5. **Session lifetimes** — 12h token / 30d rolling session are defensible
+   defaults, not researched conclusions; revisit against real client usage.
+6. **BYOK key storage** (exploration Q6) — deliberately *not* in this
+   service's v1 schema. Web-tier BYOK keys stay per-service until the didi
+   agent work forces the question.
+
+## Related
+
+- [[../explorations/Didi-sh-One-Login-One-Agent-Three-Services|Didi-sh-One-Login-One-Agent-Three-Services]] — the platform frame; the GTM headless requirement; the trust-boundary and deploy-independence clarifications this spec operationalizes.
+- [[../explorations/Shared-Auth-for-Applied-AI-Labs|Shared-Auth-for-Applied-AI-Labs]] — the architecture source (pathways, org model, roles, scale posture); Fork 1 flipped 2026-07-06.
+- `dididecks-ai/context-v/specs/Calmstorm-Auth-Inventory.md` — behavioral reference for token/session mechanics; ported, not extracted.
+- `astro-knots/sites/fullstack-vc/src/lib/{user-record,session,oauth-roster}.ts` — the second prior-art implementation: three-provider OAuth + account-linking merge chain (imported + ported, not shared — see §Second prior-art site).
+- [[../explorations/Two-Clients-One-Flow-Corpora-Auth-and-Deployment-Converge|Two-Clients-One-Flow-Corpora-Auth-and-Deployment-Converge]] — the deploy plan this rides; reach-edu + humain-vc are the first invited users.
+- [[../../augment-it/context-v/blueprints/Auth-Patterns-following-Astro-Knots-Patterns|Auth-Patterns-following-Astro-Knots-Patterns]] — the augment-it gate this adapter lands in.
+- [[../../augment-it/context-v/specs/Workspaces-as-Tenant-Primitive|Workspaces-as-Tenant-Primitive]] — the org↔workspace mapping on the consumer side.

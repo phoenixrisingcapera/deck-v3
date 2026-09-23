@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DidiDecksDataAsset",
+  "type": "object",
+  "required": [
+    "id",
+    "deck_id",
+    "asset_type",
+    "name",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "deck_id": {
+      "type": "string"
+    },
+    "asset_type": {
+      "enum": [
+        "person",
+        "company",
+        "upload",
+        "logo",
+        "headshot",
+        "market_report"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "needs_review",
+        "missing_required_data",
+        "broken_link",
+        "flagged"
+      ]
+    },
+    "metadata_json": {
+      "type": "object"
+    },
+    "used_in": {
+      "type": "array"
+    }
+  }
+}

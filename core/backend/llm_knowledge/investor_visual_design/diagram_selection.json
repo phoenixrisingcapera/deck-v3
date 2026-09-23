@@ -1,0 +1,1 @@
+{"module":"diagram_selection","rules":[{"id":"diagram.flow","when":"ordered transformation","primitive":"workflow"},{"id":"diagram.system","when":"entities and relationships","primitive":"system_map"},{"id":"diagram.expansion","when":"sequenced adjacent markets","primitive":"wedge_expansion"}]}

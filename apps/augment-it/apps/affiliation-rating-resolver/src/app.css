@@ -1,0 +1,100 @@
+/* affiliation-rating-resolver — scoped arr-* surface styles. Uses
+   @augment-it/theme :root tokens with literal fallbacks so the remote
+   still renders standalone if a token is absent. Trimmed subset of
+   person-db-resolver's pdr-* sheet — same tokens, same shapes, no
+   candidate-list / mapper-row types this app doesn't need.
+
+   Buttons are NOT here: every control is @augment-it/shared-ui's <Button>,
+   whose variant/size enums carry surface, border, disabled and focus. The
+   .arr-btn* recipes this file used to hold were a third copy of the block
+   already deleted from record-db-resolver — including the same untokenised
+   white text colour. Do not re-add a button rule; reach for a variant. */
+
+.arr-app {
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  color: var(--color-text, #e7e7e7);
+  padding: 0.5rem 1.25rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.arr-header { position: sticky; top: 0; z-index: 2; padding: 0.75rem 0; background: var(--color-bg, #14151a); border-bottom: 1px solid var(--color-border, #2a2c33); }
+.arr-title-row { display: flex; align-items: baseline; gap: 0.75rem; }
+.arr-title { font-size: 1.05rem; margin: 0; }
+.arr-client { font-size: 0.8rem; color: var(--color-text-muted, #9aa0aa); }
+/* Rung 0 — placement only. The three colour rules that used to live here are
+   gone with the hand-rolled pill: they gave `open` one appearance, `closed`
+   and `error` a second, and left `connecting` and `auth_required` sharing the
+   base --color-border ground with no treatment at all. Five states, three
+   appearances. StatusIndicator owns the paint; .arr-ws owns only where it
+   sits, which is the container's job and not a deviation. */
+.arr-ws { margin-inline-start: auto; }
+
+.arr-setpick { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; font-size: 0.85rem; flex-wrap: wrap; }
+.arr-setpick label { color: var(--color-text-muted, #9aa0aa); }
+.arr-setpick select { background: var(--color-surface, #1c1e25); color: inherit; border: 1px solid var(--color-border, #2a2c33); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 18rem; }
+.arr-progress { margin-left: auto; color: var(--color-text-muted, #9aa0aa); font-variant-numeric: tabular-nums; }
+.arr-summary { display: flex; gap: 0.75rem; font-size: 0.78rem; }
+.arr-summary-ok { color: var(--color-ok-text, #6ee7a8); }
+.arr-summary-flag { color: var(--color-error-text, #f3a3a3); }
+
+.arr-body { margin-top: 1rem; }
+
+.arr-card { background: var(--color-surface, #1c1e25); border: 1px solid var(--color-border, #2a2c33); border-radius: 8px; padding: 1rem; }
+.arr-muted { color: var(--color-text-muted, #9aa0aa); }
+.arr-eyebrow { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted, #9aa0aa); }
+
+.arr-row-head { margin-bottom: 0.5rem; display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.arr-row-title { font-size: 1.1rem; margin: 0.15rem 0; }
+.arr-row-org { color: var(--color-text-muted, #9aa0aa); }
+.arr-row-role { font-style: italic; font-size: 0.85rem; color: var(--color-text-muted, #9aa0aa); }
+.arr-field { margin: 0.5rem 0; }
+.arr-label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted, #9aa0aa); margin-bottom: 0.2rem; }
+.arr-value { font-size: 0.9rem; }
+.arr-field select, .arr-field textarea { width: 100%; max-width: 28rem; background: var(--color-bg, #14151a); color: inherit; border: 1px solid var(--color-border, #2a2c33); border-radius: 4px; padding: 0.4rem 0.5rem; font: inherit; font-size: 0.85rem; }
+.arr-field textarea { resize: vertical; }
+
+.arr-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--color-border, #2a2c33); }
+@media (max-width: 700px) { .arr-two-col { grid-template-columns: 1fr; } }
+.arr-subsection { display: flex; flex-direction: column; gap: 0.4rem; }
+.arr-link-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+/* .arr-link-list li layout deleted — CardRow lays each link row out now. What is
+   left is rung 0: the anchor is the child that stretches. */
+/* rung 0 — layout and wrapping only, and named EXPLICITLY rather than reached
+   for as `.arr-link-list a`. The descendant-`a` form is the shape that bites:
+   it is a standing claim on any anchor that ever lands in this list, including
+   the one ExternalLink renders and every future one the component is supposed
+   to own. An explicit class is applied on purpose or not at all.
+   `flex: 1` survives because the link is still the growing item in the CardRow
+   beside the `.arr-kind` badge, and ExternalLink never sets `flex`.
+   `word-break: break-all` survives, and is why all four sites pass
+   `noTruncate`: these are the canonical links an operator is rating, so the
+   member's standing choice is to show each URL whole. `min-inline-size: 0` is
+   dropped as redundant — ExternalLink already declares it. Colour, hover and
+   :visited are the component's. */
+.arr-link { flex: 1; word-break: break-all; }
+.arr-kind { font-size: 0.65rem; color: var(--color-text-muted, #9aa0aa); border: 1px solid var(--color-border, #2a2c33); border-radius: 3px; padding: 0 0.3rem; white-space: nowrap; }
+.arr-add-row { display: flex; gap: 0.4rem; }
+.arr-add-row input { flex: 1; min-width: 0; background: var(--color-bg, #14151a); color: inherit; border: 1px solid var(--color-border, #2a2c33); border-radius: 4px; padding: 0.35rem 0.5rem; font-size: 0.8rem; }
+.arr-add-row input:disabled { opacity: 0.5; }
+
+.arr-result { background: var(--color-ok-bg, #173a26); border: 1px solid var(--color-ok-text, #6ee7a8); border-radius: 8px; padding: 0.7rem; margin-top: 0.6rem; }
+.arr-result-head { font-weight: 600; }
+.arr-stamp-ok { font-size: 0.7rem; font-weight: 500; color: var(--color-ok-text, #6ee7a8); border: 1px solid var(--color-ok-text, #6ee7a8); border-radius: 3px; padding: 0 0.35rem; }
+
+.arr-error { background: var(--color-error-bg, #3a1717); color: var(--color-error-text, #f3a3a3); border-radius: 6px; padding: 0.5rem 0.7rem; font-size: 0.8rem; margin-top: 0.5rem; }
+.arr-skip-note { border-style: dashed; color: var(--color-text-muted, #9aa0aa); }
+
+.arr-actions { display: flex; align-items: center; margin-top: 1rem; gap: 0.6rem; }
+.arr-spacer { flex: 1; }
+
+/* Column mapper */
+.arr-mapper-rows { display: flex; flex-direction: column; gap: 0.5rem; margin: 0.75rem 0; }
+.arr-mapper-row { display: grid; grid-template-columns: 14rem 1fr; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+.arr-mapper-row select { background: var(--color-bg, #14151a); color: inherit; border: 1px solid var(--color-border, #2a2c33); border-radius: 4px; padding: 0.35rem 0.5rem; }
+.arr-mapper-actions { display: flex; gap: 0.6rem; margin-top: 0.5rem; }
+
+/* Bulk-apply summary */
+.arr-bulk-summary { margin-top: 0.5rem; }
+.arr-flag-list { list-style: none; margin: 0.4rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+.arr-flag-list li { font-size: 0.8rem; }

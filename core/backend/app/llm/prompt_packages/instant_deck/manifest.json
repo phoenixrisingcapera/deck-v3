@@ -1,0 +1,9 @@
+{
+  "version": "2026-08-04.v3",
+  "promptFiles": [
+    "system.md",
+    "generator.md",
+    "planner.md"
+  ],
+  "outputSchema": "output_schema.json"
+}

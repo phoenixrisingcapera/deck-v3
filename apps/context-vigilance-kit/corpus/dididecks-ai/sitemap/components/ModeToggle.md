@@ -1,0 +1,95 @@
+---
+title: ModeToggle — three-mode color-toggle (light → dark → vibrant) with per-client
+  localStorage namespace
+lede: Fixed top-right button cycling light → dark → vibrant, persisted under a per-client
+  `{client}:mode` key so co-hosted decks don't collide.
+artifact_kind: component
+ownership: shell
+mode: both
+status: shipped
+shell_version_introduced: 0.2.0
+composes:
+- runtime/mode-switcher (inline import + createModeSwitcher call)
+composed_by:
+- ScrollDeckPage (default mount)
+- chroma-decks/src/pages/index.astro (and chroma scroll pages via DeckOverlay--Scroll-UI?
+  historically via direct mount)
+- humain-vc-decks/src/pages/index.astro (direct mount on landing)
+- humain-vc-decks/src/pages/scroll/pitch/*/index.astro (indirectly via ScrollDeckPage)
+theming_tokens_consumed:
+- --ddd-mode-toggle-top
+- --ddd-mode-toggle-right
+- --ddd-mode-toggle-size
+- --ddd-mode-toggle-radius
+- --ddd-mode-toggle-border
+- --ddd-mode-toggle-bg
+- --ddd-mode-toggle-fg
+- --ddd-mode-toggle-hover-fg
+- --ddd-mode-toggle-hover-border
+- --ddd-mode-toggle-hover-glow
+- (fallback chain to --color-background, --color-border, --color-text, --color-primary,
+  --radius)
+props:
+- 'client: string (required) — per-client localStorage namespace'
+- 'defaultMode?: ''light'' | ''dark'' | ''vibrant'' (default ''light'')'
+- 'respectSystemPreference?: boolean (default false; opt-in to prefers-color-scheme)'
+plan_of_record: '[[../../plans/Lift-Chroma-Decks-Generic-Code-into-Shared-Shell]]'
+file: apps/deck-shell/src/components/ModeToggle.astro
+authors:
+- Michael Staton
+date_authored_initial_draft: 2026-06-06
+date_last_updated: 2026-06-07
+at_semantic_version: 0.2.0
+status_tags:
+- Shipped
+- Lifted-From-Chroma
+date_created: 2026-06-06
+date_modified: 2026-06-07
+publish: true
+site_uuid: 15eefef0-e83a-4ccd-ad9d-15c1ca6e07fc
+hex_code: cwdzg7
+date_authored_current_draft: 2026-06-06
+source_root: /Users/mpstaton/code/lossless-monorepo/ai-labs/dididecks-ai/context-v
+source_relative_path: sitemap/components/ModeToggle.md
+source_repo_slug: dididecks-ai
+collated_at: '2026-08-24'
+source_path: "ai-labs/dididecks-ai/context-v/sitemap/components/ModeToggle.md"
+---
+
+# ModeToggle
+
+## Three-mode contract
+
+`light → dark → vibrant → light → …` on each click. The HTML element gets `data-mode="{current}"` attribute; theme.css redefines all Tier-2 + `--fx-*` tokens per `[data-mode="X"]` rule (the [`three-mode theme architecture`](../../../client-sites/humain-vc-decks/DESIGN.md) discipline).
+
+## Per-client localStorage namespace
+
+The `client` prop is required — it becomes the localStorage key prefix:
+
+```
+localStorage["humain-vc-decks:mode"] = "dark"
+localStorage["chroma-decks:mode"] = "vibrant"
+```
+
+This prevents collisions when multiple decks deploy on overlapping domains (e.g. preview-deploys on `*.vercel.app`).
+
+## ARIA / accessibility
+
+- Button label updates dynamically to reflect current mode + the next mode click would cycle to ("Color mode: light. Click for dark.")
+- All three SVGs are aria-hidden; the button itself carries the semantic label
+
+## CSS prefix discipline
+
+Classes use `.ddd-mode-toggle*` prefix (not `.chroma-mode-toggle` like the original). Any chroma CSS overrides targeting `.chroma-mode-toggle` no longer match — re-target to `.ddd-mode-toggle` OR override via the `--ddd-mode-toggle-*` token interface.
+
+## Status
+
+- ✅ Shipped — humain consumes; chroma migrated via shim re-export (`chroma-decks/src/components/basics/ModeToggle.astro` is now a 1-line re-export of the shell version)
+
+## Related
+
+- [[../runtime/mode-switcher]] — the TS factory that owns the state machine
+- [[ScrollDeckPage]] — bundles ModeToggle as part of the canonical scroll-deck overlay
+- [[../../models/Engagement-Telemetry-Data-Model]] — future home for mode-cycle events
+- [[../../plans/Lift-Chroma-Decks-Generic-Code-into-Shared-Shell]]
+- [[../../agent-skills/theme-system/SKILL.md]] — three-mode architecture skill

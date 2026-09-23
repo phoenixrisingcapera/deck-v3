@@ -1,0 +1,123 @@
+---
+import MemoMark from '@components/MemoMark.astro';
+import ModeToggle from '@components/ModeToggle.astro';
+import SearchBox from '@components/SearchBox.astro';
+
+interface Props {
+  /** Highlight a nav item to indicate the current section. */
+  active?: 'home' | 'changelog' | 'notes' | 'search';
+  /** Use the compact variant (no nav, just brand + toggle) on archive detail pages. */
+  compact?: boolean;
+}
+
+const { active = 'home', compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<header class={`site-header ${compact ? 'is-compact' : ''}`}>
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href={base} aria-label="MemoPop AI — home">
+      <MemoMark size={28} animate={!compact} class="site-header__mark" />
+      <span class="site-header__name mono">memopop<span class="site-header__name-accent">.ai</span></span>
+    </a>
+
+    {!compact && (
+      <nav class="site-header__nav" aria-label="Primary">
+        <a href={base} class={active === 'home' ? 'is-active' : ''}>Splash</a>
+        <a href={`${base}changelog`} class={active === 'changelog' ? 'is-active' : ''}>Changelog</a>
+        <a href={`${base}context-v`} class={active === 'notes' ? 'is-active' : ''}>Notes</a>
+        <a href={`${base}search`} class={active === 'search' ? 'is-active' : ''}>Search</a>
+      </nav>
+    )}
+
+    <div class="site-header__actions">
+      {!compact && <SearchBox compact />}
+      <ModeToggle />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: color-mix(in oklab, var(--color-bg) 78%, transparent);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-mid), border-color var(--transition-mid);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-6);
+    min-height: 60px;
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .site-header__mark {
+    color: var(--color-accent);
+  }
+
+  .site-header__name {
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+  }
+  .site-header__name-accent {
+    color: var(--color-accent);
+  }
+
+  .site-header__nav {
+    display: flex;
+    gap: var(--space-5);
+    margin-left: var(--space-8);
+    flex: 1;
+  }
+
+  .site-header__nav a {
+    font-size: 0.85rem;
+    color: var(--color-text-soft);
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+  .site-header__nav a:hover { color: var(--color-text); }
+  .site-header__nav a.is-active { color: var(--color-accent); }
+  .site-header__nav a.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: 2px;
+  }
+
+  .site-header__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-left: auto;
+  }
+
+  .site-header.is-compact .site-header__actions {
+    margin-left: auto;
+  }
+
+  @media (max-width: 860px) {
+    .site-header__nav {
+      display: none;
+    }
+  }
+</style>

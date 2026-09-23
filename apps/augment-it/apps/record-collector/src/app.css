@@ -1,0 +1,352 @@
+/*
+ * record-collector styles. Imported as a side effect by both the standalone
+ * entry (index.ts) and the federation mount (mount.ts). Loading via a real
+ * CSS import bypasses Svelte's append_styles runtime — that mechanism
+ * doesn't reliably fire across Module Federation chunk boundaries.
+ *
+ * All selectors are namespaced under .rc-app so the rules can't leak into
+ * the shell or any sibling remote.
+ */
+
+.rc-app .rc-status-bar {
+  padding: 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 11px;
+}
+
+.rc-app h2 {
+  font-size: 0.85rem;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rc-app h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-accent-2);
+}
+
+/* Set-level header — name on the left, "Augment this Set" panel on the
+   right with a small heading and two CTAs (Run a Prompt → PTM, Run a
+   Bundle / Packs → Pack Runner). The divergence happens here at the
+   record-collector surface so the user picks intent before navigation
+   instead of landing on a default and toggling in-slot. Per-row
+   `enrich ›` still covers one-off single-record enrichment. */
+.rc-app .set-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.rc-app .set-header h3 {
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.rc-app .augment-this-set-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+.rc-app .augment-this-set-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+.rc-app .augment-this-set-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+/* Variant-family suggestion — non-blocking prompt below the ingest
+   status. Pale accent background so it reads as friendly information,
+   not an error. */
+.rc-app .vf-suggestion {
+  margin-top: 0.5rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--color-accent, var(--color-border));
+  border-radius: 4px;
+  background: var(--color-surface, rgba(255, 255, 255, 0.03));
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.rc-app .vf-suggestion-title {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--color-text);
+}
+.rc-app .vf-suggestion-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+.rc-app .muted {
+  color: var(--color-text-muted);
+}
+
+.rc-app code {
+  background: var(--color-field);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.rc-app .rc-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.rc-app .rc-layout > aside,
+.rc-app .rc-layout > section {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem;
+  min-width: 0;
+}
+
+.rc-app input[type=file] {
+  color: var(--color-text);
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.rc-app pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0.6rem;
+  background: var(--color-field);
+  border-radius: 4px;
+  margin: 0.5rem 0 0;
+  font-size: 11px;
+}
+
+.rc-app ul.records {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.rc-app ul.records li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+}
+
+.rc-app ul.records li:hover {
+  border-color: var(--color-accent);
+}
+
+.rc-app ul.records li.selected {
+  border-color: var(--color-accent);
+  background: var(--color-selected-tint);
+}
+
+.rc-app ul.records li.empty {
+  display: block;
+  padding: 0.5rem;
+}
+
+
+.rc-app ul.records .rs-delete {
+  flex: 0 0 auto;
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid transparent;
+  padding: 0 6px;
+  margin: 0.5rem 0.5rem 0 0;
+  border-radius: 3px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rc-app ul.records .rs-delete:hover {
+  color: var(--color-error-text);
+  border-color: var(--color-error-text);
+  background: var(--color-danger-tint);
+}
+
+/* De-emphasis for the archived-generations list. Passed to ListContainer as
+   `class="rs-archive-dim"`, which MERGES onto the rows element instead of
+   replacing its own class. Prefixed, so it stays inside this member.
+   NOTE: `opacity` standing in for a state on a region that contains real
+   controls is a recurring finding — PRE-EXISTING here, raised, not changed. */
+.rc-app .rs-archive-dim { opacity: 0.7; }
+
+/* .rc-app .rows-list is GONE ENTIRELY — display, flex-direction, gap, overflow
+   and max-height. The cap is `maxBlockSize="70vh"` at the call site, so the
+   layout owns the whole scroll region and this member declares nothing. */
+
+.rc-app .row-card {
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  padding: 0.55rem 0.7rem;
+  background: var(--color-surface);
+}
+
+.rc-app .row-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.rc-app .row-id {
+  color: var(--color-text-muted);
+  font-size: 10px;
+}
+
+.rc-app .fields {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 4px 12px;
+  align-items: baseline;
+}
+
+.rc-app .field-name {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rc-app .field-value {
+  background: var(--color-field);
+  padding: 3px 6px;
+  border-radius: 3px;
+  word-break: break-word;
+  cursor: text;
+  outline: none;
+}
+
+.rc-app .field-value:focus {
+  outline: 1px solid var(--color-accent-2);
+  background: var(--color-field-focus);
+}
+
+.rc-app .field-value-json {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  background: var(--color-field);
+  cursor: default;
+  max-height: 8em;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* url_list — list of clickable links surfaced from a URL[] or an
+   Array<{ url, ... }> column (socials, helpful_links,
+   official_updates_index_urls). The auxiliary metadata is dropped from
+   view; only the URL (+ optional chip / label prefix) renders. Spec:
+   context-v/plans/URL-Auto-Detector-and-Clickable-Rendering-for-List-Fields.md. */
+.rc-app .field-value-urls {
+  background: var(--color-field);
+  padding: 4px 6px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 10em;
+  overflow: auto;
+}
+.rc-app .field-value-url {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  font-size: 12px;
+}
+/* Layout only (rung 0) — stop the source Chip shrinking in the url row. The
+   ground, radius and type it used to paint are the Chip's now; the uppercase
+   went with them, which also stops the SAME pack id rendering "LINKEDIN" here
+   and "linkedin" in the socials row three lines up. */
+.rc-app .field-value-url-chip {
+  flex-shrink: 0;
+}
+.rc-app .field-value-url-label {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  max-width: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* ExternalLink owns the colour, the underline, the hover and the whole
+   truncation triplet — all of it deleted. `flex: 1` survives as rung-0 layout:
+   the component never sets `flex`, so this class does not fight it, and the
+   link still has to be the growing item in `.field-value-url` next to the chip
+   and the label. `min-width: 0` went too — ExternalLink declares
+   `min-inline-size: 0` itself. The `:visited` recolour went with the rest: a
+   link colour is the component's to own now.
+   RAISED, NOT CHASED: the visited state is no longer distinguishable here.
+   ExternalLink has no `:visited` rule at all, which is a federation-wide
+   question, not this member's to answer. */
+.rc-app .field-value-url-link {
+  flex: 1;
+}
+
+.rc-app .field-value-empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.rc-app .field-value[contenteditable='true']:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-muted);
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* -----------------------------------------------------------------------------
+ * Socials chip row — accepted pack profiles. Renders above .fields when
+ * row.fields.socials is non-empty. Spec:
+ * context-v/blueprints/Packs-and-Bundles-Pattern.md §Row write-back
+ * -------------------------------------------------------------------------- */
+.rc-app .socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-field);
+}
+
+.rc-app .social-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.15rem 0.4rem 0.15rem 0.55rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.72rem;
+  color: var(--color-text);
+}
+.rc-app .social-chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.rc-app .social-pack {
+  letter-spacing: 0.02em;
+}
+
+/* The confidence badge is shared-ui's <ConfidencePill>, not a Chip and not a
+   local recipe. The 23 lines that used to live here re-derived the component
+   from scratch — same bands, same color-mix, same border — and landed short on
+   min-width (1.8em vs 2.25em), padding and font-size (0.68em vs 0.78em, which
+   compounded off .social-chip's 0.72rem to render the number at 7.8px). */

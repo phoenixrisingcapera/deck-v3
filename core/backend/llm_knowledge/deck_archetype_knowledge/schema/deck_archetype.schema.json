@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "deck_archetype.schema.json",
+  "title": "Deck Archetype Knowledge Record",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "description",
+    "deck_types",
+    "slug_variants",
+    "sequence",
+    "body_md",
+    "narrative_role",
+    "required_inputs",
+    "evidence_hierarchy",
+    "generation_rules",
+    "critique_rules",
+    "rewrite_modes",
+    "visual_guidance",
+    "llm_contract",
+    "render_contract",
+    "quality_rubric",
+    "output_contract",
+    "validation_rules",
+    "frontend_render_hints"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "deck_types": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "startup_pitch",
+          "vc_fund_pitch"
+        ]
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "slug_variants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dates": {
+      "type": "object"
+    },
+    "sequence": {
+      "type": "object",
+      "required": [
+        "often_before_slides",
+        "often_after_slides"
+      ],
+      "properties": {
+        "often_before_slides": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "often_after_slides": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "body_md": {
+      "type": "string"
+    },
+    "narrative_role": {
+      "type": "object",
+      "required": [
+        "primary_job",
+        "emotional_effect",
+        "business_effect",
+        "comes_before",
+        "comes_after"
+      ]
+    },
+    "use_when": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "do_not_use_when": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_inputs": {
+      "type": "array"
+    },
+    "optional_inputs": {
+      "type": "array"
+    },
+    "evidence_hierarchy": {
+      "type": "array"
+    },
+    "generation_rules": {
+      "type": "object"
+    },
+    "critique_rules": {
+      "type": "array"
+    },
+    "rewrite_modes": {
+      "type": "object"
+    },
+    "visual_guidance": {
+      "type": "array"
+    },
+    "llm_contract": {
+      "type": "object",
+      "required": [
+        "narrative_function",
+        "required_inputs",
+        "quality_criteria",
+        "common_mistakes",
+        "output_expectation"
+      ],
+      "properties": {
+        "narrative_function": {
+          "type": "string"
+        },
+        "required_inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "quality_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "common_mistakes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_expectation": {
+          "type": "object"
+        }
+      }
+    },
+    "render_contract": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "renderer",
+        "output_mode",
+        "forbidden_output",
+        "default_layout_patterns",
+        "safe_bounds"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string"
+        },
+        "renderer": {
+          "type": "string"
+        },
+        "output_mode": {
+          "type": "string"
+        },
+        "forbidden_output": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default_layout_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "safe_bounds": {
+          "type": "object"
+        }
+      }
+    },
+    "quality_rubric": {
+      "type": "object",
+      "required": [
+        "excellent",
+        "weak"
+      ],
+      "properties": {
+        "excellent": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "weak": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "output_contract": {
+      "type": "object",
+      "required": [
+        "required_semantic_fields",
+        "render_schema_mapping"
+      ]
+    },
+    "validation_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frontend_render_hints": {
+      "type": "object"
+    }
+  }
+}

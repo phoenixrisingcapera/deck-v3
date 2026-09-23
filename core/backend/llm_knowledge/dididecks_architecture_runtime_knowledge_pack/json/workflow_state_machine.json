@@ -1,0 +1,70 @@
+{
+  "change_request": {
+    "states": [
+      "draft",
+      "previewed",
+      "accepted",
+      "rejected",
+      "applied",
+      "failed"
+    ],
+    "transitions": [
+      {
+        "from": "draft",
+        "to": "previewed",
+        "action": "preview_changes"
+      },
+      {
+        "from": "previewed",
+        "to": "accepted",
+        "action": "user_accepts"
+      },
+      {
+        "from": "previewed",
+        "to": "rejected",
+        "action": "user_rejects"
+      },
+      {
+        "from": "accepted",
+        "to": "applied",
+        "action": "apply_changes"
+      },
+      {
+        "from": "accepted",
+        "to": "failed",
+        "action": "apply_failed"
+      }
+    ]
+  },
+  "rebuild_job": {
+    "states": [
+      "queued",
+      "running",
+      "completed",
+      "failed",
+      "cancelled"
+    ],
+    "transitions": [
+      {
+        "from": "queued",
+        "to": "running",
+        "action": "worker_starts"
+      },
+      {
+        "from": "running",
+        "to": "completed",
+        "action": "all_items_processed"
+      },
+      {
+        "from": "running",
+        "to": "failed",
+        "action": "error"
+      },
+      {
+        "from": "queued",
+        "to": "cancelled",
+        "action": "cancel"
+      }
+    ]
+  }
+}

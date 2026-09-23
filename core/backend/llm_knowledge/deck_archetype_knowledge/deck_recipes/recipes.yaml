@@ -1,0 +1,83 @@
+deck_recipes:
+  startup_pitch_pre_seed:
+    id: "startup_pitch.pre_seed.v1"
+    deck_family: "startup_pitch"
+    stage: "pre_seed"
+    audience: "seed_investors"
+    recommended_length:
+      min_slides: 8
+      max_slides: 12
+    sequence:
+      - position: 1
+        archetype: "cover"
+        purpose: "Establish company identity and one-line promise."
+      - position: 2
+        archetype: "problem"
+        purpose: "Make the pain clear and urgent."
+      - position: 3
+        archetype: "solution"
+        purpose: "Show the company's answer to the problem."
+      - position: 4
+        archetype: "product-demo"
+        purpose: "Demonstrate how the solution works."
+      - position: 5
+        archetype: "market-size"
+        purpose: "Show the opportunity is large and reachable."
+      - position: 6
+        archetype: "traction"
+        purpose: "Show proof of demand, even if early."
+      - position: 7
+        archetype: "business-model"
+        purpose: "Explain how the company captures value."
+      - position: 8
+        archetype: "competition"
+        purpose: "Show why this company can win."
+      - position: 9
+        archetype: "core-team"
+        purpose: "Explain why this team is credible."
+      - position: 10
+        archetype: "ask"
+        purpose: "Make the fundraising request clear."
+    conditional_rules:
+      - condition: "no_revenue_or_usage"
+        action: "Do not fabricate traction. Use milestones, pilots, LOIs, waitlist, or learning velocity only if provided."
+      - condition: "deep_tech_company"
+        action: "Add technical defensibility after product or before competition when source material supports it."
+  vc_fund_pitch_emerging_manager:
+    id: "vc_fund_pitch.emerging_manager.v1"
+    deck_family: "vc_fund_pitch"
+    stage: "fundraise"
+    audience: "limited_partners"
+    recommended_length:
+      min_slides: 10
+      max_slides: 16
+    sequence:
+      - position: 1
+        archetype: "fund-thesis"
+        purpose: "State the investable worldview."
+      - position: 2
+        archetype: "why-now"
+        purpose: "Explain the timing window."
+      - position: 3
+        archetype: "positioning"
+        purpose: "Show why this fund has a differentiated edge."
+      - position: 4
+        archetype: "track-record"
+        purpose: "Show relevant performance and attribution."
+      - position: 5
+        archetype: "portfolio-construction"
+        purpose: "Explain deployment discipline."
+      - position: 6
+        archetype: "pipeline"
+        purpose: "Show current access to deals."
+      - position: 7
+        archetype: "core-team"
+        purpose: "Explain why the team can execute the thesis."
+      - position: 8
+        archetype: "lp-terms"
+        purpose: "Make fund economics and structure explicit."
+    conditional_rules:
+      - condition: "no_realized_track_record"
+        action: "Do not imply realized returns. Use relevant operating, angel, scout, or unrealized evidence with caveats."
+      - condition: "pipeline_claim_without_names"
+        action: "Mark pipeline as unverified and request deal-stage evidence."

@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "recommended_classifier_output_schema": {
+    "deck_id": "string",
+    "deck_type": {
+      "enum": [
+        "vc_pitch",
+        "entrepreneurial_pitch",
+        "sales_deck",
+        "investor_update",
+        "unknown"
+      ]
+    },
+    "slides": [
+      {
+        "slide_id": "string",
+        "slide_index": "integer",
+        "slide_archetype": "string",
+        "confidence": "number_0_to_1",
+        "evidence_signals": [
+          "string"
+        ],
+        "alternative_archetypes": [
+          {
+            "id": "string",
+            "confidence": "number_0_to_1"
+          }
+        ],
+        "investor_question_answered": "string",
+        "missing_information": [
+          "string"
+        ],
+        "block_classifications": [
+          {
+            "block_id": "string",
+            "block_type": {
+              "enum": [
+                "text",
+                "image",
+                "chart",
+                "table",
+                "shape",
+                "logo",
+                "unknown"
+              ]
+            },
+            "role": "string",
+            "confidence": "number_0_to_1",
+            "evidence": "string",
+            "text_excerpt": "string"
+          }
+        ],
+        "rewrite_recommendations": [
+          "string"
+        ]
+      }
+    ]
+  }
+}

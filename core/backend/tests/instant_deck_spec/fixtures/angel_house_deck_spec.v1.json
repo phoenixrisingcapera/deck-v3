@@ -1,0 +1,130 @@
+{
+  "schema_version": "deck_spec.v1",
+  "compiler_version": "instant-deck-composition-compiler.v1",
+  "source_package_id": "srcpkg_7c0af58586d3d6e4",
+  "source_checksum": "7c0af58586d3d6e4c4a559a07da3da3835666c77b997b26b06ab0413d6ebf40e",
+  "deck_title": "Angel House — Values into Action",
+  "deck_thesis": "Angel House links family change, small-group workshops and follow-on funding into one values-led pathway for projects.",
+  "audience": "Prospective investors, patrons and strategic partners",
+  "narrative": {
+    "audience_need": "Understand the operating pathway, source-backed traction and the connection between community work and follow-on capital.",
+    "arc": ["identity", "problem", "insight", "solution", "proof", "traction", "product_system", "capital_plan"],
+    "opening_move": "Frame Angel House as a values-to-action system rather than a directory of activities.",
+    "closing_move": "Close on the sourced shift from project support to a follow-on funding system without inventing fund terms.",
+    "represented_source_slide_ids": ["src_s01", "src_s02", "src_s03", "src_s05", "src_s06", "src_s07", "src_s08", "src_s09", "src_s10", "src_s11", "src_s12", "src_s13", "src_s14"],
+    "omitted_source_slide_ids": ["src_s04"]
+  },
+  "art_direction": {
+    "concept": "A warm editorial field cut by one decisive red pathway", "tone": "editorial", "display_strategy": "serif_contrast",
+    "motif": "home-to-action paths, evidence bars and connected operating geometry", "rhythm": "alternating",
+    "paper_role": "brand_paper", "ink_role": "brand_ink", "signature_role": "brand_signature", "support_roles": ["brand_white"]
+  },
+  "slides": [
+    {
+      "slide_id": "s01", "position": 1, "archetype": "thesis_cover",
+      "purpose": "State the redesign thesis and establish Angel House as a system for values-led family change.",
+      "headline": "Family transformation starts where change feels closest", "subhead": "Angel House begins in private homes and connects family change to practical action.",
+      "copy_blocks": [], "evidence_refs": ["fact_s01_00"], "source_slide_ids": ["src_s01"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "thesis_cover", "variant": "left_focal", "background_role": "brand_paper", "accent_role": "brand_signature", "density": "sparse", "focal_alignment": "left", "visual_weight": 0.46, "maximum_text_area": 0.62},
+      "visual": {"type": "typographic", "narrative_function": "Make the home-to-action thesis the immediate focal idea.", "title": null, "asset_ref": null, "items": [], "edges": [], "metrics": [], "series": [], "steps": [], "people": [], "quotes": []}
+    },
+    {
+      "slide_id": "s02", "position": 2, "archetype": "problem_landscape",
+      "purpose": "Show the changing family context as one connected tension rather than a list of services.",
+      "headline": "Change arrives at home from every direction", "subhead": "Angel House frames family, value, technology and offline exchange as one shared field of change.",
+      "copy_blocks": [], "evidence_refs": ["fact_s02_00", "fact_s02_01", "fact_s02_02"], "source_slide_ids": ["src_s02"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "problem_landscape", "variant": "field", "background_role": "brand_ink", "accent_role": "brand_signature", "density": "balanced", "focal_alignment": "distributed", "visual_weight": 0.72, "maximum_text_area": 0.35},
+      "visual": {"type": "comparison", "narrative_function": "Show the source-described forces converging on the private home.", "title": "Shared field of change", "asset_ref": null,
+        "items": [
+          {"id": "family", "label": "Family", "detail": "Meaning is changing", "value": null, "group": null, "evidence_refs": ["fact_s02_02"], "asset_ref": null},
+          {"id": "value", "label": "Value", "detail": "Needs rethinking", "value": null, "group": null, "evidence_refs": ["fact_s02_00"], "asset_ref": null},
+          {"id": "technology", "label": "AI", "detail": "Changes the context", "value": null, "group": null, "evidence_refs": ["fact_s02_02"], "asset_ref": null},
+          {"id": "offline", "label": "Offline exchange", "detail": "Happens in houses", "value": null, "group": null, "evidence_refs": ["fact_s02_01"], "asset_ref": null}
+        ], "edges": [], "metrics": [], "series": [], "steps": [], "people": [], "quotes": []}
+    },
+    {
+      "slide_id": "s03", "position": 3, "archetype": "key_insight",
+      "purpose": "Land the source's decisive insight about small groups as the mechanism of change.",
+      "headline": "Small groups turn exchange into material value", "subhead": "The source positions selected private houses as places where multi-generational teams move from discussion to collective activity.",
+      "copy_blocks": [], "evidence_refs": ["fact_s03_00", "fact_s03_01"], "source_slide_ids": ["src_s03"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "key_insight", "variant": "centered_monument", "background_role": "brand_paper", "accent_role": "brand_signature", "density": "sparse", "focal_alignment": "center", "visual_weight": 0.58, "maximum_text_area": 0.58},
+      "visual": {"type": "proof_strip", "narrative_function": "Make one assertion dominant and attach two source-backed proof statements.", "title": "Mechanism", "asset_ref": null,
+        "items": [
+          {"id": "protected", "label": "Protected spirit", "detail": "The community's spirit is protected and fostered.", "value": null, "group": null, "evidence_refs": ["fact_s03_00"], "asset_ref": null},
+          {"id": "collective", "label": "Collective activity", "detail": "Small groups build material and intellectual value.", "value": null, "group": null, "evidence_refs": ["fact_s03_01"], "asset_ref": null}
+        ], "edges": [], "metrics": [], "series": [], "steps": [], "people": [], "quotes": []}
+    },
+    {
+      "slide_id": "s04", "position": 4, "archetype": "process_pathway",
+      "purpose": "Compress the source's high-level operating model into three linked interventions.",
+      "headline": "One operating pathway moves reflection into action", "subhead": "Consult, convene and register projects for potential follow-on funding.",
+      "copy_blocks": [], "evidence_refs": ["fact_s05_00"], "source_slide_ids": ["src_s05"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "process_pathway", "variant": "diagonal_flow", "background_role": "brand_ink", "accent_role": "brand_signature", "density": "balanced", "focal_alignment": "distributed", "visual_weight": 0.70, "maximum_text_area": 0.34},
+      "visual": {"type": "process", "narrative_function": "Show the source-defined three-step operating pathway.", "title": "From private change to projects", "asset_ref": null, "items": [], "edges": [], "metrics": [], "series": [],
+        "steps": [
+          {"id": "consult", "label": "Consult", "detail": "Financial change", "evidence_refs": ["fact_s05_00"]},
+          {"id": "convene", "label": "Convene", "detail": "Retreats and workshops", "evidence_refs": ["fact_s05_00"]},
+          {"id": "register", "label": "Register", "detail": "Follow-on funding", "evidence_refs": ["fact_s05_00"]}
+        ], "people": [], "quotes": []}
+    },
+    {
+      "slide_id": "s05", "position": 5, "archetype": "timeline_milestones",
+      "purpose": "Give the detailed source stages a phase-specific progression distinct from the operating pathway.",
+      "headline": "Each phase produces the input the next phase needs", "subhead": "Values alignment becomes a project plan, then a listed project.",
+      "copy_blocks": [], "evidence_refs": ["fact_s06_00", "fact_s07_00", "fact_s08_00"], "source_slide_ids": ["src_s06", "src_s07", "src_s08"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "timeline_milestones", "variant": "strip", "background_role": "brand_paper", "accent_role": "brand_signature", "density": "balanced", "focal_alignment": "distributed", "visual_weight": 0.70, "maximum_text_area": 0.33},
+      "visual": {"type": "timeline", "narrative_function": "Show three source-backed phases as an accumulating progression.", "title": "Three phases", "asset_ref": null, "items": [], "edges": [], "metrics": [], "series": [],
+        "steps": [
+          {"id": "align", "label": "Align", "detail": "Family values", "evidence_refs": ["fact_s06_00"]},
+          {"id": "prototype", "label": "Prototype", "detail": "Workshop project plan", "evidence_refs": ["fact_s07_00"]},
+          {"id": "list", "label": "List", "detail": "Project for funding", "evidence_refs": ["fact_s08_00"]}
+        ], "people": [], "quotes": []}
+    },
+    {
+      "slide_id": "s06", "position": 6, "archetype": "metric_proof",
+      "purpose": "Present only the source's reported observed traction and keep projections out of the visual.",
+      "headline": "Observed traction exists before platform scale", "subhead": "These figures are reported in the source and are not independently verified here.",
+      "copy_blocks": [], "evidence_refs": ["fact_s09_00", "num_s09_00", "num_s09_01", "num_s09_03"], "source_slide_ids": ["src_s09"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "metric_proof", "variant": "left_focal", "background_role": "brand_ink", "accent_role": "brand_signature", "density": "balanced", "focal_alignment": "left", "visual_weight": 0.68, "maximum_text_area": 0.38},
+      "visual": {"type": "metric", "narrative_function": "Use the three observed source counts as proportional proof bars.", "title": "Reported traction", "asset_ref": null, "items": [], "edges": [],
+        "metrics": [
+          {"id": "projects", "value": "12", "label": "projects started", "context": "without platform support", "evidence_refs": ["num_s09_00"]},
+          {"id": "clients", "value": "40+", "label": "coaching clients", "context": "source wording", "evidence_refs": ["num_s09_01"]},
+          {"id": "houses", "value": "200", "label": "houses registered", "context": "source wording", "evidence_refs": ["num_s09_03"]}
+        ], "series": [], "steps": [], "people": [], "quotes": []}
+    },
+    {
+      "slide_id": "s07", "position": 7, "archetype": "system_map",
+      "purpose": "Show how founder, Angel House, projects and physical support relate without becoming a directory.",
+      "headline": "The system links leadership, projects and places", "subhead": "The source connects founder experience to project support and physical institute resources.",
+      "copy_blocks": [], "evidence_refs": ["fact_s10_00", "fact_s10_01", "fact_s10_02", "fact_s11_00", "fact_s11_01", "fact_s11_02", "fact_s11_03"], "source_slide_ids": ["src_s10", "src_s11"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "system_map", "variant": "orbit", "background_role": "brand_paper", "accent_role": "brand_signature", "density": "balanced", "focal_alignment": "distributed", "visual_weight": 0.76, "maximum_text_area": 0.32},
+      "visual": {"type": "system_map", "narrative_function": "Encode the source-backed relationships between Angel House actors and support components.", "title": "Operating system", "asset_ref": null,
+        "items": [
+          {"id": "angel_house", "label": "Angel House", "detail": "Operating centre", "value": null, "group": null, "evidence_refs": ["fact_s11_00"], "asset_ref": null},
+          {"id": "founder", "label": "Paula Schwarz", "detail": "Founder experience", "value": null, "group": null, "evidence_refs": ["fact_s10_00", "fact_s10_01", "fact_s10_02"], "asset_ref": null},
+          {"id": "projects", "label": "Projects", "detail": "Turn into companies", "value": null, "group": null, "evidence_refs": ["fact_s11_01"], "asset_ref": null},
+          {"id": "institute", "label": "Institute", "detail": "Technology and studios", "value": null, "group": null, "evidence_refs": ["fact_s11_02", "fact_s11_03"], "asset_ref": null}
+        ],
+        "edges": [
+          {"from": "founder", "to": "angel_house", "label": "leads", "evidence_refs": ["fact_s10_01"]},
+          {"from": "angel_house", "to": "projects", "label": "supports", "evidence_refs": ["fact_s11_01"]},
+          {"from": "institute", "to": "projects", "label": "equips", "evidence_refs": ["fact_s11_02"]}
+        ], "metrics": [], "series": [], "steps": [], "people": [], "quotes": []}
+    },
+    {
+      "slide_id": "s08", "position": 8, "archetype": "comparison_shift",
+      "purpose": "Close on the source's transition from project support to a wider follow-on funding system.",
+      "headline": "Project support becomes a follow-on funding system", "subhead": "The source moves from an Angel Fund proposition to selection, checks and a broad partner context; legal terms remain missing evidence.",
+      "copy_blocks": [], "evidence_refs": ["fact_s12_00", "fact_s13_00", "fact_s13_01", "fact_s14_00"], "source_slide_ids": ["src_s12", "src_s13", "src_s14"], "omitted_source_slide_ids": [], "asset_refs": [],
+      "composition": {"primitive": "comparison_shift", "variant": "split_40_60", "background_role": "brand_paper", "accent_role": "brand_signature", "density": "balanced", "focal_alignment": "distributed", "visual_weight": 0.72, "maximum_text_area": 0.36},
+      "visual": {"type": "comparison", "narrative_function": "Show a directional shift from project support to the source-described fund system.", "title": "From support to system", "asset_ref": null,
+        "items": [
+          {"id": "fund_idea", "label": "Angel Fund", "detail": "A named proposition", "value": null, "group": "PROJECT SUPPORT", "evidence_refs": ["fact_s12_00"], "asset_ref": null},
+          {"id": "mission", "label": "Mission", "detail": "Grow projects and companies", "value": null, "group": "PROJECT SUPPORT", "evidence_refs": ["fact_s13_00"], "asset_ref": null},
+          {"id": "selection", "label": "Selection", "detail": "Committee and industry agnostic", "value": null, "group": "FOLLOW-ON SYSTEM", "evidence_refs": ["fact_s13_01"], "asset_ref": null},
+          {"id": "network", "label": "Partner context", "detail": "A broad source-listed network", "value": null, "group": "FOLLOW-ON SYSTEM", "evidence_refs": ["fact_s14_00"], "asset_ref": null}
+        ], "edges": [], "metrics": [], "series": [], "steps": [], "people": [], "quotes": []}
+    }
+  ]
+}

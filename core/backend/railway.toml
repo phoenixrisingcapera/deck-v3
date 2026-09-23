@@ -1,0 +1,12 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+preDeployCommand = "python -m alembic upgrade heads && python -m alembic -c alembic_ai.ini upgrade heads"
+# Pre-deploy owns both Alembic lineages. API startup must not race migration.
+startCommand = "python scripts/start_railway.py"
+healthcheckPath = "/api/health/product-ready"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10

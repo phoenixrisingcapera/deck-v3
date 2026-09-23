@@ -1,0 +1,555 @@
+{
+  "version": "1.0.0",
+  "description": "Investor and entrepreneurial pitch slide archetypes for semantic classification even when titles are non-standard.",
+  "archetypes": [
+    {
+      "id": "cover",
+      "canonical_names": [
+        "Cover",
+        "Title",
+        "Opening",
+        "Intro"
+      ],
+      "non_title_signals": [
+        "company logo prominent",
+        "one-line tagline",
+        "date or presenter name",
+        "little body text",
+        "large brand lockup"
+      ],
+      "common_block_roles": [
+        "company_name",
+        "tagline",
+        "presenter",
+        "date",
+        "logo",
+        "visual_anchor"
+      ],
+      "investor_question": "What is this company and why should I pay attention?",
+      "rewrite_goal": "Make the positioning crisp, category clear, and memorable."
+    },
+    {
+      "id": "one_liner",
+      "canonical_names": [
+        "One-liner",
+        "Elevator pitch",
+        "What we do",
+        "Company snapshot"
+      ],
+      "non_title_signals": [
+        "single sentence describing company",
+        "combines customer + product + outcome",
+        "often uses 'for X who need Y' pattern",
+        "mentions category creation"
+      ],
+      "common_block_roles": [
+        "positioning_statement",
+        "customer_segment",
+        "product_descriptor",
+        "outcome_claim",
+        "category_label"
+      ],
+      "investor_question": "Can I understand the business in under 10 seconds?",
+      "rewrite_goal": "Clarify customer, use case, product, and business category."
+    },
+    {
+      "id": "problem",
+      "canonical_names": [
+        "Problem",
+        "Pain",
+        "Why now",
+        "Current pain",
+        "Challenge"
+      ],
+      "non_title_signals": [
+        "negative current-state language",
+        "manual workarounds",
+        "cost/time/friction claims",
+        "complaints from users",
+        "unmet need",
+        "broken workflow"
+      ],
+      "common_block_roles": [
+        "problem_statement",
+        "pain_point",
+        "current_workaround",
+        "cost_of_inaction",
+        "affected_user",
+        "evidence_snippet"
+      ],
+      "investor_question": "Is this pain real, urgent, frequent, and expensive?",
+      "rewrite_goal": "Make the pain concrete, specific, and economically meaningful."
+    },
+    {
+      "id": "customer_insight",
+      "canonical_names": [
+        "Insight",
+        "Customer insight",
+        "User behaviour",
+        "Discovery"
+      ],
+      "non_title_signals": [
+        "qualitative quotes",
+        "unexpected behaviour",
+        "founder learned X",
+        "interview count",
+        "workflow observation",
+        "before/after insight"
+      ],
+      "common_block_roles": [
+        "customer_quote",
+        "observed_behavior",
+        "latent_need",
+        "insight_claim",
+        "research_sample"
+      ],
+      "investor_question": "What does the founder know that others have missed?",
+      "rewrite_goal": "Expose the non-obvious insight behind the product."
+    },
+    {
+      "id": "solution",
+      "canonical_names": [
+        "Solution",
+        "Product",
+        "What we built",
+        "Platform"
+      ],
+      "non_title_signals": [
+        "product capabilities",
+        "screenshots",
+        "workflow steps",
+        "feature clusters",
+        "benefit statements",
+        "'we enable' language"
+      ],
+      "common_block_roles": [
+        "solution_summary",
+        "feature",
+        "benefit",
+        "workflow_step",
+        "screenshot",
+        "capability_cluster"
+      ],
+      "investor_question": "How does the product solve the pain better than alternatives?",
+      "rewrite_goal": "Connect features to outcomes and pain relief."
+    },
+    {
+      "id": "product_demo",
+      "canonical_names": [
+        "Demo",
+        "Product walkthrough",
+        "How it works",
+        "Workflow"
+      ],
+      "non_title_signals": [
+        "numbered steps",
+        "UI screenshots",
+        "arrows between screens",
+        "input-output flow",
+        "before/after artefacts"
+      ],
+      "common_block_roles": [
+        "input",
+        "process_step",
+        "ai_action",
+        "user_action",
+        "output",
+        "screenshot_annotation"
+      ],
+      "investor_question": "Can I see the product experience and understand the magic moment?",
+      "rewrite_goal": "Show the product flow with minimal words and clear value moments."
+    },
+    {
+      "id": "value_proposition",
+      "canonical_names": [
+        "Value proposition",
+        "Benefits",
+        "ROI",
+        "Impact"
+      ],
+      "non_title_signals": [
+        "save time",
+        "reduce cost",
+        "increase revenue",
+        "risk reduction",
+        "quality improvement",
+        "before/after metrics"
+      ],
+      "common_block_roles": [
+        "benefit_claim",
+        "roi_metric",
+        "before_state",
+        "after_state",
+        "economic_value",
+        "proof_point"
+      ],
+      "investor_question": "Why will customers pay or switch?",
+      "rewrite_goal": "Translate capabilities into measurable business value."
+    },
+    {
+      "id": "market",
+      "canonical_names": [
+        "Market",
+        "TAM SAM SOM",
+        "Opportunity",
+        "Market size"
+      ],
+      "non_title_signals": [
+        "currency totals",
+        "TAM/SAM/SOM labels",
+        "number of companies/users",
+        "market growth CAGR",
+        "industry spend",
+        "wedge market"
+      ],
+      "common_block_roles": [
+        "tam",
+        "sam",
+        "som",
+        "market_segment",
+        "market_growth",
+        "source",
+        "bottom_up_assumption"
+      ],
+      "investor_question": "Can this become a venture-scale business?",
+      "rewrite_goal": "Make market sizing credible, bottom-up, and linked to the go-to-market wedge."
+    },
+    {
+      "id": "why_now",
+      "canonical_names": [
+        "Why now",
+        "Timing",
+        "Market inflection",
+        "Tailwinds"
+      ],
+      "non_title_signals": [
+        "regulatory change",
+        "new technology adoption",
+        "cost curves",
+        "platform shift",
+        "budget shift",
+        "macro trend",
+        "urgent catalyst"
+      ],
+      "common_block_roles": [
+        "timing_catalyst",
+        "trend",
+        "regulatory_driver",
+        "technology_shift",
+        "market_readiness",
+        "urgency_claim"
+      ],
+      "investor_question": "Why is this the right time to build this company?",
+      "rewrite_goal": "Tie external tailwinds to immediate adoption."
+    },
+    {
+      "id": "business_model",
+      "canonical_names": [
+        "Business model",
+        "Pricing",
+        "Revenue model",
+        "Monetisation"
+      ],
+      "non_title_signals": [
+        "subscription tiers",
+        "usage-based pricing",
+        "take rate",
+        "gross margin",
+        "ACV",
+        "pricing table",
+        "contract value"
+      ],
+      "common_block_roles": [
+        "pricing_tier",
+        "revenue_stream",
+        "acv",
+        "gross_margin",
+        "billing_unit",
+        "paywall",
+        "expansion_path"
+      ],
+      "investor_question": "How does the company make money and scale revenue?",
+      "rewrite_goal": "Clarify who pays, how much, when, and why pricing can expand."
+    },
+    {
+      "id": "go_to_market",
+      "canonical_names": [
+        "Go-to-market",
+        "GTM",
+        "Distribution",
+        "Sales motion"
+      ],
+      "non_title_signals": [
+        "channels",
+        "sales cycle",
+        "ICP",
+        "pipeline",
+        "partnerships",
+        "community-led growth",
+        "land and expand"
+      ],
+      "common_block_roles": [
+        "icp",
+        "channel",
+        "sales_motion",
+        "pipeline_stage",
+        "conversion_rate",
+        "partnership",
+        "growth_loop"
+      ],
+      "investor_question": "Can the company reach customers efficiently?",
+      "rewrite_goal": "Show a focused path from first wedge to repeatable acquisition."
+    },
+    {
+      "id": "traction",
+      "canonical_names": [
+        "Traction",
+        "Progress",
+        "Metrics",
+        "Momentum"
+      ],
+      "non_title_signals": [
+        "MRR/ARR",
+        "active users",
+        "retention",
+        "waitlist",
+        "pilots",
+        "LOIs",
+        "growth chart",
+        "customer logos",
+        "usage metric"
+      ],
+      "common_block_roles": [
+        "revenue_metric",
+        "usage_metric",
+        "growth_rate",
+        "customer_logo",
+        "pilot",
+        "retention_metric",
+        "pipeline_metric"
+      ],
+      "investor_question": "Is there evidence of demand and momentum?",
+      "rewrite_goal": "Prioritise the strongest proof of pull, growth, retention, or revenue."
+    },
+    {
+      "id": "competition",
+      "canonical_names": [
+        "Competition",
+        "Competitive landscape",
+        "Alternatives",
+        "Positioning"
+      ],
+      "non_title_signals": [
+        "matrix",
+        "2x2 quadrant",
+        "competitor logos",
+        "comparison table",
+        "legacy alternatives",
+        "build vs buy"
+      ],
+      "common_block_roles": [
+        "competitor",
+        "axis_label",
+        "differentiator",
+        "alternative_solution",
+        "comparison_cell",
+        "positioning_claim"
+      ],
+      "investor_question": "Why can this company win against incumbents and alternatives?",
+      "rewrite_goal": "Frame differentiation around customer decision criteria, not generic feature lists."
+    },
+    {
+      "id": "moat",
+      "canonical_names": [
+        "Moat",
+        "Defensibility",
+        "Why we win",
+        "Unfair advantage"
+      ],
+      "non_title_signals": [
+        "proprietary data",
+        "network effects",
+        "workflow lock-in",
+        "regulatory advantage",
+        "technical edge",
+        "distribution advantage"
+      ],
+      "common_block_roles": [
+        "moat_claim",
+        "data_asset",
+        "technical_advantage",
+        "network_effect",
+        "switching_cost",
+        "distribution_edge"
+      ],
+      "investor_question": "What compounds over time and becomes hard to copy?",
+      "rewrite_goal": "Show what strengthens with customers, data, scale, or time."
+    },
+    {
+      "id": "team",
+      "canonical_names": [
+        "Team",
+        "Founders",
+        "Leadership",
+        "Why us"
+      ],
+      "non_title_signals": [
+        "headshots",
+        "bios",
+        "logos of previous employers",
+        "domain expertise",
+        "founder-market fit",
+        "advisor list"
+      ],
+      "common_block_roles": [
+        "founder_name",
+        "role",
+        "bio",
+        "credential",
+        "domain_expertise",
+        "prior_company_logo",
+        "advisor"
+      ],
+      "investor_question": "Is this the right team to build this?",
+      "rewrite_goal": "Emphasise founder-market fit, execution proof, and relevant credibility."
+    },
+    {
+      "id": "financials",
+      "canonical_names": [
+        "Financials",
+        "Forecast",
+        "Projections",
+        "Unit economics"
+      ],
+      "non_title_signals": [
+        "revenue forecast",
+        "cost lines",
+        "gross margin",
+        "CAC",
+        "LTV",
+        "burn",
+        "runway",
+        "chart with years"
+      ],
+      "common_block_roles": [
+        "revenue_projection",
+        "cost_projection",
+        "gross_margin",
+        "cac",
+        "ltv",
+        "burn_rate",
+        "runway",
+        "assumption"
+      ],
+      "investor_question": "Are the economics plausible and attractive?",
+      "rewrite_goal": "Make assumptions explicit and connect projections to GTM and pricing."
+    },
+    {
+      "id": "fundraising_ask",
+      "canonical_names": [
+        "Ask",
+        "Fundraise",
+        "Use of funds",
+        "Investment round"
+      ],
+      "non_title_signals": [
+        "raising amount",
+        "runway months",
+        "allocation pie",
+        "milestones",
+        "hiring plan",
+        "round type"
+      ],
+      "common_block_roles": [
+        "raise_amount",
+        "round_type",
+        "runway",
+        "use_of_funds",
+        "milestone",
+        "hiring_plan",
+        "closing_timeline"
+      ],
+      "investor_question": "How much is being raised and what will it unlock?",
+      "rewrite_goal": "Tie capital to milestones that de-risk the next financing."
+    },
+    {
+      "id": "roadmap",
+      "canonical_names": [
+        "Roadmap",
+        "Milestones",
+        "Plan",
+        "Next steps"
+      ],
+      "non_title_signals": [
+        "quarters",
+        "timeline",
+        "launch phases",
+        "product milestones",
+        "hiring milestones",
+        "future modules"
+      ],
+      "common_block_roles": [
+        "milestone",
+        "time_period",
+        "product_release",
+        "commercial_goal",
+        "technical_goal",
+        "dependency"
+      ],
+      "investor_question": "What will happen next and how will progress be measured?",
+      "rewrite_goal": "Convert vague roadmap into investor-grade milestones."
+    },
+    {
+      "id": "case_study",
+      "canonical_names": [
+        "Case study",
+        "Customer story",
+        "Example",
+        "Use case"
+      ],
+      "non_title_signals": [
+        "named customer scenario",
+        "before/after flow",
+        "quote + metric",
+        "implementation story",
+        "workflow narrative"
+      ],
+      "common_block_roles": [
+        "customer_context",
+        "before_state",
+        "intervention",
+        "after_state",
+        "outcome_metric",
+        "quote"
+      ],
+      "investor_question": "Does the product create real-world value?",
+      "rewrite_goal": "Tell a concise story with customer, pain, action, and result."
+    },
+    {
+      "id": "closing",
+      "canonical_names": [
+        "Thank you",
+        "Contact",
+        "Closing",
+        "Appendix title"
+      ],
+      "non_title_signals": [
+        "contact details",
+        "QR code",
+        "final tagline",
+        "logo reprise",
+        "email address",
+        "no major new argument"
+      ],
+      "common_block_roles": [
+        "contact_email",
+        "website",
+        "closing_tagline",
+        "logo",
+        "call_to_action"
+      ],
+      "investor_question": "How does the investor follow up?",
+      "rewrite_goal": "End cleanly with memorable positioning and clear contact."
+    }
+  ]
+}

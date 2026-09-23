@@ -1,0 +1,37 @@
+{
+  "module": "market_sizing_rules",
+  "version": "0.1.0",
+  "rules": [
+    {
+      "id": "separate_tam_sam_som",
+      "principle": "TAM is the broad theoretical market; SAM is the reachable segment; SOM is the realistic share the company can capture in a defined horizon.",
+      "redFlags": ["single market number presented without scope", "TAM used as near-term opportunity", "SOM missing from revenue ambition"],
+      "implementationInstruction": "Rewrite the market slide into separate TAM/SAM/SOM layers with scope, assumptions, and evidence labels."
+    },
+    {
+      "id": "bottom_up_preferred",
+      "principle": "For investor decks, bottom-up market sizing is usually more credible than unsupported top-down estimates.",
+      "redFlags": ["market claim uses only a broad analyst number", "target customer count missing", "ACV or price missing"],
+      "implementationInstruction": "Add a bottom-up bridge: target customers x price/ACV x adoption assumption."
+    },
+    {
+      "id": "market_claim_mismatch",
+      "principle": "If deck-backed assumptions support a narrower market than the headline claim, the claim must be flagged as overstated.",
+      "redFlags": ["headline market value exceeds implied customer count times price", "local product claims global opportunity", "near-term plan only addresses small segment"],
+      "implementationInstruction": "Split the slide into current serviceable market and long-term expansion potential. Soften the headline until external evidence is provided."
+    },
+    {
+      "id": "scope_and_timing",
+      "principle": "Market size must have geography, customer segment, and time horizon.",
+      "redFlags": ["no geography", "no segment", "old source", "undefined buyer"],
+      "implementationInstruction": "Add scope labels: geography, segment, time horizon, buyer, and source date."
+    }
+  ],
+  "sanityChecks": [
+    "Does the claimed market size exceed what customer count x price can support?",
+    "Does the revenue ambition fit the stated SAM/SOM?",
+    "Is the market defined around the buyer's budget or a broad category?",
+    "Is the company launching into the segment used for sizing?",
+    "Are future adjacent markets separated from the current wedge?"
+  ]
+}

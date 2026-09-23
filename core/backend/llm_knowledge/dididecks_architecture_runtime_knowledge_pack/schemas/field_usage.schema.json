@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FieldUsage",
+  "type": "object",
+  "required": [
+    "id",
+    "deck_id",
+    "persistent_field_id",
+    "field_key",
+    "slide_id",
+    "block_id",
+    "usage_type"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "deck_id": {
+      "type": "string"
+    },
+    "persistent_field_id": {
+      "type": "string"
+    },
+    "field_key": {
+      "type": "string"
+    },
+    "slide_id": {
+      "type": "string"
+    },
+    "variant_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "block_id": {
+      "type": "string"
+    },
+    "usage_type": {
+      "enum": [
+        "text_render",
+        "link_render",
+        "image_render",
+        "style_token",
+        "metric_render",
+        "chart_data"
+      ]
+    },
+    "transform_rule": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "is_required": {
+      "type": "boolean"
+    }
+  }
+}

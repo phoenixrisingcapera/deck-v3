@@ -1,0 +1,28 @@
+copy_rules:
+  headline_rules:
+    - "Write headlines as specific claims."
+    - "Avoid generic labels such as Problem, Solution, Market, or Traction when a stronger claim is possible."
+    - "Keep headlines under 16 words unless the source slide requires a longer legal or technical phrase."
+  evidence_rules:
+    - "Use only facts present in deck context, source slides, uploaded artifacts, or user instruction."
+    - "If evidence is missing, ask for it or mark the claim as unverified."
+    - "Do not invent customer names, investor names, revenue, growth, clinical, regulatory, or financial metrics."
+  tone_rules:
+    investor:
+      - "Concrete, evidence-led, direct."
+      - "Avoid hype unless the source material proves the claim."
+    lp:
+      - "Precise about attribution, risk, liquidity, and terms."
+      - "Separate track record from strategy."
+    operator:
+      - "Show workflow consequence, speed, cost, and accountability."
+  slide_copy_shapes:
+    proof_points:
+      max_items: 4
+      rule: "Each point should include a claim and evidence or a missing-input note."
+    narrative_caption:
+      max_words: 28
+      rule: "Explain why the visual matters, not what it literally shows."
+    risk_note:
+      max_words: 22
+      rule: "State the caveat plainly when evidence is incomplete."

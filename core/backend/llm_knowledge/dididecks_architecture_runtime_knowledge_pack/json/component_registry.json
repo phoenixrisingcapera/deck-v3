@@ -1,0 +1,106 @@
+{
+  "components": [
+    {
+      "name": "DeckEditorShell",
+      "area": "editor",
+      "status": "Partially-Shipped",
+      "path": "components/editor/DeckEditorShell.tsx"
+    },
+    {
+      "name": "SlideNavigator",
+      "area": "editor",
+      "status": "Partially-Shipped",
+      "path": "components/editor/SlideNavigator.tsx"
+    },
+    {
+      "name": "SlideCanvas",
+      "area": "editor",
+      "status": "Partially-Shipped",
+      "path": "components/editor/SlideCanvas.tsx"
+    },
+    {
+      "name": "BlockInspector",
+      "area": "editor",
+      "status": "Partially-Shipped",
+      "path": "components/editor/BlockInspector.tsx"
+    },
+    {
+      "name": "EditorToolbar",
+      "area": "editor",
+      "status": "Partially-Shipped",
+      "path": "components/editor/EditorToolbar.tsx"
+    },
+    {
+      "name": "AiCommandPanel",
+      "area": "editor",
+      "status": "Partially-Shipped",
+      "path": "components/editor/AiCommandPanel.tsx"
+    },
+    {
+      "name": "DeckWorkflowNav",
+      "area": "workflows",
+      "status": "Partially-Shipped",
+      "path": "components/workflows/DeckWorkflowNav.tsx"
+    },
+    {
+      "name": "DeckMapOverview",
+      "area": "workflows",
+      "status": "Partially-Shipped",
+      "path": "components/workflows/DeckMapOverview.tsx"
+    },
+    {
+      "name": "SmartEditWorkbench",
+      "area": "workflows",
+      "status": "Partially-Shipped",
+      "path": "components/workflows/SmartEditWorkbench.tsx"
+    },
+    {
+      "name": "RebuildDeckPanel",
+      "area": "workflows",
+      "status": "Partially-Shipped",
+      "path": "components/workflows/RebuildDeckPanel.tsx"
+    },
+    {
+      "name": "DeckReviewMatrix",
+      "area": "review",
+      "status": "Draft",
+      "path": "components/review/DeckReviewMatrix.tsx"
+    },
+    {
+      "name": "SurfaceReviewMatrix",
+      "area": "review",
+      "status": "Draft",
+      "path": "components/review/SurfaceReviewMatrix.tsx"
+    },
+    {
+      "name": "SlideRankPill",
+      "area": "review",
+      "status": "Draft",
+      "path": "components/review/SlideRankPill.tsx"
+    },
+    {
+      "name": "DeckAccessPanel",
+      "area": "access",
+      "status": "Draft",
+      "path": "components/access/DeckAccessPanel.tsx"
+    },
+    {
+      "name": "DataAssetsLayout",
+      "area": "data-assets",
+      "status": "Draft",
+      "path": "components/data-assets/DataAssetsLayout.tsx"
+    },
+    {
+      "name": "DeckStatsPanel",
+      "area": "data-assets",
+      "status": "Draft",
+      "path": "components/data-assets/DeckStatsPanel.tsx"
+    },
+    {
+      "name": "PricingTable",
+      "area": "billing",
+      "status": "Shell",
+      "path": "components/billing/PricingTable.tsx"
+    }
+  ]
+}

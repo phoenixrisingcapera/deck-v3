@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#e8eaef" fill-opacity="0.07"/>
+    </pattern>
+    <linearGradient id="thread" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="0.55" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#a3e635"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0c10"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <g font-family="JetBrains Mono, ui-monospace, monospace" fill="#8b91a3" font-size="22">
+    <text x="80" y="90">⊡ context vigilance</text>
+  </g>
+
+  <g font-family="JetBrains Mono, ui-monospace, monospace" fill="#e8eaef" font-size="64" font-weight="600">
+    <text x="80" y="240">Treat context with the same</text>
+    <text x="80" y="320">vigilance as <tspan fill="#5b6273" text-decoration="line-through">code</tspan></text>
+  </g>
+
+  <g font-family="JetBrains Mono, ui-monospace, monospace" font-size="56" font-weight="600">
+    <text x="80" y="420" fill="url(#thread)">— and context becomes the parent to the code.</text>
+  </g>
+
+  <g font-family="Inter, system-ui, sans-serif" fill="#b4b9c7" font-size="22">
+    <text x="80" y="540">583 living docs · 28 projects · MIT · open spec</text>
+  </g>
+
+  <g font-family="JetBrains Mono, ui-monospace, monospace" fill="#fbbf24" font-size="20">
+    <text x="80" y="585">contextvigilance.com</text>
+  </g>
+</svg>

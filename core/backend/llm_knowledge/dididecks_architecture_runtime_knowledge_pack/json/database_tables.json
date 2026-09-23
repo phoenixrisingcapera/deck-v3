@@ -1,0 +1,77 @@
+{
+  "prefix": "dididecks_",
+  "tables": [
+    {
+      "name": "dididecks_decks",
+      "purpose": "Deck record and metadata."
+    },
+    {
+      "name": "dididecks_slides",
+      "purpose": "Logical slide/slot records."
+    },
+    {
+      "name": "dididecks_slide_variants",
+      "purpose": "Alternative renderings/layout variants."
+    },
+    {
+      "name": "dididecks_blocks",
+      "purpose": "Editable visual elements."
+    },
+    {
+      "name": "dididecks_persistent_fields",
+      "purpose": "Reusable business values."
+    },
+    {
+      "name": "dididecks_field_usages",
+      "purpose": "Where persistent fields appear."
+    },
+    {
+      "name": "dididecks_change_requests",
+      "purpose": "Proposed field/block/deck changes."
+    },
+    {
+      "name": "dididecks_change_request_items",
+      "purpose": "Individual proposed changes."
+    },
+    {
+      "name": "dididecks_rebuild_jobs",
+      "purpose": "Backend update/regeneration jobs."
+    },
+    {
+      "name": "dididecks_rebuild_job_items",
+      "purpose": "Per-slide/block job work items."
+    },
+    {
+      "name": "dididecks_deck_versions",
+      "purpose": "Version snapshots."
+    },
+    {
+      "name": "dididecks_audit_log",
+      "purpose": "Accepted/rejected/previewed events."
+    },
+    {
+      "name": "dididecks_exports",
+      "purpose": "PDF/PPTX/web export jobs."
+    },
+    {
+      "name": "dididecks_share_links",
+      "purpose": "Controlled external share links."
+    },
+    {
+      "name": "dididecks_reviews",
+      "purpose": "Deck and slide reviews."
+    },
+    {
+      "name": "dididecks_comments",
+      "purpose": "Comments and review collaboration."
+    },
+    {
+      "name": "dididecks_data_assets",
+      "purpose": "People, companies, logos, headshots, uploads."
+    },
+    {
+      "name": "dididecks_ai_commands",
+      "purpose": "AI command requests/proposals."
+    }
+  ]
+}

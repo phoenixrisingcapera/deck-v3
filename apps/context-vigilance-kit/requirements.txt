@@ -1,0 +1,16 @@
+# context-vigilance-kit dependencies
+#
+# Install with `uv` (preferred):
+#     uv pip install -r requirements.txt
+#
+# Or with pip:
+#     pip install -r requirements.txt
+
+# Source map + manifest scripts.
+pyyaml==6.0.2
+
+# Vector database — local PersistentClient for the corpus, MCP server
+# for Claude Code integration. See context-v/explorations/ChromaDB-as-Context-
+# Improvement-Across-Everything-Everyone.md (in the parent ai-labs/context-v/)
+# for the rationale.
+chromadb==1.5.9

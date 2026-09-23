@@ -1,0 +1,34 @@
+{
+  "module": "audience_finance_matrix",
+  "version": "0.1.0",
+  "audiences": {
+    "VC Partner": {
+      "financePriorities": ["fund-return potential", "market size credibility", "growth quality", "capital efficiency", "defensible margin potential"],
+      "mustFlag": ["overstated market", "unsupported revenue ramp", "valuation without basis", "raise not tied to milestones"]
+    },
+    "VC Associate": {
+      "financePriorities": ["extractable assumptions", "clear calculations", "comps readiness", "diligence questions", "source quality"],
+      "mustFlag": ["missing assumptions", "unclear TAM/SAM/SOM", "ROI without calculation", "metric definitions missing"]
+    },
+    "Investment Committee": {
+      "financePriorities": ["risk-adjusted return", "downside case", "milestone credibility", "financial assumptions", "capital plan"],
+      "mustFlag": ["unmodeled downside", "unsupported use of funds", "projection inconsistency", "weak mitigation logic"]
+    },
+    "LP / Fund Investor": {
+      "financePriorities": ["portfolio construction", "strategy fit", "underwriting discipline", "ownership logic", "return scenario quality"],
+      "mustFlag": ["undisciplined underwriting", "strategy mismatch", "return case without ownership", "unexplained risk concentration"]
+    },
+    "Strategic Corporate Buyer": {
+      "financePriorities": ["synergy value", "integration economics", "build-buy-partner logic", "ROI", "cost and revenue impact"],
+      "mustFlag": ["ROI without implementation cost", "synergy not quantified", "integration cost ignored", "buyer budget mismatch"]
+    },
+    "Board Member": {
+      "financePriorities": ["budget", "runway", "resource allocation", "milestones", "operating risk"],
+      "mustFlag": ["runway missing", "budget not tied to priorities", "milestones unclear", "burn assumptions missing"]
+    },
+    "Fundraising Advisor Client": {
+      "financePriorities": ["investor-ready numbers", "missing evidence list", "safe wording", "slide implementation", "client data requests"],
+      "mustFlag": ["client must provide proof", "claim should be softened", "slide needs calculation", "market source missing"]
+    }
+  }
+}

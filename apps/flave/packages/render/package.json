@@ -1,0 +1,16 @@
+{
+  "name": "@flave/render",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "description": "MDAST -> Svelte renderer for Lossless Flavored Markdown. A port of AstroMarkdown, not an invention.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@lossless-group/lfm": "npm:@jsr/lossless-group__lfm@^0.5.1"
+  },
+  "peerDependencies": {
+    "svelte": "^5"
+  }
+}

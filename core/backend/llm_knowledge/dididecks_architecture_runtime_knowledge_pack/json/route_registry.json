@@ -1,0 +1,204 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "label": "Public Landing",
+      "visibility": "public",
+      "surface": "marketing",
+      "status": "Shipped or Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/dashboard",
+      "label": "Dashboard",
+      "visibility": "private",
+      "surface": "dashboard",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks",
+      "label": "Deck Library",
+      "visibility": "private",
+      "surface": "deck-library",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/new",
+      "label": "New Deck",
+      "visibility": "private",
+      "surface": "deck-library",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]",
+      "label": "Deck Control Room",
+      "visibility": "private",
+      "surface": "deck-control-room",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/editor",
+      "label": "Interactive Editor",
+      "visibility": "private",
+      "surface": "editor",
+      "status": "Partially-Shipped",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/map",
+      "label": "Deck Map",
+      "visibility": "private",
+      "surface": "deck-map",
+      "status": "Partially-Shipped",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/smart-edit",
+      "label": "Smart Edit",
+      "visibility": "private",
+      "surface": "smart-edit",
+      "status": "Partially-Shipped",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/rebuild",
+      "label": "Rebuild & Apply",
+      "visibility": "private",
+      "surface": "rebuild",
+      "status": "Partially-Shipped",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/review-matrix",
+      "label": "Review Matrix",
+      "visibility": "private",
+      "surface": "review-matrix",
+      "status": "Draft or Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/scroll",
+      "label": "Scroll Review",
+      "visibility": "private",
+      "surface": "scroll",
+      "status": "Draft",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/play",
+      "label": "Play Mode",
+      "visibility": "private",
+      "surface": "play",
+      "status": "Draft",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/print",
+      "label": "Print Preview",
+      "visibility": "private",
+      "surface": "print",
+      "status": "Draft",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/versions",
+      "label": "Versions",
+      "visibility": "private",
+      "surface": "versions",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/exports",
+      "label": "Exports",
+      "visibility": "private",
+      "surface": "exports",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/feedback",
+      "label": "Feedback Learning",
+      "visibility": "private",
+      "surface": "feedback",
+      "status": "Draft",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/data-assets",
+      "label": "Data Assets",
+      "visibility": "private",
+      "surface": "data-assets",
+      "status": "Draft",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/decks/[deckId]/access",
+      "label": "Access & Sharing",
+      "visibility": "private",
+      "surface": "access",
+      "status": "Draft",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/billing",
+      "label": "Billing",
+      "visibility": "public_or_private",
+      "surface": "billing",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/auth/sign-in",
+      "label": "Sign In",
+      "visibility": "public",
+      "surface": "auth",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/auth/sign-up",
+      "label": "Sign Up",
+      "visibility": "public",
+      "surface": "auth",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/auth/callback",
+      "label": "Auth Callback",
+      "visibility": "public",
+      "surface": "auth",
+      "status": "Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/legal/privacy",
+      "label": "Privacy",
+      "visibility": "public",
+      "surface": "legal",
+      "status": "Shipped or Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/legal/terms",
+      "label": "Terms",
+      "visibility": "public",
+      "surface": "legal",
+      "status": "Shipped or Shell",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    },
+    {
+      "path": "/share/[token]",
+      "label": "Share Token View",
+      "visibility": "share-token",
+      "surface": "share",
+      "status": "Draft",
+      "api_owner": "frontend_route_only_backend_validates_private_access"
+    }
+  ]
+}

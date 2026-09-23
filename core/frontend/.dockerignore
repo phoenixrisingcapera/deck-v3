@@ -1,0 +1,25 @@
+node_modules
+build
+.svelte-kit
+.git
+.gitignore
+Dockerfile
+npm-debug.log*
+playwright-report
+test-results
+.env
+.env.*
+!.env.example
+
+# Local canaries, private evidence and credentials never enter a release.
+ignore/
+.artifacts/
+**/.artifacts/
+credentials/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+*browser-state*.json
+*session*.json

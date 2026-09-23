@@ -1,0 +1,321 @@
+/* Portal chrome. Deliberately minimal and built ONLY from Tier-2 tokens — the
+ * page that judges the token system must not smuggle in colours of its own, or
+ * a token that fails would still look fine here. F8: no literal colour. */
+
+.portal {
+  font-family: var(--font-mono);
+  background: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.head h1 { font-size: 15px; margin: 0 0 4px; letter-spacing: 0.02em; }
+.sub { font-size: 11px; color: var(--color-text-muted); margin: 0; max-width: 62ch; line-height: 1.5; }
+.sub strong { color: var(--color-accent); }
+
+.modes { display: flex; gap: 4px; }
+
+section { margin-bottom: 40px; }
+h2 { font-size: 12px; margin: 0 0 6px; color: var(--color-text); letter-spacing: 0.04em; text-transform: uppercase; }
+.note { font-size: 11px; color: var(--color-text-muted); margin: 0 0 14px; max-width: 78ch; line-height: 1.55; }
+code { font-family: var(--font-mono); font-size: 11px; }
+
+/* The grid is the page. One header row, then one row per token. */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) repeat(var(--cols), minmax(96px, 1fr));
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+}
+
+.cell { padding: 8px 10px; font-size: 11px; }
+.head-cell {
+  background: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: sticky;
+  top: 0;
+}
+.token-name { background: var(--color-surface); color: var(--color-text-muted); white-space: nowrap; }
+
+.swatch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 34px;
+}
+.sample { font-weight: 700; font-size: 13px; }
+
+.effects { display: flex; gap: 16px; flex-wrap: wrap; }
+.effect-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 18px 16px;
+  min-width: 190px;
+}
+
+.palette { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 5px 9px 5px 5px;
+}
+.chip-color { width: 22px; height: 22px; border-radius: 2px; border: 1px solid var(--color-border); }
+.hex { font-size: 10px; color: var(--color-text-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* Applied only while measuring. theme.css transitions colour over 75ms on a
+ * mode swap, and a measurement taken inside that window reads a colour that is
+ * still animating — which produced a page of phantom contrast failures. */
+:root.measuring, :root.measuring * { transition: none !important; }
+
+.accent-cell { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+/* Legend — the ratios are meaningless without the thresholds next to them. */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  font-size: 11px;
+}
+.legend-title { color: var(--color-text); }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; color: var(--color-text-muted); }
+.legend-note { flex-basis: 100%; color: var(--color-text-muted); line-height: 1.55; }
+.legend-note strong { color: var(--color-text); }
+
+/* ------------------------------------------------------- component libraries
+ * The components view. Same rule as the rest of this file: Tier-2 tokens only,
+ * so a broken token cannot be hidden by a colour the portal brought itself.
+ */
+
+.head-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.views {
+  display: flex;
+  gap: 4px;
+}
+
+/* rung 0 — the OUTER margin only. The tracks, the equal-height stretch, the gap
+   and the tiles' `column` direction are <ListContainer layout="grid">'s. */
+.lib-cards-slot { margin-block: var(--space-xl) var(--space-2xl); }
+/* `.lib-card` is <CardRow density="compact"> inside <ListContainer layout="grid">
+   — the `direction="column"` it used to carry came OUT of the call site when the
+   container took ownership of it, which is the sweep's own test of whether
+   context-passing was the right mechanism. It was. And
+   `.lib-card-main` is the label slot inside a <SelectWrapper--ClickBody>. Both
+   original recipes came out whole — border, radius, background, shadow,
+   overflow, column flex, and the button's own chrome. Four notes, each a
+   decision rather than a deletion:
+
+   1. `.lib-card-main:focus-visible { outline: var(--focus-ring, …) }` was DEAD
+      and had never painted. `--focus-ring` holds a box-shadow value, so
+      `outline: var(--focus-ring)` is invalid at computed-value time and
+      dropped — and because the custom property IS defined, the comma fallback
+      never applied either. The wrapper's own `:focus-visible::after` rings the
+      whole card now. The same dead pattern is still on `.lib-federal-main` and
+      `.lib-link`; raised, not chased — removing it there is repair, not
+      migration.
+
+   2. `box-shadow: var(--fx-card-shadow)` did not survive. CardRow draws its
+      boundary with `--color-border-strong` (measured rgb(100,103,133), ≈3.44:1)
+      where this card used `--color-border` (measured rgb(52,58,84), ≈1.26:1):
+      a depth cue traded for a boundary that clears the 3:1 non-text floor.
+
+   3. `:hover` is CardRow's now — it paints one when the row contains a control.
+      The member's `.lib-card-main:hover { background }` is gone; no rung 4 was
+      spent restoring it.
+
+   4. `.lib-card-main` survives as a RUNG 0 slot only. The wrapper's button is
+      inline-flex on the ROW axis, and this card's label stacks, so one child
+      owns the stacking. It carries no colour, no border, no padding and no
+      cursor — all of that is the component's. */
+.lib-card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  text-align: left;
+  font-size: 11px;
+}
+.lib-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.lib-card-summary { color: var(--color-text-muted); line-height: 1.5; }
+
+/* Rung 0/1 survivors after ExternalLink adoption. Colour, text-decoration,
+   :hover and :focus-visible are the component's now — and the dead
+   `outline: var(--focus-ring, …)` this rule used to carry went with them,
+   which is the repair the comment above predicted would have to happen
+   eventually. ExternalLink's :focus-visible paints a real box-shadow ring.
+
+   MEASURED, and the reason adoption is worth it here: at `font-size: 10px`
+   with `padding: 7px 0 0` and no bottom padding, this control was about 19px
+   tall — roughly 79% of the WCAG 2.2 SC 2.5.8 24px floor. ExternalLink's
+   `min-block-size: var(--control-h-sm)` puts it over. */
+.lib-link {
+  /* STILL REQUIRED by the --ClickBody contract, and still not cosmetic: the
+     wrapper stretches a pseudo-element across the whole CardRow, and a static
+     sibling would sit UNDER it and stop being clickable. The component
+     hit-tests each sibling's centre and console-errors if one is buried.
+     ExternalLink does not set `position`, so this survives unchanged and the
+     anchor it renders is the same one the hit-test finds. */
+  position: relative;
+  padding: 7px 0 0;
+  margin-block-start: auto;   /* pin to the bottom of an equal-height grid tile */
+  border-top: 1px solid var(--color-border);
+}
+/* Qualified with the element ON PURPOSE. ExternalLink declares `font-size:
+   inherit` in its scoped style, which Svelte emits as
+   `.ui-extlink.svelte-<hash>` — (0,2,0). A single-class `.lib-link` is
+   (0,1,0) and simply LOSES, silently, so the 10px would have become the
+   inherited 11px with nothing to show for it. `.portal a.lib-link` is (0,2,1)
+   and wins by the cascade. This is the same finding response-reviewer hit on
+   `.cr-url`, and it is worth stating as a rule: a member cannot set typography
+   on an adopted link from a one-class selector. */
+.portal a.lib-link { font-size: 10px; }
+
+.lib-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+.lib-spacer { flex: 1; }
+.lib-bar .lib-link { border-top: none; background: none; padding: 4px 0; }
+
+/* The mounted library owns its own layout (it ships a full-height sidebar +
+   stage). The host only has to get out of its way — negative side margins pull
+   it out of the portal's 24px page padding so the library reads edge-to-edge,
+   the way it does on the member's own origin. */
+.lib-host {
+  margin: 0 -24px -24px;
+  min-height: 60vh;
+}
+
+.lib-error {
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--color-error-text);
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  font-size: 11px;
+  margin-bottom: 12px;
+}
+/* Was `.lib-error a { color: inherit }` — a descendant selector on the bare
+   element, and one that adoption would have silently BROKEN in two ways.
+
+   `color: inherit` here is a contrast decision, not a cosmetic one: this link
+   sits inside a red error box painted --color-error-bg/--color-error-text, and
+   inheriting the error colour is what keeps it legible against that surface.
+   The federal --color-link was never measured against --color-error-bg.
+
+   ExternalLink declares `color` in its scoped style, emitted as
+   `.ui-extlink.svelte-<hash>` — (0,2,0). The old `.lib-error a` was (0,1,1),
+   which LOSES, so the link would have turned link-blue inside the red box with
+   nothing in the diff to say so. An explicit class, qualified with the element,
+   is (0,3,1) and wins — and as a bare-element descendant selector the old form
+   was also a standing claim on any future anchor in this box. */
+.portal .lib-error a.lib-error-link { color: inherit; }
+
+/* ------------------------------------------------------------------ federal
+ * The platform's own library, above the members' grid.
+ *
+ * Deliberately NOT a `.lib-card`: it is not one more peer in that grid, it is
+ * what every card in the grid consumes. Full width, an accent boundary rather
+ * than the hairline the members get, and the accent glow effect token — enough
+ * to read as a different kind of thing at a glance, and nothing more, because
+ * this is still the page that judges the tokens and must not smuggle in
+ * emphasis of its own. Tokens only; no literal colour (F8). */
+.lib-federal {
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  background: var(--color-surface);
+  box-shadow: var(--fx-accent-glow);
+  overflow: hidden;
+  margin: 14px 0 24px;
+}
+.lib-federal-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  inline-size: 100%;
+  text-align: left;
+  font-family: inherit;
+  font-size: 11px;
+  padding: 14px;
+  border: none;
+  background: none;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.lib-federal-main:hover { background: var(--color-selected-tint); }
+.lib-federal-main:focus-visible { outline: var(--focus-ring, 2px solid var(--color-accent)); outline-offset: -2px; }
+.lib-federal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.lib-federal-summary {
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  max-width: 92ch;
+}
+.lib-federal-note {
+  padding: 0 14px 12px;
+  margin: 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: 10px;
+}
+
+.lib-members-h {
+  font-size: 11px;
+  margin: 0 0 4px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

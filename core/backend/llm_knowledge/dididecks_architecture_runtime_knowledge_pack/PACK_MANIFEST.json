@@ -1,0 +1,40 @@
+{
+  "package_name": "dididecks_architecture_runtime_knowledge_pack",
+  "version": "1.0.0",
+  "created_date": "2026-06-20",
+  "purpose": "Reusable architecture, LLM knowledge, JSON schemas, Codex prompts, guardrails, and implementation contracts for the DidiDecks / DeckAiStack product.",
+  "product_boundary": {
+    "frontend": "deck-saas or deck-infraestructure/web",
+    "backend": "aistack-backend/app/products/dididecks",
+    "guardrails": "aistack-guardrails or local repository verifier first",
+    "api_prefix": "/api/products/dididecks",
+    "forbidden_api_prefixes": [
+      "/api/v1 for DidiDecks product APIs"
+    ]
+  },
+  "top_level_directories": [
+    "docs",
+    "json",
+    "schemas",
+    "prompts",
+    "examples",
+    "sql",
+    "typescript",
+    "scripts",
+    "status",
+    "llm_knowledge"
+  ],
+  "intended_users": [
+    "Founder",
+    "Codex",
+    "LLM classifier",
+    "frontend engineer",
+    "backend engineer",
+    "guardrails engineer"
+  ],
+  "notes": [
+    "This package is not a runnable app by itself.",
+    "It is designed to be copied into docs/llm_knowledge or used as implementation context for Codex.",
+    "All real persistence, secrets, auth, billing, export workers, AI commands, and guardrails services remain backend-owned."
+  ]
+}

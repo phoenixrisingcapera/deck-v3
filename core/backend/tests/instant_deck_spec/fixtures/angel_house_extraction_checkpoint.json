@@ -1,0 +1,197 @@
+{
+  "extractionReport": {
+    "assetCount": 24,
+    "blockCount": 33,
+    "deckId": "deck_a201a07a25bad324",
+    "slideCount": 14,
+    "sourceVersionId": "process_1bd41d2df2a62d30",
+    "status": "completed"
+  },
+  "structuredDeck": {
+    "deckId": "deck_a201a07a25bad324",
+    "extractor": "pdf_deterministic_v1",
+    "slideCount": 14,
+    "sourceFormat": "pdf",
+    "sourceVersionId": "process_1bd41d2df2a62d30",
+    "slides": [
+      {
+        "slideIndex": 1,
+        "sourcePageNumber": 1,
+        "title": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING",
+        "rawText": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING WWW.ANGELHOUSE.LIFE",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING"},
+          {"blockIndex": 1, "blockType": "reference", "normalizedText": "WWW.ANGELHOUSE.LIFE"}
+        ],
+        "assets": [
+          {"assetType": "embedded_image", "height": 1050, "label": "Slide 1 image 1", "metadataJson": {"sha256": "b8a2375ae6abeaadc958b989164cb0c25814603fddd917eb488ac464b1bed789"}, "mimeType": "image/png", "width": 1524},
+          {"assetType": "embedded_image", "height": 949, "label": "Angel House source mark", "metadataJson": {"sha256": "ed3037cf935f9ec95bb3a2f6d5bc760066455ba4da5e1c613fafbe74d2ee0c88"}, "mimeType": "image/png", "width": 949}
+        ],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 2,
+        "sourcePageNumber": 2,
+        "title": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families",
+        "rawText": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families MINDFULNESS, HEART & 15 Workshops 45 Consultations REPUTATION Angel House is a community of people who rethink the meaning of value and family in times of ai. We meet in private homes of different kinds around the world to start with the revolution where it hits closest to home: at home. We help families transform through change consultations, help jumpstart new projects and enable families or groups to process their transformation offline in dedicated Angel Houses around the world.",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families"},
+          {"blockIndex": 1, "blockType": "metric", "normalizedText": "MINDFULNESS, HEART & 15 Workshops 45 Consultations"},
+          {"blockIndex": 2, "blockType": "body", "normalizedText": "REPUTATION Angel House is a community of people who rethink the meaning of value and family in times of ai. We meet in private homes of different kinds around the world to start with the revolution where it hits closest to home: at home. We help families transform through change consultations, help jumpstart new projects and enable families or groups to process their transformation offline in dedicated Angel Houses around the world."},
+          {"blockIndex": 3, "blockType": "body", "normalizedText": "(01)"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 3,
+        "sourcePageNumber": 3,
+        "title": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY.",
+        "rawText": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY. STAKEHOLDER ENGAGEMENT WORKSHOPS In selected private houses, Angel House brings together voices from leading innovation ecosystems who are ready to evolve. Participants discover how small groups can catalyse meaningful exchange across industries and engage in hands-on, collective activities that build real material and intellectual value for the community. These solutions are built by multi-generational teams and harness the constructive power of artificial intelligence.",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY."},
+          {"blockIndex": 1, "blockType": "body", "normalizedText": "STAKEHOLDER ENGAGEMENT WORKSHOPS In selected private houses, Angel House brings together voices from leading innovation ecosystems who are ready to evolve. Participants discover how small groups can catalyse meaningful exchange across industries and engage in hands-on, collective activities that build real material and intellectual value for the community. These solutions are built by multi-generational teams and harness the constructive power of artificial intelligence."},
+          {"blockIndex": 2, "blockType": "body", "normalizedText": "(02)"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 4,
+        "sourcePageNumber": 4,
+        "title": "OCR debris from an image-only source page",
+        "rawText": ". ™ iil oe ‘es “3 | a ’ ” cere 4. oe : 5 Sams ep | Ff . : ‘“ .. Ad ee Ld ® , . ‘ _ : ’ le - ¥. > ‘ . : é. fa j * . , ys ¥: Ais a if : 2 ja 4 > . ’ ~ 2 - Yo EF ~ ile 5 al al ‘ ‘ . rs ee a oe Ps - 4 se os ~— “al / P e . S a ae &, “a ~. ~ ‘ ” ts . g-%.”",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": ". ™ iil oe ‘es “3 | a ’ ” cere 4. oe : 5 Sams ep | Ff . : ‘“ .. Ad ee Ld ® , . ‘ _ : ’ le - ¥. > ‘ . : é. fa j * . , ys ¥: Ais a if : 2 ja 4 > . ’ ~ 2 - Yo EF ~ ile 5 al al ‘ ‘ . rs ee a oe Ps - 4 se os ~— “al / P e . S a ae &, “a ~. ~ ‘ ” ts . g-%.”"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3"]}
+      },
+      {
+        "slideIndex": 5,
+        "sourcePageNumber": 5,
+        "title": "HOW DOES IT WORK?",
+        "rawText": "HOW DOES IT WORK? 1. PRIVATE FINANCIAL CHANGE CONSULTING FOR FAMILIES ONLINE & OFFLINE 2. RETREATS & WORKSHOPS 3. PROJECT REGISTRATION FOR FOLLOW-UP FUNDING AFTER RETREATS & WORKSHOPS",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "HOW DOES IT WORK? 1. PRIVATE FINANCIAL CHANGE CONSULTING FOR FAMILIES ONLINE & OFFLINE 2. RETREATS & WORKSHOPS 3. PROJECT REGISTRATION FOR FOLLOW-UP FUNDING AFTER RETREATS & WORKSHOPS"},
+          {"blockIndex": 1, "blockType": "reference", "normalizedText": "www.angelhouse.life (03)"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#000000", "#CA0013", "#CA0012"]}
+      },
+      {
+        "slideIndex": 6,
+        "sourcePageNumber": 6,
+        "title": "CONNECTING VALUES & MONEY & AI",
+        "rawText": "CONNECTING VALUES & MONEY & AI STEP 1: FINANCIAL CHANGE CONSULTING THE ANGEL HOUSE PROCESS GO DOWN HISTORY LANE DEAL WITH THE PAIN PIN DOWN YOUR VALUES CONNECT WITH THE COMMUNITY RELATE YOUR VALUES TO YOUR FAMILY VALUES OPEN UP TO THE PROBLEMS AT HAND TALK IT OUT WITH YOUR FAMILY DEVELOP A PLAN TO ALIGN THE PROBLEM MORE WITH COMMON VALUES AND SOLUTIONS EXECUTE",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "CONNECTING VALUES & MONEY & AI STEP 1: FINANCIAL CHANGE CONSULTING THE ANGEL HOUSE PROCESS GO DOWN HISTORY LANE DEAL WITH THE PAIN PIN DOWN YOUR VALUES CONNECT WITH THE COMMUNITY RELATE YOUR VALUES TO YOUR FAMILY VALUES OPEN UP TO THE PROBLEMS AT HAND TALK IT OUT WITH YOUR FAMILY DEVELOP A PLAN TO ALIGN THE PROBLEM MORE WITH COMMON VALUES AND SOLUTIONS EXECUTE"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#000000", "#CA0013", "#CA0012"]}
+      },
+      {
+        "slideIndex": 7,
+        "sourcePageNumber": 7,
+        "title": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP",
+        "rawText": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP STEP 2: JOIN A RETREAT OR WORKSHOP OF YOUR LIKING DEFINE THE VALUES YOU DESIRE TO FOCUS ON CREATE PATHS TO INTRODUCE THEM TO SOCIETY PARTNER WITH LIKEMINDED LEADERS COME UP WITH A PROJECT PLAN HAND IN YOUR PROJECT TO ANGEL HOUSE LIST IT FOR FOLLOW-UP FUNDING",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP STEP 2: JOIN A RETREAT OR WORKSHOP OF YOUR LIKING DEFINE THE VALUES YOU DESIRE TO FOCUS ON CREATE PATHS TO INTRODUCE THEM TO SOCIETY PARTNER WITH LIKEMINDED LEADERS COME UP WITH A PROJECT PLAN HAND IN YOUR PROJECT TO ANGEL HOUSE LIST IT FOR FOLLOW-UP FUNDING"},
+          {"blockIndex": 1, "blockType": "reference", "normalizedText": "www.angelhouse.life"},
+          {"blockIndex": 2, "blockType": "body", "normalizedText": "(06)"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#000000", "#CA0013", "#CA0012"]}
+      },
+      {
+        "slideIndex": 8,
+        "sourcePageNumber": 8,
+        "title": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE",
+        "rawText": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE STEP 3: SENIOR AND JUNIOR LEADERS FROM AROUND THE WORLD ARE READY TO START FAIR, VALUE BASED PROJECTS TOGETHER PARTICIPATE IN COLLABORATIVE WORKSHOPS IN ANGEL HOUSES CREATE PROJECT OUTLINE LIST THE PROJECT FOR FUNDING TICKET SIZE ON ANGEL HOUSE 10-15.000€ PER PROJECT, ANGEL HOUSE FACILITATES THE FUNDING, PATRONS CONNECT WITH THE FOUNDING TEAM PATRONS CAN POSSIBLY RECEIVE THE MONEY BACK IN CASE THE COMPANY FUNDRAISES EFFECTIVELY OR TURN THE PATRONAGE INTO A LARGER TICKET IN THE MATURED COMPANY LATER ON",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE STEP 3: SENIOR AND JUNIOR LEADERS FROM AROUND THE WORLD ARE READY TO START FAIR, VALUE BASED PROJECTS TOGETHER PARTICIPATE IN COLLABORATIVE WORKSHOPS IN ANGEL HOUSES CREATE PROJECT OUTLINE LIST THE PROJECT FOR FUNDING TICKET SIZE ON ANGEL HOUSE 10-15.000€ PER PROJECT, ANGEL HOUSE FACILITATES THE FUNDING, PATRONS CONNECT WITH THE FOUNDING TEAM PATRONS CAN POSSIBLY RECEIVE THE MONEY BACK IN CASE THE COMPANY FUNDRAISES EFFECTIVELY OR TURN THE PATRONAGE INTO A LARGER TICKET IN THE MATURED COMPANY LATER ON"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#000000", "#CA0013", "#CA0012"]}
+      },
+      {
+        "slideIndex": 9,
+        "sourcePageNumber": 9,
+        "title": "THE NUMBERS",
+        "rawText": "THE NUMBERS 12 PROJECTS STARTED ON ANGEL HOUSE WITHOUT PLATFORM SUPPORT 40+ COACHING CLIENTS SUPPORTED SINCE AUGUST 2025 200 HOUSES HAVE BEEN REGISTERED ON ANGEL HOUSE FOR RESIDENTIAL EXCHANGE WITH OTHER FAMILIES FINANCIAL MODEL & TRACTION SUMMARY COACHING CLIENTS WITH AT LEAST 500.000 € - 10.000.000 € IN ASSET REALLOCATION 80 NEW PROJECTS OVER 20 WORKSHOPS + EVENTS STEP 1: CUSTOM AMOUNTS FOR FINANCIAL CONSULTING SESSIONS 50% UP FRONT AND 50% AT THE END STEP 2: 20 EVENTS = 70.000€ IN REVENUE UNTIL EARLY 2027 STEP 3: 80 NEW PROJECTS FUNDED OVER A SPV WITH 20.000€ EACH, 1.600.000€ UNDER MANAGEMENT BY CLIENTS OF FINANCIAL CONSULTING SESSIONS ANGEL HOUSE MANAGES THE SPV, KEEPS 20% OF THE FUNDING PER PROJECT",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "THE NUMBERS 12 PROJECTS STARTED ON ANGEL HOUSE WITHOUT PLATFORM SUPPORT 40+ COACHING CLIENTS SUPPORTED SINCE AUGUST 2025 200 HOUSES HAVE BEEN REGISTERED ON ANGEL HOUSE FOR RESIDENTIAL EXCHANGE WITH OTHER FAMILIES FINANCIAL MODEL & TRACTION SUMMARY COACHING CLIENTS WITH AT LEAST 500.000 € - 10.000.000 € IN ASSET REALLOCATION 80 NEW PROJECTS OVER 20 WORKSHOPS + EVENTS STEP 1: CUSTOM AMOUNTS FOR FINANCIAL CONSULTING SESSIONS 50% UP FRONT AND 50% AT THE END STEP 2: 20 EVENTS = 70.000€ IN REVENUE UNTIL EARLY 2027 STEP 3: 80 NEW PROJECTS FUNDED OVER A SPV WITH 20.000€ EACH, 1.600.000€ UNDER MANAGEMENT BY CLIENTS OF FINANCIAL CONSULTING SESSIONS ANGEL HOUSE MANAGES THE SPV, KEEPS 20% OF THE FUNDING PER PROJECT"},
+          {"blockIndex": 1, "blockType": "body", "normalizedText": "(07)"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 10,
+        "sourcePageNumber": 10,
+        "title": "THE FOUNDER",
+        "rawText": "THE FOUNDER PAULA SCHWARZ INVESTMENT MANAGEMENT AT STANFORD UNIVERSITY OXFORD SAÏD STRATEGIC MANAGEMENT EXECUTIVE PROGRAMME 30 UNDER 30 FORBES LIST FOR SOCIAL ENTREPRENEURSHIP PUBLISHED AUTHOR BY RANDOM HOUSE PREVIOUSLY ON THE BOARD OF THE BAYER CARES FOUNDATION MOTHER OF 3",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "THE FOUNDER"},
+          {"blockIndex": 1, "blockType": "body", "normalizedText": "PAULA SCHWARZ"},
+          {"blockIndex": 2, "blockType": "body", "normalizedText": "INVESTMENT MANAGEMENT AT STANFORD UNIVERSITY OXFORD SAÏD STRATEGIC MANAGEMENT EXECUTIVE PROGRAMME 30 UNDER 30 FORBES LIST FOR SOCIAL ENTREPRENEURSHIP PUBLISHED AUTHOR BY RANDOM HOUSE PREVIOUSLY ON THE BOARD OF THE BAYER CARES FOUNDATION MOTHER OF 3"},
+          {"blockIndex": 3, "blockType": "body", "normalizedText": "(08)"}
+        ],
+        "assets": [
+          {"assetType": "embedded_image", "height": 1280, "label": "Paula Schwarz source portrait", "metadataJson": {"sha256": "a7af0359e215388d9f2171805465e2664a066c3ddfa274cfca7bf51ef602745f"}, "mimeType": "image/jpeg", "width": 714}
+        ],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 11,
+        "sourcePageNumber": 11,
+        "title": "HOW ANGEL HOUSE",
+        "rawText": "HOW ANGEL HOUSE ANGEL SUPPORTS PROJECTS THAT TURN INTO COMPANIES INSTITUTE ANGELS HAVE ACCESS TO TECHNOLOGY, RECORDING STUDIOS AND ANGEL SUPPORT IN LOCATIONS AROUND THE WORLD.",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "HOW ANGEL HOUSE"},
+          {"blockIndex": 1, "blockType": "body", "normalizedText": "ANGEL SUPPORTS PROJECTS THAT TURN INTO COMPANIES"},
+          {"blockIndex": 2, "blockType": "body", "normalizedText": "INSTITUTE ANGELS HAVE ACCESS TO TECHNOLOGY, RECORDING STUDIOS AND ANGEL SUPPORT IN LOCATIONS AROUND THE"},
+          {"blockIndex": 3, "blockType": "body", "normalizedText": "(07) WORLD."},
+          {"blockIndex": 4, "blockType": "reference", "normalizedText": "WWW.ANGELHOUSE.LIFE"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 12,
+        "sourcePageNumber": 12,
+        "title": "ANGEL FUND",
+        "rawText": "ANGEL FUND",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "ANGEL FUND"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 13,
+        "sourcePageNumber": 13,
+        "title": "THE ANGEL FUND",
+        "rawText": "THE ANGEL FUND HELP ANGELS HEAL THE WORLD MISSION: ENABLE ANGELS TO GROW PROJECTS AND COMPANIES THAT CREATE REVENUE AND SOCIAL IMPACT. VISION: TO FINANCE ANGELS WHO ARE GROWING VALUABLE COMPANIES OR PROJECTS IN THE SPIRIT OF THE COMMUNITY. The Angel Fund selects growing projects and companies of Angels and supports with grants or funding. The fund is industry agnostic. Carefully selected companies are chosen by a distinguished investment committee. Angels are welcome to contribute Angel Checks of 50k €.",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "THE ANGEL FUND HELP ANGELS HEAL THE WORLD MISSION: ENABLE ANGELS TO GROW PROJECTS AND COMPANIES THAT CREATE REVENUE AND SOCIAL IMPACT. VISION: TO FINANCE ANGELS WHO ARE GROWING VALUABLE COMPANIES OR PROJECTS IN THE SPIRIT OF THE COMMUNITY."},
+          {"blockIndex": 1, "blockType": "body", "normalizedText": "The Angel Fund selects growing projects and companies of Angels and supports with grants or funding. The fund is industry agnostic. Carefully selected companies are chosen by a distinguished investment committee. Angels are welcome to contribute Angel Checks of 50k €."}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012"]}
+      },
+      {
+        "slideIndex": 14,
+        "sourcePageNumber": 14,
+        "title": "PARTNERS, GUEST & HOSTS WALL OF LOVE",
+        "rawText": "PARTNERS, GUEST & HOSTS WALL OF LOVE SINGULARITY UNIVERSITY FOUNDER INSTITUTE LONDON BUSINESS SCHOOL ETON COLLEGE FOUNDERS FORUM OXFORD CAMBRIDGE HARROW SCHOOL ANGEL HACK IMPERIAL COLLEGE LONDON 500 GLOBAL KING’S COLLEGE LONDON XPRIZE SCIENCES PO INSEAD WHARTON HARVARD STANFORD ETH ZURICH PRINCETON UNIVERSITY GLOBAL SHAPERS ASPEN INSTITUTE FORBES UNDER 30 NETWORK",
+        "blocks": [
+          {"blockIndex": 0, "blockType": "headline", "normalizedText": "PARTNERS, GUEST & HOSTS WALL OF LOVE SINGULARITY UNIVERSITY FOUNDER INSTITUTE LONDON BUSINESS SCHOOL ETON COLLEGE FOUNDERS FORUM OXFORD CAMBRIDGE HARROW SCHOOL ANGEL HACK IMPERIAL COLLEGE LONDON 500 GLOBAL KING’S COLLEGE LONDON XPRIZE SCIENCES PO INSEAD WHARTON HARVARD STANFORD ETH ZURICH PRINCETON UNIVERSITY GLOBAL SHAPERS ASPEN INSTITUTE FORBES UNDER 30 NETWORK"},
+          {"blockIndex": 1, "blockType": "body", "normalizedText": "(10)"}
+        ],
+        "assets": [],
+        "metadataJson": {"vectorColors": ["#FFFFFF", "#EEEBE3", "#CA0012", "#C72909"]}
+      }
+    ]
+  }
+}

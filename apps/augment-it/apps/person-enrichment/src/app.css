@@ -1,0 +1,613 @@
+/*
+ * person-enrichment styles. All Tier-2 tokens from @augment-it/theme; no
+ * hex anywhere. Two namespaces:
+ *   .pe-app  — surface chrome (header, card, actions)
+ *   .pd-*    — pulse-dimension styles (shared across dimensions; will
+ *              hoist to @augment-it/pulse-dimensions when the second
+ *              pulse-surface lands)
+ */
+
+/* ============================================================================
+ * Surface: pe-app
+ * ========================================================================== */
+
+.pe-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
+  font: 13px/1.45 var(--font-mono);
+}
+
+.pe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+}
+.pe-event {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.pe-event-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+.pe-event-name {
+  font-size: 12px;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pe-event-picker {
+  font-size: 12px;
+  color: var(--color-text);
+  background: var(--color-surface, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  max-width: 20rem;
+}
+.pe-progress {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+.pe-counter { color: var(--color-accent); font-weight: 600; }
+.pe-counter-label { text-transform: uppercase; letter-spacing: 0.06em; }
+.pe-divider { color: var(--color-border); }
+
+.pe-body {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 880px;
+  width: 100%;
+  align-self: center;
+}
+
+.pe-card {
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: var(--fx-card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.pe-card-error {
+  border-color: var(--color-error-text);
+  background: var(--color-error-bg);
+}
+.pe-card-status {
+  text-align: center;
+  color: var(--color-text-muted);
+}
+.pe-error {
+  margin: 0;
+  font: 12px/1.4 var(--font-mono);
+  color: var(--color-error-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.pe-muted { color: var(--color-text-muted); margin: 0; }
+
+.pe-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.pe-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 12px;
+}
+.pe-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  min-width: 4rem;
+}
+.pe-code {
+  background: var(--color-field);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font: 12px var(--font-mono);
+  color: var(--color-text);
+}
+/* `.pe-link` is GONE, not merely unused. It held colour, text-decoration and a
+   hover — all three federal now — so unlike `.ow-url` or `.rdr-link` there was
+   no rung-0 remainder to keep and no reason to keep the class on the element.
+   One visible consequence, stated rather than slipped in: the source link was
+   --color-accent-2 and is now --color-link, because ExternalLink declares the
+   federal link colour at (0,2,0). That is the rollout working, not a
+   regression — but it IS the one thing here a screenshot would show. */
+
+.pe-search-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.pe-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+.pe-spacer { flex: 1; }
+
+/* ============================================================================
+ * Controls
+ * ========================================================================== */
+
+/* Every button in this member is @augment-it/shared-ui's <Button>. The .pe-btn /
+ * .pd-ghost-btn / .pd-icon-btn recipes that used to live here are gone.
+ *
+ * What is left is PLACEMENT, which is RUNG 0 — the parent's job, and not a
+ * deviation: a <Button> inside a `flex-direction: column` .pd-section would
+ * stretch to the column's full width, because the control sets a height but
+ * never a width. A member class on the control that only positions it is still
+ * rung 0, so the four call sites carry the class and no data-deviation.
+ */
+.pd-add { align-self: flex-start; }
+
+/* ============================================================================
+ * Pulse-dimensions: pd-*
+ * ========================================================================== */
+
+.pd-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--color-border);
+}
+.pd-section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.pd-title {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+.pd-hint {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pd-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.pd-row {
+  display: flex;
+  gap: 0.3rem;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
+}
+.pd-row > input { flex: 1; min-width: 0; }
+
+.pd-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.pd-field label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+.pd-field input,
+.pd-field select,
+.pd-row input,
+.pd-presence-row input,
+.pd-presence-row select {
+  background: var(--color-field);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.55rem;
+  border-radius: 3px;
+  font: 12px var(--font-mono);
+}
+.pd-field input:focus,
+.pd-field select:focus,
+.pd-row input:focus,
+.pd-presence-row input:focus,
+.pd-presence-row select:focus {
+  outline: none;
+  background: var(--color-field-focus);
+  border-color: var(--color-accent-2);
+}
+
+.pd-presence-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) 9rem minmax(0, 1.4fr) 1.8rem;
+  gap: 0.3rem;
+  align-items: stretch;
+}
+
+/* Personal-links: just URL + auto-inferred kind badge + remove */
+.pd-link-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.4rem;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.pd-link-row input {
+  background: var(--color-field);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.55rem;
+  border-radius: 3px;
+  font: 12px var(--font-mono);
+  min-width: 0;
+}
+.pd-link-row input:focus {
+  outline: none;
+  background: var(--color-field-focus);
+  border-color: var(--color-accent-2);
+}
+.pd-link-kind {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--color-accent-2);
+  background: color-mix(in srgb, var(--color-accent-2) 12%, transparent);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Domain row — two text inputs (host + free-text kind) + remove */
+.pd-domain-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto auto;
+  gap: 0.4rem;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.pd-domain-row input {
+  background: var(--color-field);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.55rem;
+  border-radius: 3px;
+  font: 12px var(--font-mono);
+  min-width: 0;
+}
+.pd-domain-row input:focus {
+  outline: none;
+  background: var(--color-field-focus);
+  border-color: var(--color-accent-2);
+}
+.pd-domain-host { font-weight: 500; }
+.pd-domain-kind { color: var(--color-text-muted); }
+
+/* Saved-state visual closure */
+@keyframes pd-flash-pulse {
+  0%   { background: color-mix(in srgb, var(--color-ok-text) 30%, var(--color-field)); border-color: var(--color-ok-text); }
+  100% { background: var(--color-field);                                                border-color: var(--color-border); }
+}
+.pd-flash {
+  animation: pd-flash-pulse 1.2s ease-out;
+}
+.pd-saved {
+  font-size: 11px;
+  color: var(--color-ok-text);
+  background: var(--color-ok-bg);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* Surface-level: the stacked "what wrote where" log below the actions */
+/* rung 0 — the log's CHROME and its height cap. The list reset, the gap and the
+   scrolling are <ListContainer>'s now; what is left is the box the list sits in
+   and a bound the layout exposes no prop for. */
+.pe-savelog-stack {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: var(--space-lg);
+  max-block-size: 18rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-raised);
+  border-radius: 3px;
+  padding: var(--space-2xs) var(--space-xs);
+}
+/* rung 0 — the log line's tracks. ONE recipe now: .pe-savelog-row and
+   .pe-summary-row were byte-identical 4-track grids in two components. Both are
+   <CardRow as="li" tone={…}> rows whose inner line is this class; the savelog
+   adds the mono face. CardRow could not BE the grid: it declares display:flex in
+   its own scoped <style> at (0,2,0) and a member class is (0,1,0) — `direction`
+   offers row/column, not tracks. The row's ok/pending/err state is the
+   component's `tone` now, not a member colour. */
+.pe-log-line {
+  display: grid;
+  grid-template-columns: 1.2rem 5.5rem 1fr auto;
+  gap: 0.4rem;
+  align-items: baseline;
+  font-size: 11px;
+  flex: 1;
+  min-width: 0;
+}
+.pe-savelog-stack .pe-log-line { font-family: var(--font-mono); }
+.pe-savelog-icon {
+  text-align: center;
+  font-weight: 700;
+}
+.pe-savelog-icon[data-state='ok']      { color: var(--color-ok-text); }
+.pe-savelog-icon[data-state='err']     { color: var(--color-error-text); }
+.pe-savelog-icon[data-state='pending'] { color: var(--color-text-muted); }
+.pe-savelog-time {
+  color: var(--color-text-muted);
+}
+.pe-savelog-targets code {
+  background: var(--color-field);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 10.5px;
+}
+
+/* "Review before advance" summary panel */
+.pe-summary {
+  margin-top: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+}
+.pe-summary-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+.pe-summary-head strong {
+  color: var(--color-accent);
+  font-size: 12px;
+}
+/* rung 0 — see .pe-savelog-stack: the cap is the member's, the list is not. */
+.pe-summary-scroll {
+  display: flex;
+  flex-direction: column;
+  margin-block-end: var(--space-lg);
+  max-block-size: 24rem;
+}
+.pe-summary-icon[data-state='ok']      { color: var(--color-ok-text); font-weight: 700; }
+.pe-summary-icon[data-state='err']     { color: var(--color-error-text); font-weight: 700; }
+.pe-summary-icon[data-state='pending'] { color: var(--color-text-muted); }
+.pe-summary-time { color: var(--color-text-muted); }
+.pe-summary-targets code {
+  background: var(--color-field);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 10.5px;
+  margin-right: 0.2rem;
+}
+.pe-summary-arrow { color: var(--color-text-muted); margin: 0 0.2rem; }
+.pe-summary-verify { font-size: 10px; }
+.pe-summary-actions {
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--color-border);
+}
+
+.pe-affiliations-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Collapsed-pill view */
+.pe-affiliation-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--color-field);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-left: 2px solid var(--color-accent);
+  border-radius: 3px;
+  font: 12px var(--font-mono);
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+.pe-affiliation-pill:hover {
+  background: var(--color-field-focus);
+  border-color: var(--color-accent);
+}
+.pe-affiliation-pill-role {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+}
+.pe-affiliation-pill-sep {
+  color: var(--color-text-muted);
+}
+.pe-affiliation-pill-name {
+  flex: 1;
+  color: var(--color-text);
+}
+.pe-affiliation-pill-tag {
+  padding: 0.05rem 0.4rem;
+  border-radius: 2px;
+  font-size: 9.5px;
+  font-weight: 600;
+  background: var(--color-ok-bg);
+  color: var(--color-ok-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pe-affiliation-pill-tag-auto {
+  background: color-mix(in srgb, var(--color-accent-2) 18%, transparent);
+  color: var(--color-accent-2);
+}
+
+/* Org-name autocomplete — layout only (rung 0).
+ *
+ * The dropdown box is GONE. It was .pe-org-suggest: its own surface, border,
+ * shadow, max-height, scroll and a raw stacking-order literal, all of which
+ * SearchBox--Autocomplete draws inside its own scoped <style> against the
+ * federal --z-* scale. (Spelling that literal out here re-tripped F4 — the
+ * check matches comment text too, so prose describing a deleted defect
+ * re-reports it. Raised.) The .pd-field no longer needs position:relative either,
+ * because the widget is its own positioning context.
+ *
+ * Also gone: .pe-org-suggest-enter, the `↵` badge on row 0. It advertised
+ * "Enter picks the first match", which was true and is now false — Enter with
+ * no active option is this card's own save. Leaving it would have been a
+ * keyboard hint that lies, which is the defect class this whole rollout exists
+ * to remove. */
+/* rung 0 — the suggestion line inside the widget's option row, which is a flex
+   container centring one child. This is that child, and it owns the name/shorthand
+   split. ZERO override rungs used on this surface. */
+.pe-org-suggest-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+.pe-org-suggest-name {
+  flex: 1;
+  color: var(--color-text);
+}
+.pe-org-suggest-conv {
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+/* The keyboard hint moved OUT of the popup and under the field. It used to be a
+   trailing <li> inside the <ul>, and the widget's popup renders options and its
+   own status rows only — there is no footer slot, and inventing one for a hint
+   would be the wrong shape of fix. */
+.pe-org-name-field kbd {
+  font: inherit;
+  padding: 0 0.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+}
+
+/* Expanded card */
+.pe-affiliation-expanded {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 0.6rem;
+}
+.pe-affiliation-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+.pe-affiliation-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 0.5rem;
+}
+
+.pe-auto-detect {
+  margin: 0.4rem 0 -0.2rem;
+  padding: 0.5rem 0.75rem;
+  background: color-mix(in srgb, var(--color-accent-2) 12%, transparent);
+  color: var(--color-text);
+  border-left: 2px solid var(--color-accent-2);
+  border-radius: 0 3px 3px 0;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+.pe-auto-detect strong { color: var(--color-accent-2); }
+.pe-auto-detect code {
+  background: var(--color-field);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 10.5px;
+  color: var(--color-text);
+}
+
+.pe-ok-tag, .pe-err-tag {
+  padding: 0.05rem 0.4rem;
+  border-radius: 2px;
+  font-size: 9.5px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+.pe-ok-tag  { color: var(--color-ok-text);    background: var(--color-ok-bg); }
+.pe-err-tag { color: var(--color-error-text); background: var(--color-error-bg); }
+.pe-hint {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.pe-confirm {
+  margin-top: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  color: var(--color-text);
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+.pe-confirm strong {
+  color: var(--color-accent);
+  display: block;
+  font-size: 12px;
+  margin-bottom: 0.2rem;
+}
+.pe-confirm kbd {
+  background: var(--color-field);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  padding: 0 0.3rem;
+  font: 11px var(--font-mono);
+  margin: 0 0.1rem;
+}

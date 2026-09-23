@@ -1,0 +1,21 @@
+{
+  "statuses": [
+    "Draft",
+    "Implementing",
+    "Partially-Shipped",
+    "Shipped",
+    "Existing",
+    "Deferred",
+    "Blocked"
+  ],
+  "definitions": {
+    "Draft": "Planned only, not implemented or intentionally deferred.",
+    "Implementing": "Active implementation in progress.",
+    "Partially-Shipped": "Shell or partial runtime exists, backend/data integration incomplete.",
+    "Shipped": "Route/component works and is connected to expected contracts for its stage.",
+    "Existing": "Infrastructure exists outside this repo or as a shared service.",
+    "Deferred": "Consciously postponed.",
+    "Blocked": "Cannot proceed without dependency or unresolved failure."
+  },
+  "rule": "Frontend shells with mock data are Partially-Shipped, not Shipped."
+}

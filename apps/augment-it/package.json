@@ -1,0 +1,49 @@
+{
+  "name": "augment-it",
+  "version": "3.2.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*",
+    "shell"
+  ],
+  "scripts": {
+    "stack": "bash scripts/dev.sh",
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "start": "pnpm -r start",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "typecheck": "tsc -p tsconfig.json --noEmit && pnpm -r --if-present typecheck && pnpm -r --if-present check",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test:all": "bash scripts/test-all.sh",
+    "tokens:baseline": "node scripts/generate-token-baseline.mjs",
+    "tokens:check": "node scripts/generate-token-baseline.mjs --check",
+    "design:drift": "node scripts/design-drift.mjs",
+    "design:contrast": "node scripts/design-drift.mjs --contrast",
+    "design:structure": "node scripts/design-drift.mjs --structure",
+    "organ:drift": "node scripts/organ-drift.mjs",
+    "organ:record": "node scripts/organ-drift.mjs --record",
+    "verify": "node scripts/verify-federation.mjs",
+    "verify:fast": "node scripts/verify-federation.mjs --fast",
+    "organ:census": "node scripts/organ-census.mjs"
+  },
+  "devDependencies": {
+    "@module-federation/enhanced": "^2.6.0",
+    "@module-federation/rsbuild-plugin": "^2.6.0",
+    "@rsbuild/core": "^2.1.2",
+    "@rsbuild/plugin-svelte": "^2.0.0",
+    "svelte": "^5.56.4",
+    "svelte-check": "^4.7.1",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.198",
+    "@composio/claude-agent-sdk": "^0.10.0",
+    "@composio/core": "^0.13.1",
+    "surrealdb": "^2.0.4",
+    "zod": "^4.4.3"
+  }
+}

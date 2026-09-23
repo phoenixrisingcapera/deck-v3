@@ -1,0 +1,30 @@
+quality_rubrics:
+  slide_generation:
+    excellent:
+      - "The slide has one clear narrative job."
+      - "The headline is a defensible claim grounded in supplied context."
+      - "The layout makes the main point visible before details."
+      - "The render schema is valid and bounded."
+      - "Missing evidence is surfaced honestly."
+    weak:
+      - "The slide is a generic template with no project-specific judgment."
+      - "The headline is only a label."
+      - "The layout has too many competing groups."
+      - "The output invents metrics or customer proof."
+  smart_edit:
+    excellent:
+      - "The edit improves clarity while preserving source-backed facts."
+      - "The reason explains the investor or LP benefit."
+      - "Risk level reflects how much the edit changes meaning."
+    weak:
+      - "The edit silently changes facts."
+      - "The edit adds unsupported claims."
+      - "The reason is generic."
+  deck_sequence:
+    excellent:
+      - "The sequence feels like one argument."
+      - "Adjacent slides do different jobs."
+      - "The ask or next step is clear."
+    weak:
+      - "Slides repeat the same claim."
+      - "Evidence appears before the audience understands why it matters."

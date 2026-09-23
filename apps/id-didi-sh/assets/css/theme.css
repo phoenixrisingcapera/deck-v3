@@ -1,0 +1,265 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   theme.css — id-didi-sh (the Phoenix app)
+
+   The credential design system, ported from splash/src/styles/theme.css.
+   Contract of record: splash/DESIGN.md.
+
+   TIER 1 — named tokens (--color__verdigris). Mode-invariant raw values.
+   TIER 2 — daisyUI's vocabulary (--color-primary, --color-base-100), bound
+            per theme in app.css. daisyUI already owns --color-accent, so
+            rather than fight the collision the brand maps ONTO daisyUI's
+            slots and every daisyUI component inherits brand colour for free.
+   POSTURE — the didi-specific bits daisyUI has no concept of (the security
+            thread, guilloche pitch, stamp chrome) are namespaced --didi-*.
+
+   Modes ride BOTH attributes on <html>:
+     data-theme  — what daisyUI reads
+     data-mode   — what the posture CSS reads, and what the splash uses
+   The pre-paint script in root.html.heex sets them together, always equal.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Tier 1: brand spine — the intaglio inks ───────────────────────── */
+  --color__verdigris:       #4ecf95;
+  --color__verdigris-deep:  #1f9a63;
+  --color__verdigris-soft:  #b5eed3;
+  --color__copper:          #d29a62;
+  --color__copper-deep:     #a86f3d;
+  --color__copper-soft:     #eed3b2;
+  --color__teal:            #4fbfae;
+  --color__teal-deep:       #2a7f74;
+  --color__teal-soft:       #b8e8e1;
+
+  /* Signal hues */
+  --color__thread:          #55e0d2;  /* the security thread */
+  --color__uv:              #9d7bff;  /* fluoresces under the vibrant lamp */
+  --color__uv-soft:         #c9b3ff;
+  --color__amber:           #ffb547;
+
+  /* Editorial neutrals — the vault-ink axis (green-black, not blue-black) */
+  --color__vault-deep:      #060a08;
+  --color__vault:           #0b110e;
+  --color__vault-soft:      #121a16;
+  --color__moss-800:        #1a2620;
+  --color__sage-700:        #33443c;
+  --color__sage-500:        #5c7268;
+  --color__sage-400:        #7a9186;
+  --color__sage-300:        #9db1a7;
+  --color__sage-200:        #c2d2c9;
+  --color__sage-100:        #e0eae4;
+  --color__paper:           #f3f6f2;
+  --color__paper-soft:      #e9efe8;
+  --color__paper-deep:      #dbe5da;
+
+  /* Typography — Tier 1 */
+  --font__display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font__sans:    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font__mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Guilloche ring pitch — the engraving line spacing */
+  --guilloche-pitch: 11px;
+
+  --transition-fast: 160ms ease;
+  --transition-mid:  320ms ease;
+
+  /* ─── Posture defaults (dark / "the vault") ─────────────────────────── */
+  --didi-thread:      var(--color__thread);
+  --didi-thread-soft: #aef0e9;
+  --didi-warm:        var(--color__copper);
+  --didi-glow:        0 0 70px rgba(78, 207, 149, 0.14);
+  --didi-mesh-1: radial-gradient(ellipse at 12% 8%,  color-mix(in oklab, var(--color__verdigris-deep) 16%, transparent), transparent 55%);
+  --didi-mesh-2: radial-gradient(ellipse at 88% 14%, color-mix(in oklab, var(--color__teal-deep) 16%, transparent), transparent 60%);
+  --didi-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--color__copper-deep) 12%, transparent), transparent 60%);
+  --didi-gradient-thread:
+    linear-gradient(110deg, var(--color__verdigris) 0%, var(--color__teal) 48%, var(--color__copper) 100%);
+  --didi-rosette-a: 0.16;
+  --didi-rosette-b: 0.13;
+}
+
+/* ─── Posture — LIGHT ("security paper") ──────────────────────────────── */
+:root[data-mode='light'] {
+  --didi-thread:      var(--color__teal-deep);
+  --didi-thread-soft: #58a89d;
+  --didi-warm:        var(--color__copper-deep);
+  --didi-glow:        0 0 40px rgba(31, 154, 99, 0.08);
+  --didi-mesh-1: radial-gradient(ellipse at 12% 6%,  color-mix(in oklab, var(--color__verdigris) 7%, transparent), transparent 55%);
+  --didi-mesh-2: radial-gradient(ellipse at 88% 14%, color-mix(in oklab, var(--color__teal) 7%, transparent), transparent 60%);
+  --didi-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--color__copper) 6%, transparent), transparent 60%);
+  --didi-gradient-thread:
+    linear-gradient(110deg, var(--color__verdigris-deep) 0%, var(--color__teal-deep) 48%, var(--color__copper-deep) 100%);
+  --didi-rosette-a: 0.12;
+  --didi-rosette-b: 0.10;
+}
+
+/* ─── Posture — VIBRANT ("UV lamp") ───────────────────────────────────────
+   Dark-based, per the three-mode contract. Hidden features fluoresce violet
+   while the verdigris thread stays lit. It never inherits light's paper. */
+:root[data-mode='vibrant'] {
+  --didi-thread:      #55f0a6;
+  --didi-thread-soft: #b2f9d4;
+  --didi-warm:        var(--color__thread);
+  --didi-glow:        0 0 90px rgba(157, 123, 255, 0.26);
+  --didi-mesh-1: radial-gradient(ellipse at 10% 8%,  color-mix(in oklab, var(--color__uv) 22%, transparent), transparent 55%);
+  --didi-mesh-2: radial-gradient(ellipse at 90% 16%, color-mix(in oklab, #55f0a6 14%, transparent), transparent 60%);
+  --didi-mesh-3: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, #7e54f0 22%, transparent), transparent 60%);
+  --didi-gradient-thread:
+    linear-gradient(110deg, var(--color__uv) 0%, #55f0a6 55%, var(--color__thread) 100%);
+  --didi-rosette-a: 0.24;
+  --didi-rosette-b: 0.20;
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────── */
+html { transition: background var(--transition-mid); }
+
+body {
+  font-family: var(--font__sans);
+  background: var(--color-base-100);
+  color: var(--color-base-content);
+  transition: background var(--transition-mid), color var(--transition-mid);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font__display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-primary) 35%, transparent);
+}
+
+/* ─── Background ornament — guilloche rosettes ────────────────────────────
+   Two engraved rosettes of fine concentric rings, the way banknote corners
+   carry them. The pair uses DIFFERENT pitches (1x and 1.4x) on purpose:
+   matched pitch reads as tiled wallpaper, mismatched reads as two separately
+   engraved plates. Add <div class="bg-mesh" aria-hidden="true"> to a layout. */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--didi-mesh-1), var(--didi-mesh-2), var(--didi-mesh-3);
+  transition: background var(--transition-mid);
+}
+
+.bg-mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-radial-gradient(
+      circle at 86% 6%,
+      transparent 0,
+      transparent calc(var(--guilloche-pitch) - 1px),
+      color-mix(in oklab, var(--color-primary) 30%, transparent) calc(var(--guilloche-pitch) - 1px),
+      color-mix(in oklab, var(--color-primary) 30%, transparent) var(--guilloche-pitch)
+    );
+  opacity: var(--didi-rosette-a);
+  mask-image: radial-gradient(circle at 86% 6%, #000 0%, #000 12%, transparent 38%);
+  -webkit-mask-image: radial-gradient(circle at 86% 6%, #000 0%, #000 12%, transparent 38%);
+}
+
+.bg-mesh::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-radial-gradient(
+      circle at 6% 96%,
+      transparent 0,
+      transparent calc(var(--guilloche-pitch) * 1.4 - 1px),
+      color-mix(in oklab, var(--didi-warm) 30%, transparent) calc(var(--guilloche-pitch) * 1.4 - 1px),
+      color-mix(in oklab, var(--didi-warm) 30%, transparent) calc(var(--guilloche-pitch) * 1.4)
+    );
+  opacity: var(--didi-rosette-b);
+  mask-image: radial-gradient(circle at 6% 96%, #000 0%, #000 10%, transparent 34%);
+  -webkit-mask-image: radial-gradient(circle at 6% 96%, #000 0%, #000 10%, transparent 34%);
+}
+
+/* ─── Posture utilities ───────────────────────────────────────────────── */
+
+.mono    { font-family: var(--font__mono); }
+.display { font-family: var(--font__display); }
+
+.eyebrow {
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* Section folio — the document's field label: "SEC.02 · YOUR KEYS". */
+.folio {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.folio::before {
+  content: attr(data-num);
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  padding: 1px 6px;
+  border: 1px solid color-mix(in oklab, var(--color-primary) 58%, transparent);
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--color-primary) 8%, transparent);
+  opacity: 1;
+}
+
+.gradient-text {
+  background: var(--didi-gradient-thread);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Stamp — the credential posture's signature chrome. A rubber/ink stamp:
+   double rule, uppercase mono, a hair of rotation. */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 2px double currentColor;
+  border-radius: 2px;
+  font-family: var(--font__mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--didi-thread);
+  transform: rotate(-2deg);
+  background: color-mix(in oklab, currentColor 6%, transparent);
+}
+.stamp[data-ink='copper']  { color: var(--didi-warm); }
+.stamp[data-ink='accent']  { color: var(--color-primary); }
+.stamp[data-ink='dim']     { color: var(--color-base-content); opacity: 0.55; }
+
+/* Data field — key ids, JWKS paths, cascade records. On a credential the
+   mono fields ARE the content, so this is not decorative. */
+.field {
+  font-family: var(--font__mono);
+  font-size: 0.82em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--color-base-content) 6%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-base-content) 12%, transparent);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Content sits above the fixed ornament layer. */
+body > *:not(.bg-mesh) { position: relative; z-index: 1; }

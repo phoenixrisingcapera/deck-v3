@@ -1,0 +1,33 @@
+{
+  "domain": "market",
+  "classification_goal": "Extract and assess evidence for market diligence from uploaded deck content.",
+  "evidence_types": [
+    "TAM/SAM/SOM logic",
+    "market growth",
+    "regulatory timing",
+    "budget owner",
+    "category maturity"
+  ],
+  "questions": [
+    "What evidence supports TAM/SAM/SOM logic?",
+    "What evidence supports market growth?",
+    "What evidence supports regulatory timing?",
+    "What evidence supports budget owner?",
+    "What evidence supports category maturity?"
+  ],
+  "risk_labels": [
+    "low",
+    "medium",
+    "high",
+    "unknown"
+  ],
+  "missing_evidence_policy": "If not present in deck, mark missing_evidence rather than infer.",
+  "output_fields": [
+    "claim",
+    "evidence_found",
+    "source_slide_ids",
+    "confidence",
+    "risk_level",
+    "recommended_follow_up"
+  ]
+}

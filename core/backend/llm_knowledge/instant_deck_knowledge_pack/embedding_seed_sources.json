@@ -1,0 +1,45 @@
+{
+  "collection": "instant_deck_product_design_knowledge",
+  "intendedCorpusVersion": "instant-deck-design.v3",
+  "ownership": "product_owned_non_customer_knowledge",
+  "customerSourcePolicy": "Uploaded customer documents are direct canonical generation context and must never be inserted into this collection.",
+  "seedSources": [
+    {
+      "sourceId": "cvk-readme",
+      "path": "deck-old/references/context-vigilance-kit-master/README.md",
+      "kind": "reference_readme",
+      "embeddingIntent": "prompt_and_corpus_governance"
+    },
+    {
+      "sourceId": "cvk-chroma-loading-spec",
+      "path": "deck-old/references/context-vigilance-kit-master/context-v/specs/Systematizing-Chroma-as-Loading-Mechanism-for-Context-v.md",
+      "kind": "reference_spec",
+      "embeddingIntent": "retrieval_and_indexing_patterns"
+    },
+    {
+      "sourceId": "cvk-corpus-grounded-generation",
+      "path": "deck-old/references/context-vigilance-kit-master/corpus/ai-labs/explorations/Corpus-Grounded-Generation-of-Decks-and-Memos.md",
+      "kind": "reference_exploration",
+      "embeddingIntent": "deck_and_memo_generation_patterns"
+    },
+    {
+      "sourceId": "vcaistack-readme",
+      "path": "deck-old/references/VC-Aistack-main/README.md",
+      "kind": "reference_readme",
+      "embeddingIntent": "product_boundary_and_module_framing"
+    },
+    {
+      "sourceId": "vcaistack-deck-types",
+      "path": "deck-old/references/VC-Aistack-main/packages/types/src/deck.ts",
+      "kind": "reference_type_contract",
+      "embeddingIntent": "deck_object_model"
+    },
+    {
+      "sourceId": "vcaistack-ai-runtime",
+      "path": "deck-old/references/VC-Aistack-main/apps/web/src/pages/app/ai/_components/AiWorkspaceRuntime.svelte",
+      "kind": "reference_runtime_surface",
+      "embeddingIntent": "ai_workspace_operating_model"
+    }
+  ],
+  "note": "These references may inform curated product-owned design guidance. Runtime retrieval is restricted to the versioned Instant Deck knowledge collection; founder source material is supplied directly and is never deck-local vector knowledge."
+}

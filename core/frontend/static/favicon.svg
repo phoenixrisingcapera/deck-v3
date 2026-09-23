@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Deck AIStack">
+  <defs>
+    <linearGradient id="deckGradient" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00B7FF"/>
+      <stop offset="0.55" stop-color="#6B5CFF"/>
+      <stop offset="1" stop-color="#FF2FB3"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="14" width="36" height="42" rx="8" fill="url(#deckGradient)"/>
+  <rect x="18" y="8" width="38" height="42" rx="8" fill="#07152F" stroke="#4DA3FF" stroke-width="4"/>
+  <path d="M29 20h14M29 30h18M29 40h10" stroke="#EAF4FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M20 18v28" stroke="#00B7FF" stroke-width="4" stroke-linecap="round"/>
+</svg>

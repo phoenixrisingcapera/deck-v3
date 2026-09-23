@@ -1,0 +1,3022 @@
+{
+  "description": "Product-owned fictional Northstar fixture; adapted capability selections for the canonical MVP compiler. Not a paid quality result.",
+  "context": {
+    "deckId": "fixture-company",
+    "sourceSlides": [
+      {
+        "sourceSlideId": "src_s01",
+        "title": "Synthetic commercial evidence 01",
+        "text": "Northstar Exchange connects independent makers with regional buyers.",
+        "ordinal": 1
+      },
+      {
+        "sourceSlideId": "src_s02",
+        "title": "Synthetic commercial evidence 02",
+        "text": "Fragmented discovery and manual ordering prevent reliable regional trade.",
+        "ordinal": 2
+      },
+      {
+        "sourceSlideId": "src_s03",
+        "title": "Synthetic commercial evidence 03",
+        "text": "One verified exchange unifies discovery, ordering and settlement.",
+        "ordinal": 3
+      },
+      {
+        "sourceSlideId": "src_s04",
+        "title": "Synthetic commercial evidence 04",
+        "text": "The service verifies suppliers, matches demand and settles each order.",
+        "ordinal": 4
+      },
+      {
+        "sourceSlideId": "src_s05",
+        "title": "Synthetic commercial evidence 05",
+        "text": "120 active buyers completed repeat orders during the pilot.",
+        "ordinal": 5
+      },
+      {
+        "sourceSlideId": "src_s06",
+        "title": "Synthetic commercial evidence 06",
+        "text": "The platform earns a 12% fee on every completed transaction.",
+        "ordinal": 6
+      },
+      {
+        "sourceSlideId": "src_s07",
+        "title": "Synthetic commercial evidence 07",
+        "text": "The initial serviceable market is $4.2M in annual transaction value.",
+        "ordinal": 7
+      },
+      {
+        "sourceSlideId": "src_s08",
+        "title": "Synthetic commercial evidence 08",
+        "text": "Founder Maya Chen has twelve years of marketplace operating experience.",
+        "ordinal": 8
+      },
+      {
+        "sourceSlideId": "src_s09",
+        "title": "Synthetic commercial evidence 09",
+        "text": "Six regional associations provide verified supplier referrals.",
+        "ordinal": 9
+      },
+      {
+        "sourceSlideId": "src_s10",
+        "title": "Synthetic commercial evidence 10",
+        "text": "Northstar Exchange is seeking $750k to expand into three regions.",
+        "ordinal": 10
+      },
+      {
+        "sourceSlideId": "src_s11",
+        "title": "Synthetic commercial evidence 11",
+        "text": "The next decision is a funded three-region launch with measured milestones.",
+        "ordinal": 11
+      }
+    ],
+    "sourceFacts": [
+      {
+        "factId": "fact_s01_01",
+        "text": "Northstar Exchange connects independent makers with regional buyers.",
+        "sourceSlideIds": [
+          "src_s01"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s01",
+            "sourceType": "slide",
+            "sourceId": "src_s01",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s02_01",
+        "text": "Fragmented discovery and manual ordering prevent reliable regional trade.",
+        "sourceSlideIds": [
+          "src_s02"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s02",
+            "sourceType": "slide",
+            "sourceId": "src_s02",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s03_01",
+        "text": "One verified exchange unifies discovery, ordering and settlement.",
+        "sourceSlideIds": [
+          "src_s03"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s03",
+            "sourceType": "slide",
+            "sourceId": "src_s03",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s04_01",
+        "text": "The service verifies suppliers, matches demand and settles each order.",
+        "sourceSlideIds": [
+          "src_s04"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s04",
+            "sourceType": "slide",
+            "sourceId": "src_s04",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s05_01",
+        "text": "120 active buyers completed repeat orders during the pilot.",
+        "sourceSlideIds": [
+          "src_s05"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s05",
+            "sourceType": "slide",
+            "sourceId": "src_s05",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s06_01",
+        "text": "The platform earns a 12% fee on every completed transaction.",
+        "sourceSlideIds": [
+          "src_s06"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s06",
+            "sourceType": "slide",
+            "sourceId": "src_s06",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s07_01",
+        "text": "The initial serviceable market is $4.2M in annual transaction value.",
+        "sourceSlideIds": [
+          "src_s07"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s07",
+            "sourceType": "slide",
+            "sourceId": "src_s07",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s08_01",
+        "text": "Founder Maya Chen has twelve years of marketplace operating experience.",
+        "sourceSlideIds": [
+          "src_s08"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s08",
+            "sourceType": "slide",
+            "sourceId": "src_s08",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s09_01",
+        "text": "Six regional associations provide verified supplier referrals.",
+        "sourceSlideIds": [
+          "src_s09"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s09",
+            "sourceType": "slide",
+            "sourceId": "src_s09",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s10_01",
+        "text": "Northstar Exchange is seeking $750k to expand into three regions.",
+        "sourceSlideIds": [
+          "src_s10"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s10",
+            "sourceType": "slide",
+            "sourceId": "src_s10",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "fact_s11_01",
+        "text": "The next decision is a funded three-region launch with measured milestones.",
+        "sourceSlideIds": [
+          "src_s11"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s11",
+            "sourceType": "slide",
+            "sourceId": "src_s11",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s01_01",
+        "text": "Northstar Exchange connects independent makers with regional buyers.",
+        "sourceSlideIds": [
+          "src_s01"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s01",
+            "sourceType": "slide",
+            "sourceId": "src_s01",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s02_01",
+        "text": "Fragmented discovery and manual ordering prevent reliable regional trade.",
+        "sourceSlideIds": [
+          "src_s02"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s02",
+            "sourceType": "slide",
+            "sourceId": "src_s02",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s03_01",
+        "text": "One verified exchange unifies discovery, ordering and settlement.",
+        "sourceSlideIds": [
+          "src_s03"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s03",
+            "sourceType": "slide",
+            "sourceId": "src_s03",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s04_01",
+        "text": "The service verifies suppliers, matches demand and settles each order.",
+        "sourceSlideIds": [
+          "src_s04"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s04",
+            "sourceType": "slide",
+            "sourceId": "src_s04",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s05_01",
+        "text": "120 active buyers completed repeat orders during the pilot.",
+        "sourceSlideIds": [
+          "src_s05"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s05",
+            "sourceType": "slide",
+            "sourceId": "src_s05",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s06_01",
+        "text": "The platform earns a 12% fee on every completed transaction.",
+        "sourceSlideIds": [
+          "src_s06"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s06",
+            "sourceType": "slide",
+            "sourceId": "src_s06",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s07_01",
+        "text": "The initial serviceable market is $4.2M in annual transaction value.",
+        "sourceSlideIds": [
+          "src_s07"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s07",
+            "sourceType": "slide",
+            "sourceId": "src_s07",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s08_01",
+        "text": "Founder Maya Chen has twelve years of marketplace operating experience.",
+        "sourceSlideIds": [
+          "src_s08"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s08",
+            "sourceType": "slide",
+            "sourceId": "src_s08",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s09_01",
+        "text": "Six regional associations provide verified supplier referrals.",
+        "sourceSlideIds": [
+          "src_s09"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s09",
+            "sourceType": "slide",
+            "sourceId": "src_s09",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s10_01",
+        "text": "Northstar Exchange is seeking $750k to expand into three regions.",
+        "sourceSlideIds": [
+          "src_s10"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s10",
+            "sourceType": "slide",
+            "sourceId": "src_s10",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "claim_s11_01",
+        "text": "The next decision is a funded three-region launch with measured milestones.",
+        "sourceSlideIds": [
+          "src_s11"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s11",
+            "sourceType": "slide",
+            "sourceId": "src_s11",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "num_s05_01",
+        "text": "120",
+        "sourceSlideIds": [
+          "src_s05"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s05",
+            "sourceType": "slide",
+            "sourceId": "src_s05",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "num_s06_01",
+        "text": "12%",
+        "sourceSlideIds": [
+          "src_s06"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s06",
+            "sourceType": "slide",
+            "sourceId": "src_s06",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "num_s07_01",
+        "text": "$4.2M",
+        "sourceSlideIds": [
+          "src_s07"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s07",
+            "sourceType": "slide",
+            "sourceId": "src_s07",
+            "field": "rawText"
+          }
+        ]
+      },
+      {
+        "factId": "num_s10_01",
+        "text": "$750k",
+        "sourceSlideIds": [
+          "src_s10"
+        ],
+        "sourceReferences": [
+          {
+            "sourceSlideId": "src_s10",
+            "sourceType": "slide",
+            "sourceId": "src_s10",
+            "field": "rawText"
+          }
+        ]
+      }
+    ],
+    "approvedAssets": [
+      {
+        "assetId": "asset_s01_01",
+        "sourceSlideIds": [
+          "src_s01"
+        ],
+        "altText": "Synthetic Northstar Exchange literal logo"
+      },
+      {
+        "assetId": "asset_s08_01",
+        "sourceSlideIds": [
+          "src_s08"
+        ],
+        "altText": "Synthetic founder portrait"
+      },
+      {
+        "assetId": "asset_s09_01",
+        "sourceSlideIds": [
+          "src_s09"
+        ],
+        "altText": "Synthetic regional network event"
+      }
+    ],
+    "metrics": [],
+    "presentationIntent": "investor_pitch",
+    "mvpPlanner": {
+      "sourcePackage": {
+        "schema_version": "instant-deck-source-package.v2",
+        "package_id": "srcpkgv2_582cd69e8bb3a6c5",
+        "source_checksum": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+        "source_package_v1_sha256": "acd68de2ed25a529b3af1d7c01768c358fbb63a4aeac62f3915aa47df965325f",
+        "production_context_sha256": null,
+        "source_file": {
+          "filename": "northstar-exchange-synthetic.pdf",
+          "mime_type": "application/pdf",
+          "byte_size": 52,
+          "page_count": 11,
+          "extraction_id": "product-owned-planner-v4-fixture",
+          "extractor_version": "synthetic-source.v1"
+        },
+        "source_slides": [
+          {
+            "source_slide_id": "src_s01",
+            "position": 1,
+            "source_page_number": 1,
+            "title": "Synthetic commercial evidence 01",
+            "normalized_text": "Northstar Exchange connects independent makers with regional buyers.",
+            "fact_ids": [
+              "fact_s01_01"
+            ],
+            "claim_ids": [
+              "claim_s01_01"
+            ],
+            "number_ids": [],
+            "asset_ids": [
+              "asset_s01_01"
+            ],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s02",
+            "position": 2,
+            "source_page_number": 2,
+            "title": "Synthetic commercial evidence 02",
+            "normalized_text": "Fragmented discovery and manual ordering prevent reliable regional trade.",
+            "fact_ids": [
+              "fact_s02_01"
+            ],
+            "claim_ids": [
+              "claim_s02_01"
+            ],
+            "number_ids": [],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s03",
+            "position": 3,
+            "source_page_number": 3,
+            "title": "Synthetic commercial evidence 03",
+            "normalized_text": "One verified exchange unifies discovery, ordering and settlement.",
+            "fact_ids": [
+              "fact_s03_01"
+            ],
+            "claim_ids": [
+              "claim_s03_01"
+            ],
+            "number_ids": [],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s04",
+            "position": 4,
+            "source_page_number": 4,
+            "title": "Synthetic commercial evidence 04",
+            "normalized_text": "The service verifies suppliers, matches demand and settles each order.",
+            "fact_ids": [
+              "fact_s04_01"
+            ],
+            "claim_ids": [
+              "claim_s04_01"
+            ],
+            "number_ids": [],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s05",
+            "position": 5,
+            "source_page_number": 5,
+            "title": "Synthetic commercial evidence 05",
+            "normalized_text": "120 active buyers completed repeat orders during the pilot.",
+            "fact_ids": [
+              "fact_s05_01"
+            ],
+            "claim_ids": [
+              "claim_s05_01"
+            ],
+            "number_ids": [
+              "num_s05_01"
+            ],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s06",
+            "position": 6,
+            "source_page_number": 6,
+            "title": "Synthetic commercial evidence 06",
+            "normalized_text": "The platform earns a 12% fee on every completed transaction.",
+            "fact_ids": [
+              "fact_s06_01"
+            ],
+            "claim_ids": [
+              "claim_s06_01"
+            ],
+            "number_ids": [
+              "num_s06_01"
+            ],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s07",
+            "position": 7,
+            "source_page_number": 7,
+            "title": "Synthetic commercial evidence 07",
+            "normalized_text": "The initial serviceable market is $4.2M in annual transaction value.",
+            "fact_ids": [
+              "fact_s07_01"
+            ],
+            "claim_ids": [
+              "claim_s07_01"
+            ],
+            "number_ids": [
+              "num_s07_01"
+            ],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s08",
+            "position": 8,
+            "source_page_number": 8,
+            "title": "Synthetic commercial evidence 08",
+            "normalized_text": "Founder Maya Chen has twelve years of marketplace operating experience.",
+            "fact_ids": [
+              "fact_s08_01"
+            ],
+            "claim_ids": [
+              "claim_s08_01"
+            ],
+            "number_ids": [],
+            "asset_ids": [
+              "asset_s08_01"
+            ],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s09",
+            "position": 9,
+            "source_page_number": 9,
+            "title": "Synthetic commercial evidence 09",
+            "normalized_text": "Six regional associations provide verified supplier referrals.",
+            "fact_ids": [
+              "fact_s09_01"
+            ],
+            "claim_ids": [
+              "claim_s09_01"
+            ],
+            "number_ids": [],
+            "asset_ids": [
+              "asset_s09_01"
+            ],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s10",
+            "position": 10,
+            "source_page_number": 10,
+            "title": "Synthetic commercial evidence 10",
+            "normalized_text": "Northstar Exchange is seeking $750k to expand into three regions.",
+            "fact_ids": [
+              "fact_s10_01"
+            ],
+            "claim_ids": [
+              "claim_s10_01"
+            ],
+            "number_ids": [
+              "num_s10_01"
+            ],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          },
+          {
+            "source_slide_id": "src_s11",
+            "position": 11,
+            "source_page_number": 11,
+            "title": "Synthetic commercial evidence 11",
+            "normalized_text": "The next decision is a funded three-region launch with measured milestones.",
+            "fact_ids": [
+              "fact_s11_01"
+            ],
+            "claim_ids": [
+              "claim_s11_01"
+            ],
+            "number_ids": [],
+            "asset_ids": [],
+            "omission_eligible": false,
+            "omission_reason": null
+          }
+        ],
+        "source_references": [
+          {
+            "reference_id": "ref_s01_slide",
+            "source_slide_id": "src_s01",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s01_b01",
+            "source_slide_id": "src_s01",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "Northstar Exchange connects independent makers with regional buyers."
+          },
+          {
+            "reference_id": "ref_s01_a01",
+            "source_slide_id": "src_s01",
+            "kind": "asset",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s02_slide",
+            "source_slide_id": "src_s02",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s02_b01",
+            "source_slide_id": "src_s02",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "Fragmented discovery and manual ordering prevent reliable regional trade."
+          },
+          {
+            "reference_id": "ref_s03_slide",
+            "source_slide_id": "src_s03",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s03_b01",
+            "source_slide_id": "src_s03",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "One verified exchange unifies discovery, ordering and settlement."
+          },
+          {
+            "reference_id": "ref_s04_slide",
+            "source_slide_id": "src_s04",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s04_b01",
+            "source_slide_id": "src_s04",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "The service verifies suppliers, matches demand and settles each order."
+          },
+          {
+            "reference_id": "ref_s05_slide",
+            "source_slide_id": "src_s05",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s05_b01",
+            "source_slide_id": "src_s05",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "120 active buyers completed repeat orders during the pilot."
+          },
+          {
+            "reference_id": "ref_s06_slide",
+            "source_slide_id": "src_s06",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s06_b01",
+            "source_slide_id": "src_s06",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "The platform earns a 12% fee on every completed transaction."
+          },
+          {
+            "reference_id": "ref_s07_slide",
+            "source_slide_id": "src_s07",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s07_b01",
+            "source_slide_id": "src_s07",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "The initial serviceable market is $4.2M in annual transaction value."
+          },
+          {
+            "reference_id": "ref_s08_slide",
+            "source_slide_id": "src_s08",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s08_b01",
+            "source_slide_id": "src_s08",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "Founder Maya Chen has twelve years of marketplace operating experience."
+          },
+          {
+            "reference_id": "ref_s08_a01",
+            "source_slide_id": "src_s08",
+            "kind": "asset",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s09_slide",
+            "source_slide_id": "src_s09",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s09_b01",
+            "source_slide_id": "src_s09",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "Six regional associations provide verified supplier referrals."
+          },
+          {
+            "reference_id": "ref_s09_a01",
+            "source_slide_id": "src_s09",
+            "kind": "asset",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s10_slide",
+            "source_slide_id": "src_s10",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s10_b01",
+            "source_slide_id": "src_s10",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "Northstar Exchange is seeking $750k to expand into three regions."
+          },
+          {
+            "reference_id": "ref_s11_slide",
+            "source_slide_id": "src_s11",
+            "kind": "slide",
+            "block_index": null,
+            "quoted_text": null
+          },
+          {
+            "reference_id": "ref_s11_b01",
+            "source_slide_id": "src_s11",
+            "kind": "block",
+            "block_index": 0,
+            "quoted_text": "The next decision is a funded three-region launch with measured milestones."
+          }
+        ],
+        "facts": [
+          {
+            "fact_id": "fact_s01_01",
+            "kind": "identity",
+            "text": "Northstar Exchange connects independent makers with regional buyers.",
+            "material": true,
+            "materiality_score": 58,
+            "materiality_band": "supporting",
+            "coverage_categories": [],
+            "planner_protected": false,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "narrative-support"
+            ],
+            "source_reference_ids": [
+              "ref_s01_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s02_01",
+            "kind": "general",
+            "text": "Fragmented discovery and manual ordering prevent reliable regional trade.",
+            "material": true,
+            "materiality_score": 58,
+            "materiality_band": "supporting",
+            "coverage_categories": [],
+            "planner_protected": false,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "narrative-support"
+            ],
+            "source_reference_ids": [
+              "ref_s02_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s03_01",
+            "kind": "product",
+            "text": "One verified exchange unifies discovery, ordering and settlement.",
+            "material": true,
+            "materiality_score": 58,
+            "materiality_band": "supporting",
+            "coverage_categories": [],
+            "planner_protected": false,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "narrative-support"
+            ],
+            "source_reference_ids": [
+              "ref_s03_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s04_01",
+            "kind": "process",
+            "text": "The service verifies suppliers, matches demand and settles each order.",
+            "material": true,
+            "materiality_score": 58,
+            "materiality_band": "supporting",
+            "coverage_categories": [],
+            "planner_protected": false,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "narrative-support"
+            ],
+            "source_reference_ids": [
+              "ref_s04_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s05_01",
+            "kind": "metric",
+            "text": "120 active buyers completed repeat orders during the pilot.",
+            "material": true,
+            "materiality_score": 90,
+            "materiality_band": "critical",
+            "coverage_categories": [
+              "traction"
+            ],
+            "planner_protected": true,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "protected-commercial-coverage"
+            ],
+            "source_reference_ids": [
+              "ref_s05_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s06_01",
+            "kind": "financial",
+            "text": "The platform earns a 12% fee on every completed transaction.",
+            "material": true,
+            "materiality_score": 88,
+            "materiality_band": "critical",
+            "coverage_categories": [
+              "financial"
+            ],
+            "planner_protected": true,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "protected-commercial-coverage"
+            ],
+            "source_reference_ids": [
+              "ref_s06_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s07_01",
+            "kind": "financial",
+            "text": "The initial serviceable market is $4.2M in annual transaction value.",
+            "material": true,
+            "materiality_score": 86,
+            "materiality_band": "critical",
+            "coverage_categories": [
+              "financial"
+            ],
+            "planner_protected": true,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "protected-commercial-coverage"
+            ],
+            "source_reference_ids": [
+              "ref_s07_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s08_01",
+            "kind": "team",
+            "text": "Founder Maya Chen has twelve years of marketplace operating experience.",
+            "material": true,
+            "materiality_score": 84,
+            "materiality_band": "critical",
+            "coverage_categories": [
+              "founder"
+            ],
+            "planner_protected": true,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "protected-commercial-coverage"
+            ],
+            "source_reference_ids": [
+              "ref_s08_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s09_01",
+            "kind": "partnership",
+            "text": "Six regional associations provide verified supplier referrals.",
+            "material": true,
+            "materiality_score": 58,
+            "materiality_band": "supporting",
+            "coverage_categories": [],
+            "planner_protected": false,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "narrative-support"
+            ],
+            "source_reference_ids": [
+              "ref_s09_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s10_01",
+            "kind": "financial",
+            "text": "Northstar Exchange is seeking $750k to expand into three regions.",
+            "material": true,
+            "materiality_score": 96,
+            "materiality_band": "critical",
+            "coverage_categories": [
+              "financial",
+              "ask"
+            ],
+            "planner_protected": true,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "protected-commercial-coverage"
+            ],
+            "source_reference_ids": [
+              "ref_s10_b01"
+            ]
+          },
+          {
+            "fact_id": "fact_s11_01",
+            "kind": "general",
+            "text": "The next decision is a funded three-region launch with measured milestones.",
+            "material": true,
+            "materiality_score": 58,
+            "materiality_band": "supporting",
+            "coverage_categories": [],
+            "planner_protected": false,
+            "score_reasons": [
+              "product-owned-source-evidence",
+              "narrative-support"
+            ],
+            "source_reference_ids": [
+              "ref_s11_b01"
+            ]
+          }
+        ],
+        "claims": [
+          {
+            "claim_id": "claim_s01_01",
+            "text": "Northstar Exchange connects independent makers with regional buyers.",
+            "fact_ids": [
+              "fact_s01_01"
+            ],
+            "source_reference_ids": [
+              "ref_s01_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s02_01",
+            "text": "Fragmented discovery and manual ordering prevent reliable regional trade.",
+            "fact_ids": [
+              "fact_s02_01"
+            ],
+            "source_reference_ids": [
+              "ref_s02_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s03_01",
+            "text": "One verified exchange unifies discovery, ordering and settlement.",
+            "fact_ids": [
+              "fact_s03_01"
+            ],
+            "source_reference_ids": [
+              "ref_s03_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s04_01",
+            "text": "The service verifies suppliers, matches demand and settles each order.",
+            "fact_ids": [
+              "fact_s04_01"
+            ],
+            "source_reference_ids": [
+              "ref_s04_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s05_01",
+            "text": "120 active buyers completed repeat orders during the pilot.",
+            "fact_ids": [
+              "fact_s05_01"
+            ],
+            "source_reference_ids": [
+              "ref_s05_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s06_01",
+            "text": "The platform earns a 12% fee on every completed transaction.",
+            "fact_ids": [
+              "fact_s06_01"
+            ],
+            "source_reference_ids": [
+              "ref_s06_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s07_01",
+            "text": "The initial serviceable market is $4.2M in annual transaction value.",
+            "fact_ids": [
+              "fact_s07_01"
+            ],
+            "source_reference_ids": [
+              "ref_s07_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s08_01",
+            "text": "Founder Maya Chen has twelve years of marketplace operating experience.",
+            "fact_ids": [
+              "fact_s08_01"
+            ],
+            "source_reference_ids": [
+              "ref_s08_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s09_01",
+            "text": "Six regional associations provide verified supplier referrals.",
+            "fact_ids": [
+              "fact_s09_01"
+            ],
+            "source_reference_ids": [
+              "ref_s09_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s10_01",
+            "text": "Northstar Exchange is seeking $750k to expand into three regions.",
+            "fact_ids": [
+              "fact_s10_01"
+            ],
+            "source_reference_ids": [
+              "ref_s10_b01"
+            ],
+            "material": true
+          },
+          {
+            "claim_id": "claim_s11_01",
+            "text": "The next decision is a funded three-region launch with measured milestones.",
+            "fact_ids": [
+              "fact_s11_01"
+            ],
+            "source_reference_ids": [
+              "ref_s11_b01"
+            ],
+            "material": true
+          }
+        ],
+        "numbers": [
+          {
+            "number_id": "num_s05_01",
+            "exact_text": "120",
+            "normalized_value": 120.0,
+            "unit": "buyers",
+            "qualifier": "active pilot buyers",
+            "source_reference_ids": [
+              "ref_s05_b01"
+            ]
+          },
+          {
+            "number_id": "num_s06_01",
+            "exact_text": "12%",
+            "normalized_value": 12.0,
+            "unit": "%",
+            "qualifier": "transaction fee",
+            "source_reference_ids": [
+              "ref_s06_b01"
+            ]
+          },
+          {
+            "number_id": "num_s07_01",
+            "exact_text": "$4.2M",
+            "normalized_value": 4200000.0,
+            "unit": "USD",
+            "qualifier": "annual transaction value",
+            "source_reference_ids": [
+              "ref_s07_b01"
+            ]
+          },
+          {
+            "number_id": "num_s10_01",
+            "exact_text": "$750k",
+            "normalized_value": 750000.0,
+            "unit": "USD",
+            "qualifier": "funding sought",
+            "source_reference_ids": [
+              "ref_s10_b01"
+            ]
+          }
+        ],
+        "assets": [
+          {
+            "asset_id": "asset_s01_01",
+            "semantic_role": "literal_logo",
+            "role_confidence": 1.0,
+            "role_reasons": [
+              "product-owned-fixture-declaration"
+            ],
+            "acquisition": "embedded_raster",
+            "mime_type": "image/png",
+            "byte_sha256": "b5464d230b8abc9f94e550c12c33598711a30c4fdd132df6898bd7c8d25ab75c",
+            "width": 720,
+            "height": 320,
+            "alt_text": "Synthetic Northstar Exchange literal logo",
+            "source_document_sha256": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+            "source_page": 1,
+            "source_region": null,
+            "source_region_sha256": null,
+            "source_reference_ids": [
+              "ref_s01_a01"
+            ],
+            "derived_from_asset_id": null,
+            "required_for_planner": true,
+            "classifier_version": "instant-deck-asset-role-policy.v1"
+          },
+          {
+            "asset_id": "asset_s08_01",
+            "semantic_role": "founder_portrait",
+            "role_confidence": 1.0,
+            "role_reasons": [
+              "product-owned-fixture-declaration"
+            ],
+            "acquisition": "embedded_raster",
+            "mime_type": "image/png",
+            "byte_sha256": "225fd5ddfef38d193d0449840386e52eb2de402486180952d8f296c2b275a54d",
+            "width": 720,
+            "height": 960,
+            "alt_text": "Synthetic founder portrait",
+            "source_document_sha256": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+            "source_page": 8,
+            "source_region": null,
+            "source_region_sha256": null,
+            "source_reference_ids": [
+              "ref_s08_a01"
+            ],
+            "derived_from_asset_id": null,
+            "required_for_planner": true,
+            "classifier_version": "instant-deck-asset-role-policy.v1"
+          },
+          {
+            "asset_id": "asset_s09_01",
+            "semantic_role": "event_photography",
+            "role_confidence": 1.0,
+            "role_reasons": [
+              "product-owned-fixture-declaration"
+            ],
+            "acquisition": "embedded_raster",
+            "mime_type": "image/png",
+            "byte_sha256": "f6001cf530d87fc75ba23f909b82eb16bc5e65244a7f14fd0d3e9522477f8998",
+            "width": 960,
+            "height": 640,
+            "alt_text": "Synthetic regional network event",
+            "source_document_sha256": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+            "source_page": 9,
+            "source_region": null,
+            "source_region_sha256": null,
+            "source_reference_ids": [
+              "ref_s09_a01"
+            ],
+            "derived_from_asset_id": null,
+            "required_for_planner": false,
+            "classifier_version": "instant-deck-asset-role-policy.v1"
+          }
+        ],
+        "brand": {
+          "organization_name": "Northstar Exchange",
+          "organization_source_reference_ids": [
+            "ref_s01_slide"
+          ],
+          "product_candidate": "Verified regional supplier exchange",
+          "product_source_reference_ids": [
+            "ref_s03_b01"
+          ],
+          "audience_candidate": "Seed investors and regional launch partners",
+          "audience_source_reference_ids": [
+            "ref_s10_b01"
+          ],
+          "deck_type_candidate": "investment",
+          "deck_type_source_reference_ids": [
+            "ref_s10_b01"
+          ],
+          "roles": [
+            {
+              "role_id": "brand_paper",
+              "colour": "#F7F0E4",
+              "provenance": "source_confirmed",
+              "source_reference_ids": [
+                "ref_s01_slide"
+              ]
+            },
+            {
+              "role_id": "brand_ink",
+              "colour": "#163B36",
+              "provenance": "source_confirmed",
+              "source_reference_ids": [
+                "ref_s01_slide"
+              ]
+            },
+            {
+              "role_id": "brand_signature",
+              "colour": "#D85B3F",
+              "provenance": "source_confirmed",
+              "source_reference_ids": [
+                "ref_s01_slide"
+              ]
+            },
+            {
+              "role_id": "brand_support",
+              "colour": "#F2C14E",
+              "provenance": "source_confirmed",
+              "source_reference_ids": [
+                "ref_s09_slide"
+              ]
+            }
+          ],
+          "wordmark_asset_id": null,
+          "literal_logo_asset_id": "asset_s01_01",
+          "brand_symbol_asset_ids": []
+        },
+        "protected_coverage": [
+          {
+            "category": "financial",
+            "status": "present",
+            "protected_fact_ids": [
+              "fact_s06_01",
+              "fact_s07_01",
+              "fact_s10_01"
+            ],
+            "number_ids": [
+              "num_s06_01",
+              "num_s07_01",
+              "num_s10_01"
+            ],
+            "source_slide_ids": [
+              "src_s06",
+              "src_s07",
+              "src_s10"
+            ],
+            "minimum_planner_slide_mentions": 2,
+            "rationale": "Revenue, market and capital facts are source-backed and commercially material."
+          },
+          {
+            "category": "traction",
+            "status": "present",
+            "protected_fact_ids": [
+              "fact_s05_01"
+            ],
+            "number_ids": [
+              "num_s05_01"
+            ],
+            "source_slide_ids": [
+              "src_s05"
+            ],
+            "minimum_planner_slide_mentions": 1,
+            "rationale": "Pilot buyer activity is the source-backed traction proof."
+          },
+          {
+            "category": "founder",
+            "status": "present",
+            "protected_fact_ids": [
+              "fact_s08_01"
+            ],
+            "number_ids": [],
+            "source_slide_ids": [
+              "src_s08"
+            ],
+            "minimum_planner_slide_mentions": 1,
+            "rationale": "Founder operating experience is source-backed credibility evidence."
+          },
+          {
+            "category": "ask",
+            "status": "present",
+            "protected_fact_ids": [
+              "fact_s10_01"
+            ],
+            "number_ids": [
+              "num_s10_01"
+            ],
+            "source_slide_ids": [
+              "src_s10"
+            ],
+            "minimum_planner_slide_mentions": 1,
+            "rationale": "The exact funding ask and deployment scope are explicit in the source."
+          }
+        ],
+        "debris_exclusions": [],
+        "missing_evidence": [],
+        "conflicts": [],
+        "embedding_policy": {
+          "scope": "request_data_only",
+          "global_knowledge_eligible": false,
+          "embedding_action": "none"
+        },
+        "wordmark_rasterizer_version": "instant-deck-wordmark-rasterizer.v1",
+        "materiality_policy_version": "instant-deck-materiality-policy.v1",
+        "asset_role_policy_version": "instant-deck-asset-role-policy.v1"
+      },
+      "applicationEnvelope": {
+        "envelope_version": "instant-deck-deterministic-envelope.v4.2",
+        "source_package_id": "srcpkgv2_582cd69e8bb3a6c5",
+        "source_checksum": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+        "evidence": [
+          {
+            "evidence_id": "fact_s01_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s01_b01"
+            ],
+            "source_slide_ids": [
+              "src_s01"
+            ]
+          },
+          {
+            "evidence_id": "fact_s02_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s02_b01"
+            ],
+            "source_slide_ids": [
+              "src_s02"
+            ]
+          },
+          {
+            "evidence_id": "fact_s03_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s03_b01"
+            ],
+            "source_slide_ids": [
+              "src_s03"
+            ]
+          },
+          {
+            "evidence_id": "fact_s04_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s04_b01"
+            ],
+            "source_slide_ids": [
+              "src_s04"
+            ]
+          },
+          {
+            "evidence_id": "fact_s05_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s05_b01"
+            ],
+            "source_slide_ids": [
+              "src_s05"
+            ]
+          },
+          {
+            "evidence_id": "fact_s06_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s06_b01"
+            ],
+            "source_slide_ids": [
+              "src_s06"
+            ]
+          },
+          {
+            "evidence_id": "fact_s07_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s07_b01"
+            ],
+            "source_slide_ids": [
+              "src_s07"
+            ]
+          },
+          {
+            "evidence_id": "fact_s08_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s08_b01"
+            ],
+            "source_slide_ids": [
+              "src_s08"
+            ]
+          },
+          {
+            "evidence_id": "fact_s09_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s09_b01"
+            ],
+            "source_slide_ids": [
+              "src_s09"
+            ]
+          },
+          {
+            "evidence_id": "fact_s10_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s10_b01"
+            ],
+            "source_slide_ids": [
+              "src_s10"
+            ]
+          },
+          {
+            "evidence_id": "fact_s11_01",
+            "kind": "fact",
+            "source_reference_ids": [
+              "ref_s11_b01"
+            ],
+            "source_slide_ids": [
+              "src_s11"
+            ]
+          },
+          {
+            "evidence_id": "claim_s01_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s01_b01"
+            ],
+            "source_slide_ids": [
+              "src_s01"
+            ]
+          },
+          {
+            "evidence_id": "claim_s02_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s02_b01"
+            ],
+            "source_slide_ids": [
+              "src_s02"
+            ]
+          },
+          {
+            "evidence_id": "claim_s03_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s03_b01"
+            ],
+            "source_slide_ids": [
+              "src_s03"
+            ]
+          },
+          {
+            "evidence_id": "claim_s04_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s04_b01"
+            ],
+            "source_slide_ids": [
+              "src_s04"
+            ]
+          },
+          {
+            "evidence_id": "claim_s05_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s05_b01"
+            ],
+            "source_slide_ids": [
+              "src_s05"
+            ]
+          },
+          {
+            "evidence_id": "claim_s06_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s06_b01"
+            ],
+            "source_slide_ids": [
+              "src_s06"
+            ]
+          },
+          {
+            "evidence_id": "claim_s07_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s07_b01"
+            ],
+            "source_slide_ids": [
+              "src_s07"
+            ]
+          },
+          {
+            "evidence_id": "claim_s08_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s08_b01"
+            ],
+            "source_slide_ids": [
+              "src_s08"
+            ]
+          },
+          {
+            "evidence_id": "claim_s09_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s09_b01"
+            ],
+            "source_slide_ids": [
+              "src_s09"
+            ]
+          },
+          {
+            "evidence_id": "claim_s10_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s10_b01"
+            ],
+            "source_slide_ids": [
+              "src_s10"
+            ]
+          },
+          {
+            "evidence_id": "claim_s11_01",
+            "kind": "claim",
+            "source_reference_ids": [
+              "ref_s11_b01"
+            ],
+            "source_slide_ids": [
+              "src_s11"
+            ]
+          },
+          {
+            "evidence_id": "num_s05_01",
+            "kind": "number",
+            "source_reference_ids": [
+              "ref_s05_b01"
+            ],
+            "source_slide_ids": [
+              "src_s05"
+            ]
+          },
+          {
+            "evidence_id": "num_s06_01",
+            "kind": "number",
+            "source_reference_ids": [
+              "ref_s06_b01"
+            ],
+            "source_slide_ids": [
+              "src_s06"
+            ]
+          },
+          {
+            "evidence_id": "num_s07_01",
+            "kind": "number",
+            "source_reference_ids": [
+              "ref_s07_b01"
+            ],
+            "source_slide_ids": [
+              "src_s07"
+            ]
+          },
+          {
+            "evidence_id": "num_s10_01",
+            "kind": "number",
+            "source_reference_ids": [
+              "ref_s10_b01"
+            ],
+            "source_slide_ids": [
+              "src_s10"
+            ]
+          }
+        ],
+        "investor_profile": {
+          "investor_subtype": "unspecified_investor",
+          "company_stage": "unspecified",
+          "investment_context": "unspecified",
+          "sophistication_level": "unspecified",
+          "likely_diligence_priorities": [
+            "traction",
+            "business_model",
+            "market",
+            "team",
+            "defensibility",
+            "financials",
+            "use_of_funds"
+          ]
+        },
+        "investor_coverage": [
+          {
+            "category": "opportunity_thesis",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s01_01",
+              "fact_s03_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "problem",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s02_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "solution_product",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s03_01",
+              "fact_s04_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "why_now",
+            "source_status": "evidence_absent_from_source",
+            "available_evidence_ids": [],
+            "gap_type": "evidence_absent",
+            "gap_detail": "The source package contains no supported why_now evidence."
+          },
+          {
+            "category": "traction",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s05_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "business_model",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s06_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "market",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s07_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "team_founder",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s08_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "defensibility",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s09_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "financial_evidence",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s06_01",
+              "fact_s07_01",
+              "fact_s10_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "funding_ask",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s10_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "use_of_funds",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s10_01",
+              "fact_s11_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          },
+          {
+            "category": "investor_next_step",
+            "source_status": "evidence_present_and_used",
+            "available_evidence_ids": [
+              "fact_s11_01"
+            ],
+            "gap_type": null,
+            "gap_detail": null
+          }
+        ],
+        "financial_metrics": [
+          {
+            "number_id": "num_s05_01",
+            "classification": "other",
+            "exact_text": "120",
+            "unit": "buyers",
+            "source_reference_ids": [
+              "ref_s05_b01"
+            ],
+            "source_slide_ids": [
+              "src_s05"
+            ]
+          },
+          {
+            "number_id": "num_s06_01",
+            "classification": "other",
+            "exact_text": "12%",
+            "unit": "%",
+            "source_reference_ids": [
+              "ref_s06_b01"
+            ],
+            "source_slide_ids": [
+              "src_s06"
+            ]
+          },
+          {
+            "number_id": "num_s07_01",
+            "classification": "market_size",
+            "exact_text": "$4.2M",
+            "unit": "USD",
+            "source_reference_ids": [
+              "ref_s07_b01"
+            ],
+            "source_slide_ids": [
+              "src_s07"
+            ]
+          },
+          {
+            "number_id": "num_s10_01",
+            "classification": "funding_request",
+            "exact_text": "$750k",
+            "unit": "USD",
+            "source_reference_ids": [
+              "ref_s10_b01"
+            ],
+            "source_slide_ids": [
+              "src_s10"
+            ]
+          }
+        ],
+        "assets": [
+          {
+            "asset_id": "asset_s01_01",
+            "semantic_role": "literal_logo",
+            "mime_type": "image/png",
+            "width": 720,
+            "height": 320,
+            "source_document_sha256": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+            "required_for_planner": true,
+            "supported_treatments": [
+              "contain",
+              "watermark"
+            ]
+          },
+          {
+            "asset_id": "asset_s08_01",
+            "semantic_role": "founder_portrait",
+            "mime_type": "image/png",
+            "width": 720,
+            "height": 960,
+            "source_document_sha256": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+            "required_for_planner": true,
+            "supported_treatments": [
+              "contain",
+              "cover",
+              "edge_crop",
+              "full_bleed"
+            ]
+          },
+          {
+            "asset_id": "asset_s09_01",
+            "semantic_role": "event_photography",
+            "mime_type": "image/png",
+            "width": 960,
+            "height": 640,
+            "source_document_sha256": "582cd69e8bb3a6c507cf60b1558d69d53dbdffdc504f97c04abfaf22307311a1",
+            "required_for_planner": false,
+            "supported_treatments": [
+              "contain",
+              "cover",
+              "edge_crop",
+              "full_bleed"
+            ]
+          }
+        ],
+        "compiler": {
+          "capability_version": "instant-deck-compiler-v3-capabilities.v1",
+          "compiler_version": "instant-deck-composition-compiler.v3",
+          "primitives": [
+            {
+              "archetype": "thesis_cover",
+              "variants": [
+                "left_focal",
+                "right_focal",
+                "centered_monument"
+              ],
+              "visual_types": [
+                "typographic",
+                "image"
+              ]
+            },
+            {
+              "archetype": "problem_landscape",
+              "variants": [
+                "field",
+                "diagonal_flow"
+              ],
+              "visual_types": [
+                "comparison",
+                "system_map"
+              ]
+            },
+            {
+              "archetype": "key_insight",
+              "variants": [
+                "centered_monument",
+                "edge_to_edge"
+              ],
+              "visual_types": [
+                "proof_strip",
+                "comparison"
+              ]
+            },
+            {
+              "archetype": "process_pathway",
+              "variants": [
+                "diagonal_flow",
+                "stacked"
+              ],
+              "visual_types": [
+                "process"
+              ]
+            },
+            {
+              "archetype": "timeline_milestones",
+              "variants": [
+                "strip",
+                "stacked"
+              ],
+              "visual_types": [
+                "timeline"
+              ]
+            },
+            {
+              "archetype": "metric_proof",
+              "variants": [
+                "left_focal",
+                "right_focal",
+                "centered_monument"
+              ],
+              "visual_types": [
+                "metric",
+                "proof_strip"
+              ]
+            },
+            {
+              "archetype": "system_map",
+              "variants": [
+                "orbit",
+                "radial"
+              ],
+              "visual_types": [
+                "system_map"
+              ]
+            },
+            {
+              "archetype": "comparison_shift",
+              "variants": [
+                "split_40_60",
+                "diagonal_flow"
+              ],
+              "visual_types": [
+                "comparison"
+              ]
+            },
+            {
+              "archetype": "business_model_flow",
+              "variants": [
+                "diagonal_flow"
+              ],
+              "visual_types": [
+                "system_map"
+              ]
+            },
+            {
+              "archetype": "people_proof",
+              "variants": [
+                "left_focal",
+                "right_focal"
+              ],
+              "visual_types": [
+                "people"
+              ]
+            },
+            {
+              "archetype": "partnership_ecosystem",
+              "variants": [
+                "orbit",
+                "radial"
+              ],
+              "visual_types": [
+                "market_map",
+                "system_map"
+              ]
+            },
+            {
+              "archetype": "capital_plan",
+              "variants": [
+                "split_40_60",
+                "split_60_40"
+              ],
+              "visual_types": [
+                "capital_plan"
+              ]
+            },
+            {
+              "archetype": "decisive_close",
+              "variants": [
+                "centered_monument"
+              ],
+              "visual_types": [
+                "typographic",
+                "metric"
+              ]
+            },
+            {
+              "archetype": "image_evidence",
+              "variants": [
+                "split_60_40"
+              ],
+              "visual_types": [
+                "image"
+              ]
+            }
+          ]
+        },
+        "evaluation_criteria": [
+          "investment_thesis_clarity",
+          "commercial_completeness",
+          "credibility",
+          "traction_interpretation",
+          "economic_clarity",
+          "market_logic",
+          "founder_market_fit",
+          "defensibility",
+          "ask_clarity",
+          "capital_to_milestone_logic",
+          "diligence_readiness",
+          "closing_strength"
+        ],
+        "investment_close": {
+          "eligible": false,
+          "allowed_decisions": [],
+          "selected_decision": null,
+          "evidence_ids": [
+            "fact_s10_01"
+          ],
+          "reason": "No explicit investor decision is evidenced; close with supported conclusions and disclose remaining gaps."
+        }
+      },
+      "aliases": {
+        "evidence": {
+          "fact_s01_01": [
+            "fact_s01_01"
+          ],
+          "fact_s02_01": [
+            "fact_s02_01"
+          ],
+          "fact_s03_01": [
+            "fact_s03_01"
+          ],
+          "fact_s04_01": [
+            "fact_s04_01"
+          ],
+          "fact_s05_01": [
+            "fact_s05_01"
+          ],
+          "fact_s06_01": [
+            "fact_s06_01"
+          ],
+          "fact_s07_01": [
+            "fact_s07_01"
+          ],
+          "fact_s08_01": [
+            "fact_s08_01"
+          ],
+          "fact_s09_01": [
+            "fact_s09_01"
+          ],
+          "fact_s10_01": [
+            "fact_s10_01"
+          ],
+          "fact_s11_01": [
+            "fact_s11_01"
+          ],
+          "claim_s01_01": [
+            "claim_s01_01"
+          ],
+          "claim_s02_01": [
+            "claim_s02_01"
+          ],
+          "claim_s03_01": [
+            "claim_s03_01"
+          ],
+          "claim_s04_01": [
+            "claim_s04_01"
+          ],
+          "claim_s05_01": [
+            "claim_s05_01"
+          ],
+          "claim_s06_01": [
+            "claim_s06_01"
+          ],
+          "claim_s07_01": [
+            "claim_s07_01"
+          ],
+          "claim_s08_01": [
+            "claim_s08_01"
+          ],
+          "claim_s09_01": [
+            "claim_s09_01"
+          ],
+          "claim_s10_01": [
+            "claim_s10_01"
+          ],
+          "claim_s11_01": [
+            "claim_s11_01"
+          ],
+          "num_s05_01": [
+            "fact_s05_01"
+          ],
+          "num_s06_01": [
+            "fact_s06_01"
+          ],
+          "num_s07_01": [
+            "fact_s07_01"
+          ],
+          "num_s10_01": [
+            "fact_s10_01"
+          ]
+        },
+        "slides": {
+          "src_s01": "src_s01",
+          "src_s02": "src_s02",
+          "src_s03": "src_s03",
+          "src_s04": "src_s04",
+          "src_s05": "src_s05",
+          "src_s06": "src_s06",
+          "src_s07": "src_s07",
+          "src_s08": "src_s08",
+          "src_s09": "src_s09",
+          "src_s10": "src_s10",
+          "src_s11": "src_s11"
+        },
+        "assets": {
+          "asset_s01_01": "asset_s01_01",
+          "asset_s08_01": "asset_s08_01",
+          "asset_s09_01": "asset_s09_01"
+        }
+      }
+    }
+  },
+  "plan": {
+    "schema_version": "planner_deck_spec.v4.2",
+    "deck_title": "Northstar Exchange \u2014 Regional Trade Engine",
+    "deck_strategy": {
+      "central_thesis": "A verified regional exchange can turn fragmented transactions into repeatable commercial growth.",
+      "narrative_tension": "Regional demand exists, but fragmented discovery and execution prevent it from compounding.",
+      "opening_promise": "Show how regional commerce becomes a measurable, repeatable growth system.",
+      "closing_resolution": "Resolve the thesis with one bounded $750k decision for a three-region launch.",
+      "sections": [
+        {
+          "stage": "opportunity",
+          "purpose": "opportunity section",
+          "slide_ordinals": [
+            1
+          ]
+        },
+        {
+          "stage": "problem_change",
+          "purpose": "problem change section",
+          "slide_ordinals": [
+            2
+          ]
+        },
+        {
+          "stage": "solution",
+          "purpose": "solution section",
+          "slide_ordinals": [
+            3,
+            4
+          ]
+        },
+        {
+          "stage": "evidence",
+          "purpose": "evidence section",
+          "slide_ordinals": [
+            5
+          ]
+        },
+        {
+          "stage": "economics",
+          "purpose": "economics section",
+          "slide_ordinals": [
+            6
+          ]
+        },
+        {
+          "stage": "scale",
+          "purpose": "scale section",
+          "slide_ordinals": [
+            7
+          ]
+        },
+        {
+          "stage": "right_to_win",
+          "purpose": "right to win section",
+          "slide_ordinals": [
+            8,
+            9
+          ]
+        },
+        {
+          "stage": "capital_proposition",
+          "purpose": "capital proposition section",
+          "slide_ordinals": [
+            10
+          ]
+        },
+        {
+          "stage": "investor_decision",
+          "purpose": "investor decision section",
+          "slide_ordinals": [
+            11
+          ]
+        }
+      ],
+      "brand_direction": {
+        "concept": "Regional signal network",
+        "tone": "editorial",
+        "display_strategy": "grotesk_monument",
+        "motif": "Connected verification paths",
+        "paper_role": "brand_paper",
+        "ink_role": "brand_ink",
+        "signature_role": "brand_signature",
+        "support_roles": [
+          "brand_support"
+        ]
+      }
+    },
+    "slides": [
+      {
+        "semantic_role": "cover",
+        "narrative_job": "Promise a measurable regional trade engine.",
+        "audience_claim": "Regional commerce can become a verified, repeatable growth system.",
+        "consequence": "Northstar Exchange connects independent makers with regional buyers.",
+        "headline": "Make regional trade repeatable",
+        "subhead": null,
+        "body": [],
+        "selected_evidence_ids": [
+          "fact_s01_01",
+          "claim_s01_01"
+        ],
+        "visual_archetype": "thesis_cover",
+        "composition_variant": "left_focal",
+        "composition_silhouette": "hero",
+        "visual_type": "typographic",
+        "visual": {
+          "metric_encoding": "none",
+          "items": [],
+          "metrics": [],
+          "steps": [],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": "asset_s01_01",
+          "rationale": "Use the exact source-bound asset to reinforce the declared semantic role."
+        },
+        "resolves_opening": false,
+        "opens_question": true,
+        "tonal_mode": "ink",
+        "pacing": "open"
+      },
+      {
+        "semantic_role": "problem",
+        "narrative_job": "Expose the commercial cost of fragmentation.",
+        "audience_claim": "Fragmented discovery and manual ordering suppress reliable regional trade.",
+        "consequence": "Without a shared operating layer, buyers and makers cannot compound trust or volume.",
+        "headline": "Fragmentation blocks repeat trade",
+        "subhead": "The problem is systemic, not a missing marketplace page.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "Discovery, ordering and settlement remain disconnected.",
+            "evidence_ids": [
+              "fact_s02_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s02_01",
+          "claim_s02_01"
+        ],
+        "visual_archetype": "problem_landscape",
+        "composition_variant": "field",
+        "composition_silhouette": "landscape",
+        "visual_type": "system_map",
+        "visual": {
+          "metric_encoding": "none",
+          "items": [
+            {
+              "label": "Discovery",
+              "detail": "Supplier options remain scattered",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s02_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Ordering",
+              "detail": "Manual workflows resist repetition",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s02_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Settlement",
+              "detail": "No shared transaction record",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s02_01"
+              ],
+              "asset_ref": null
+            }
+          ],
+          "metrics": [],
+          "steps": [],
+          "people": [],
+          "edges": [
+            {
+              "from_item_ordinal": 1,
+              "to_item_ordinal": 2,
+              "label": "breaks",
+              "evidence_ids": [
+                "fact_s02_01"
+              ]
+            },
+            {
+              "from_item_ordinal": 2,
+              "to_item_ordinal": 3,
+              "label": "delays",
+              "evidence_ids": [
+                "fact_s02_01"
+              ]
+            }
+          ]
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "paper",
+        "pacing": "build"
+      },
+      {
+        "semantic_role": "solution",
+        "narrative_job": "Define the integrated future state.",
+        "audience_claim": "One verified exchange unifies discovery, ordering and settlement.",
+        "consequence": "A single operating record turns isolated transactions into repeatable commercial relationships.",
+        "headline": "One verified exchange unifies discovery, ordering and settlement.",
+        "subhead": "The shift is from fragmented coordination to verified execution.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "One verified exchange unifies discovery, ordering and settlement.",
+            "evidence_ids": [
+              "fact_s03_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s02_01",
+          "fact_s03_01",
+          "claim_s03_01"
+        ],
+        "visual_archetype": "comparison_shift",
+        "composition_variant": "split_40_60",
+        "composition_silhouette": "split",
+        "visual_type": "comparison",
+        "visual": {
+          "metric_encoding": "none",
+          "items": [
+            {
+              "label": "Scattered discovery",
+              "detail": "No verified supplier view",
+              "value": null,
+              "group": "Current",
+              "evidence_ids": [
+                "fact_s02_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Manual orders",
+              "detail": "Each transaction restarts",
+              "value": null,
+              "group": "Current",
+              "evidence_ids": [
+                "fact_s02_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Verified supply",
+              "detail": "One verified exchange unifies discovery, ordering and settlement.",
+              "value": null,
+              "group": "Integrated",
+              "evidence_ids": [
+                "fact_s03_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Recorded execution",
+              "detail": "Orders and settlement persist",
+              "value": null,
+              "group": "Integrated",
+              "evidence_ids": [
+                "fact_s03_01"
+              ],
+              "asset_ref": null
+            }
+          ],
+          "metrics": [],
+          "steps": [],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "signature",
+        "pacing": "breathe"
+      },
+      {
+        "semantic_role": "process",
+        "narrative_job": "Show the operating transformation.",
+        "audience_claim": "The service verifies suppliers, matches demand and settles each order.",
+        "consequence": "Each stage creates a durable signal that makes the next transaction easier to trust.",
+        "headline": "The service verifies suppliers, matches demand and settles each order.",
+        "subhead": "The workflow produces both a completed order and reusable commercial evidence.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "Every transaction follows the same source-backed operating sequence.",
+            "evidence_ids": [
+              "fact_s04_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s04_01",
+          "claim_s04_01"
+        ],
+        "visual_archetype": "process_pathway",
+        "composition_variant": "diagonal_flow",
+        "composition_silhouette": "pathway",
+        "visual_type": "process",
+        "visual": {
+          "metric_encoding": "ordinal_stages",
+          "items": [],
+          "metrics": [],
+          "steps": [
+            {
+              "label": "Verify",
+              "detail": "Confirm supplier evidence",
+              "evidence_ids": [
+                "fact_s04_01"
+              ]
+            },
+            {
+              "label": "Match",
+              "detail": "Connect demand and supply",
+              "evidence_ids": [
+                "fact_s04_01"
+              ]
+            },
+            {
+              "label": "Settle",
+              "detail": "Record the completed order",
+              "evidence_ids": [
+                "fact_s04_01"
+              ]
+            }
+          ],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "paper",
+        "pacing": "build"
+      },
+      {
+        "semantic_role": "traction",
+        "narrative_job": "Prove repeat buyer behaviour.",
+        "audience_claim": "The pilot already demonstrates repeat commercial participation.",
+        "consequence": "Active buyers and repeat orders reduce the central adoption uncertainty.",
+        "headline": "120 active buyers completed repeat orders during the pilot.",
+        "subhead": "The traction signal is behaviour, not an unqualified audience count.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "Completed repeat orders make the pilot evidence commercially meaningful.",
+            "evidence_ids": [
+              "fact_s05_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s05_01",
+          "claim_s05_01",
+          "num_s05_01"
+        ],
+        "visual_archetype": "metric_proof",
+        "composition_variant": "centered_monument",
+        "composition_silhouette": "metric",
+        "visual_type": "metric",
+        "visual": {
+          "metric_encoding": "single_metric",
+          "items": [],
+          "metrics": [
+            {
+              "number_ref": "num_s05_01"
+            }
+          ],
+          "steps": [],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "ink",
+        "pacing": "prove"
+      },
+      {
+        "semantic_role": "business_model",
+        "narrative_job": "Explain how activity becomes revenue.",
+        "audience_claim": "Revenue scales directly with completed transaction value.",
+        "consequence": "A transparent transaction fee aligns Northstar with successful regional trade.",
+        "headline": "The platform earns a 12% fee on every completed transaction.",
+        "subhead": "The model monetises completed transactions rather than access alone.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "The platform earns a 12% fee on every completed transaction.",
+            "evidence_ids": [
+              "fact_s06_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s06_01",
+          "claim_s06_01",
+          "num_s06_01"
+        ],
+        "visual_archetype": "business_model_flow",
+        "composition_variant": "diagonal_flow",
+        "composition_silhouette": "flow",
+        "visual_type": "system_map",
+        "visual": {
+          "metric_encoding": "single_metric",
+          "items": [
+            {
+              "label": "Buyer order",
+              "detail": "Verified demand",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s06_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Completed trade",
+              "detail": "Platform service fee",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s06_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Platform revenue",
+              "detail": "Platform service fee",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s06_01",
+                "num_s06_01"
+              ],
+              "asset_ref": null
+            }
+          ],
+          "metrics": [
+            {
+              "number_ref": "num_s06_01"
+            }
+          ],
+          "steps": [],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "paper",
+        "pacing": "prove"
+      },
+      {
+        "semantic_role": "market_opportunity",
+        "narrative_job": "Bound the initial commercial opportunity.",
+        "audience_claim": "The first regional wedge already represents meaningful annual transaction value.",
+        "consequence": "The launch can target a quantified serviceable market before broader expansion.",
+        "headline": "The initial serviceable market is $4.2M in annual transaction value.",
+        "subhead": "This is a source-bounded starting opportunity, not an invented global market.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "The annual value gives the expansion thesis a measurable base.",
+            "evidence_ids": [
+              "fact_s07_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s07_01",
+          "claim_s07_01",
+          "num_s07_01"
+        ],
+        "visual_archetype": "metric_proof",
+        "composition_variant": "centered_monument",
+        "composition_silhouette": "monument",
+        "visual_type": "metric",
+        "visual": {
+          "metric_encoding": "single_metric",
+          "items": [],
+          "metrics": [
+            {
+              "number_ref": "num_s07_01"
+            }
+          ],
+          "steps": [],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "quiet",
+        "pacing": "prove"
+      },
+      {
+        "semantic_role": "founder_team",
+        "narrative_job": "Establish execution credibility.",
+        "audience_claim": "Founder Maya Chen has twelve years of marketplace operating experience.",
+        "consequence": "The plan is led by an operator who understands the commercial system being built.",
+        "headline": "Built by a marketplace operator",
+        "subhead": "Founder credibility is explicit and source-backed.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "Founder Maya Chen has twelve years of marketplace operating experience.",
+            "evidence_ids": [
+              "fact_s08_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s08_01",
+          "claim_s08_01"
+        ],
+        "visual_archetype": "people_proof",
+        "composition_variant": "left_focal",
+        "composition_silhouette": "portrait",
+        "visual_type": "people",
+        "visual": {
+          "metric_encoding": "none",
+          "items": [],
+          "metrics": [],
+          "steps": [],
+          "people": [
+            {
+              "name": "Maya Chen",
+              "role": "Founder",
+              "proof": "Founder Maya Chen has twelve years of marketplace operating experience.",
+              "evidence_ids": [
+                "fact_s08_01"
+              ],
+              "asset_ref": null
+            }
+          ],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": "asset_s08_01",
+          "rationale": "Use the exact source-bound asset to reinforce the declared semantic role."
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "image_led",
+        "pacing": "build"
+      },
+      {
+        "semantic_role": "network_defensibility",
+        "narrative_job": "Show how trusted supply compounds.",
+        "audience_claim": "Six regional associations provide verified supplier referrals.",
+        "consequence": "Each trusted referral expands supply while preserving the verification standard.",
+        "headline": "Six regional associations provide verified supplier referrals.",
+        "subhead": "The network advantage is verified access, not a decorative partner list.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "Regional associations provide the referral path for qualified suppliers.",
+            "evidence_ids": [
+              "fact_s09_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s09_01",
+          "claim_s09_01"
+        ],
+        "visual_archetype": "partnership_ecosystem",
+        "composition_variant": "orbit",
+        "composition_silhouette": "network",
+        "visual_type": "system_map",
+        "visual": {
+          "metric_encoding": "none",
+          "items": [
+            {
+              "label": "Northstar",
+              "detail": "Verification standard",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s09_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Associations",
+              "detail": "Regional association referrals",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s09_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Suppliers",
+              "detail": "Qualified regional makers",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s09_01"
+              ],
+              "asset_ref": null
+            }
+          ],
+          "metrics": [],
+          "steps": [],
+          "people": [],
+          "edges": [
+            {
+              "from_item_ordinal": 2,
+              "to_item_ordinal": 3,
+              "label": "refers",
+              "evidence_ids": [
+                "fact_s09_01"
+              ]
+            },
+            {
+              "from_item_ordinal": 1,
+              "to_item_ordinal": 3,
+              "label": "verifies",
+              "evidence_ids": [
+                "fact_s09_01"
+              ]
+            }
+          ]
+        },
+        "asset_placement": {
+          "asset_ref": "asset_s09_01",
+          "rationale": "Use the exact source-bound asset to reinforce the declared semantic role."
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "image_led",
+        "pacing": "build"
+      },
+      {
+        "semantic_role": "investment_proposition",
+        "narrative_job": "Connect capital to expansion milestones.",
+        "audience_claim": "Northstar Exchange is seeking $750k to expand into three regions.",
+        "consequence": "The ask translates directly into bounded geographic expansion and observable execution.",
+        "headline": "Northstar Exchange is seeking $750k to expand into three regions.",
+        "subhead": "Capital is tied to the next source-backed operating decision.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "The investment ask preserves both amount and intended expansion scope.",
+            "evidence_ids": [
+              "fact_s10_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s10_01",
+          "claim_s10_01",
+          "num_s10_01"
+        ],
+        "visual_archetype": "capital_plan",
+        "composition_variant": "split_40_60",
+        "composition_silhouette": "capital",
+        "visual_type": "capital_plan",
+        "visual": {
+          "metric_encoding": "single_metric",
+          "items": [
+            {
+              "label": "Capital",
+              "detail": "Fund the launch",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s10_01",
+                "num_s10_01"
+              ],
+              "asset_ref": null
+            },
+            {
+              "label": "Expansion",
+              "detail": "Northstar Exchange is seeking $750k to expand into three regions.",
+              "value": null,
+              "group": null,
+              "evidence_ids": [
+                "fact_s10_01"
+              ],
+              "asset_ref": null
+            }
+          ],
+          "metrics": [
+            {
+              "number_ref": "num_s10_01"
+            }
+          ],
+          "steps": [],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": false,
+        "opens_question": false,
+        "tonal_mode": "paper",
+        "pacing": "prove"
+      },
+      {
+        "semantic_role": "closing",
+        "narrative_job": "Resolve the investment decision.",
+        "audience_claim": "Fund the measured launch of a verified regional trade engine.",
+        "consequence": "The next decision is a funded three-region launch with measured milestones.",
+        "headline": "Turn verified demand into regional growth",
+        "subhead": "The next decision is a funded three-region launch with measured milestones.",
+        "body": [
+          {
+            "kind": "body",
+            "text": "The decision advances the source-backed expansion plan.",
+            "evidence_ids": [
+              "fact_s11_01"
+            ],
+            "emphasis": "secondary"
+          }
+        ],
+        "selected_evidence_ids": [
+          "fact_s11_01",
+          "claim_s11_01",
+          "fact_s10_01"
+        ],
+        "visual_archetype": "decisive_close",
+        "composition_variant": "centered_monument",
+        "composition_silhouette": "close",
+        "visual_type": "typographic",
+        "visual": {
+          "metric_encoding": "none",
+          "items": [],
+          "metrics": [],
+          "steps": [],
+          "people": [],
+          "edges": []
+        },
+        "asset_placement": {
+          "asset_ref": null,
+          "rationale": null
+        },
+        "resolves_opening": true,
+        "opens_question": false,
+        "tonal_mode": "ink",
+        "pacing": "close"
+      }
+    ],
+    "research_usage": []
+  }
+}

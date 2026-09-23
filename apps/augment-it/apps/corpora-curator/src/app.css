@@ -1,0 +1,272 @@
+/*
+ * corpora-curator styles. Imported as a side effect from index.ts (standalone
+ * :3017) and mount.ts (federation). All selectors namespaced under .cc-app so
+ * they can't leak. Tokens only — no hex. Resolves across light/dark/vibrant via
+ * @augment-it/theme's tier-2 semantic tokens.
+ */
+
+.cc-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 0;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-size: 14px;
+}
+
+/* ---- header / footer ---- */
+.cc-app .cc-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.cc-app .cc-brand { font-weight: 600; }
+.cc-app .cc-strategy { color: var(--color-accent); font-weight: 600; }
+.cc-app .cc-spacer { flex: 1; }
+.cc-app .cc-ws { width: auto; padding: 0.15rem 0.4rem; font-size: 12px; }
+
+.cc-app .cc-banner {
+  padding: 0.4rem 1rem;
+  font-size: 12px;
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cc-app .cc-footer {
+  padding: 0.4rem 1rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+/* ---- layout ---- */
+.cc-app .cc-pickwrap { flex: 1; overflow: auto; padding: 1.5rem; max-width: 720px; }
+.cc-app .cc-main { flex: 1; display: grid; grid-template-columns: minmax(280px, 360px) 1fr; min-height: 0; }
+.cc-app .cc-col { min-height: 0; overflow: auto; }
+.cc-app .cc-listcol { border-right: 1px solid var(--color-border); display: flex; flex-direction: column; padding-inline: var(--space-xs); }
+/* Rung 0 — the parent places its one child (the ListContainer) and owns nothing
+   else about it. No `ui-*` class is named; this is the column giving its slot a
+   height so the rows region has something to scroll inside. */
+.cc-app .cc-listcol > * { flex: 1; min-height: 0; }
+.cc-app .cc-detailcol { padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+
+/* ---- cards / fields ---- */
+.cc-app .cc-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: var(--fx-card-shadow);
+}
+.cc-app h2, .cc-app h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+.cc-app .cc-field { display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.6rem; }
+/* Rung 0 — layout is the parent's job, and a field is a COLUMN flex container,
+   so anything in it stretches to the column's full width by default. That is
+   right for the inputs (which is why the field is a column in the first place)
+   and wrong for a label: the before/after probe measured the Status chip in
+   SourceDetail at 854px wide. It was 854px BEFORE this migration too — the old
+   .cc-status-chip stretched identically — but a 3px-radius rectangle spanning
+   the column merely looked like a band, where a --radius-pill one looks like a
+   mistake. Found by measuring, not by reading the diff. */
+.cc-app .cc-chip-slot { align-self: flex-start; }
+.cc-app .cc-field label,
+.cc-app .cc-field .cc-label { font-size: 12px; color: var(--color-text-muted); }
+.cc-app .cc-value { color: var(--color-text); }
+.cc-app .cc-muted { color: var(--color-text-muted); }
+.cc-app .cc-mini { font-size: 12px; }
+.cc-app .cc-mono { font-family: var(--font-mono); }
+.cc-app .cc-pad { padding: 1rem; }
+
+/* ---- inputs ---- */
+.cc-app input,
+.cc-app textarea,
+.cc-app select {
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-field);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  width: 100%;
+}
+.cc-app input:focus-visible,
+.cc-app textarea:focus-visible,
+.cc-app select:focus-visible { outline: none; border-color: var(--color-accent); box-shadow: var(--focus-ring); }
+
+/* Saved-confirmation pulse: border glows green on commit, then fades back. */
+@keyframes cc-save-flash {
+  0% {
+    border-color: var(--color-confidence-high);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-confidence-high) 45%, transparent);
+  }
+  100% {
+    border-color: var(--color-border);
+    box-shadow: none;
+  }
+}
+.cc-app input.cc-saved { animation: cc-save-flash 1.6s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .cc-app input.cc-saved { animation-duration: 1ms; }
+}
+.cc-app textarea { resize: vertical; min-height: 3.5em; }
+
+/* ---- controls ----
+   There are no button recipes here any more. Every commit, navigation,
+   destructive and dismiss control in this member is <Button> from
+   @augment-it/shared-ui, at override-ladder rung 1 (variant + size) — no
+   radius override, no class passthrough, no data-deviation.
+   Deleted on adoption: .cc-app button, :hover and :disabled; .cc-primary;
+   .cc-link; .cc-danger and :hover; .cc-back and :hover; .cc-tag-x; and
+   .cc-fetch, which had zero call sites left.
+
+   The bare `.cc-app button` base is the one worth naming. It matched every
+   <button> in the member including ones it had never seen, so the moment a
+   federal component rendered inside .cc-app it inherited a padding-block and,
+   worse, an `opacity: 0.6` disabled treatment that Button's :disabled rule does
+   not set and therefore could not have overridden — appearance standing in for
+   state, painted over a component that shifts colour tokens on purpose.
+
+   Three controls stayed raw at that point. TWO of them are raw no longer:
+   .cc-strat and .cc-row were both "a selectable list row, an organ that does
+   not exist yet", and that organ shipped as <CardRow> + <SelectWrapper
+   --ClickBody>. See their rules below for what each adoption deleted.
+
+   The THIRD is raw no longer. `.cc-tag-suggest button` was "a combobox listbox
+   option, which nobody has built"; that organ shipped as
+   <SearchBox--LiveFilter>, and the four rule-sets it carried — the popup, the
+   option, the option's hover, and `.cc-tag-input`'s `position: relative` — are
+   all deleted below. NOTHING in this member is raw now. */
+
+.cc-app .cc-attached {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 0.3rem;
+  border: 1px solid color-mix(in srgb, var(--color-confidence-high) 40%, var(--color-border));
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-confidence-high) 10%, transparent);
+}
+.cc-app .cc-attached-dot { color: var(--color-confidence-high); font-weight: 700; }
+.cc-app .cc-attached-name { word-break: break-all; }
+.cc-app .cc-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem; }
+
+/* .cc-urllink is GONE — colour, underline and the hover state are the whole
+   of ExternalLink's base recipe. `word-break: break-all` went with it: the
+   component truncates and carries the full URL in `title`. */
+
+/* ---- strategy picker ---- */
+/* .cc-strat-list is GONE — ListContainer, gap="2xs". */
+/* Corpus row — the holdout is GONE. It was left raw by the Button rollout with
+   the note "the organ this wants is a selectable list row; it does not exist
+   yet"; it is now <CardRow as="li" density="compact" direction="column"> +
+   <SelectWrapper--ClickBody>, at ZERO override rungs. Deleted here: width,
+   text-align, display, flex-direction, gap, font, color, background, border,
+   border-radius, padding, cursor and the :hover border — thirteen declarations,
+   every one now contributed by a prop or by the components.
+
+   `.cc-strat-body` is gone too, and it is worth naming why: the first pass wrote
+   it as a rung-0 wrapper carrying `flex-direction: column`, because CardRow was
+   horizontal-only. `direction="column"` retired it the same night. A rung-0
+   wrapper whose entire content is one layout property is a prop that has not
+   been written yet.
+
+   The hover cue came back with the component, so nothing is owed here. */
+.cc-app .cc-strat-title { font-weight: 600; }
+/* Slug + type on one line. The type chip is load-bearing: the list holds every
+   type at once (gh #88) and (type, slug) is the real key. */
+.cc-app .cc-strat-meta { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.cc-app .cc-create { display: flex; gap: 0.4rem; margin-top: 0.75rem; }
+
+/* ---- source list ---- */
+/* .cc-list-head, .cc-add and .cc-list are ALL GONE. Between them they carried
+   two `display: flex`, two `gap`, two `padding`, an `align-items`, a
+   `flex-direction`, an `overflow` and a `flex` — every one of which is
+   ListContainer's header region or its rows region. The two `border-bottom`s
+   went with them; see the report, the layout has no divider affordance. */
+/* Rung 0 — both inputs fill the wrapping header row. Placement, not spacing. */
+.cc-app .cc-filter,
+.cc-app .cc-addurl { flex: 1 1 12ch; font-size: 13px; }
+/* Source row — the second holdout, also gone. <CardRow selected> +
+   <SelectWrapper--ClickBody>. Deleted here: the whole `.cc-row` rule (width,
+   text-align, display, gap, align-items, padding, border, border-bottom,
+   border-radius, background, font, color, cursor), `:hover`, and `.active`
+   with its tint, its 3px rail and the calc() that compensated the rail's width
+   so the text did not shift. `selected` on CardRow carries the selected state
+   now — accent border + --color-accent-bg — and needs no padding compensation
+   because it changes border COLOUR, not border width.
+
+   The list itself gains the rows' spacing: hairline separators belonged to the
+   row, card gaps belong to the container (rung 0). */
+.cc-app .cc-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 0.35em; flex: none; background: var(--color-confidence-high); }
+.cc-app .cc-dot.err { background: var(--color-confidence-low); }
+.cc-app .cc-row-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cc-app .cc-row-title { overflow: hidden; text-overflow: ellipsis; }
+.cc-app .cc-row-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 11px; color: var(--color-text-muted); align-items: center; }
+
+/* ---- labels ----
+   There are no badge recipes here any more either. Every pill and tag in this
+   member is <Chip> from @augment-it/shared-ui, and every connection state is
+   <StatusIndicator>, both at override-ladder rung 1 — no radius override, no
+   class passthrough, no data-deviation. Deleted on adoption: .cc-pill; .cc-conn
+   with its .status-open, .status-error and .status-closed variants;
+   .cc-status-chip; .cc-tag; .cc-tag-mini.
+
+   AMENDED after the StatusIndicator adoption. The paragraph below argued that
+   the Chip rollout was what fixed .cc-conn's member-local colour vocabulary,
+   and that was true as far as it went — but the fix stopped at the tone. The
+   LABEL stayed `{curation.connection}`, the raw union member, so the operator
+   read "auth_required". No stylesheet deletion can reach that, which is why the
+   map that replaced these recipes has since been deleted in its turn: a
+   six-way decision that is correct in one member and wrong in fifteen is a
+   federal component wearing a member's clothes.
+
+   Those five WERE this member's contribution to the federation's 34 badge
+   treatments, and the gallery's `chips` entry has carried the note "three
+   unrelated small-badge treatments that coexist … same job, three looks" since
+   the day it was written. There is one treatment now, and the only thing that
+   varies across it is `tone` — which is semantic. Worth naming what that
+   exposed: .cc-conn was the sole recipe of the five whose colour meant anything,
+   and it meant it in a member-local vocabulary (open green, error and closed
+   red, everything else grey) that no other surface in the federation could read.
+   `idle`, `connecting` and `auth_required` all fell through to the same grey,
+   which said they were the same condition. They are not.
+
+   .cc-tags survives because it is the wrapping flex row the chips sit IN, and
+   layout is the parent's job (rung 0), not a deviation. */
+.cc-app .cc-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; margin-bottom: 0.3rem; }
+/* `.cc-tag-input`, `.cc-tag-suggest`, `.cc-tag-suggest button` and its :hover —
+   all four DELETED by the SearchBox--LiveFilter adoption. Twenty-one
+   declarations, every one now contributed by the component:
+
+     .cc-tag-input     position: relative        → .ui-searchbox
+     .cc-tag-suggest   the whole popup box       → .ui-searchbox__list
+     … button          the full-bleed left row   → .ui-searchbox__option
+     … button:hover    the hover tint            → .ui-searchbox__option:hover
+
+   One of them was also one of this member's two design-drift failures:
+   `z-index: 5`, a raw value under F4. The component spends
+   `var(--z-remote-overlay)` instead, so the gate moves for a real reason rather
+   than because someone tokenised a number in place.
+
+   The options were <button> elements, which is what made this worth doing at
+   all: every suggestion was a native tab stop, so a twelve-suggestion popup made
+   the tag field thirteen tab stops and Tab took the caret out of the input
+   mid-word. Now nothing in the popup is focusable and the active option is named
+   by aria-activedescendant. */
+
+/* ---- extracts ---- */
+.cc-app .cc-extract-add { display: flex; flex-direction: column; gap: 0.4rem; }
+.cc-app .cc-extract-add select { width: auto; }

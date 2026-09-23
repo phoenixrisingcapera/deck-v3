@@ -1,0 +1,142 @@
+{
+  "examples": [
+    {
+      "target_audience": "seed_vc",
+      "input_slide": {
+        "title": "The hidden cost of manual diligence",
+        "body": [
+          "Investors spend 10+ hours reviewing each deck",
+          "Manual review creates inconsistent scoring",
+          "AI can standardise early screening"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "pain_point",
+          "workflow_cost",
+          "solution_hint"
+        ],
+        "market_research_flags": [
+          "10+ hours claim needs source if no citation"
+        ],
+        "audience_adaptation": "Can this become venture-scale before proof is complete?"
+      }
+    },
+    {
+      "target_audience": "series_a_vc",
+      "input_slide": {
+        "title": "The hidden cost of manual diligence",
+        "body": [
+          "Investors spend 10+ hours reviewing each deck",
+          "Manual review creates inconsistent scoring",
+          "AI can standardise early screening"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "pain_point",
+          "workflow_cost",
+          "solution_hint"
+        ],
+        "market_research_flags": [
+          "10+ hours claim needs source if no citation"
+        ],
+        "audience_adaptation": "Is there repeatable growth and a credible path to scale?"
+      }
+    },
+    {
+      "target_audience": "growth_equity",
+      "input_slide": {
+        "title": "The hidden cost of manual diligence",
+        "body": [
+          "Investors spend 10+ hours reviewing each deck",
+          "Manual review creates inconsistent scoring",
+          "AI can standardise early screening"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "pain_point",
+          "workflow_cost",
+          "solution_hint"
+        ],
+        "market_research_flags": [
+          "10+ hours claim needs source if no citation"
+        ],
+        "audience_adaptation": "Can this scale efficiently with lower execution risk?"
+      }
+    },
+    {
+      "target_audience": "corporate_strategic",
+      "input_slide": {
+        "title": "The hidden cost of manual diligence",
+        "body": [
+          "Investors spend 10+ hours reviewing each deck",
+          "Manual review creates inconsistent scoring",
+          "AI can standardise early screening"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "pain_point",
+          "workflow_cost",
+          "solution_hint"
+        ],
+        "market_research_flags": [
+          "10+ hours claim needs source if no citation"
+        ],
+        "audience_adaptation": "Does this create strategic value, partnership leverage, or acquisition optionality?"
+      }
+    },
+    {
+      "target_audience": "family_office",
+      "input_slide": {
+        "title": "The hidden cost of manual diligence",
+        "body": [
+          "Investors spend 10+ hours reviewing each deck",
+          "Manual review creates inconsistent scoring",
+          "AI can standardise early screening"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "pain_point",
+          "workflow_cost",
+          "solution_hint"
+        ],
+        "market_research_flags": [
+          "10+ hours claim needs source if no citation"
+        ],
+        "audience_adaptation": "Is upside attractive without uncontrolled downside?"
+      }
+    },
+    {
+      "target_audience": "lp",
+      "input_slide": {
+        "title": "The hidden cost of manual diligence",
+        "body": [
+          "Investors spend 10+ hours reviewing each deck",
+          "Manual review creates inconsistent scoring",
+          "AI can standardise early screening"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "pain_point",
+          "workflow_cost",
+          "solution_hint"
+        ],
+        "market_research_flags": [
+          "10+ hours claim needs source if no citation"
+        ],
+        "audience_adaptation": "Does this deal or fund decision improve portfolio-level returns?"
+      }
+    }
+  ]
+}

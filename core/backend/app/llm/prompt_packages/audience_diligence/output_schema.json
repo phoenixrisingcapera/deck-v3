@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deck.aistack.codes/schemas/audience-diligence-output.v1.json",
+  "title": "Audience Diligence Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "selectedAudience",
+    "audiencePriorities",
+    "audienceObjections",
+    "audienceDecisionCriteria",
+    "currentDeckFit",
+    "deckDiagnosis",
+    "financialInsights",
+    "narrativeShift",
+    "deckImplementationPlan",
+    "slideLevelInstructions",
+    "missingEvidence",
+    "smartDeckInstruction",
+    "smartEditInstructions",
+    "requiresReview"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "audience-diligence-output.v1" },
+    "selectedAudience": { "type": "string" },
+    "audiencePriorities": { "type": "array", "items": { "type": "string" }, "maxItems": 12 },
+    "audienceObjections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["objection", "whyItMatters", "deckArea", "priority"],
+        "properties": {
+          "objection": { "type": "string" },
+          "whyItMatters": { "type": "string" },
+          "deckArea": { "type": "string" },
+          "priority": { "enum": ["critical", "high", "medium", "low"] }
+        }
+      }
+    },
+    "audienceDecisionCriteria": { "type": "array", "items": { "type": "string" }, "maxItems": 12 },
+    "currentDeckFit": { "type": "string" },
+    "currentDeckFitScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "currentDeckFitReason": { "type": "string" },
+    "deckDiagnosis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["currentDeckType", "currentNarrativeArc", "mainAudienceProblem", "narrativeGap", "evidenceGap", "strongestSlides", "weakestSlides", "duplicatedSlides", "missingSlides", "highestImpactChanges"],
+      "properties": {
+        "currentDeckType": { "type": ["string", "null"] },
+        "currentNarrativeArc": { "type": ["string", "null"] },
+        "mainAudienceProblem": { "type": "string" },
+        "narrativeGap": { "type": "string" },
+        "evidenceGap": { "type": "string" },
+        "strongestSlides": { "type": "array", "items": { "$ref": "#/$defs/slideReference" } },
+        "weakestSlides": { "type": "array", "items": { "$ref": "#/$defs/slideReference" } },
+        "duplicatedSlides": { "type": "array", "items": { "$ref": "#/$defs/slideReference" } },
+        "missingSlides": { "type": "array", "items": { "$ref": "#/$defs/missingSlide" } },
+        "highestImpactChanges": { "type": "array", "items": { "type": "string" }, "maxItems": 10 }
+      }
+    },
+    "financialInsights": {
+      "type": "object"
+    },
+    "narrativeShift": { "type": "string" },
+    "deckImplementationPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slidesToAdd", "slidesToRewrite", "slidesToReorder", "slidesToMerge", "slidesToDelete"],
+      "properties": {
+        "slidesToAdd": { "type": "array", "items": { "$ref": "#/$defs/deckAction" } },
+        "slidesToRewrite": { "type": "array", "items": { "$ref": "#/$defs/deckAction" } },
+        "slidesToReorder": { "type": "array", "items": { "$ref": "#/$defs/deckAction" } },
+        "slidesToMerge": { "type": "array", "items": { "$ref": "#/$defs/deckAction" } },
+        "slidesToDelete": { "type": "array", "items": { "$ref": "#/$defs/deckAction" } }
+      }
+    },
+    "slideLevelInstructions": { "type": "array", "items": { "$ref": "#/$defs/slideInstruction" } },
+    "missingEvidence": { "type": "array", "items": { "$ref": "#/$defs/evidenceRequest" } },
+    "smartDeckInstruction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task", "targetAudience", "narrativeShift", "executionRules", "sourceSlideIds", "requiresEvidenceReview"],
+      "properties": {
+        "task": { "type": "string" },
+        "targetAudience": { "type": "string" },
+        "narrativeShift": { "type": "string" },
+        "executionRules": { "type": "array", "items": { "type": "string" } },
+        "sourceSlideIds": { "type": "array", "items": { "type": "string" } },
+        "requiresEvidenceReview": { "type": "boolean" },
+        "generationPrompt": { "type": ["string", "null"] }
+      }
+    },
+    "smartEditInstructions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slideId", "instruction", "priority", "requiresReview"],
+        "properties": {
+          "slideId": { "type": "string" },
+          "instruction": { "type": "string" },
+          "priority": { "enum": ["critical", "high", "medium", "low"] },
+          "requiresReview": { "type": "boolean" }
+        }
+      }
+    },
+    "requiresReview": { "type": "boolean" },
+    "recommendedDeckVersion": { "type": "object" },
+    "system": { "type": "object" }
+  },
+  "$defs": {
+    "slideReference": { "type": "object", "additionalProperties": false, "required": ["slideId", "slideTitle", "reason"], "properties": { "slideId": { "type": "string" }, "slideTitle": { "type": ["string", "null"] }, "reason": { "type": "string" } } },
+    "missingSlide": { "type": "object", "additionalProperties": false, "required": ["slideType", "reason", "priority"], "properties": { "slideType": { "type": "string" }, "reason": { "type": "string" }, "priority": { "enum": ["critical", "high", "medium", "low"] } } },
+    "deckAction": { "type": "object", "additionalProperties": false, "required": ["action", "slideId", "slideTitle", "reason", "audienceRelevance", "priority", "implementationNote"], "properties": { "action": { "enum": ["keep", "add", "rewrite", "redesign", "rewrite_and_redesign", "reorder", "merge", "delete", "split", "request_evidence"] }, "slideId": { "type": ["string", "null"] }, "slideTitle": { "type": ["string", "null"] }, "reason": { "type": "string" }, "audienceRelevance": { "type": "string" }, "priority": { "enum": ["critical", "high", "medium", "low"] }, "implementationNote": { "type": "string" } } },
+    "slideInstruction": { "type": "object", "additionalProperties": false, "required": ["slideId", "slideTitle", "currentRole", "targetRole", "action", "audienceProblem", "audienceReason", "implementationInstruction", "headlineDirection", "bodyCopyDirection", "layoutDirection", "visualDirection", "evidenceNeeded", "factsToPreserve", "claimsToSoften", "priority", "confidence", "requiresReview"], "properties": { "slideId": { "type": "string" }, "slideTitle": { "type": ["string", "null"] }, "currentRole": { "type": ["string", "null"] }, "targetRole": { "type": "string" }, "action": { "enum": ["keep", "rewrite", "redesign", "rewrite_and_redesign", "reorder", "merge", "delete", "add", "split", "request_evidence"] }, "audienceProblem": { "type": "string" }, "audienceReason": { "type": "string" }, "implementationInstruction": { "type": "string" }, "headlineDirection": { "type": ["string", "null"] }, "bodyCopyDirection": { "type": ["string", "null"] }, "layoutDirection": { "type": ["string", "null"] }, "visualDirection": { "type": ["string", "null"] }, "evidenceNeeded": { "type": "array", "items": { "type": "string" } }, "factsToPreserve": { "type": "array", "items": { "type": "string" } }, "claimsToSoften": { "type": "array", "items": { "type": "string" } }, "priority": { "enum": ["critical", "high", "medium", "low"] }, "confidence": { "type": "number", "minimum": 0, "maximum": 1 }, "requiresReview": { "type": "boolean" } } },
+    "evidenceRequest": { "type": "object", "additionalProperties": false, "required": ["evidence", "whyNeeded", "targetSlideId", "priority"], "properties": { "evidence": { "type": "string" }, "whyNeeded": { "type": "string" }, "targetSlideId": { "type": ["string", "null"] }, "priority": { "enum": ["critical", "high", "medium", "low"] } } },
+    "financialClaim": { "type": "object", "additionalProperties": false, "required": ["claimType", "claimText", "slideId", "verificationStatus", "issue", "assumptions", "evidenceNeeded", "confidence"], "properties": { "claimType": { "enum": ["market_size", "revenue_projection", "roi_claim", "unit_economics", "fundraising_ask", "valuation_claim", "other"] }, "claimText": { "type": "string" }, "slideId": { "type": ["string", "null"] }, "verificationStatus": { "enum": ["supported", "partially_supported", "unsupported", "inconsistent", "implausible", "missing"] }, "issue": { "type": "string" }, "assumptions": { "type": "array", "items": { "type": "string" } }, "evidenceNeeded": { "type": "array", "items": { "type": "string" } }, "confidence": { "type": "number", "minimum": 0, "maximum": 1 } } },
+    "financialConsistencyIssue": { "type": "object", "additionalProperties": false, "required": ["issueType", "description", "affectedSlideIds", "whyItMatters", "recommendedFix", "priority"], "properties": { "issueType": { "enum": ["market_vs_revenue", "pricing_vs_customer", "traction_vs_projection", "use_of_funds_vs_milestones", "roi_vs_buyer_budget", "valuation_vs_evidence", "other"] }, "description": { "type": "string" }, "affectedSlideIds": { "type": "array", "items": { "type": "string" } }, "whyItMatters": { "type": "string" }, "recommendedFix": { "type": "string" }, "priority": { "enum": ["critical", "high", "medium", "low"] } } },
+    "overstatedClaim": { "type": "object", "additionalProperties": false, "required": ["claimText", "slideId", "whyOverstated", "saferClaim", "evidenceNeeded", "priority"], "properties": { "claimText": { "type": "string" }, "slideId": { "type": ["string", "null"] }, "whyOverstated": { "type": "string" }, "saferClaim": { "type": "string" }, "evidenceNeeded": { "type": "array", "items": { "type": "string" } }, "priority": { "enum": ["critical", "high", "medium", "low"] } } },
+    "saferWording": { "type": "object", "additionalProperties": false, "required": ["slideId", "before", "after", "reason"], "properties": { "slideId": { "type": ["string", "null"] }, "before": { "type": "string" }, "after": { "type": "string" }, "reason": { "type": "string" } } },
+    "financeSlideInstruction": { "type": "object", "additionalProperties": false, "required": ["slideId", "financialIssue", "implementationInstruction", "evidenceNeeded", "requiresReview"], "properties": { "slideId": { "type": ["string", "null"] }, "financialIssue": { "type": "string" }, "implementationInstruction": { "type": "string" }, "evidenceNeeded": { "type": "array", "items": { "type": "string" } }, "requiresReview": { "type": "boolean" } } }
+  }
+}

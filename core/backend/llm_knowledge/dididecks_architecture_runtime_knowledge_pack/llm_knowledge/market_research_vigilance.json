@@ -1,0 +1,31 @@
+{
+  "claim_types": [
+    "tam_claim",
+    "market_growth_claim",
+    "competitor_claim",
+    "customer_segment_claim",
+    "spend_claim",
+    "regulatory_claim"
+  ],
+  "evidence_statuses": [
+    "supported",
+    "partially_supported",
+    "unsupported",
+    "contradicted",
+    "needs_research"
+  ],
+  "source_quality": [
+    "primary_dataset",
+    "government",
+    "public_company_filing",
+    "analyst_report",
+    "company_blog",
+    "unsourced"
+  ],
+  "rules": [
+    "Large TAM claims require source and method.",
+    "Competitor claims should include direct, indirect, incumbent, manual workaround, and internal-build alternatives.",
+    "Growth rate claims should include timeframe and source date.",
+    "No source means needs_research, not invented evidence."
+  ]
+}

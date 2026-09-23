@@ -1,0 +1,37 @@
+{
+  "audience_id": "family_office",
+  "primary_question": "Is upside attractive without uncontrolled downside?",
+  "cares_about": [
+    "capital preservation",
+    "founder trust",
+    "governance",
+    "cash discipline",
+    "clear exit routes"
+  ],
+  "red_flags": [
+    "overpromising",
+    "weak controls",
+    "excessive valuation",
+    "unclear legal structure"
+  ],
+  "preferred_evidence": [
+    "risk register",
+    "governance plan",
+    "valuation support",
+    "references"
+  ],
+  "output_adaptation_rules": {
+    "tone": "evidence-led, concise, commercially credible",
+    "must_surface": [
+      "why now",
+      "why this team",
+      "why this market",
+      "what could kill it"
+    ],
+    "avoid": [
+      "unsupported hype",
+      "generic AI claims",
+      "inflated TAM without method"
+    ]
+  }
+}

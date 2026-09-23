@@ -1,0 +1,208 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import AgenticHero from '@components/AgenticHero.astro';
+import StrataHero from '@components/StrataHero.astro';
+import { getCollection } from 'astro:content';
+import { STATIC_SEO } from '@lib/seo';
+import { toDate, formatDate } from '@lib/date';
+
+const base = import.meta.env.BASE_URL;
+
+const highlights = (await getCollection('feature-highlights')).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99),
+);
+
+const changelog = (await getCollection('changelog'))
+  .sort((a, b) => {
+    const bd = toDate(b.data.date_modified)?.getTime() ?? 0;
+    const ad = toDate(a.data.date_modified)?.getTime() ?? 0;
+    return bd - ad;
+  })
+  .slice(0, 3);
+
+// The build order from the spec's §1.1. Deliberately shown, because a splash
+// for a pre-implementation project that hid its status would be exactly the
+// kind of overclaiming the product is against.
+const STAGES = [
+  {
+    v: 'v0',
+    name: 'The editor',
+    lv: 'var(--color-clearance-public)',
+    body:
+      'Markdown in one pane, rendered output beside it, and the ability to define your own syntax triggers. CodeMirror, lfm for parsing, a Svelte renderer. No Tauri, no frames, no embedded agent — you run Claude Code beside it.',
+    state: 'next',
+  },
+  {
+    v: 'v1',
+    name: 'Clearance and audiences',
+    lv: 'var(--color-clearance-lp)',
+    body:
+      'Block-level clearance, named audiences, publish per audience, and the scan that proves nothing leaked. Small once v0 exists — a remark plugin and an output filter over a renderer that already works.',
+    state: 'specified',
+  },
+  {
+    v: '—',
+    name: 'Designed, parked',
+    lv: 'var(--color-clearance-private)',
+    body:
+      'The layout and frame system, deck and paged surfaces, the theme registry, Jujutsu integration, DuckDB and sql fences, figures, HTMX. All specified in full. None scheduled.',
+    state: 'parked',
+  },
+];
+---
+
+<BaseLayout title={STATIC_SEO.root.title} description={STATIC_SEO.root.description} hideHeader>
+  <Header />
+  <AgenticHero />
+  <StrataHero />
+
+  <main>
+    <!-- ── What it is ────────────────────────────────────────────── -->
+    <section class="container band" id="features">
+      <div class="section-head">
+        <h2>What a <code class="tt">.flave</code> holds</h2>
+        <p class="eyebrow">the source-material trinity</p>
+      </div>
+
+      <ul class="grid">
+        {
+          highlights.map((h) => (
+            <li class="cell">
+              <span class="regmark" style="top: -1px; right: -1px;" />
+              <h3 class="cell__title">{h.data.title}</h3>
+              <p class="cell__lede">{h.data.lede}</p>
+              {h.data.status && <span class="chip">{h.data.status}</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- ── Build order ───────────────────────────────────────────── -->
+    <section class="container band">
+      <div class="section-head">
+        <h2>Where this actually is</h2>
+        <p class="eyebrow">build order</p>
+      </div>
+
+      <p class="band__note">
+        The spec runs to about twenty-four thousand words. Most of it is <em>designed and
+        parked</em> — a section being detailed there is evidence a question was thought through,
+        not that the thing is scheduled.
+      </p>
+
+      <div class="stages">
+        {
+          STAGES.map((s) => (
+            <article class="ledger" style={`--lv: ${s.lv};`}>
+              <div class="ledger__meta">
+                <span class="stage__v">{s.v}</span>
+                <span>{s.state}</span>
+              </div>
+              <div>
+                <h3 class="ledger__title">{s.name}</h3>
+                <p class="ledger__lede">{s.body}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ── Latest ────────────────────────────────────────────────── -->
+    {
+      changelog.length > 0 && (
+        <section class="container band">
+          <div class="section-head">
+            <h2>Latest</h2>
+            <p class="eyebrow">
+              <a href={`${base}changelog/`}>all entries →</a>
+            </p>
+          </div>
+
+          <div class="stages">
+            {changelog.map((entry) => (
+              <article class="ledger" style="--lv: var(--color-border-strong);">
+                <div class="ledger__meta">
+                  <span>{formatDate(toDate(entry.data.date_modified))}</span>
+                </div>
+                <div>
+                  <h3 class="ledger__title">
+                    <a href={`${base}changelog/${entry.id}/`}>{entry.data.title}</a>
+                  </h3>
+                  {entry.data.lede && <p class="ledger__lede">{entry.data.lede}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    padding-top: var(--space-16);
+  }
+
+  .band {
+    margin-bottom: var(--space-24);
+  }
+
+  .band__note {
+    max-width: var(--measure);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-8);
+  }
+
+  .tt {
+    font-family: var(--font__mono);
+    font-size: 0.82em;
+    color: var(--color-accent);
+    letter-spacing: var(--tracking-mono);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+  }
+
+  /* Cells share hairlines — a plate grid, not floating cards. */
+  .cell {
+    position: relative;
+    padding: var(--space-6);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 120ms ease;
+  }
+  .cell:hover {
+    background: var(--color-bg-raised);
+  }
+
+  .cell__title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+  .cell__lede {
+    margin: var(--space-3) 0 var(--space-4);
+    color: var(--color-text-soft);
+    font-size: var(--text-sm);
+  }
+
+  .stages {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .stage__v {
+    font-weight: 600;
+    color: var(--lv);
+    font-size: var(--text-sm);
+  }
+</style>

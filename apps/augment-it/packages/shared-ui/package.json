@@ -1,0 +1,45 @@
+{
+  "name": "@augment-it/shared-ui",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./Button.svelte": "./src/Button.svelte",
+    "./CardRow.svelte": "./src/CardRow.svelte",
+    "./Chip.svelte": "./src/Chip.svelte",
+    "./ConfidencePill.svelte": "./src/ConfidencePill.svelte",
+    "./CountBadge.svelte": "./src/CountBadge.svelte",
+    "./DisclosureRow.svelte": "./src/DisclosureRow.svelte",
+    "./ExternalLink.svelte": "./src/ExternalLink.svelte",
+    "./ListContainer.svelte": "./src/ListContainer.svelte",
+    "./MenuItem.svelte": "./src/MenuItem.svelte",
+    "./SearchBox--Autocomplete.svelte": "./src/SearchBox--Autocomplete.svelte",
+    "./SearchBox--LiveFilter.svelte": "./src/SearchBox--LiveFilter.svelte",
+    "./SelectWrapper--Checkbox.svelte": "./src/SelectWrapper--Checkbox.svelte",
+    "./SelectWrapper--ClickBody.svelte": "./src/SelectWrapper--ClickBody.svelte",
+    "./SelectWrapper--ClickPrimary.svelte": "./src/SelectWrapper--ClickPrimary.svelte",
+    "./Selector--Listbox.svelte": "./src/Selector--Listbox.svelte",
+    "./Selector--Menu.svelte": "./src/Selector--Menu.svelte",
+    "./StatusIndicator.svelte": "./src/StatusIndicator.svelte",
+    "./ToggleHeader__PromptOrPackage--Icons.svelte": "./src/ToggleHeader__PromptOrPackage--Icons.svelte",
+    "./gallery": "./src/gallery/mount.ts",
+    "./status.js": "./src/status.ts"
+  },
+  "dependencies": {
+    "@augment-it/gallery": "workspace:*"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "svelte": "^5.56.4",
+    "typescript": "^6.0.3",
+    "@sveltejs/vite-plugin-svelte": "^5.1.1",
+    "jsdom": "^30.0.1",
+    "vitest": "^3.2.7"
+  },
+  "scripts": {
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run"
+  }
+}

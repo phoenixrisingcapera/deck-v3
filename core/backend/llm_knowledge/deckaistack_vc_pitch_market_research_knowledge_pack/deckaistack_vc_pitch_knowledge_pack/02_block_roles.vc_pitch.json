@@ -1,0 +1,233 @@
+{
+  "version": "1.0.0",
+  "description": "Reusable block roles inside slides. Used to classify text boxes, charts, tables, images, logos, and annotations.",
+  "block_roles": [
+    {
+      "id": "slide_title",
+      "aliases": [
+        "heading",
+        "headline",
+        "main title"
+      ],
+      "signals": [
+        "largest text near top",
+        "short phrase",
+        "summarises slide"
+      ],
+      "avoid_when": [
+        "logo text",
+        "axis label"
+      ]
+    },
+    {
+      "id": "subtitle",
+      "aliases": [
+        "subheading",
+        "supporting headline"
+      ],
+      "signals": [
+        "below title",
+        "one sentence elaboration",
+        "smaller than title"
+      ]
+    },
+    {
+      "id": "problem_statement",
+      "signals": [
+        "states pain or broken status quo",
+        "negative adjectives",
+        "expensive/manual/slow/risky"
+      ]
+    },
+    {
+      "id": "pain_point",
+      "signals": [
+        "bullet describing friction",
+        "mentions delay, cost, confusion, churn, compliance risk"
+      ]
+    },
+    {
+      "id": "customer_segment",
+      "signals": [
+        "persona or buyer named",
+        "for founders/VCs/CFOs/clinics/SMBs",
+        "ICP wording"
+      ]
+    },
+    {
+      "id": "current_workaround",
+      "signals": [
+        "spreadsheets, consultants, manual review, email chains, legacy tools"
+      ]
+    },
+    {
+      "id": "solution_summary",
+      "signals": [
+        "what product does",
+        "combines capabilities and outcome"
+      ]
+    },
+    {
+      "id": "feature",
+      "signals": [
+        "capability name",
+        "module, dashboard, workflow, automation"
+      ]
+    },
+    {
+      "id": "benefit_claim",
+      "signals": [
+        "saves, reduces, increases, accelerates, improves"
+      ]
+    },
+    {
+      "id": "metric_value",
+      "signals": [
+        "number with %, £, $, x, days, hours, users, ARR, MRR"
+      ]
+    },
+    {
+      "id": "evidence_source",
+      "signals": [
+        "source line, citation, report name, customer interview, dataset label"
+      ]
+    },
+    {
+      "id": "customer_quote",
+      "signals": [
+        "quotation marks",
+        "attributed user/customer voice",
+        "testimonial language"
+      ]
+    },
+    {
+      "id": "chart_title",
+      "signals": [
+        "text immediately above chart",
+        "describes chart meaning"
+      ]
+    },
+    {
+      "id": "axis_label",
+      "signals": [
+        "x/y axis wording",
+        "rotated text",
+        "chart scale labels"
+      ]
+    },
+    {
+      "id": "legend_label",
+      "signals": [
+        "small colored key beside chart",
+        "series names"
+      ]
+    },
+    {
+      "id": "chart_annotation",
+      "signals": [
+        "arrow/callout pointing to chart trend",
+        "explains inflection"
+      ]
+    },
+    {
+      "id": "competitor_name",
+      "signals": [
+        "company names/logos in matrix or comparison"
+      ]
+    },
+    {
+      "id": "differentiator",
+      "signals": [
+        "unique, proprietary, unlike, only, better because"
+      ]
+    },
+    {
+      "id": "pricing_tier",
+      "signals": [
+        "Starter, Pro, Enterprise, per seat, per deck, annual"
+      ]
+    },
+    {
+      "id": "revenue_stream",
+      "signals": [
+        "subscription, services, marketplace fee, API usage, licence"
+      ]
+    },
+    {
+      "id": "go_to_market_channel",
+      "signals": [
+        "LinkedIn outbound, partnerships, VC network, content, PLG, direct sales"
+      ]
+    },
+    {
+      "id": "sales_motion",
+      "signals": [
+        "self-serve, enterprise, founder-led sales, land and expand"
+      ]
+    },
+    {
+      "id": "customer_logo",
+      "signals": [
+        "logo grid",
+        "named customer or pilot logo",
+        "partner badge"
+      ]
+    },
+    {
+      "id": "team_bio",
+      "signals": [
+        "person name + role + credentials",
+        "founder background"
+      ]
+    },
+    {
+      "id": "fundraising_amount",
+      "signals": [
+        "raising £/$ amount",
+        "seed/pre-seed/Series A round"
+      ]
+    },
+    {
+      "id": "use_of_funds",
+      "signals": [
+        "engineering, GTM, hiring, data, compliance allocation"
+      ]
+    },
+    {
+      "id": "milestone",
+      "signals": [
+        "by Qx, launch, reach, hire, close, achieve"
+      ]
+    },
+    {
+      "id": "risk_or_assumption",
+      "signals": [
+        "assumes, risk, dependency, caveat, sensitivity"
+      ]
+    },
+    {
+      "id": "call_to_action",
+      "signals": [
+        "contact us, book demo, join beta, invest, try platform"
+      ]
+    },
+    {
+      "id": "decorative_visual",
+      "signals": [
+        "background image/icon with no semantic information"
+      ]
+    },
+    {
+      "id": "product_screenshot",
+      "signals": [
+        "UI image, dashboard, app screen, browser frame"
+      ]
+    },
+    {
+      "id": "screenshot_annotation",
+      "signals": [
+        "callout label pointing to product screenshot"
+      ]
+    }
+  ]
+}

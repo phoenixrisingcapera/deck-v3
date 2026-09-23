@@ -1,0 +1,186 @@
+/*
+ * request-reviewer styles. Imported as a side effect from index.ts
+ * (standalone :3004) and mount.ts (federation) — the bundler's CSS pipeline
+ * injects it in both modes. All selectors namespaced under .req-app so they
+ * can't leak into the shell or sibling remotes. Tokens only — no hex.
+ */
+
+.req-app .req-status-bar {
+  padding: 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 11px;
+}
+
+.req-app .req-body { padding: 1.25rem 1.5rem; max-width: 920px; }
+
+.req-app h2 {
+  font-size: 0.85rem;
+  margin: 0 0 0.35rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.req-app h3 {
+  font-size: 0.8rem;
+  margin: 1.25rem 0 0.4rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.req-app .muted { color: var(--color-text-muted); line-height: 1.5; }
+.req-app .lede { margin: 0 0 1rem; max-width: 64ch; }
+
+.req-app code {
+  background: var(--color-field);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+
+.req-app .field { margin-top: 0.85rem; }
+.req-app label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+.req-app label.inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.req-app select,
+.req-app input[type='number'] {
+  background: var(--color-field);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font: inherit;
+  padding: 5px 7px;
+  box-sizing: border-box;
+}
+.req-app select { display: block; width: 100%; }
+.req-app input[type='number'] { width: 6rem; }
+
+.req-app .stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+  font-size: 13px;
+}
+
+.req-app .knobs {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.req-app .models { display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
+.req-app .knob-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-right: 0.25rem;
+}
+
+.req-app .view-toggle { display: flex; gap: 0.35rem; margin-top: 1rem; }
+
+.req-app .panel {
+  margin-top: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--color-field);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 360px;
+  overflow: auto;
+}
+.req-app .panel.json { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.req-app ul.bind { list-style: none; padding: 0; margin: 0.4rem 0 0; }
+/* The row recipe — padding, 1px --color-border, radius, the flex row and its
+   gap — is now <CardRow density="compact">, and so is the .unbound border
+   swap (rung 4, declared at the call site). What is left on the <li> is the
+   gap BETWEEN rows, which is the list's job and not the row's. */
+.req-app ul.bind li { display: block; margin-bottom: 0.25rem; }
+.req-app ul.bind li.muted { font-size: 12px; }
+.req-app ul.bind li .arrow { color: var(--color-text-muted); }
+.req-app ul.bind li .val { color: var(--color-ok-text); }
+.req-app ul.bind li .nobind { color: var(--color-error-text); }
+
+.req-app .warn {
+  margin-top: 0.5rem;
+  color: var(--color-error-text);
+  font-size: 12px;
+}
+
+.req-app .coverage {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.55rem;
+  background: var(--color-field);
+  border-radius: 4px;
+  font-size: 12px;
+}
+.req-app .coverage-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.req-app .coverage-stat::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.65;
+}
+.req-app .coverage-stat.covered { color: var(--color-ok-text); }
+.req-app .coverage-stat.needs-rerun { color: var(--color-warn-text, var(--color-accent-2)); }
+.req-app .coverage-stat.remaining { color: var(--color-accent); }
+
+.req-app .fire-row { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+
+.req-app .progress {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--color-field);
+  border-radius: 4px;
+  color: var(--color-accent-2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.req-app .progress .spinner {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  border: 2px solid color-mix(in srgb, var(--color-accent-2) 30%, transparent);
+  border-top-color: var(--color-accent-2);
+  border-radius: 50%;
+  animation: req-spin 0.9s linear infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes req-spin { to { transform: rotate(360deg); } }
+
+.req-app .result {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: color-mix(in srgb, var(--color-ok-text) 7%, transparent);
+  border: 1px solid var(--color-ok-bg);
+  border-radius: 4px;
+}

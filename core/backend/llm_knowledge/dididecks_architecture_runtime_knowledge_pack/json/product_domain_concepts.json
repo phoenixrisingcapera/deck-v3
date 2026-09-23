@@ -1,0 +1,55 @@
+{
+  "core_concepts": [
+    {
+      "key": "deck",
+      "description": "The full investor/fundraising/client deck."
+    },
+    {
+      "key": "slide",
+      "description": "A logical page/slot inside a deck."
+    },
+    {
+      "key": "slide_variant",
+      "description": "A rendering variant of a slide or slide set."
+    },
+    {
+      "key": "block",
+      "description": "An editable visual object inside a slide."
+    },
+    {
+      "key": "persistent_field",
+      "description": "Reusable business value stored once and rendered in one or more blocks."
+    },
+    {
+      "key": "field_usage",
+      "description": "Mapping from persistent field to slide/block usage."
+    },
+    {
+      "key": "change_request",
+      "description": "A proposed update before apply/rebuild."
+    },
+    {
+      "key": "rebuild_job",
+      "description": "Backend job that updates affected slides/blocks/exports."
+    },
+    {
+      "key": "deck_version",
+      "description": "Snapshot created after accepted changes."
+    },
+    {
+      "key": "audit_log",
+      "description": "Record of accepted/rejected/previewed actions."
+    },
+    {
+      "key": "surface_review",
+      "description": "Judgment of a slide/variant on scroll/play/print/thumbnail/editor surfaces."
+    }
+  ],
+  "product_rule": "The editor, map, smart-edit, rebuild, review matrix, and exports must consume the same deck model.",
+  "anti_patterns": [
+    "Editor uses local-only mock slides while Smart Edit uses persistent fields.",
+    "DidiDecks API calls use /api/v1.",
+    "Frontend stores backend secrets or model training logic.",
+    "AI directly mutates the deck without proposal, guardrail review, audit, and versioning."
+  ]
+}

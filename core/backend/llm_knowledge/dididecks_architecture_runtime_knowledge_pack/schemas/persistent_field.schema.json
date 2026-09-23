@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PersistentField",
+  "type": "object",
+  "required": [
+    "id",
+    "deck_id",
+    "field_key",
+    "field_label",
+    "field_group",
+    "field_type",
+    "value_json"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "deck_id": {
+      "type": "string"
+    },
+    "field_key": {
+      "type": "string",
+      "examples": [
+        "founder.ceo_name",
+        "company.name",
+        "metrics.arr"
+      ]
+    },
+    "field_label": {
+      "type": "string"
+    },
+    "field_group": {
+      "type": "string"
+    },
+    "field_type": {
+      "enum": [
+        "text",
+        "long_text",
+        "url",
+        "image",
+        "color",
+        "currency",
+        "percentage",
+        "number",
+        "json"
+      ]
+    },
+    "value_json": {
+      "type": "object"
+    },
+    "source": {
+      "type": "string"
+    }
+  }
+}

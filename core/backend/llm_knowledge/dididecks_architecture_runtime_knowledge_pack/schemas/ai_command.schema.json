@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AiCommand",
+  "type": "object",
+  "required": [
+    "id",
+    "deck_id",
+    "command_type",
+    "status",
+    "subject"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "deck_id": {
+      "type": "string"
+    },
+    "command_type": {
+      "enum": [
+        "improve_block",
+        "shorten_text",
+        "investor_ready_rewrite",
+        "layout_variant",
+        "improve_slide",
+        "market_research_check"
+      ]
+    },
+    "status": {
+      "enum": [
+        "created",
+        "proposed",
+        "guardrails_passed",
+        "guardrails_failed",
+        "accepted",
+        "rejected",
+        "applied"
+      ]
+    },
+    "subject": {
+      "type": "object"
+    },
+    "proposed_changes": {
+      "type": "array"
+    },
+    "guardrail_result": {
+      "type": "object"
+    }
+  }
+}

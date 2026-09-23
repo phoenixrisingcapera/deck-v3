@@ -1,0 +1,35 @@
+{
+  "deck_id": "deck_001",
+  "changes": [
+    {
+      "field_key": "founder.ceo_name",
+      "old_value": {
+        "value": "Jane Doe"
+      },
+      "new_value": {
+        "value": "Andrea Capera"
+      }
+    }
+  ],
+  "affected_slides": 4,
+  "affected_blocks": 6,
+  "impact_level": "medium",
+  "requires_rebuild": true,
+  "before_after": [
+    {
+      "slide_id": "slide_01",
+      "block_id": "cover.founder_name",
+      "before": "Jane Doe",
+      "after": "Andrea Capera"
+    },
+    {
+      "slide_id": "slide_09",
+      "block_id": "team.founder_card.name",
+      "before": "Jane Doe",
+      "after": "Andrea Capera"
+    }
+  ],
+  "warnings": [
+    "This field appears in multiple slides. Review affected blocks before applying."
+  ]
+}

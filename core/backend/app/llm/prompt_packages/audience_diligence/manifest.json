@@ -1,0 +1,62 @@
+{
+  "packageId": "audience_diligence",
+  "version": "0.1.0",
+  "productName": "DeckAiStack Audience Diligence",
+  "purpose": "Evaluate an uploaded deck through an experienced VC/advisor lens for a selected audience and produce an executable deck implementation plan.",
+  "notAReportGenerator": true,
+  "workflowRole": "audience_specific_deck_conversion",
+  "requiredInputs": [
+    "deckId",
+    "deckMap",
+    "selectedAudience"
+  ],
+  "optionalInputs": [
+    "conversionGoal",
+    "brandProfile",
+    "marketResearch",
+    "selectedSlideIds",
+    "userInstruction",
+    "latestSmartDeckVersion",
+    "canonicalDeckMap"
+  ],
+  "supportedAudiences": [
+    "VC Partner",
+    "VC Associate",
+    "Investment Committee",
+    "LP",
+    "Strategic Corporate Buyer",
+    "Accelerator Judge",
+    "Board Member",
+    "Fundraising Advisor Client",
+    "Portfolio Founder"
+  ],
+  "promptFiles": [
+    "system.md",
+    "audience_profile.md",
+    "vc_judgment_rules.md",
+    "financial_validation.md",
+    "deck_diagnosis.md",
+    "conversion_planner.md",
+    "slide_instruction_generator.md"
+  ],
+  "outputSchema": "output_schema.json",
+  "artifact": {
+    "artifactType": "audience_diligence_conversion_plan",
+    "schemaVersion": "audience-diligence-output.v1",
+    "status": "review_required"
+  },
+  "downstreamConsumers": [
+    "smart_deck",
+    "smart_edit",
+    "deck_export",
+    "audience_diligence_ui"
+  ],
+  "hardRules": [
+    "Do not invent facts, metrics, revenue, customers, partnerships, market size, or team credentials.",
+    "Always separate deck-backed facts from assumptions and missing evidence.",
+    "Always produce implementation instructions, not only critique.",
+    "Every slide-level action must include audience reasoning and execution direction.",
+    "Every material market size, revenue, ROI, unit economics, fundraising, and valuation claim must be checked for evidence, assumptions, and consistency.",
+    "The output must be valid JSON matching output_schema.json."
+  ]
+}

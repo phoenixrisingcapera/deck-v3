@@ -1,0 +1,25 @@
+{
+  "name": "@flave/editor",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The flave editor — type LFM, see it rendered, instantly, in your styles.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.11.0",
+    "@codemirror/lang-css": "^6.3.1",
+    "@codemirror/lang-json": "^6.0.2",
+    "@codemirror/lang-markdown": "^6.3.1",
+    "@codemirror/lang-yaml": "^6.1.3",
+    "@codemirror/state": "^6.5.0",
+    "@codemirror/view": "^6.34.1",
+    "@flave/render": "workspace:*",
+    "@lossless-group/lfm": "npm:@jsr/lossless-group__lfm@^0.5.1",
+    "@tauri-apps/api": "^2.11.1",
+    "codemirror": "^6.0.1"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@augment-it/chat",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@augment-it/federation": "workspace:*",
+    "@augment-it/shared-ui": "workspace:*",
+    "@augment-it/theme": "workspace:*",
+    "@augment-it/workspace": "workspace:*",
+    "svelte": "^5.56.4"
+  },
+  "devDependencies": {
+    "@module-federation/enhanced": "^2.6.0",
+    "@module-federation/rsbuild-plugin": "^2.6.0",
+    "@rsbuild/core": "^2.1.2",
+    "@rsbuild/plugin-svelte": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^5.1.1",
+    "jsdom": "^30.0.1",
+    "svelte-check": "^4.7.1",
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.7"
+  }
+}

@@ -1,0 +1,320 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import { readProvenance, threadStyle, pickDate, pickString, fmtDate, fromKindLabel, pickContextVKind } from '@lib/provenance';
+
+const base = import.meta.env.BASE_URL;
+
+interface Row {
+  source: string;
+  sourceKind: string;
+  slug: string;
+  url: string;
+  title: string;
+  summary: string;
+  date: Date | null;
+  category?: string;
+  contextKind?: string;
+  status?: string;
+  tags: string[];
+}
+
+const rawEntries = await getCollection('context-v');
+
+const rows: Row[] = rawEntries.map((entry) => {
+  const data = entry.data as Record<string, unknown>;
+  const { from, fromKind, fromPath } = readProvenance(data, 'memopop-ai');
+  const slugWithinPeer = entry.id.replace(new RegExp(`^${from}/`), '');
+  return {
+    source: from,
+    sourceKind: fromKind,
+    slug: slugWithinPeer,
+    url: `${base}context-v/${from}/${slugWithinPeer}/`,
+    title: pickString(data, 'title') ?? slugWithinPeer.replace(/[-_]/g, ' '),
+    summary: pickString(data, 'lede', 'summary', 'description', 'purpose') ?? '',
+    date: pickDate(data, entry.id),
+    category: pickString(data, 'category'),
+    contextKind: pickContextVKind(fromPath) ?? undefined,
+    status: pickString(data, 'status'),
+    tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
+  };
+});
+
+rows.sort((a, b) => (b.date?.getTime() ?? 0) - (a.date?.getTime() ?? 0));
+
+const sourceCounts = new Map<string, { count: number; kind: string }>();
+const kindCounts = new Map<string, number>();
+for (const r of rows) {
+  const c = sourceCounts.get(r.source);
+  if (c) c.count++; else sourceCounts.set(r.source, { count: 1, kind: r.sourceKind });
+  if (r.contextKind) kindCounts.set(r.contextKind, (kindCounts.get(r.contextKind) ?? 0) + 1);
+}
+
+const sourceFilters = [...sourceCounts.entries()]
+  .map(([slug, { count, kind }]) => ({ slug, count, kind }))
+  .sort((a, b) => {
+    const order = { parent: 0, app: 1, package: 2 } as Record<string, number>;
+    if ((order[a.kind] ?? 9) !== (order[b.kind] ?? 9)) return (order[a.kind] ?? 9) - (order[b.kind] ?? 9);
+    return a.slug.localeCompare(b.slug);
+  });
+
+const kindFilters = [...kindCounts.entries()]
+  .map(([kind, count]) => ({ kind, count }))
+  .sort((a, b) => b.count - a.count);
+---
+
+<BaseLayout title="Notes — MemoPop AI" description="Specs, plans, and explorations from across the MemoPop AI workspace.">
+  <Header active="notes" />
+
+  <main class="archive">
+    <div class="container-narrow">
+      <header class="archive__head">
+        <p class="eyebrow">Workspace notes</p>
+        <h1 class="archive__title gradient-text">Context-v</h1>
+        <p class="archive__lede">
+          Specs, plans, explorations, and habits from across the workspace —
+          the durable thinking that lives next to the code. Convention from
+          <a href="https://github.com/lossless-group/lossless-monorepo/tree/main/context-v" target="_blank" rel="noopener">lossless-monorepo/context-v</a>.
+        </p>
+      </header>
+
+      <div class="filter-stack">
+        <div class="filter-row">
+          <span class="filter-row__label mono">Source</span>
+          <div class="filters" id="source-filters" role="tablist" aria-label="Filter by source">
+            <button class="filter-pill is-active" data-filter="all" role="tab" aria-selected="true">
+              All <span class="filter-pill__count">{rows.length}</span>
+            </button>
+            {sourceFilters.map((opt) => (
+              <button
+                class="filter-pill"
+                data-filter={opt.slug}
+                role="tab"
+                aria-selected="false"
+                style={threadStyle(opt.slug)}
+              >
+                <span class="filter-pill__dot" aria-hidden="true"></span>
+                {opt.slug}
+                <span class="filter-pill__count">{opt.count}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {kindFilters.length > 0 && (
+          <div class="filter-row">
+            <span class="filter-row__label mono">Kind</span>
+            <div class="filters" id="kind-filters" role="tablist" aria-label="Filter by kind">
+              <button class="filter-pill is-active" data-kind="all" role="tab" aria-selected="true">
+                All
+              </button>
+              {kindFilters.map((opt) => (
+                <button class="filter-pill" data-kind={opt.kind} role="tab" aria-selected="false">
+                  {opt.kind} <span class="filter-pill__count">{opt.count}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {rows.length === 0 ? (
+        <div class="archive__empty"><p>No context-v entries discovered.</p></div>
+      ) : (
+        <ul class="entries" data-pagefind-ignore="all">
+          {rows.map((row) => (
+            <li class="entry" data-source={row.source} data-kind={row.contextKind ?? 'flat'}>
+              <div class="entry__meta">
+                <span class="from-tag mono" style={threadStyle(row.source)}>{row.source}</span>
+                {row.contextKind && <span class="entry__kind mono">{row.contextKind}</span>}
+                {row.date && <time class="entry__date mono" datetime={row.date.toISOString()}>{fmtDate(row.date)}</time>}
+                {row.status && <span class="pill mono" data-status={row.status}>{row.status}</span>}
+              </div>
+              <a class="entry__link" href={row.url}>
+                <h2 class="entry__title">{row.title}</h2>
+                {row.summary && <p class="entry__summary">{row.summary}</p>}
+              </a>
+              {row.tags.length > 0 && (
+                <div class="entry__tags">
+                  {row.tags.slice(0, 6).map((t) => <span class="tag mono">{t}</span>)}
+                  {row.tags.length > 6 && <span class="tag tag--more mono">+{row.tags.length - 6}</span>}
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  type Filters = { source: string; kind: string };
+  const state: Filters = { source: 'all', kind: 'all' };
+
+  function applyFilters() {
+    document.querySelectorAll<HTMLElement>('.entry').forEach((el) => {
+      const matchSource = state.source === 'all' || el.dataset.source === state.source;
+      const matchKind = state.kind === 'all' || el.dataset.kind === state.kind;
+      el.style.display = matchSource && matchKind ? '' : 'none';
+    });
+  }
+
+  function wireBar(barId: string, key: keyof Filters, attr: string) {
+    const bar = document.getElementById(barId);
+    if (!bar) return;
+    bar.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest(`button[data-${attr}]`) as HTMLButtonElement | null;
+      if (!btn) return;
+      state[key] = (btn.dataset[attr] as string) ?? 'all';
+      bar.querySelectorAll('button').forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      applyFilters();
+    });
+  }
+
+  wireBar('source-filters', 'source', 'filter');
+  wireBar('kind-filters', 'kind', 'kind');
+</script>
+
+<style>
+  .archive { padding: 3rem 0 5rem; }
+
+  .archive__head { margin-bottom: 2rem; }
+
+  .archive__title {
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    margin: 0.5rem 0 1rem;
+  }
+
+  .archive__lede {
+    font-size: 1.1rem;
+    color: var(--color-text-soft);
+    line-height: 1.65;
+    max-width: 65ch;
+  }
+  .archive__lede a {
+    color: var(--color-accent);
+    border-bottom: 1px solid color-mix(in oklab, var(--color-accent) 35%, transparent);
+  }
+
+  .archive__empty { padding: 3rem 0; color: var(--color-text-dim); text-align: center; }
+
+  .filter-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .filter-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .filter-row__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-faint);
+    padding-top: 0.45rem;
+    min-width: 56px;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--color-border-strong);
+    background: color-mix(in oklab, var(--color-text) 4%, transparent);
+    color: var(--color-text-soft);
+    border-radius: var(--radius-pill);
+    font-family: var(--font__mono);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+  }
+  .filter-pill__dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--from-thread, var(--thread__default));
+  }
+  .filter-pill__count { color: var(--color-text-dim); font-size: 0.7rem; }
+  .filter-pill:hover { color: var(--color-text); border-color: var(--color-border-accent); }
+  .filter-pill.is-active {
+    background: color-mix(in oklab, var(--from-thread, var(--color-accent)) 12%, transparent);
+    border-color: color-mix(in oklab, var(--from-thread, var(--color-accent)) 50%, transparent);
+    color: var(--from-thread, var(--color-accent));
+  }
+  .filter-pill.is-active .filter-pill__count { color: inherit; opacity: 0.85; }
+
+  .entries { display: flex; flex-direction: column; gap: 1rem; margin: 0; padding: 0; }
+
+  .entry {
+    padding: 1.25rem 1.5rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+  }
+  .entry:hover { border-color: var(--color-border-accent); transform: translateY(-1px); }
+
+  .entry__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+  }
+
+  .entry__kind {
+    color: var(--color-accent-soft);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .entry__date { color: var(--color-text-dim); font-size: 0.78rem; }
+
+  .entry__link { display: block; color: inherit; }
+
+  .entry__title {
+    font-family: var(--font__display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 0.4rem 0;
+    line-height: 1.35;
+  }
+  .entry__link:hover .entry__title { color: var(--color-accent); }
+
+  .entry__summary {
+    font-size: 0.95rem;
+    color: var(--color-text-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .entry__tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.85rem; }
+  .tag { font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 4px; background: color-mix(in oklab, var(--color-text) 4%, transparent); color: var(--color-text-dim); }
+  .tag--more { font-style: italic; }
+
+  @media (max-width: 600px) {
+    .entry { padding: 1rem 1.1rem; }
+    .entry__title { font-size: 1.05rem; }
+  }
+</style>

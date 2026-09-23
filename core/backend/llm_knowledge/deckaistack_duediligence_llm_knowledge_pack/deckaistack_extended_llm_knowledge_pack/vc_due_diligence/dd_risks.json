@@ -1,0 +1,34 @@
+{
+  "domain": "risks",
+  "classification_goal": "Extract and assess evidence for risks diligence from uploaded deck content.",
+  "evidence_types": [
+    "execution risk",
+    "market risk",
+    "funding risk",
+    "technical risk",
+    "regulatory risk",
+    "customer concentration"
+  ],
+  "questions": [
+    "What evidence supports execution risk?",
+    "What evidence supports market risk?",
+    "What evidence supports funding risk?",
+    "What evidence supports technical risk?",
+    "What evidence supports regulatory risk?"
+  ],
+  "risk_labels": [
+    "low",
+    "medium",
+    "high",
+    "unknown"
+  ],
+  "missing_evidence_policy": "If not present in deck, mark missing_evidence rather than infer.",
+  "output_fields": [
+    "claim",
+    "evidence_found",
+    "source_slide_ids",
+    "confidence",
+    "risk_level",
+    "recommended_follow_up"
+  ]
+}

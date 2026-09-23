@@ -1,0 +1,9 @@
+{
+  "company": {},
+  "marketSizing": {},
+  "competitors": [],
+  "industryTrends": "string|null",
+  "investmentThesis": {},
+  "risks": [],
+  "vcAssessment": {}
+}

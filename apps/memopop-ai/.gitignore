@@ -1,0 +1,71 @@
+# Node.js / Bun
+node_modules/
+.svelte-kit/
+.astro/
+dist/
+.vercel/
+
+# Bun
+bun.lockb
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment
+.env
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LangGraph checkpoints
+checkpoints/
+*.db
+
+# Generated outputs (memos and state files)
+output/
+output/*
+output/logs/
+
+
+exports/
+exports/*
+
+data/Secure-Inputs/*
+
+# graphify knowledge-graph output — rebuildable tool artifacts
+# (graph.json, HTML viz, and the extraction cache). Local only.
+graphify-out/

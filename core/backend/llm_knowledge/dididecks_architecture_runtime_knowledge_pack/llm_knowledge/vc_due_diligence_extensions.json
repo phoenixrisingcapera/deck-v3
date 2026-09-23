@@ -1,0 +1,47 @@
+{
+  "domains": [
+    "team",
+    "market",
+    "product",
+    "technology",
+    "competition",
+    "traction",
+    "financials",
+    "legal",
+    "governance",
+    "risks"
+  ],
+  "outputs": [
+    "missing_evidence",
+    "weak_claims",
+    "red_flags",
+    "diligence_questions",
+    "risk_register",
+    "ic_memo_inputs"
+  ],
+  "stage_specific_metrics": {
+    "seed": [
+      "founder_market_fit",
+      "early_users",
+      "why_now",
+      "market_size",
+      "technical_feasibility"
+    ],
+    "series_a": [
+      "ARR",
+      "growth_rate",
+      "retention",
+      "CAC",
+      "sales_cycle",
+      "pipeline"
+    ],
+    "growth": [
+      "NRR",
+      "gross_margin",
+      "burn_multiple",
+      "cohort_retention",
+      "rule_of_40",
+      "market_leadership"
+    ]
+  }
+}

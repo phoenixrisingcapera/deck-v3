@@ -1,0 +1,17 @@
+{
+  "formats": [
+    { "base": "public/ogimage__Id-Didi-Sh--Banner.jpg",     "out": "public/ogimage__Id-Didi-Sh--Banner.jpg" },
+    { "base": "public/ogimage__Id-Didi-Sh--BannerTall.jpg", "out": "public/ogimage__Id-Didi-Sh--BannerTall.jpg" },
+    { "base": "public/ogimage__Id-Didi-Sh--Default.jpg",    "out": "public/ogimage__Id-Didi-Sh--Default.jpg" },
+    { "base": "public/ogimage__Id-Didi-Sh--Portrait.jpg",   "out": "public/ogimage__Id-Didi-Sh--Portrait.jpg" },
+    { "base": "public/ogimage__Id-Didi-Sh--Square.jpg",     "out": "public/ogimage__Id-Didi-Sh--Square.jpg" }
+  ],
+  "text": {
+    "eyebrow": "DIDI.SH · ONE CREDENTIAL",
+    "h1": "One Login",
+    "note": "invite-only, no passwords"
+  },
+  "gradient": { "angle": 90, "stops": ["#4ecf95", "#d29a62", "#4fbfae"] },
+  "quality": 90,
+  "archive": true
+}

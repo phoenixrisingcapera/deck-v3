@@ -1,0 +1,29 @@
+{
+  "name": "memopop-ai",
+  "version": "0.0.2",
+  "private": true,
+  "description": "AI-powered investment memo generation - monorepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:site": "bun --filter memopop-site dev",
+    "dev:app": "bun --filter memopop-web-app dev",
+    "dev:native": "bun --filter memopop-native tauri dev",
+    "build:site": "bun --filter memopop-site build",
+    "build:app": "bun --filter memopop-web-app build",
+    "build:native": "bun --filter memopop-native tauri build",
+    "build": "bun run build:site && bun run build:app",
+    "lint": "bun --filter '*' lint",
+    "typecheck": "bun --filter '*' typecheck"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lossless-group/memopop-ai.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

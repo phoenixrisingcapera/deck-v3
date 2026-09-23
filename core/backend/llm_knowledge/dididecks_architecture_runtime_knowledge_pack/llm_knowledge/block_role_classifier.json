@@ -1,0 +1,74 @@
+{
+  "block_roles": [
+    {
+      "role": "headline",
+      "signals": [
+        "large font",
+        "top third",
+        "summarizes slide"
+      ],
+      "field_candidates": [
+        "problem.headline",
+        "solution.headline",
+        "company.tagline"
+      ]
+    },
+    {
+      "role": "metric",
+      "signals": [
+        "number",
+        "currency",
+        "percentage",
+        "K/M/B",
+        "YoY"
+      ],
+      "field_candidates": [
+        "metrics.arr",
+        "metrics.growth_rate",
+        "metrics.cac_payback"
+      ]
+    },
+    {
+      "role": "founder_identity",
+      "signals": [
+        "person name",
+        "title",
+        "LinkedIn",
+        "headshot"
+      ],
+      "field_candidates": [
+        "founder.ceo_name",
+        "founder.linkedin_profile",
+        "founder.bio"
+      ]
+    },
+    {
+      "role": "company_identity",
+      "signals": [
+        "company name",
+        "logo",
+        "URL"
+      ],
+      "field_candidates": [
+        "company.name",
+        "company.url",
+        "brand.logo_url"
+      ]
+    },
+    {
+      "role": "market_claim",
+      "signals": [
+        "TAM",
+        "SAM",
+        "SOM",
+        "market size",
+        "CAGR"
+      ],
+      "field_candidates": [
+        "market.tam",
+        "market.cagr",
+        "market.source"
+      ]
+    }
+  ]
+}

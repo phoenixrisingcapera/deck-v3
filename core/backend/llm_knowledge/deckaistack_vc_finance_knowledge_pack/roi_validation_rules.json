@@ -1,0 +1,45 @@
+{
+  "module": "roi_validation_rules",
+  "version": "0.1.0",
+  "requiredInputs": [
+    "buyer persona",
+    "baseline cost or revenue baseline",
+    "measurable improvement",
+    "implementation cost",
+    "time to value",
+    "payback period",
+    "customer evidence"
+  ],
+  "rules": [
+    {
+      "id": "roi_owner",
+      "principle": "ROI must specify who receives the benefit: buyer, user, department, enterprise, fund, or strategic acquirer.",
+      "redFlag": "ROI claim has no accountable beneficiary.",
+      "slideFix": "Add a buyer-specific ROI framing with the role that captures value."
+    },
+    {
+      "id": "baseline_required",
+      "principle": "ROI cannot be evaluated without a baseline.",
+      "redFlag": "Deck claims cost saving or productivity improvement without before/after baseline.",
+      "slideFix": "Show baseline cost/time/revenue leakage and the improved state."
+    },
+    {
+      "id": "implementation_cost",
+      "principle": "ROI must account for deployment, training, switching, and integration costs when relevant.",
+      "redFlag": "ROI claim ignores adoption or implementation cost.",
+      "slideFix": "Add implementation assumptions or soften to 'potential ROI'."
+    },
+    {
+      "id": "payback_period",
+      "principle": "B2B ROI is more credible when translated into payback period.",
+      "redFlag": "ROI is presented as a large percentage without time horizon.",
+      "slideFix": "Convert the ROI claim into a payback estimate with assumptions."
+    }
+  ],
+  "safeWording": [
+    "Current deck does not provide enough evidence to support this ROI claim.",
+    "Reframe as a hypothesis until baseline and customer evidence are provided.",
+    "Show the calculation path instead of only the headline percentage.",
+    "Request customer proof before using this claim in the investor version."
+  ]
+}

@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# corpus/ is collated from sources.md by the kit's local script. We commit
+# the collated copies because the splash (CI build → GitHub Pages) reads
+# from ../corpus and the source repos aren't present in the CI checkout.
+# Re-run the collator locally and commit the diff when sources change.
+corpus/.chroma/
+
+# Chroma persistent client data — local, regenerable from the corpus
+.chroma/
+
+# Graphiti ingest state — maps source_path → content sha256 so re-runs skip
+# entries already extracted. Local and regenerable, but deleting it means
+# paying for the whole extraction again. The graph itself lives in the
+# Docker volume declared by docker-compose.graphiti.yml.
+.graphiti-state/
+
+# Claude Code per-machine local settings (enabled MCP servers, etc.)
+.claude/

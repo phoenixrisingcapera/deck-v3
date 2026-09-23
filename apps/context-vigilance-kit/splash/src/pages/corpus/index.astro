@@ -1,0 +1,258 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SortControls from '@components/SortControls.astro';
+import { STATIC_SEO } from '@lib/seo';
+import { formatDate, toDate } from '@lib/date';
+import { deriveKind } from '@lib/kind';
+
+const all = await getCollection('corpus');
+const entries = all.filter((e) => (e.data as any).publish !== false && (e.data as any).private !== true);
+
+// Group by source_repo_slug — the natural unit of "which project this came from".
+// Brief explicitly says: "don't sort the catalog 'best first.' The disorder is
+// part of the proof." So within each repo we still server-pre-sort by
+// date_modified desc so SortControls' default reads correctly, but the *repo
+// order* is not curated — alpha-sorted, not by entry count.
+const byRepo = new Map<string, typeof entries>();
+for (const entry of entries) {
+  const slug = (entry.data as any).source_repo_slug ?? 'unknown';
+  if (!byRepo.has(slug)) byRepo.set(slug, []);
+  byRepo.get(slug)!.push(entry);
+}
+
+for (const arr of byRepo.values()) {
+  arr.sort((a, b) => {
+    const am = toDate((a.data as any).date_modified ?? (a.data as any).date_created);
+    const bm = toDate((b.data as any).date_modified ?? (b.data as any).date_created);
+    const ta = am ? am.getTime() : 0;
+    const tb = bm ? bm.getTime() : 0;
+    if (tb !== ta) return tb - ta;
+    return a.id < b.id ? -1 : 1;
+  });
+}
+
+const groups = Array.from(byRepo.entries()).sort(([a], [b]) => a.localeCompare(b));
+
+const totalDocs = entries.length;
+const totalRepos = groups.length;
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={STATIC_SEO.corpus.title} description={STATIC_SEO.corpus.description}>
+  <main class="page">
+    <div class="container">
+      <header class="page__header">
+        <p class="folio" data-num="§ 03">The Proof</p>
+        <h1>The corpus.</h1>
+        <p class="page__lede">
+          <strong>{totalDocs}</strong> living docs from <strong>{totalRepos}</strong> projects.
+          One small agency's actual work — specs, plans, prompts, blueprints, reminders,
+          agent-skills, explorations, issues; the experimental tier of loops, handoffs,
+          decisions, and contracts; and the long tail of habits, workflows, and journals
+          we haven't yet fit into the canonical taxonomy. <span class="highlight">Browse, search, steal what's useful.</span>
+        </p>
+        <p class="page__lede page__lede--soft">
+          Sorted by repo, then by most recently modified. Use the
+          <a href={`${base}search/`}>search page</a> to filter by kind, tag, or repo.
+        </p>
+      </header>
+
+      <SortControls
+        name="corpus"
+        defaultKey="modified"
+        defaultDirection="desc"
+        options={[
+          { key: 'modified', label: 'Modified' },
+          { key: 'created',  label: 'Created' },
+          { key: 'title',    label: 'Title' },
+          { key: 'repo',     label: 'Repo' },
+        ]}
+      />
+
+      {groups.map(([repo, items]) => (
+        <section class="repo-group">
+          <h2 class="repo-group__title">
+            <span class="repo-group__slug mono">{repo}</span>
+            <span class="repo-group__count mono">{items.length} {items.length === 1 ? 'doc' : 'docs'}</span>
+          </h2>
+          <ul class="entry-list" data-pagefind-ignore="all" data-sort-target="corpus">
+            {items.map((entry) => {
+              const data = entry.data as any;
+              const created = toDate(data.date_created);
+              const modified = toDate(data.date_modified);
+              const d = modified ?? created;
+              const title = (data.title ?? entry.id).toString().toLowerCase();
+              const kind = deriveKind(data.source_relative_path, entry.id);
+              const tags: string[] = data.tags || [];
+              return (
+                <li
+                  class="entry-list__item"
+                  data-sort-modified={modified ? modified.toISOString() : ''}
+                  data-sort-created={created ? created.toISOString() : ''}
+                  data-sort-title={title}
+                  data-sort-repo={repo.toLowerCase()}
+                >
+                  <a href={`${base}corpus/${entry.id}/`}>
+                    <div class="entry-list__meta mono">
+                      {d && <time datetime={d.toISOString()}>{formatDate(d)}</time>}
+                      <span class="entry-list__kind">{kind.label}</span>
+                      {data.status && (
+                        <span class="pill" data-status={data.status}>{data.status}</span>
+                      )}
+                    </div>
+                    <h3 class="entry-list__title">{data.title ?? entry.id}</h3>
+                    {(data.lede || data.description || data.summary) && (
+                      <p class="entry-list__lede">{data.lede || data.description || data.summary}</p>
+                    )}
+                    {tags.length > 0 && (
+                      <ul class="entry-list__tags" aria-label="Tags">
+                        {tags.map((t) => <li class="entry-list__tag">{t}</li>)}
+                      </ul>
+                    )}
+                    <div class="entry-list__path mono">{data.source_relative_path || entry.id}</div>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .page { padding: var(--space-12) 0 var(--space-16); }
+  .page__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-12);
+    max-width: 880px;
+  }
+  .page__header h1 {
+    font-size: clamp(2rem, 4.6vw, 3rem);
+    margin: var(--space-2) 0 var(--space-3);
+  }
+  .page__lede {
+    color: var(--color-text-soft);
+    font-size: 1.04rem;
+    line-height: 1.6;
+    max-width: 70ch;
+  }
+  .page__lede--soft {
+    color: var(--color-text-dim);
+    font-size: 0.92rem;
+  }
+  .page__lede strong { color: var(--color-text); font-weight: 600; }
+  .page__lede a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .repo-group { margin-bottom: var(--space-12); }
+  .repo-group__title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    font-family: var(--font__mono);
+    font-size: 0.84rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .repo-group__slug {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .repo-group__count {
+    color: var(--color-text-dim);
+    font-size: 0.74rem;
+  }
+
+  .entry-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .entry-list__item a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5) 0;
+    border-bottom: 1px dashed var(--color-border);
+    color: var(--color-text);
+    transition: padding-left var(--transition-fast);
+  }
+  .entry-list__item a:hover {
+    text-decoration: none;
+    padding-left: var(--space-3);
+  }
+  .entry-list__item a:hover .entry-list__title { color: var(--color-accent); }
+
+  .entry-list__meta {
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    color: var(--color-text-dim);
+  }
+  .entry-list__kind {
+    color: var(--color-thread);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .entry-list__title {
+    font-size: 1.1rem;
+    font-family: var(--font__display);
+    font-weight: 500;
+    margin: 0;
+    transition: color var(--transition-fast);
+    letter-spacing: -0.02em;
+  }
+  .entry-list__lede {
+    color: var(--color-text-soft);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 80ch;
+  }
+  .entry-list__path {
+    color: var(--color-text-faint);
+    font-size: 0.72rem;
+    overflow-wrap: anywhere;
+  }
+
+  .entry-list__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    list-style: none;
+    padding: 0;
+  }
+  .entry-list__tag {
+    font-family: var(--font__mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-dim);
+    padding: 2px 7px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: color-mix(in oklab, var(--color-text) 3%, transparent);
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .entry-list__item a:hover .entry-list__tag {
+    border-color: var(--color-border-strong);
+  }
+</style>

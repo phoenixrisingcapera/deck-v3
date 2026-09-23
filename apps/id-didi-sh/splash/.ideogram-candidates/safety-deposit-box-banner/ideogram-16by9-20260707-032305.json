@@ -1,0 +1,41 @@
+{
+  "created": "2026-07-07T08:23:05.908471+00:00",
+  "data": [
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains a vault wall lined with rows of brass deposit boxes, one open box in the foreground spilling gold coins and diamonds, a key in the lock.",
+      "resolution": "1312x736",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/-OugqWdyW2CcwYK6Y5KFdg.png?exp=1783499003&sig=507f912c08cb3e9c96ff89d2960d07c96c83feff013711fbe59d12bba757871b"
+    },
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains a vault wall lined with rows of brass deposit boxes, one open box in the foreground spilling gold coins and diamonds, a key in the lock.",
+      "resolution": "1312x736",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/31gW1BMGWFqhg1iLT4jvXA.png?exp=1783499003&sig=d6c9897d234acd5a2c61154d089486c690a582ceec3ae898954a6f857d6d05be"
+    },
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains a vault wall lined with rows of brass deposit boxes, one open box in the foreground spilling gold coins and diamonds, a key in the lock.",
+      "resolution": "1312x736",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/7cLIZJViUsK7zC7UWECKrA.png?exp=1783499003&sig=c3cc1a43214539844241aa9b04d1251ec8d5f2ff8717fb0938aa0e888a43699a"
+    },
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains a vault wall lined with rows of brass deposit boxes, one open box in the foreground spilling gold coins and diamonds, a key in the lock.",
+      "resolution": "1312x736",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/Mo6KvwAKVxKQOtw3zdGqEw.png?exp=1783499003&sig=8e13bd8fd8b509eb5377da0742b451ea5c33ba6b9e471da51b9c0bb9aafeaa76"
+    }
+  ]
+}

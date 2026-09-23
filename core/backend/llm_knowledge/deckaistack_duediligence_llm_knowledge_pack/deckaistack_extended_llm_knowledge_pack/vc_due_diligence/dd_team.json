@@ -1,0 +1,33 @@
+{
+  "domain": "team",
+  "classification_goal": "Extract and assess evidence for team diligence from uploaded deck content.",
+  "evidence_types": [
+    "founder-market fit",
+    "execution history",
+    "hiring gaps",
+    "reference quality",
+    "decision speed"
+  ],
+  "questions": [
+    "What evidence supports founder-market fit?",
+    "What evidence supports execution history?",
+    "What evidence supports hiring gaps?",
+    "What evidence supports reference quality?",
+    "What evidence supports decision speed?"
+  ],
+  "risk_labels": [
+    "low",
+    "medium",
+    "high",
+    "unknown"
+  ],
+  "missing_evidence_policy": "If not present in deck, mark missing_evidence rather than infer.",
+  "output_fields": [
+    "claim",
+    "evidence_found",
+    "source_slide_ids",
+    "confidence",
+    "risk_level",
+    "recommended_follow_up"
+  ]
+}

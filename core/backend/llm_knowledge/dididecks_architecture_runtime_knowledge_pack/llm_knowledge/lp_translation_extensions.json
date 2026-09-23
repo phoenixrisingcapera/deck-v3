@@ -1,0 +1,27 @@
+{
+  "lp_questions": [
+    "Can this company return the fund?",
+    "What is the downside risk?",
+    "How much follow-on capital will be required?",
+    "What is the liquidity path?",
+    "How does this fit portfolio construction?"
+  ],
+  "metrics": [
+    "DPI",
+    "TVPI",
+    "IRR",
+    "MOIC",
+    "follow_on_reserves",
+    "ownership",
+    "exit_path",
+    "concentration_risk"
+  ],
+  "outputs": [
+    "lp_summary",
+    "fund_return_potential",
+    "portfolio_fit",
+    "liquidity_risk",
+    "follow_on_pressure",
+    "lp_concern_language"
+  ]
+}

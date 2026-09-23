@@ -1,0 +1,1 @@
+{"module":"image_policy","rules":[{"id":"image.argument","when":"image selected","require":"advance the investment argument"},{"id":"image.generated_not_evidence","when":"generated image","forbid":"use as factual evidence"},{"id":"image.reuse","when":"source asset","require":"bounded purposeful reuse"}]}

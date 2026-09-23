@@ -1,0 +1,51 @@
+diagnostics:
+  hallucination_rules:
+    - rule_id: "do_not_generate_fake_traction"
+      applies_to:
+        - "traction"
+        - "market-size"
+        - "business-model"
+        - "ask"
+      rule: "If traction metrics are missing, do not invent revenue, users, customers, pilots, LOIs, growth rate, retention, or pipeline."
+      fallback: "Return missing_inputs and suggest acceptable proof types."
+    - rule_id: "do_not_generate_fake_regulatory_claims"
+      applies_to:
+        - "regulatory-tailwinds"
+        - "why-now"
+      rule: "Do not claim a regulatory approval, mandate, enforcement action, or policy deadline unless present in source context."
+      fallback: "Frame as a possible regulatory angle and request source evidence."
+    - rule_id: "do_not_generate_fake_fund_returns"
+      applies_to:
+        - "track-record"
+        - "recent-exits"
+        - "portfolio-construction"
+      rule: "Do not invent MOIC, DPI, IRR, exit values, portfolio company names, or attribution."
+      fallback: "Use a missing-input warning and request verified fund data."
+  smart_edit_rules:
+    - rule_id: "preserve_meaning"
+      rule: "A Smart Edit may improve clarity, tone, and structure, but it must not silently change facts."
+      risk_level: "high when the edit changes numbers, names, legal claims, or causal claims"
+    - rule_id: "explain_investor_value"
+      rule: "Every Smart Edit reason should explain how the edit helps investor, LP, buyer, or operator understanding."
+    - rule_id: "surface_missing_evidence"
+      rule: "If an edit needs proof that is absent, mention the missing input rather than adding the proof."
+  missing_evidence_rules:
+    - evidence_type: "customer proof"
+      acceptable_sources:
+        - "named customer"
+        - "logo permission"
+        - "case study"
+        - "quote"
+        - "usage data"
+    - evidence_type: "market proof"
+      acceptable_sources:
+        - "bottom-up market model"
+        - "customer segment count"
+        - "pricing assumption"
+        - "third-party source named in deck"
+    - evidence_type: "fund proof"
+      acceptable_sources:
+        - "realized exits"
+        - "attribution note"
+        - "portfolio construction model"
+        - "pipeline stage evidence"

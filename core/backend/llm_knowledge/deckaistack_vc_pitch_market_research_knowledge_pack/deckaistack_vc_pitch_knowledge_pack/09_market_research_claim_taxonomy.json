@@ -1,0 +1,197 @@
+{
+  "purpose": "Classify market-research claims found in pitch decks so DeckAiStack can verify, enrich, or challenge them.",
+  "claim_types": [
+    {
+      "id": "tam_claim",
+      "label": "TAM / Total Addressable Market",
+      "signals": [
+        "$bn market",
+        "global market",
+        "total addressable",
+        "overall spend",
+        "market opportunity"
+      ],
+      "needs_verification": [
+        "currency",
+        "year",
+        "geography",
+        "source",
+        "method: top-down/bottom-up/value-theory"
+      ]
+    },
+    {
+      "id": "sam_claim",
+      "label": "SAM / Serviceable Available Market",
+      "signals": [
+        "served market",
+        "reachable market",
+        "target geography",
+        "initial segment",
+        "beachhead market"
+      ],
+      "needs_verification": [
+        "segment definition",
+        "geography",
+        "buyer type",
+        "pricing assumption",
+        "source"
+      ]
+    },
+    {
+      "id": "som_claim",
+      "label": "SOM / Serviceable Obtainable Market",
+      "signals": [
+        "capture",
+        "penetration",
+        "obtainable",
+        "3-year share",
+        "realistic share"
+      ],
+      "needs_verification": [
+        "time horizon",
+        "sales capacity",
+        "go-to-market constraints",
+        "competitive intensity",
+        "conversion assumptions"
+      ]
+    },
+    {
+      "id": "market_growth_claim",
+      "label": "Market growth / CAGR",
+      "signals": [
+        "CAGR",
+        "growing at",
+        "projected to reach",
+        "forecast",
+        "by 2030"
+      ],
+      "needs_verification": [
+        "start year",
+        "end year",
+        "base value",
+        "forecast source",
+        "whether nominal or real"
+      ]
+    },
+    {
+      "id": "competitor_claim",
+      "label": "Competitor landscape",
+      "signals": [
+        "competitors",
+        "alternatives",
+        "incumbents",
+        "versus",
+        "differentiation",
+        "competitive map"
+      ],
+      "needs_verification": [
+        "direct competitors",
+        "indirect alternatives",
+        "incumbent workflow",
+        "pricing",
+        "positioning",
+        "evidence of advantage"
+      ]
+    },
+    {
+      "id": "customer_segment_claim",
+      "label": "Customer segment / buyer definition",
+      "signals": [
+        "target customers",
+        "ICP",
+        "enterprise buyers",
+        "SMBs",
+        "VCs",
+        "operators",
+        "founders"
+      ],
+      "needs_verification": [
+        "buyer role",
+        "budget owner",
+        "pain urgency",
+        "existing spend",
+        "adoption blocker"
+      ]
+    },
+    {
+      "id": "market_timing_claim",
+      "label": "Market timing / why now",
+      "signals": [
+        "why now",
+        "regulation",
+        "AI adoption",
+        "platform shift",
+        "cost compression",
+        "new data availability"
+      ],
+      "needs_verification": [
+        "trigger event",
+        "date",
+        "durability",
+        "evidence that timing changes buying behaviour"
+      ]
+    },
+    {
+      "id": "regulatory_claim",
+      "label": "Regulatory / compliance driver",
+      "signals": [
+        "regulation",
+        "compliance",
+        "mandate",
+        "GDPR",
+        "SEC",
+        "FCA",
+        "EU AI Act"
+      ],
+      "needs_verification": [
+        "jurisdiction",
+        "effective date",
+        "obligation",
+        "penalty/risk",
+        "source"
+      ]
+    },
+    {
+      "id": "spend_claim",
+      "label": "Budget/spend pool",
+      "signals": [
+        "spend",
+        "budget",
+        "software spend",
+        "manual hours",
+        "cost of delay",
+        "headcount cost"
+      ],
+      "needs_verification": [
+        "unit economics",
+        "buyer budget category",
+        "current spend alternative",
+        "source"
+      ]
+    },
+    {
+      "id": "trend_claim",
+      "label": "Trend / macro driver",
+      "signals": [
+        "trend",
+        "shift",
+        "tailwind",
+        "adoption",
+        "AI-native",
+        "remote",
+        "automation"
+      ],
+      "needs_verification": [
+        "data source",
+        "measurable adoption",
+        "market impact",
+        "not just narrative"
+      ]
+    }
+  ],
+  "confidence_rules": {
+    "high": "Claim has number, year, geography, named source, and method.",
+    "medium": "Claim has number and some context but source or method is weak.",
+    "low": "Claim is generic, unsourced, outdated, or uses vague words like massive/huge/disruptive without evidence."
+  }
+}

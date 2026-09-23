@@ -1,0 +1,10 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+  - 'services/*'
+  - 'shell'
+  - 'e2e'
+allowBuilds:
+  core-js: set this to true or false
+  esbuild: set this to true or false
+  svelte-preprocess: set this to true or false

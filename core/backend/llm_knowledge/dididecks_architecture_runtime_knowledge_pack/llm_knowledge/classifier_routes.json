@@ -1,0 +1,47 @@
+{
+  "route_classification": [
+    {
+      "route": "/dashboard",
+      "classification": "saas_overview",
+      "not_for": [
+        "editor",
+        "smart_edit",
+        "rebuild"
+      ]
+    },
+    {
+      "route": "/decks/[deckId]/editor",
+      "classification": "interactive_block_editor",
+      "requires": [
+        "slide_selection",
+        "block_selection",
+        "inspector"
+      ]
+    },
+    {
+      "route": "/decks/[deckId]/map",
+      "classification": "persistent_field_map",
+      "requires": [
+        "slides",
+        "fields",
+        "field_usages"
+      ]
+    },
+    {
+      "route": "/decks/[deckId]/smart-edit",
+      "classification": "persistent_field_editing",
+      "requires": [
+        "editable_fields",
+        "preview_changes"
+      ]
+    },
+    {
+      "route": "/decks/[deckId]/rebuild",
+      "classification": "apply_and_rebuild_workflow",
+      "requires": [
+        "change_request",
+        "rebuild_job"
+      ]
+    }
+  ]
+}

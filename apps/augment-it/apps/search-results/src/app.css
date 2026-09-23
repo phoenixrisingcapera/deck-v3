@@ -1,0 +1,152 @@
+/* search-results — scoped srq-* rail styles. Theme tokens with literal
+   fallbacks, same discipline as search-and-add's saa-*. The surface is a
+   narrow right rail — everything stacks, nothing assumes width. */
+
+.srq-app {
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  color: var(--color-text, #e7e7e7);
+  padding: 0.5rem 0.75rem 2rem;
+  height: 100%;
+  /* The RAIL no longer scrolls; the layout's rows region does. That is what
+     makes the header stay put with no `position: sticky` at all — the old
+     recipe's sticky/top/z-index/background existed only because the app was
+     the scroller. Rung 0: the parent places its one child. */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+.srq-app > * { flex: 1; min-height: 0; }
+
+/* The four `<list> > *` guards are GONE. They existed because every list was
+   `display: grid`, and a grid item's min-width:auto is content-based in the
+   inline axis — a long nowrap title pushed the card wider than the rail.
+   ListContainer's rows region is flex-column, where min-width:auto resolves to
+   0 on the cross axis, so the guard has nothing left to do. Only the card body,
+   which is not a list child, still needs it. */
+.srq-card-body {
+  min-width: 0;
+}
+
+/* .srq-header is GONE — display, align-items, gap and padding are
+   ListContainer's __header. Its position:sticky / top / z-index / background
+   are gone too, and NOT replaced by `stickyHeader`: the rail stopped being the
+   scroll container (see .srq-app above), so the header is pinned structurally.
+   The one declaration with no home is `border-bottom`; see the report. */
+/* Rung 0 — placement inside the header's wrapping flex, not spacing. */
+.srq-header-line { flex-basis: 100%; }
+.srq-title { font-size: 0.95rem; margin: 0; }
+.srq-running-note { color: var(--color-text-muted, #9aa0aa); font-size: 0.72rem; }
+.srq-right { margin-left: auto; display: inline-flex; gap: 0.4rem; align-items: center; }
+
+.srq-empty { color: var(--color-text-muted, #9aa0aa); font-size: 0.8rem; line-height: 1.4; }
+
+/* the queue */
+/* .srq-list is GONE — list-style, margin, padding, display and gap are the
+   whole of ListContainer's rows region at gap="sm". */
+/* .srq-card is GONE ENTIRELY — border, radius, background, overflow AND the
+   two status-* border-colour rules. CardRow draws the card, its `tone` prop
+   carries the done/failed edge, and `as="li"` means there is no wrapper <li>
+   left to carry a class. This member now declares ZERO deviations. */
+
+/* The card's two regions are stacked by CardRow's own direction="column" — the
+   rung-0 wrapper this member briefly carried is deleted (two members wrote the
+   same wrapper; it became the prop).
+   position: relative is LOAD-BEARING: ClickBody's overlay covers its nearest
+   POSITIONED ancestor, so anchoring it here instead of on the CardRow keeps
+   "click anywhere to expand" on the collapsed row and off the expanded body. */
+.srq-card-top { position: relative; display: flex; align-items: stretch; min-width: 0; }
+.srq-card-top:hover { background: color-mix(in srgb, var(--color-border-strong) 40%, transparent); border-radius: var(--radius-sm); }
+/* The wrapping line. ClickBody is inline-flex with align-items:baseline and no
+   flex-wrap, so the chip/org/status group wraps here instead. The padding,
+   border, radius, background and control reset the old .srq-card-row recipe
+   hand-rolled are all CardRow's and ClickBody's now. */
+.srq-card-line { display: flex; align-items: center; gap: var(--space-xs); flex: 1; min-width: 0; flex-wrap: wrap; padding: var(--space-2xs) 0; }
+/* the per-card controls column: × (dismiss this search) above the expand caret.
+   Both are size="icon" Buttons — 28px, clearing the WCAG 2.2 2.5.8 target floor.
+   position: relative is the documented contract: it lifts the whole subtree
+   above ClickBody's overlay. A member cannot put position on a Button directly
+   without reaching into .ui-btn, so the wrapper IS the sanctioned remedy. */
+.srq-card-side { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 0.15rem; flex-shrink: 0; }
+/* Rung 0 — slots, not deviations. Each carries ONLY the placement declaration
+   its deleted recipe used to hold (the target label must not shrink inside the
+   card row's wrapping flex; the kind label keeps its inline offset). Chip
+   declares neither `flex` nor `margin`, so nothing the component owns is being
+   overridden. */
+.srq-chip-slot { display: inline-flex; flex: 0 0 auto; }
+.srq-kind-slot { margin-left: 0.4rem; }
+.srq-org { font-size: 0.84rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.srq-status { font-size: 0.72rem; color: var(--color-text-muted, #9aa0aa); display: inline-flex; align-items: center; gap: 0.3rem; font-variant-numeric: tabular-nums; }
+.srq-typical { opacity: 0.75; }
+.srq-status-done { color: var(--color-ok-text, #6ee7a8); }
+.srq-status-failed { color: var(--color-error-text, #f3a3a3); }
+
+/* the arrival signal — a soft pulse on done cards */
+.srq-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--color-ok-text, #6ee7a8); animation: srq-pulse 2s ease-in-out infinite; }
+@keyframes srq-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .srq-dot { animation: none; }
+}
+
+.srq-card-body { padding-top: var(--space-sm); border-top: 1px solid var(--color-border-strong); }
+.srq-progress { color: var(--color-text-muted, #9aa0aa); font-size: 0.76rem; }
+.srq-note { color: var(--color-text-muted, #9aa0aa); font-size: 0.74rem; line-height: 1.35; margin: 0.35rem 0; }
+/* `.srq-note a` DELETED — it existed to colour the one source-URL link in
+   this paragraph, which is now an ExternalLink that brings its own colour. A
+   descendant `a` selector left behind here would style any future link the
+   component was supposed to own. */
+.srq-card-actions { display: flex; gap: 0.4rem; align-items: center; margin-top: 0.55rem; flex-wrap: wrap; }
+.srq-confirm { font-size: 0.74rem; color: var(--color-text-muted, #9aa0aa); display: inline-flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+
+/* links/streams accept rows */
+/* .srq-results is GONE — ListContainer, gap="xs". */
+/* .srq-row is GONE — display/gap/align-items/border/radius/background/padding
+   are the whole of CardRow's base recipe at density="compact". */
+.srq-row-main { min-width: 0; flex: 1; }
+/* .srq-row-title is GONE — every declaration was ExternalLink's base recipe
+   hand-copied: link colour, underline-on-hover, and the
+   overflow/ellipsis/nowrap triplet. `font-size: 0.82rem` went too rather than
+   moving to a rung-0 wrapper; the component says `font-size: inherit` so that
+   the row owns type, and 0.82rem was a raw value against the seven-step scale.
+   The title now reads at the row's size — larger than before, and correct
+   hierarchy against the 0.68rem host beside it. */
+.srq-row-host { color: var(--color-text-muted, #9aa0aa); font-size: 0.68rem; margin-left: 0.4rem; }
+.srq-row-name { color: var(--color-text-muted, #cfd3da); font-size: 0.72rem; margin-left: 0.4rem; }
+.srq-row-snippet { margin: 0.2rem 0 0; font-size: 0.72rem; color: var(--color-text-muted, #b7bcc5); line-height: 1.35; overflow-wrap: anywhere; }
+
+/* team accept rows */
+/* .srq-staged-list is GONE — ListContainer, gap="xs". */
+/* .srq-staged-row is GONE — border/radius/background/padding are CardRow's,
+   and the column stack is its direction="column". */
+.srq-staged-main { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
+.srq-person-name { font-size: 0.82rem; font-weight: 600; }
+.srq-person-role { color: var(--color-text-muted, #9aa0aa); font-size: 0.72rem; }
+/* .srq-url is GONE. These were the "linkedin" / "bio" links in the staged-person
+   row — 0.7rem type with no padding, so their whole hit target was the height
+   of one 11px line. They are ExternalLinks with `noTruncate` now (short labels
+   in a wide wrapping row), which means they inherit `min-block-size:
+   var(--control-h-sm)` and clear the 24px floor by declaration instead of by
+   luck. */
+/* flex-wrap: <Button> is white-space:nowrap, so the gate's long label cannot
+   shrink inside a narrow rail. */
+.srq-staged-actions { margin-left: auto; display: inline-flex; gap: 0.35rem; align-items: center; flex-wrap: wrap; }
+.srq-busy { color: var(--color-text-muted, #9aa0aa); font-size: 0.72rem; }
+.srq-headline { margin: 0.25rem 0 0; font-size: 0.72rem; color: var(--color-text-muted, #b7bcc5); line-height: 1.35; }
+
+/* the candidate gate */
+.srq-gate { margin-top: 0.45rem; border-top: 1px dashed var(--color-border, #2a2c33); padding-top: 0.4rem; }
+.srq-gate-note { font-size: 0.72rem; color: var(--color-text-muted, #9aa0aa); margin: 0 0 0.3rem; }
+/* .srq-gate-list is GONE — ListContainer, gap="2xs". */
+/* .srq-gate-pick is GONE — CardRow draws the card and ClickBody is the control.
+   All that survives is the three-line stack; the border, radius, background,
+   padding, control reset and hover cue it used to hand-roll belong to the
+   components now. */
+.srq-gate-pick-stack { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3xs); flex: 1; min-width: 0; font-size: var(--text-meta); }
+.srq-gate-headline { color: var(--color-text-muted, #9aa0aa); }
+.srq-gate-score { color: var(--color-text-muted, #9aa0aa); font-size: 0.66rem; }
+
+.srq-error { color: var(--color-error-text, #f3a3a3); font-size: 0.74rem; margin-top: 0.3rem; }

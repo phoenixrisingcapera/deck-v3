@@ -1,0 +1,41 @@
+{
+  "purpose": "Classify competitor information in pitch decks and identify gaps.",
+  "competitor_types": [
+    "direct_product_competitor",
+    "indirect_workflow_competitor",
+    "incumbent_platform",
+    "manual_process",
+    "agency_or_consultant",
+    "open_source_alternative",
+    "internal_build",
+    "do_nothing"
+  ],
+  "comparison_dimensions": [
+    "target_customer",
+    "core_job_to_be_done",
+    "pricing_model",
+    "deployment_model",
+    "AI_depth",
+    "data_access",
+    "workflow_integration",
+    "security_compliance",
+    "time_to_value",
+    "switching_cost",
+    "evidence_quality"
+  ],
+  "red_flags": [
+    "Only compares against weak/no-name competitors",
+    "Ignores Excel/manual workflow as competitor",
+    "Claims no competitors",
+    "Uses 2x2 matrix with vague axes",
+    "No pricing or buyer context",
+    "Differentiation is feature-based not outcome-based"
+  ],
+  "good_outputs": [
+    "competitor table",
+    "alternative workflow map",
+    "positioning statement",
+    "defensible wedge",
+    "why customer switches now"
+  ]
+}

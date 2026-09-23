@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "classifier_strategy": "Do not rely only on title. Combine title text, text semantics, layout, numbers, visuals, nearby labels, and deck position.",
+  "rules": [
+    {
+      "rule_id": "title_is_weak_signal",
+      "description": "A title can be creative or missing. Use it as one signal, not the answer.",
+      "weight": "medium"
+    },
+    {
+      "rule_id": "deck_position_prior",
+      "description": "Early slides are more likely cover/problem/solution/market; middle slides are more likely product/GTM/traction; later slides are more likely team/financials/ask/appendix.",
+      "weight": "low_to_medium"
+    },
+    {
+      "rule_id": "numbers_change_meaning",
+      "description": "Currency totals + market labels suggest market; currency + runway/allocation suggests fundraising ask; currency + ARR/MRR suggests traction or financials.",
+      "weight": "high"
+    },
+    {
+      "rule_id": "logos_change_meaning",
+      "description": "Logo grid can mean customers, partners, competitors, investors, or previous employers. Determine by nearby labels and slide intent.",
+      "weight": "high"
+    },
+    {
+      "rule_id": "screenshot_context",
+      "description": "Screenshots alone suggest product demo, but annotations about time saved or risk reduced may make value proposition the dominant archetype.",
+      "weight": "medium"
+    },
+    {
+      "rule_id": "quote_context",
+      "description": "Quotes can be customer insight, traction, or case study depending on whether they reveal pain, validate demand, or describe measured outcome.",
+      "weight": "medium"
+    },
+    {
+      "rule_id": "ambiguous_market_vs_problem",
+      "description": "If the slide describes industry inefficiency without sizing numbers, classify as problem or market_context, not market_size.",
+      "weight": "high"
+    },
+    {
+      "rule_id": "traction_vs_financials",
+      "description": "Historical revenue/user/customer metrics are traction. Forward-looking projections are financials unless tied to use of funds.",
+      "weight": "high"
+    },
+    {
+      "rule_id": "competition_vs_moat",
+      "description": "Named alternatives and comparison tables are competition. Compounding advantages/data/network effects are moat.",
+      "weight": "high"
+    },
+    {
+      "rule_id": "ask_vs_roadmap",
+      "description": "Roadmap becomes fundraising_ask when raise amount, runway, and use of funds are present.",
+      "weight": "high"
+    }
+  ],
+  "confidence_guidance": {
+    "high": "multiple semantic and visual signals agree; key block roles are present",
+    "medium": "some signals agree but alternatives plausible",
+    "low": "mostly title-based, sparse text, or conflicting signals"
+  },
+  "required_output_fields": [
+    "slide_archetype",
+    "confidence",
+    "evidence_signals",
+    "alternative_archetypes",
+    "block_roles",
+    "missing_information",
+    "rewrite_recommendations"
+  ]
+}

@@ -1,0 +1,272 @@
+/*
+ * enhanced-records-list styles. Side-effect import from mount.ts + index.ts.
+ * All selectors namespaced under .erl-app so they can't leak into the
+ * shell or sibling remotes.
+ *
+ * Tokens (--color-*, --space-*, --radius-*) come from @augment-it/theme.
+ */
+
+.erl-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: var(--font-sans, system-ui);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: 13px;
+}
+
+.erl-app .erl-status {
+  padding: 0.4rem 0.8rem;
+  font-size: 11px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+.erl-app .erl-status strong { color: var(--color-text); font-weight: 500; }
+
+.erl-app .erl-parent-picker {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 12px;
+}
+.erl-app .erl-parent-picker select {
+  background: var(--color-field, var(--color-bg));
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font: inherit;
+}
+
+/* --- Filter chip row --- */
+.erl-app .erl-filters {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.erl-app .filter-row-note {
+  font-size: 10px;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin-left: auto;
+}
+
+/* --- Table ---
+ *
+ * LEFT RAW ON PURPOSE. CardRow does NOT apply here, and this note exists so the
+ * next sweep does not re-run the experiment. Measured 2026-09-13 in a throwaway
+ * probe, three treatments of the same four-column row:
+ *
+ *   A  real <tr>/<td>                 31.7px tall; cells at x = 16 / 369.6 / 950.1 / 1165
+ *   B  <CardRow> inside <tbody>       renders WITHOUT ERROR at 710.5px inside a
+ *                                     1248px table — narrower than its own header,
+ *                                     aligned to no column
+ *   C  <CardRow> in a colspan <td>    36.8px card in a 51.1px row (+61% vertical),
+ *                                     children at x = 38.6 / 167.3 / 334.9 / 411.3
+ *                                     against headers at 16 / 369.6 / 950.1 / 1165
+ *
+ * B does not throw and C looks plausible, which is the dangerous part: the table
+ * header becomes a caption for columns that no longer exist. A <tr> cannot take
+ * padding or border-radius under border-collapse, and a flex row sizes children
+ * to CONTENT while a table sizes them to a shared COLUMN — and this member's
+ * column count is derived at runtime from the union of every enrichment set's
+ * keys, so there is no fixed grid to hand-hold either.
+ *
+ * Per the override ladder's own rule — if the override would NEGATE the base
+ * recipe rather than adjust it, it is a different organ — the table row is a
+ * different organ. What is missing is a DataTable / TableRow, not a CardRow
+ * variant. Raised, not chased.
+ *
+ * The per-row checkbox below is the other half. It measured 13x13 (54% of the
+ * WCAG 2.2 SC 2.5.8 floor) until 2026-09-13, when it adopted
+ * SelectWrapper--Checkbox and became 24x24 inside a 28px label. It is still
+ * `disabled` pending v0.0.2 — sized now, operable later — so the target it
+ * presents is correct before the behaviour that needs it exists.
+ *
+ * `density="compact"`: this is a 12px-font table and the label's default 28px
+ * floor set the ROW height, not the cell's. Compact drops the floor to the 24px
+ * box; the control itself never goes below 24px in either density.
+ */
+.erl-app .erl-table-wrap {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+.erl-app .erl-empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+.erl-app .erl-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.erl-app .erl-table th,
+.erl-app .erl-table td {
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+.erl-app .erl-table th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface-raised, var(--color-bg));
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid var(--color-border);
+  z-index: 1;
+}
+.erl-app .erl-table tr:hover td {
+  background: var(--color-field, transparent);
+}
+/* The column is sized to the control, not the other way round: a 24px
+   SelectWrapper--Checkbox plus the table cell's own 0.6rem inline padding.
+   The prior raw 28px predated the 24px target floor and would have clipped.
+
+   `line-height: 0` is RUNG 0 and it is worth more than `density="compact"` was.
+   Measured, per row: 34.7px with the old 13x13 input -> 44.7px comfortable ->
+   42.7px compact -> 37.3px with the strut removed. The label is inline-level, so
+   the cell's line box was reserving ~5.4px of leading for text this cell never
+   contains — it holds the checkbox and nothing else. Compact recovered 2px of
+   the 10; this recovers 5.4 more, leaving +2.6px as the honest price of a
+   control that is 24px instead of 13px. */
+.erl-app .col-check {
+  width: calc(var(--control-h-sm) + var(--space-md) * 2);
+  line-height: 0;
+}
+.erl-app .col-identity {
+  font-weight: 500;
+  max-width: 24em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.erl-app .col-enriched {
+  max-width: 28em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+/* Removed: helpful_links special rendering (now generic JSON via formatCell) */
+.erl-app .col-origin {
+  width: 9em;
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+/* --- Bottom action bar --- */
+.erl-app .erl-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-raised, var(--color-bg));
+}
+.erl-app .erl-note {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+.erl-app .erl-error {
+  font-size: 11px;
+  color: var(--color-warn-fg);
+  font-family: var(--font-mono, monospace);
+}
+
+/* --- Success banner — celebratory, prominent, with the canonical name front-and-center --- */
+.erl-app .erl-success-banner {
+  margin: 0.6rem 0.8rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-accent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent) 14%, transparent),
+    color-mix(in srgb, var(--color-accent) 4%, transparent)
+  );
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  animation: erl-success-pop 0.35s ease-out;
+}
+@keyframes erl-success-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.erl-app .success-icon {
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.erl-app .success-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  flex: 1;
+}
+.erl-app .success-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+.erl-app .success-name {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: break-all;
+  line-height: 1.35;
+}
+.erl-app .success-meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.erl-app .success-meta strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+.erl-app .success-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  flex-wrap: wrap;
+}
+.erl-app .success-howto {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-top: 0.3rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--color-border);
+}
+.erl-app .success-howto strong {
+  color: var(--color-accent);
+}

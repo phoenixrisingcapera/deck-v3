@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeckBlock",
+  "type": "object",
+  "required": [
+    "id",
+    "deck_id",
+    "slide_id",
+    "variant_id",
+    "block_key",
+    "block_type",
+    "content_json",
+    "style_json",
+    "position_json"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "deck_id": {
+      "type": "string"
+    },
+    "slide_id": {
+      "type": "string"
+    },
+    "variant_id": {
+      "type": "string"
+    },
+    "block_key": {
+      "type": "string"
+    },
+    "block_type": {
+      "enum": [
+        "text",
+        "image",
+        "shape",
+        "chart",
+        "table",
+        "metric",
+        "logo",
+        "icon",
+        "video",
+        "embed",
+        "card"
+      ]
+    },
+    "content_json": {
+      "type": "object"
+    },
+    "style_json": {
+      "type": "object"
+    },
+    "position_json": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "rotation": {
+          "type": "number"
+        }
+      }
+    },
+    "data_binding_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "is_locked": {
+      "type": "boolean"
+    },
+    "is_generated": {
+      "type": "boolean"
+    }
+  }
+}

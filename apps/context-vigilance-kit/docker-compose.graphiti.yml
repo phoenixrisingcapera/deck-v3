@@ -1,0 +1,53 @@
+# docker-compose.graphiti.yml — Neo4j backing store for the Graphiti
+# temporal knowledge graph over the Lossless changelog rollup.
+#
+# This is deliberately separate from anything Chroma-related. Chroma is an
+# embedded PersistentClient in .chroma/ and needs no server; Graphiti needs
+# a real graph database. The two indexes coexist and answer different
+# questions — see context-v/explorations/Graphiti-Over-The-Lossless-Corpus.md.
+#
+#   docker compose -f docker-compose.graphiti.yml up -d
+#   open http://localhost:7474        # browser UI, log in with the creds below
+#   docker compose -f docker-compose.graphiti.yml down        # keeps the volume
+#   docker compose -f docker-compose.graphiti.yml down -v     # nukes the graph
+#
+# Neo4j is the reference backend for graphiti-core. We pinned it over
+# FalkorDB because Graphiti's Neo4j driver keeps Lucene fulltext semantics
+# (8000-token queries) where the FalkorDB driver degrades to an OR-joined
+# RediSearch query capped at 128 tokens.
+
+services:
+  neo4j:
+    image: neo4j:5.26-community
+    container_name: cvk-graphiti-neo4j
+    ports:
+      - "7474:7474"   # HTTP — Neo4j Browser
+      - "7687:7687"   # Bolt — what graphiti-core connects to
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD:-losslessgraph}
+      - NEO4J_PLUGINS=["apoc"]
+      # The graph is small (hundreds of episodes, low thousands of nodes).
+      # These are modest on purpose — it should not fight the rest of the
+      # laptop while an ingest runs.
+      - NEO4J_server_memory_heap_initial__size=512m
+      - NEO4J_server_memory_heap_max__size=2G
+      - NEO4J_server_memory_pagecache_size=1G
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    healthcheck:
+      # cypher-shell is the honest check — HTTP 200 on :7474 arrives before
+      # Bolt is actually ready to accept queries, which makes the ingester
+      # fail on connect if you race it.
+      test:
+        - CMD-SHELL
+        - cypher-shell -u neo4j -p "$${NEO4J_PASSWORD:-losslessgraph}" "RETURN 1" || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  neo4j_data:
+  neo4j_logs:

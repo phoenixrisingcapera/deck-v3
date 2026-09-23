@@ -1,0 +1,39 @@
+{
+  "purpose": "Output schema for the market-vigilance agent after reading a deck slide.",
+  "schema": {
+    "slide_id": "string",
+    "detected_market_claims": [
+      {
+        "claim_id": "string",
+        "claim_type": "tam_claim|sam_claim|som_claim|market_growth_claim|competitor_claim|customer_segment_claim|market_timing_claim|regulatory_claim|spend_claim|trend_claim",
+        "verbatim_claim": "string",
+        "normalised_claim": "string",
+        "numeric_value": {
+          "amount": "number|null",
+          "currency": "string|null",
+          "unit": "string|null",
+          "year": "integer|null",
+          "geography": "string|null"
+        },
+        "source_status": "cited|uncited|implied|missing",
+        "verification_status": "supported|partially_supported|unsupported|needs_research|contradictory",
+        "confidence": "high|medium|low",
+        "research_questions": [
+          "string"
+        ],
+        "suggested_deck_fix": "string",
+        "investor_risk": "none|minor|material|critical"
+      }
+    ],
+    "market_research_summary": {
+      "overall_market_claim_quality": "strong|acceptable|weak|risky",
+      "missing_context": [
+        "string"
+      ],
+      "recommended_external_sources": [
+        "string"
+      ],
+      "should_trigger_live_research": "boolean"
+    }
+  }
+}

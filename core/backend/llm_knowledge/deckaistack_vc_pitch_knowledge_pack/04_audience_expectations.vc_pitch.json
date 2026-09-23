@@ -1,0 +1,152 @@
+{
+  "version": "1.0.0",
+  "description": "Audience-specific expectations for adapting investor and entrepreneurial pitch decks.",
+  "audiences": [
+    {
+      "id": "pre_seed_vc",
+      "cares_about": [
+        "founder-market fit",
+        "sharp problem",
+        "early pull",
+        "large market potential",
+        "why now"
+      ],
+      "red_flags": [
+        "overbuilt financials",
+        "unclear ICP",
+        "generic AI claims",
+        "no wedge"
+      ],
+      "preferred_slides": [
+        "cover",
+        "one_liner",
+        "problem",
+        "customer_insight",
+        "solution",
+        "market",
+        "traction",
+        "team",
+        "fundraising_ask"
+      ]
+    },
+    {
+      "id": "seed_vc",
+      "cares_about": [
+        "traction quality",
+        "repeatable GTM",
+        "retention",
+        "market expansion",
+        "credible team"
+      ],
+      "red_flags": [
+        "weak usage proof",
+        "unfocused GTM",
+        "unclear pricing",
+        "vanity metrics"
+      ],
+      "preferred_slides": [
+        "traction",
+        "go_to_market",
+        "business_model",
+        "competition",
+        "moat",
+        "financials",
+        "fundraising_ask"
+      ]
+    },
+    {
+      "id": "series_a_vc",
+      "cares_about": [
+        "ARR growth",
+        "unit economics",
+        "sales efficiency",
+        "retention",
+        "category leadership"
+      ],
+      "red_flags": [
+        "low gross margin",
+        "unclear CAC payback",
+        "fragile pipeline",
+        "services-heavy revenue"
+      ],
+      "preferred_slides": [
+        "traction",
+        "financials",
+        "go_to_market",
+        "business_model",
+        "competition",
+        "moat",
+        "team"
+      ]
+    },
+    {
+      "id": "angel_investor",
+      "cares_about": [
+        "founder story",
+        "clear pain",
+        "simple product",
+        "early evidence",
+        "personal conviction"
+      ],
+      "red_flags": [
+        "too much jargon",
+        "unclear ask",
+        "no emotional hook"
+      ],
+      "preferred_slides": [
+        "cover",
+        "one_liner",
+        "problem",
+        "solution",
+        "traction",
+        "team",
+        "fundraising_ask"
+      ]
+    },
+    {
+      "id": "corporate_innovation",
+      "cares_about": [
+        "strategic fit",
+        "implementation risk",
+        "compliance",
+        "integration",
+        "ROI"
+      ],
+      "red_flags": [
+        "unclear deployment",
+        "security gaps",
+        "immature support model"
+      ],
+      "preferred_slides": [
+        "solution",
+        "case_study",
+        "value_proposition",
+        "business_model",
+        "roadmap",
+        "team"
+      ]
+    },
+    {
+      "id": "advisor_operator",
+      "cares_about": [
+        "execution plan",
+        "GTM realism",
+        "customer workflow",
+        "pricing",
+        "operational bottlenecks"
+      ],
+      "red_flags": [
+        "hand-wavy operations",
+        "no owner for milestones",
+        "unclear onboarding"
+      ],
+      "preferred_slides": [
+        "product_demo",
+        "go_to_market",
+        "business_model",
+        "roadmap",
+        "financials"
+      ]
+    }
+  ]
+}

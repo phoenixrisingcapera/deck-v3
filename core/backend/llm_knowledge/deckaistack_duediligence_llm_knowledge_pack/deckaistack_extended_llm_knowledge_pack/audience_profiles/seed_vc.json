@@ -1,0 +1,43 @@
+{
+  "audience_id": "seed_vc",
+  "primary_question": "Can this become venture-scale before proof is complete?",
+  "cares_about": [
+    "founder-market fit",
+    "speed of learning",
+    "urgent problem",
+    "early pull",
+    "credible wedge",
+    "big market narrative"
+  ],
+  "less_important": [
+    "perfect financial model",
+    "mature governance"
+  ],
+  "red_flags": [
+    "unclear user",
+    "consulting-like model",
+    "small TAM",
+    "no insight advantage"
+  ],
+  "preferred_evidence": [
+    "customer discovery",
+    "LOIs",
+    "pilot demand",
+    "founder track record",
+    "usage signal"
+  ],
+  "output_adaptation_rules": {
+    "tone": "evidence-led, concise, commercially credible",
+    "must_surface": [
+      "why now",
+      "why this team",
+      "why this market",
+      "what could kill it"
+    ],
+    "avoid": [
+      "unsupported hype",
+      "generic AI claims",
+      "inflated TAM without method"
+    ]
+  }
+}

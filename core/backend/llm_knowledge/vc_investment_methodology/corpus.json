@@ -1,0 +1,1834 @@
+{
+  "schemaVersion": "vc-methodology-corpus.v1",
+  "corpusVersion": "vc-investment-methodology.v1",
+  "name": "Studying Venture Capital methodology corpus",
+  "evidenceClass": "PRODUCT_KNOWLEDGE",
+  "currentMarketAuthority": false,
+  "license": {
+    "spdx": "MIT",
+    "copyright": "Copyright (c) 2017 Francis Jervis",
+    "sourceRepository": "https://github.com/francisjervis/venture-capital-research"
+  },
+  "sourceRecordCount": 75,
+  "acceptedRecordCount": 72,
+  "rejectedRecords": [
+    {
+      "path": "changing-capital-emerging-trends-in.md",
+      "reason": "incomplete_provenance_or_content"
+    },
+    {
+      "path": "contracting-signaling-and-moral-hazardand-.md",
+      "reason": "incomplete_provenance_or_content"
+    },
+    {
+      "path": "gender-and-venture-capital-decision.md",
+      "reason": "missing_frontmatter"
+    }
+  ],
+  "documents": [
+    {
+      "documentId": "vc-methodology-3feeff0efeeb81c658a6",
+      "title": "A Founder's Guide to Unicorn Creation: How Liquidation Preferences in M&A Transactions Affect Start-Up Valuation",
+      "authors": [
+        "Robert P. Bartlett III"
+      ],
+      "publication": "Research Handbook on Mergers and Acquisitions (Davidoff-Solomon & Hill, eds.), Forthcoming",
+      "publicationYear": null,
+      "category": "finance",
+      "abstract": "This chapter, written for a Research Handbook on Mergers and Acquisitions (Davidoff-Solomon & Hill, eds.), investigates the widespread claim that the billion dollar valuations of “unicorn” start-ups are unreliable because of the manner in which founders bargain for these valuations with their venture capital (VC) investors. In particular, unicorn skeptics posit that VC investors agree to use these valuations in exchange for receiving enhanced preferred stock preferences, particularly enhanced liquidation preferences that are payable on a sale of the company.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2664236",
+      "sourcePath": "_articles/a-founders-guide-to-unicorn.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "financing_dynamics",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "766f9460b44f1f688eaf6dfa507467869f3a41b11d36d0af654688a00dc25f2d",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-3f9099a9a667404db3bb",
+      "title": "A Price Theory of Silicon Valley",
+      "authors": [
+        "John J. Horton"
+      ],
+      "publication": "Working paper",
+      "publicationYear": null,
+      "category": "economics",
+      "abstract": "I develop a model of Silicon Valley engineer labor and venture capital (VC) markets. Software engineers choose between joining an established software company or founding a venture-backed startup. In equilibrium, they are indifferent between",
+      "sourceUrl": "http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.978.7735&rep=rep1&type=pdf",
+      "sourcePath": "_articles/a-price-theory-of-silicon.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "business_model_analysis",
+        "traction_interpretation",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "9a92b0ce4c7dce9d2bac49a5fd9f938d5c814b318c81ad54fcb419ef1e26775e",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-61433bb10116c323c5cb",
+      "title": "A Review of Research into Venture Capitalists' Decision Making: Implications for Entrepreneurs, Venture Capitalists and Researchers",
+      "authors": [
+        "Edward Hudson",
+        "Michael Evans"
+      ],
+      "publication": "Journal of Economic and Social Policy, 2005",
+      "publicationYear": 2005,
+      "category": "decision",
+      "abstract": "A recent review of the current literature on how venture capitalists make their investment decisions suggests that the decision-making process adopted by venture capitalists is more an art than a science. The review also highlights the fact that researchers have not been able to identify the key decision-making variables that lead to making a successful investment choice. Nor do venture capitalists understand their own decision-making process. This paper addresses these issues and suggests how entrepreneurs attempting to obtain equity finance from venture capitalists may structure proposals to have a better chance of acceptance. The paper concludes with a discussion of directions for future research.",
+      "sourceUrl": "http://epubs.scu.edu.au/cgi/viewcontent.cgi?article=1078&context=jesp",
+      "sourcePath": "_articles/a-review-of-research-into.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "6569fe53e042d432c83fcc3933569ccd5b8f3729c9a4b74584231730c26a6c2b",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-18d072aa6110577d1018",
+      "title": "A Theory of Entrepreneuring",
+      "authors": [
+        "Nathan Furr",
+        "Jackson Nickerson",
+        "Robert Wuebker"
+      ],
+      "publication": "INSEAD Working Paper, 2016",
+      "publicationYear": 2016,
+      "category": "entrepreneurship",
+      "abstract": "This paper develops theory for the organization and governance of value-creating search. While there is broad agreement in both strategy and entrepreneurship that search strategies are deeply connected with value creation, surprisingly little research considers which strategies to design and enact, in which sequence, the tools to employ, or how to structure decision rights concerning those choices. The extant work on value creating search in both entrepreneurship and strategy also tends to emphasize the context in which search occurs, with less attention paid to cognitive and psychological challenges associated with the process. Our approach suggests that corruption of the search process through psychological and cognitive bias is the critical factor that constrains and potentially severely limits entrepreneurial success. Our main finding is a prediction of discriminative alignment between different types of search needs, which we represent as a taxonomy, and governance mechanisms that effectively counter search biases and reduce ex ante and ex post search costs.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2747458",
+      "sourcePath": "_articles/a-theory-of-entrepreneuring.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "ec13846f7c1e0d850ba9c98eeee5c6e4bb5ff9c50de436f34a9e94fd7d375160",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-9ca98e8e1cdcbeb192e6",
+      "title": "Absolutely fabulous!: Fabulation and organisation-creation in processes of becoming-entrepreneur",
+      "authors": [
+        "Daniel Hjorth"
+      ],
+      "publication": "Society and Business Review, 2013",
+      "publicationYear": 2013,
+      "category": "entrepreneurship",
+      "abstract": "This paper seeks to apply a processual thinking of subjectivity in the study of “becoming entrepreneur”. Design/methodology/approach – Through analysing Foucault's idea of subjectification, by the help of Deleuze's comments and elaborations, the paper seeks to clarify one opacity in entrepreneurship research – the “vanishing presence” of the entrepreneur in processual studies of entrepreneurship. To avoid performative contradiction, the paper seeks to contextualise this attempt in guiding principles provided by process philosophy. Findings – Without a process view, “the subject” as entity and self-constitutive *res cogitans* (thinking thing or mind) will take priority over subjectification, and the paper will loose the possibility to think and study the process of becoming-subject in its own terms. Originality/value – Understanding entrepreneurship as organisation-creation, the paper here adds a processual conceptualisation to the study of such processes by focusing on the arrangements (*agancements* [sic] as Deleuze called this, or *dispositifs* as Foucault preferred to use) in which subjectification into “entrepreneur” happens.",
+      "sourceUrl": "https://www.researchgate.net/publication/262822320_Absolutely_fabulous_Fabulation_and_organisation-creation_in_processes_of_becoming-entrepreneur",
+      "sourcePath": "_articles/absolutely-fabulous-fabulation-and-organisationcreation.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "64b4bcbc8fce7d322d0e63b93dc53ec84d61a29fd3986a2865670932f129131c",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-fb6a60203ad414b2726c",
+      "title": "Accelerators and the Regional Supply of Venture Capital Investment",
+      "authors": [
+        "Daniel C. Fehder",
+        "Yael V. Hochberg"
+      ],
+      "publication": "Working paper",
+      "publicationYear": null,
+      "category": "accelerator",
+      "abstract": "Recent years have seen the rapid emergence of a new type of program aimed at seeding startup companies. These programs, often referred to as accelerators, differ from previously known seed-stage institutions such as incubators and angel groups. While proliferation of such accelerators is evident, evidence on efficacy and role of these programs is scant. Nonetheless, local governments and founders of such programs often cite the motivation for their establishment and funding as the desire to transform their local economies through the establishment of a startup technology cluster in their region. In this paper, we attempt to assess the impact that such programs can have on the entrepreneurial ecosystem of the regions in which they are established, by exploring the effects of accelerators on the availability and provision of seed and early stage venture capital funding in the local region.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2518668",
+      "sourcePath": "_articles/accelerators-and-the-regional-supply.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "e8c3ddded59962ad42bf35b3719d8fb963912cf70639b43895fd783f7b868015",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-7917b1e7874f7d65a70f",
+      "title": "An S-Curve Model of the Start-Up Life Cycle Through the Lens of Customer Development",
+      "authors": [
+        "Jeffrey Overall",
+        "Sean Wise"
+      ],
+      "publication": "The Journal of Private Equity, 2015",
+      "publicationYear": 2015,
+      "category": "economics",
+      "abstract": "Using the S-curve model of entrepreneurship, start-up funding, and customer development as a theoretical foundation, researchers can go in several directions. First, they can take a case study approach by investigating young start-ups and, using their financial statements, plotting performance longitudinally. Next, qualitative assessments can be done to understand potential risks that occur at each phase. Third, researchers can develop a greater understanding of the antecedents of early problems and what corrective actions can be implemented to curb the onset of trouble. Finally, large-scale quantitative assessments can be conducted to understand whether certain control variables, such as industry, culture, level of industrial development of the country, and experience of the entrepreneurs, can influence the stages in the S-curve model of entrepreneurship, start-up funding, and customer development.",
+      "sourceUrl": "http://www.jstor.org/stable/43503838?seq=1",
+      "sourcePath": "_articles/an-scurve-model-of-the.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "business_model_analysis",
+        "traction_interpretation",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "7fb935ad6f284037950ce271f78911966fffbeed80ae1b7804feb7b82120c2ae",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-c58c847fd6273ce4382b",
+      "title": "Angel Financing and the Performance of High-Tech Start-Ups",
+      "authors": [
+        "Annalisa Croce",
+        "Massimiliano Guerini",
+        "Elisa Ughetto"
+      ],
+      "publication": "Journal of Small Business Management 2016",
+      "publicationYear": 2016,
+      "category": "angel",
+      "abstract": "In this paper, we investigate what drives the performance of high-tech start-ups receiving angel financing, while taking a closer look at the capabilities (i.e., experience) and investment behavior of business angels (BAs). We exploit a new data set (extracted from Crunchbase), which consists of 1,933 high-tech start-ups that received at least one financing round from a BA. The results indicate that the experience of BAs in early stage investments is positively associated with additional receipt of follow-on rounds of financing and sequential capital injections from venture capitalists (VCs). Later-stage experience is positively associated with the start-up’s success (i.e., probability to be listed or acquired), but reduces the need for new VCs to invest in the start-up. Furthermore, we find consistent evidence that start-ups that combine BA and VC financing experience higher levels of funding amounts, additional VC financing, and an improved likelihood of success. Finally, we find that the co-localization of BA investors and start-ups in the same area facilitates the attrac- tion of VC financing.",
+      "sourceUrl": "http://onlinelibrary.wiley.com/doi/10.1111/jsbm.12250/abstract",
+      "sourcePath": "_articles/angel-financing-and-the-performance.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "84c8cbcc949a9f9dbf98213a5a3dbad9c74ff5fd4b762b60b9cbff520c244236",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-64ebc37c429e9c33ec67",
+      "title": "Angel group members' decision process and rejection criteria: A longitudinal analysis",
+      "authors": [
+        "Cécile Carpentier",
+        "Jean-Marc Suret"
+      ],
+      "publication": "Journal of Business Venturing, 2015",
+      "publicationYear": 2015,
+      "category": "angel",
+      "abstract": "This paper investigates business angel group members’ decision-making from project submission to the final decision. Using a Canadian group’s archival data on 636 proposals, we provide a detailed longitudinal analysis of the decision process. The rejection reasons generally refer to market risk; this finding holds whatever the step of the process for proposals that pass the pre-screen. Angel group members focus more on market risk than agency risk, similar to venture capitalists. Inexperienced entrepreneurs are rejected for market and product reasons. Decision-making by the studied angel group members differs from that generally described for independent angels.",
+      "sourceUrl": "https://www.researchgate.net/publication/275671097_Angel_group_members'_decision_process_and_rejection_criteria_A_longitudinal_analysis",
+      "sourcePath": "_articles/angel-group-members-decision-process.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "3dda3074db0c8d5ff5701e6ceb14a50b6158bc00be6c9de0d086aa5fa97c05a0",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-ea4f0d0c5328e74d110e",
+      "title": "Angel Investment Criteria",
+      "authors": [
+        "Richard Sudek"
+      ],
+      "publication": "Journal of Small Business Strategy, 2006",
+      "publicationYear": 2006,
+      "category": "angel",
+      "abstract": "Start-up businesses often need external financing to grow. These new ventures frequently turn to business angel investors for capital. Angels, who are often wealthy individuals, provide early stage financing, called seed capital, for these start-up ventures. This study examines what a group of angel investors in Southern California consider when reviewing an investment opportunity, and how they prioritize their investment criteria. The study utilizes a two-phase approach consisting of a qualitative first phase and a quantitative second phase. The results of this study show that trustworthiness of the entrepreneur, quality of the management team, enthusiasm of the lead entrepreneur, and exit opportunities for the angel are the angels’ top criteria.",
+      "sourceUrl": "https://www.angelcapitalassociation.org/data/Documents/Resources/AngelGroupResarch/1d%20-%20Resources%20-%20Research/5%20Sudek_JSBS_Article_-_Investment_Criteria.pdf",
+      "sourcePath": "_articles/angel-investment-criteria.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "26ee76c4ddba598cf25b5048685930a1fa97ff2581140df4dad4a7de08e758c8",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-f2005e1ea06fbb6f1c70",
+      "title": "Angels and Venture Capitalists: Complements or Substitutes?",
+      "authors": [
+        "Thomas Hellmann",
+        "Paul Schure",
+        "Dan Vo"
+      ],
+      "publication": "Oxford Saïd Business School Research Papers, 2015",
+      "publicationYear": 2015,
+      "category": "angel",
+      "abstract": "We examine the relationship between angel investors and venture capitalists. Specifically we analyze how companies dynamically choose between these alternative investor types, and how these choices affect company performance. The paper juxtaposes a complements hypothesis – angel financing is a springboard for venture capital, against a substitutes hypothesis – angel financing and venture capital are distinct financing methods that do not mix well. Using a unique detailed dataset of start-ups in British Columbia, Canada, we find companies that obtain angel financing subsequently obtain less venture capital, and vice versa. On average venture capitalist makes larger investment, but this alone cannot explain the substitutes patterns. The substitutes effects are stronger for companies funded by less experienced angels. Using variation in tax credits as an exogenous instrument we find evidence for both selection and treatment effects. As for performance, companies funded by venture capital experience more successful exits than angel backed companies. However, there is no strong evidence that mixing angel and venture capital funding would be associated with significantly better or worse performance. Overall the evidence favors the substitutes hypothesis.",
+      "sourceUrl": "http://eureka.sbs.ox.ac.uk/5264/1/2015-2.pdf",
+      "sourcePath": "_articles/angels-and-venture-capitalists-complements.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "96440c15d824d683a3c95b0f56b6d180ecca03c3542134173da11627be828f6c",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-d7f6465728a06d8ced8d",
+      "title": "Are “Better” Ideas More Likely to Succeed? An Empirical Analysis of Startup Evaluation",
+      "authors": [
+        "Erin L. Scott",
+        "Pan Shu",
+        "Roman M. Lubynsky"
+      ],
+      "publication": "HBS Working Paper, July 2015",
+      "publicationYear": 2015,
+      "category": "decision",
+      "abstract": "Entrepreneurs face high uncertainty, and often make costly investments in new business ideas without knowing the expected payoff. This paper empirically examines whether ex-ante assessment of early-stage startup ideas can predict their subsequent commercialization. We leverage an entrepreneurship program at the Massachusetts Institute of Technology in which early-stage venture ideas, presented in the form of succinct standardized summaries, elicit subjective evaluations from a large set of experienced entrepreneurs and executives. Using data on 652 ventures in multiple industry sectors, evaluated over an 8-year period, we find that ideas that elicit more positive evaluations are significantly more likely to ultimately reach commercialization. We further show that these results are driven by venture ideas with documented intellectual capital in research-and-development-intensive sectors, such as life sciences and medical devices. We find no evidence, by contrast, that experts can effectively assess the commercial potential of venture ideas in non-R&D-intensive sectors such as consumer web and enterprise software. Finally, we find that industry-specific and scientific expertise is not critical to experts’ collective ability to predict ventures’ commercial viability.",
+      "sourceUrl": "http://www.hbs.edu/faculty/Publication%20Files/16-013_41f3750a-9d54-49be-a8f4-51a6489d514e.pdf",
+      "sourcePath": "_articles/are-better-ideas-more-likely.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "af03321d10aa7293b502500f1240f2725b5b0266b2ecc7be6edb162429181978",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-101ccde55ef110084791",
+      "title": "Attracting Early Stage Investors: Evidence from a Randomized Field Experiment",
+      "authors": [
+        "Shai Bernstein",
+        "Arthur Korteweg",
+        "Kevin Laws"
+      ],
+      "publication": "Journal of Finance, September 2016",
+      "publicationYear": 2016,
+      "category": "angel",
+      "abstract": "Which start-up characteristics are most important to investors in early-stage firms? This paper uses a randomized field experiment involving 4,500 active, early stage investors. The experiment takes place on AngelList, an online platform that matches investors with start-ups seeking capital. The experiment randomizes investors’ information sets on start-up characteristics through the use of nearly 17,000 emails. The average investor responds strongly to information about the founding team, but not to information about either firm traction or existing lead investors. This is in contrast to the least experienced investors, who respond to all categories of information. Our results suggest that information about human assets is causally important for the funding of early-stage firms.",
+      "sourceUrl": "http://web.stanford.edu/~shaib/BernsteinKortewegLaws_052014.pdf",
+      "sourcePath": "_articles/attracting-early-stage-investors-evidence.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "210c669e7ef2551f79d8b13646da996c8e7a4039f49c27f152777d006ad65775",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-34a972633d4596ca14ff",
+      "title": "titletxt",
+      "authors": [
+        "person"
+      ],
+      "publication": "source, date",
+      "publicationYear": null,
+      "category": "uncategorized",
+      "abstract": "abstxt",
+      "sourceUrl": "http://link",
+      "sourcePath": "_articles/blank.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "c75ddc7a2312da5d74cd10b7eda9c023b2db56cee4df444aff32543b63b7c459",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-89bbba1a583b79deef4f",
+      "title": "Business angel syndicates: an exploratory study of gatekeepers",
+      "authors": [
+        "Stuart Paul",
+        "Geoff Whittam"
+      ],
+      "publication": "Venture Capital, 2010",
+      "publicationYear": 2010,
+      "category": "angel",
+      "abstract": "The objective of this paper is to examine the role of the individuals who control access to and manage much of the day-to-day operation of informal investment syndicates. We give these people the name business angel gatekeepers. Guided by an analytical framework developed from the research and development literature, empirical findings are presented from a series of in-depth interviews with a representative sample of Scotland-based gatekeepers. The paper proposes a definition of the term ‘business angel gatekeeper’, identifies the function and roles of gatekeepers and examines the skills required to perform the role. The paper concludes by considering the implications for stakeholders in the business angel market.",
+      "sourceUrl": "http://www.hban.org/_fileupload/Business_Angel_Syndicates_in_Scotland_-_Gatekeepers.pdf",
+      "sourcePath": "_articles/business-angel-syndicates-an-exploratory.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "e6313161421a1173bcaf6e0bd5532675563dc00212a92e17a7a3a1acf76cc6a4",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-4f670b0f5d41d109f4bd",
+      "title": "Contractual Innovation in Venture Capital",
+      "authors": [
+        "John F. Coyle",
+        "Joseph M. Green"
+      ],
+      "publication": "Hastings Law Journal, 2014",
+      "publicationYear": 2014,
+      "category": "finance",
+      "abstract": "Scholars agree that contractual innovation, though sometimes slow to occur, can and will take place if certain conditions are met. The Article argues that the evolution of certain venture finance contracts over the past decade constitutes a prime example of such innovation. Drawing upon interviews with some of the leading venture capital attorneys in the United States, it chronicles how two types of venture finance contracts — the convertible note and convertible preferred stock — evolved in response to technological advances that greatly reduced the cost of launching a start-up technology company. Prior to 2005, individuals who invested in early-stage technology companies would typically invest alongside the founder of the new venture by purchasing shares of common stock. Venture capital funds, which invested more substantial amounts of capital at later stages in a company’s development, would typically receive convertible preferred stock. And in situations in which a company needed a loan from its current investors to keep it afloat until a new infusion of capital could be raised — a so-called bridge loan — investors would typically receive promissory notes that were convertible into equity at a future date. Each of these types of investment contracts reliably matched up with a particular mode of financing transaction. Around 2005, however, this stable contractual infrastructure began to change. A number of technological developments — including, most significantly, the rise of cloud computing — led to a dramatic decline in the costs of launching a technology company. In the wake of these changes, the contracts used by investors to structure their investments in these ventures evolved in two important ways. First, convertible notes, previously used primarily in the context of bridge financing, were increasingly used to provide financing to early-stage technology companies. Second, investors in early-stage technology companies increasingly turned to much simplified versions of traditional convertible preferred stock documents to structure their investments. While these changes have fundamentally reshaped the contractual infrastructure of early-stage venture finance in the United States, they have attracted scant attention in the legal literature to date. This Article aspires to fill that gap. The Article then draws upon this account of evolution and change in the venture capital space to develop insights into the process of contractual innovation more generally. It argues that current theories of contractual innovation only partially explain the changes to these venture finance contracts over the past decade. It argues that while attorneys can and do serve to drive the process of contractual innovation, the success of these efforts is highly dependent upon partnerships that they develop with the end users of these contracts. Finally, the Article suggests that the substitution of one type of contract for another — using equity instead of debt, for example — is itself an innovation that has gone largely unappreciated in the contractual innovation literature.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers2.cfm?abstract_id=2417431",
+      "sourcePath": "_articles/contractual-innovation-in-venture-capital.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "financing_dynamics",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "525f94063a964258d4207114a1c42dc820eb5f5f54e5585b3fcef2c3bd97bac7",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-a53165b383d1018894a0",
+      "title": "Direct and Indirect Effects of Passion on Growing Technology Ventures",
+      "authors": [
+        "Mateja Drnovsek",
+        "Melissa S. Cardon",
+        "Pankaj C. Patel"
+      ],
+      "publication": "Strategic Entrepreneurship Journal, 2016",
+      "publicationYear": 2016,
+      "category": "entrepreneurship",
+      "abstract": "Entrepreneurial passion has gained credence in recent years in explaining entrepreneurial efforts, yet examination of the dynamics of this emotion and its effects on venture growth is still in its infancy. Building on the literature on entrepreneurial motivation and entrepreneurial passion, we develop and test a model of entrepreneurial passion, goals, and venture growth. We utilize path analysis on a two-wave sample of founders from 122 high technology firms. We find direct positive effects of passion for developing on venture growth and an indirect positive effect mediated by goal commitment, but not goal challenge. Implications for research and practice are discussed.",
+      "sourceUrl": "http://onlinelibrary.wiley.com/doi/10.1002/sej.1213/abstract",
+      "sourcePath": "_articles/direct-and-indirect-effects-of.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "c35c7e98d984dc8bf60dca4d80ace09a8c711d4bb3791bbe550a18a7b58717c4",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-e86b0d7f8f6ca52aa30d",
+      "title": "Does Angel Participation Matter? An Analysis of Early Venture Financing",
+      "authors": [
+        "Brent Goldfarb",
+        "Gerard Hoberg",
+        "David Kirsch",
+        "Alexander Triantis"
+      ],
+      "publication": "Working paper, 2013",
+      "publicationYear": 2013,
+      "category": "angel",
+      "abstract": "We examine the role of angel investors in early venture financing using a new sample of 182 Series A preferred stock rounds. Our sample includes deals where angels invest on their own and those where they co-invest with venture capitalists (VCs), as well as VC-only deals. We find that angels invest on their own in younger and smaller firms, where the founder retains more ownership. Control rights in these deals are also more entrepreneur-friendly. However, these firms are as likely as the VC-backed firms to have successful liquidity events, and more likely to survive, though many of the surviving firms are inactive, indicating that angels may have little incentive or limited ability to liquidate such firms. In contrast, when deals are large, we find that companies that obtain Series A financing entirely from VCs have better outcomes than those in which VCs and angels co-invest. One interpretation is that larger deal size adds power to VC syndicates, and these powerful syndicates might attempt to block other investors from higher quality deals, resulting in adverse selection for angels in larger mixed deals. Alternatively, experienced founders and VCs may prefer VC-only deals given the increased complexity of including angels, and given that angels might free ride on VCs’ managerial effort and expertise.",
+      "sourceUrl": "https://www.angelcapitalassociation.org/data/ACEF/ACEFDocuments/Does%20Angel%20Participation%20Matter%20-%20Analysis%20of%20Early%20Venture%20Financing.pdf",
+      "sourcePath": "_articles/does-angel-participation-matter-an.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "24cc352f94db44e1a01dee35e7dd430e05c6f9533b083363176e464cbec77e9e",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-cd4e6e2b6ba84e134c77",
+      "title": "Does Social Proximity Enhance Business Partnerships? Theory and Evidence from Ethnicity's Role in U.S. Venture Capital",
+      "authors": [
+        "Deepak Hegde",
+        "Justin Tumlinson"
+      ],
+      "publication": "Management Science, 2015",
+      "publicationYear": 2015,
+      "category": "diversity",
+      "abstract": "We develop a formal model to understand the selection and influence effects of social proximity (homophily) between business partners. Consistent with the model’s predictions, we find that U.S. venture capitalists (VCs) are more likely to select start-ups with coethnic executives for investment, particularly when the probability of the start-up’s success appears low. Ethnic proximity between VCs and the start-ups they invest in is positively related to performance, measured by the probability of the companies’ successful exit through acquisitions and initial public offerings (IPOs) and net income after IPO. Two-stage regression estimates suggest that these positive performance outcomes are largely due to influence, that is, superior communication and coordination between coethnic VCs and start-up executives after the investment. To the extent that VCs expect to work better with coethnic start-ups, they invest in coethnic ventures that are of lower observable quality than noncoethnic ventures.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1939587",
+      "sourcePath": "_articles/does-social-proximity-enhance-business.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "e2a8ba316f3541e982abbff15c57cc09fec4c772a5cdf0c1d15597f2b820cd98",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-b4f78aa096aaac8add52",
+      "title": "Early Teams: The Impact of Team Demography on VC Financing and Going Public",
+      "authors": [
+        "Christine M. Beckman",
+        "M. Diane Burton",
+        "Charles O'Reilly"
+      ],
+      "publication": "Journal of Business Venturing, 2007",
+      "publicationYear": 2007,
+      "category": "entrepreneurship",
+      "abstract": "This study investigates how top management team (TMT) demographic characteristics affect firm outcomes for young high technology firms in Silicon Valley. We study how team composition and turnover shape an entrepreneurial firm’s ability to attract venture capital and its ability to successfully complete an initial public offering. We find that broad access to information by virtue of having top management team members that have worked for many different employers (diverse prior company affiliations) and have diverse prior experiences (functional diversity) tend to be associated with positive outcomes. In addition, entrants to and founder exits from the TMT increase the likelihood that a firm achieves an IPO. TMT exits, in turn, reduce the likelihood of achieving an IPO. Results also suggest that prior human capital experience is consistently associated with positive firm outcomes. These findings suggest that team experiences, composition and turnover are all important for bringing new insights to the firm and are associated with the likelihood that an entrepreneurial firm will succeed.",
+      "sourceUrl": "http://digitalcommons.ilr.cornell.edu/articles/249/",
+      "sourcePath": "_articles/early-teams-the-impact-of.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "a049e702a225b5472d00ed18a2972a4cab442e43989711a3aed531aabe2a0df2",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-1c689a0ac669853bf659",
+      "title": "Economies of Extremes: Lessons from Venture-Capital Decision Making",
+      "authors": [
+        "Suzanne de Treville",
+        "Jeffrey S Petty",
+        "Stefan Wager"
+      ],
+      "publication": "Journal of Operations Management, 2014",
+      "publicationYear": 2014,
+      "category": "decision",
+      "abstract": "An organization's ability to exploit extreme events - such as exceptional opportunities - depends on its capacity strategy. The venture capital industry illustrates the interplay of expensive capacity and negative externalities from high utilization. The cost of adding a venture capitalist provides a strong incentive to run lean, but such leanness may make it impossible to evaluate all interesting investment opportunities. Using concepts from extreme-value theory, we analyze the trade-off between the costs and benefits arising from an increase in the number of evaluated deals. We ground our analysis in 11 years of archival data from a venture capital firm, representing 3,631 deals, the decisions made, the reasons for those decisions, and the decision lead times. The firm identified 20% of arriving deals as worth evaluating during the screening process, but was not able to evaluate approximately 9% of those interesting deals due to a lack of capacity. We show that the value of increasing the number of deals evaluated increases with the tail weight of the distribution of deal values. When the right tail is light, increasing the number of deals evaluated may provide too modest a benefit to justify the cost. When, however, the right tail is heavy, the value of increasing the number of deals is likely to more than compensate for the cost of capacity. Our results provide new insight into the relative value of a chase capacity strategy that emphasizes responsiveness versus a high-utilization heuristic that emphasizes productivity. Our approach can be applied to other search operations such as personnel selection, quality circles seeking to identify root causes, and making employee capacity available for innovation.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2458867",
+      "sourcePath": "_articles/economies-of-extremes-lessons-from.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "7fdf4466196660b800c0c4348e99bea948a3a9f756d021fcee5e762e0e66ff74",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-4b68a6c4aebc4c610e02",
+      "title": "Entrepreneur's Experience and Angels' Decision Process: A Longitudinal Analysis",
+      "authors": [
+        "Cécile Carpentier",
+        "Jean-Marc Suret"
+      ],
+      "publication": "Working paper, 2013",
+      "publicationYear": 2013,
+      "category": "entrepreneurship",
+      "abstract": "To determine if and why entrepreneurs’ experience determines their propensity to be financed by angels, we conduct the first longitudinal analysis of the decision process of a business angel network. We code the rejection reasons recorded by the network in each file to estimate the preparedness and outcome of 636 applications. We score the entrepreneurs’ experience from their résumés. Non industry-experienced promoters have no chance of obtaining financing because of the weakness of their proposal, but are not rejected due to team weakness. We evidence several differences with the commonly accepted description of the selection process.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2253289",
+      "sourcePath": "_articles/entrepreneurs-experience-and-angels-decision.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "f553938ca287772b4f7f0fd6c856f140bda6d4a35859472428f85e193b08414e",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-31285f7afc1e5e8ff403",
+      "title": "Experience, Heuristics And Learning: The Angel Investment Process",
+      "authors": [
+        "Donald J. Smith",
+        "Richard T. Harrison",
+        "Colin M. Mason"
+      ],
+      "publication": "Entrepreneurship & Regional Development, 2015",
+      "publicationYear": 2015,
+      "category": "angel",
+      "abstract": "This paper extends the literature on the investment decision-making of business angels. Using insights from entrepreneurial learning theory we explore whether angels learn from experience, how they learn and what they learn. These issues are addressed using Verbal Protocol Analysis, a methodology for examining decision-making in real time, on three groups of business angels with differing levels of investment experience, and follow-up interviews with these angels. This reveals",
+      "sourceUrl": "http://digitalknowledge.babson.edu/cgi/viewcontent.cgi?article=1876&context=fer",
+      "sourcePath": "_articles/experience-heuristics-and-learning-the.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "8c3736d99a0afa1a154056c14bb1bbb71cc8d5c24480a0505be2e7bdfe143744",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-55a2d3f278037855b7e4",
+      "title": "Experienced entrepreneurial founders, organizational capital, and venture capital funding",
+      "authors": [
+        "David H. Hsu"
+      ],
+      "publication": "Research Policy, 2006",
+      "publicationYear": 2006,
+      "category": "entrepreneurship",
+      "abstract": "This paper empirically investigates the sourcing and valuation of venture capital (VC) funding among entrepreneurs with varied levels of prior start-up founding experience, academic training, and social capital. Social ties with VCs have been identified as an important precursor to organizational resource attainment and performance, and so this study analyzes the correlates of heterogeneous social links with VCs. I also examine venture valuation, as it reflects enterprise quality and entrepreneurs’ cost of financial capital. Using data from a survey of 149 early stage technology-based start-up firms, I find several notable results. First, prior founding experience (especially financially successful experience) increases both the likelihood of VC funding via a direct tie and venture valuation. Second, founders’ ability to recruit executives via their own social network (as opposed to the VC’s network) is positively associated with venture valuation. Finally, in the emerging (at the time) Internet industry, founding teams with a doctoral degree holder are more likely to be funded via a direct VC tie and receive higher valuations, suggesting a signaling effect. The paper therefore underscores some important dimensions of heterogeneity among VC-backed entrepreneurs.",
+      "sourceUrl": "http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.711.2163&rep=rep1&type=pdf",
+      "sourcePath": "_articles/experienced-entrepreneurial-founders-organizational-capital.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "547ff00981776d992100393348b3eae1c63b1288ded08bdfdc2f87066fc0228b",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-d1a66d1bf6d7afc6b5e6",
+      "title": "Friends or Foes? The Interrelationship between Angel and Venture Capital Markets",
+      "authors": [
+        "Thomas Hellmann",
+        "Veikko Thiele"
+      ],
+      "publication": "Journal of Financial Economics, 2015",
+      "publicationYear": 2015,
+      "category": "angel",
+      "abstract": "We examine the interrelationship between angel and venture capital markets, using a model with free entry and search frictions. Venture capitalists rely on the supply of angel-backed deals, and angels depend on competitive valuations from venture capitalists. Ex-post, venture capitalists have an incentive to hold-up angel investors, but ex-ante this may endanger their deal flow from angels. Endogenous entry limits the hold-up power of venture capitalists. In equilibrium, angels may encourage companies to exit early, in order to avoid venture capital funding altogether. The model also explains how hold-up and competition affect the valuations paid by angels and venture capitalists.",
+      "sourceUrl": "http://eureka.sbs.ox.ac.uk/5223/1/HellmannThiele(2014)JFEforthcoming.pdf",
+      "sourcePath": "_articles/friends-or-foes-the-interrelationship.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "40e7116ce5d41c5d0b64967bb99584d3d3e59be24b048c150f55e56dbb020723",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-3a791587f53da0098c4b",
+      "title": "Gender, ethnicity and entrepreneurship in initial public offerings: illustrations from an open database",
+      "authors": [
+        "Martin Kenney",
+        "Donald Patton"
+      ],
+      "publication": "Research Policy, 2015",
+      "publicationYear": 2015,
+      "category": "diversity",
+      "abstract": "This paper describes the variables in a freely available database of all emerging growth firms (EGF) that made an initial stock offering (IPO) on US public markets from 1990 through 2010. Our expectation is that researchers from a variety of disciplines can use this data to answer a wide variety of social science questions and combine it with other databases. To illustrate how the data can be used, we describe the gender and nationality of the top management teams (TMTs) and board of directors (BoDs) of these firms. We confirm that women are under-represented in all functional positions, but, in contrast to much of the popular press, we find that statistically Silicon Valley firms perform better than the national average. Gender ratios differ by function with women most prevalent at the CFO position and are most prevalent in the biomedical industry. Using undergraduate education, as an identifier for nationality, we find that, contrary to the popular press, there are more European than Asian immigrants in the TMTs. This suggests that European immigrants are more likely to immigrate with advanced degrees, while the Asian immigrants have only Bachelor’s degrees. In the immigration literature, it has been observed that specific immigrant groups concentrate in particular occupations. To test for this effect, we study the backgrounds of all identifiable Taiwanese immigrants. A remarkably high concentration of Taiwanese TMT members were from two Taiwanese universities’ electrical engineering departments, then received U.S. graduate degrees, particularly from UC Berkeley, and entered semiconductor-related industries. This database will contribute to reproducible social science as the same quality-controlled data is now available to all researchers.",
+      "sourceUrl": "http://isiarticles.com/bundles/Article/pre/pdf/42842.pdf",
+      "sourcePath": "_articles/gender-ethnicity-and-entrepreneurship-in.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "35df28e034c486cfaf3be6f15490f0bf1b6b371960d758e3532d3c7fad5e642d",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-c74512aececa7c407f15",
+      "title": "Hacking AngelList: Third Party Signaling in Equity Crowdfunding",
+      "authors": [
+        "Matthew C. Klein"
+      ],
+      "publication": "Dissertation",
+      "publicationYear": null,
+      "category": "angel",
+      "abstract": "This dissertation examines the effectiveness of third party affiliation signals that entrepreneurs use to convince investors to commit financial resources in an equity crowdfunding context. I investigate the importance of third party affiliation signals (business accelerators, investor syndicates, and startups featured on the equity crowdfunding platform) on subsequent online funding amounts. The data indicates that affiliation with an investor syndicate is an effective third party affiliation signal and can therefore strongly impact the probability of online funding amounts. Business accelerators and startups featured on the equity crowdfunding platform, by contrast, have little or no impact on online funding amounts. I discuss the implications of the results for theory, future research, and practice.",
+      "sourceUrl": "http://scholarworks.gsu.edu/cgi/viewcontent.cgi?article=1066&context=bus_admin_diss",
+      "sourcePath": "_articles/hacking-angellist-third-party-signaling.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "1b6ce960b68d832fa9b2c2d2bab3fcdbf56adc265163cb43bbd4a174153518a5",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-28fb87f6d390ea894200",
+      "title": "Horse vs. Jockey? How stage of funding process and industry experience affect the evaluations of angel investors",
+      "authors": [
+        "Cheryl R. Mittenessa",
+        "Melissa S. Baucusb",
+        "Richard Sudekc"
+      ],
+      "publication": "Venture Capital, 2012",
+      "publicationYear": 2012,
+      "category": "angel",
+      "abstract": "Angel investors make evaluations at different stages of the funding process; so we explore how the importance angels place on different investment criteria varies and how industry experience impacts their evaluations. Data were collected at the screening stage as angel investors evaluated the strength of the entrepreneur and the opportunity, and made decisions regarding whether the deal should proceed to due diligence, as well as their personal interest in making an investment. Additional data were collected regarding whether these angels made an investment at the funding stage. We tested our hypotheses using a multilevel approach to account for the nested nature of the data – multiple evaluations nested within each angel, nested within each screening presentation. Our results show that the entrepreneur matters most when angels are deciding whether a deal should proceed to due diligence; opportunity strength represents a more important investment criterion when angels switch to determining whether a deal matches their own investment goals as the deal progresses through the funding process. Additionally, we find that three types of industry experience differ in their impact on the evaluation process. The findings offer new insights and underscore the importance of considering how individual characteristics impact evaluations of funding potential.",
+      "sourceUrl": "http://www.tandfonline.com/doi/abs/10.1080/13691066.2012.689474",
+      "sourcePath": "_articles/horse-vs-jockey-how-stage.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "11b5eb466f8d26a4b76ebd09fae7dbc81197c2a6a884264d9d0015ccd56d23b8",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-e30d5e6ffeaec11da65d",
+      "title": "How business angel groups work: Rejection criteria in investment evaluation",
+      "authors": [
+        "Annalisa Croce",
+        "Francesca Tenca",
+        "Elisa Ughetto"
+      ],
+      "publication": "International Small Business Journal, 2016",
+      "publicationYear": 2016,
+      "category": "angel",
+      "abstract": "In this article, we study the decision-making criteria that business angels (BAs) adopt when screening business opportunities in the different assessment phases (pre-screening, screening and due diligence). We exploit an original dataset of 1942 ventures that sought angel investment from 2008 to 2014 from the members of Italian Angels for Growth (IAG). Results have shown that the emphasis that BAs place on rejection criteria and contact channels varies along the three considered stages of the investment process. In particular, we found that business proposals brought to the attention of BAs by venture capitalists are more likely to get through the pre-screening stage, suggesting an important quality certification role played by venture capitalists. Moreover, at the screening stage (in comparison with the pre-screening stage), proposals are rejected more often for reasons related to the characteristics of the entrepreneur and management team and less often for the lack of business innovativeness. Finally, business proposals showing lower levels of profitability are more likely to be rejected after the due diligence.",
+      "sourceUrl": "http://journals.sagepub.com/doi/abs/10.1177/0266242615622675",
+      "sourcePath": "_articles/how-business-angel-groups-work.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "732952f508bdb20adc124005c887461c0eb7de1406247528b0f06fba9bf0f388",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-84cf1a208355bd57d0e2",
+      "title": "How do entrepreneurs think they create value? A scientific reflection of Eric Ries’ Lean Startup approach",
+      "authors": [
+        "Dennis Lyth Frederiksen",
+        "Alexander Brem"
+      ],
+      "publication": "International Entrepreneurship and Management Journal, 2016",
+      "publicationYear": 2016,
+      "category": "entrepreneurship",
+      "abstract": "The means with which entrepreneurs create and capture value can be difficult to get a comprehensive picture of. Looking at the tools they use can offer insights, and in this context, the book “The Lean Startup” by Eric Ries has received a tremendous amount of attention. Supposedly, many entrepreneurs have read the book and may have followed his advice. Hence, we investigate the merits and characteristics of the methods detailed by Ries through a comparison with leading theories and empirical evidence found in the scientific literature. The results indicate that overall the methods find considerable backing and can in parts be recognized under already established constructs. Heavy use of effectuation-logic is evident throughout the book, with a clear and explicit emphasis on experimentation over long- term planning. The paper closes with a discussion of the possible broader implications of the methods and effectuation, including the potential impact on corporate strategy.",
+      "sourceUrl": "http://link.springer.com/article/10.1007/s11365-016-0411-x",
+      "sourcePath": "_articles/how-do-entrepreneurs-think-they.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "6b5e298cc268088c5b45b4ebea61a9c777a00542ef86f0d4e0b9fdeeebdcca08",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-389e8fe341c1d426db61",
+      "title": "How do Investors Accumulate Network Capital? Evidence from Angel Networks",
+      "authors": [
+        "Buvaneshwaran Venugopal",
+        "Vijay Yerramilli"
+      ],
+      "publication": "Paris December 2016 Finance Meeting EUROFIDAI - AFFI.",
+      "publicationYear": 2016,
+      "category": "angel",
+      "abstract": "We use the angel investor market to examine the effect of performance on the network connectedness of individual angel investors. We collect data on start-ups and angel investors from CrunchBase (www.crunchbase.com), the largest crowd-sourced database on start-ups and investors, and AngelList (www.angel.co), the leading online fund-raising platform for start-ups. We find that angels that successfully lead a portfolio company to the next financing stage, especially from seed stage to series A stage, experience an increase in both the quantity and quality of their co-investment connections relative to their unsuccessful peers, and are rewarded with more new investment opportunities, both as lead investors and as participants. Success begets more success, making it more likely that other seed-stage portfolio companies of a successful angel also progress to the next financing stage. Finally, successful performance also expands the online followership of angels, and makes it more likely that their existing followers establish a new co-investment connection. Overall, our results highlight that reputation for good performance enhances the network capital of angel investors.",
+      "sourceUrl": "http://www.bauer.uh.edu/yerramilli/VenugopalYerramilli.pdf",
+      "sourcePath": "_articles/how-do-investors-accumulate-network.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "ef62ecb96fd7db0d6f37da26829f0344e765f57dd8d01260d9f29cb3f8690f55",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-1bb25595ba601eb658a1",
+      "title": "How Do Venture Capitalists Make Decisions?",
+      "authors": [
+        "Paul A. Gompers",
+        "Will Gornall",
+        "Steven N. Kaplan",
+        "Ilya A. Strebulaev"
+      ],
+      "publication": "Stanford University Graduate School of Business Research Paper No. 16-33 / European Corporate Governance Institute (ECGI) Finance Working Paper No. 477/2016",
+      "publicationYear": 2016,
+      "category": "decision",
+      "abstract": "We survey 885 institutional venture capitalists (VCs) at 681 firms to learn how they make decisions across eight areas: deal sourcing; investment decisions; valuation; deal structure; post-investment value-added; exits; internal organization of firms; and relationships with limited partners. In selecting investments, VCs see the management team as more important than business related characteristics such as product or technology. They also attribute more of the likelihood of ultimate investment success or failure to the team than to the business. While deal sourcing, deal selection, and post-investment value-added all contribute to value creation, the VCs rate deal selection as the most important of the three. We also explore (and find) differences in practices across industry, stage, geography and past success. We compare our results to those for CFOs (Graham and Harvey 2001) and private equity investors (Gompers, Kaplan and Mukharlyamov forthcoming).",
+      "sourceUrl": "https://www.gsb.stanford.edu/faculty-research/working-papers/how-do-venture-capitalists-make-decisions",
+      "sourcePath": "_articles/how-do-venture-capitalists-make.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "22ee2a0b630c40cc162f03067a348c8c11baccca2203f034fc261d892aec748c",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-4ef367fd4a25da317d2b",
+      "title": "How Does Angel Investor–Entrepreneur Conflict Affect Venture Innovation? It Depends",
+      "authors": [
+        "Veroniek Collewaert",
+        "Harry J. Sapienza"
+      ],
+      "publication": "Entrepreneurship Theory & Practice, 2014",
+      "publicationYear": 2014,
+      "category": "angel",
+      "abstract": "This study examines how angel investor–entrepreneur task conflicts are related to portfolio company innovativeness and how this relationship is moderated by the level of agreement on priorities, diversity of entrepreneurial experience, and the level of communication. Using survey data gathered from 54 teams of angels and entrepreneurs in Belgium and the United States, we show that the negative relationship between task conflict and innovativeness is more severe when the teams have lower levels of agreement on priorities, when there is less diversity of experience in the team, and when the teams communicate more frequently.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2776841",
+      "sourcePath": "_articles/how-does-angel-investor-entrepreneur.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "09c760a1235c857fe5714ef0bf5b66d28bc25062c161a51145ae298a9fade375",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-de85f63fda78068fb107",
+      "title": "How Smart is Smart Money? An Empirical Two-Sided Matching Model of Venture Capital",
+      "authors": [
+        "Morten Sørensen"
+      ],
+      "publication": "Journal of Finance, November 2007",
+      "publicationYear": 2007,
+      "category": "economics",
+      "abstract": "In capital markets, top-tier investors may have better abilities to monitor and manage their investments. In addition, there may be sorting in these markets, with top-tier investors investing in the best deals, second-tier investors investing in the second-best deals, and so forth. To separate and quantify these two effects, a structural model of the market for venture capital is developed and estimated. The model is a two-sided matching model that allows for sorting in equilibrium. It is found that more experienced venture capitalists make more successful investments. This is explained both by their value-adding influence on their investments, and by their access to late stage and biotechnology companies, companies that are more successful on average. Sorting is found to be prevalent and has general implications for the interpretation of empirical evidence of the impact of investors on their investments.",
+      "sourceUrl": "https://pdfs.semanticscholar.org/0c4b/21c7d6ffeddda24ede8df99f5ac8cb89ad24.pdf",
+      "sourcePath": "_articles/how-smart-is-smart-money.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "business_model_analysis",
+        "traction_interpretation",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "71f2c34dc8937385cd333b601cb1ea03b237ce480f551e24ac202947bd54c2be",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-1a234f7e21c5dbb41a08",
+      "title": "Incubation or Induction? Gendered Identity Work in the Context of Technology Business Incubation",
+      "authors": [
+        "Susan Marlow",
+        "Maura McAdam"
+      ],
+      "publication": "Entrepreneurship Theory & Practice",
+      "publicationYear": null,
+      "category": "diversity",
+      "abstract": "Whilst there is a substantial body of literature which seeks to establish, or dispute, the beneficial influence of business incubation, this debate remains almost entirely gender blind. This article challenges this assumption by adopting a feminist perspective to reveal business incubation to be a gendered process which shapes the identity work undertaken by women seeking legitimacy as technology venturers. In so doing, we critically evaluate prevailing normative analyses of the business incubation process and entrepreneurial legitimation. To illustrate this argument, we draw upon empirical evidence which reveals technology incubation as a legitimating induction process encouraging women to reproduce masculinised representations of the normative technology entrepreneur.",
+      "sourceUrl": "http://pure.qub.ac.uk/portal/files/11648035/Incubation_or_Induction.pdf",
+      "sourcePath": "_articles/incubation-or-induction-gendered-identity.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "6e27dc1578446177f2978fb5abfd3c96675800884e04f954f07e1352b08e7e39",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-13021c419f860a4d2459",
+      "title": "Innovation and the Financial Guillotine",
+      "authors": [
+        "Ramana Nanda",
+        "Matthew Rhodes-Kropf"
+      ],
+      "publication": "NBER Working Paper No. 19379, 2013",
+      "publicationYear": 2013,
+      "category": "finance",
+      "abstract": "We examine how investors’ tolerance for failure impacts the types of projects they are willing to fund. We show that actions that reduce short term accountability and thus encourage agents to experiment more simultaneously reduce the level of experimentation financial backers are willing to fund. Failure tolerance has an equilibrium price that increases in the level of experimentation. More experimental projects that don’t generate enough to pay the price cannot be started. In fact, an endogenous equilibrium can arise in which all competing financiers choose to be failure tolerant in the attempt to attract entrepreneurs, leaving no capital to fund the most radical, experimental projects in the economy. The tradeoff between failure tolerance and a sharp guillotine help explain when and where radical innovation occurs.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2318282",
+      "sourcePath": "_articles/innovation-and-the-financial-guillotine.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "financing_dynamics",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "e881a1c9d8119569fcff6b2d43b280155aee168176a4ec178d9f7497d12ef1aa",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-b0c1bfd9e6c66f8f8e8b",
+      "title": "Insider Financing and Venture Capital Returns",
+      "authors": [
+        "Michael Ewens",
+        "Matthew Rhodes-Kropf",
+        "Ilya A. Strebulaev"
+      ],
+      "publication": "Stanford University Graduate School of Business Research Paper No. 16-45",
+      "publicationYear": null,
+      "category": "finance",
+      "abstract": "Staged financing of venture capital-backed firms is valuable to both investors and entrepreneurs, but comes with a potential cost: hold-up. With asymmetric information and strong control rights, financial intermediaries may earn rents on their inside knowledge. We find that environments where insiders have the significant potential to hold-up the entrepreneur -- financings where only previous investors participate -- have predictable outcomes and returns. However, in contrast to predictions from the theory of hold-up, we show that these inside financings lead to a higher likelihood of failure, lower probability of IPOs, and lower cash on cash multiples than rounds with new (outside) investors. Inside financings also appear to be negative NPV, suggesting that investors make inefficient continuation decisions. We propose a novel alternative and show how the findings are consistent with a manifestation of an agency problem driven by changing opportunity costs over the VC fund life-cycle.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2849681##",
+      "sourcePath": "_articles/insider-financing-and-venture-capital.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "financing_dynamics",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "94ae1b61a980cc4ef5f523006e92b02134e5fc6858cdcb640c0a5be80861f680",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-c8b80a486a10d54923a1",
+      "title": "Investment Criteria Set By Venture Capitalists",
+      "authors": [
+        "Marija Šimić"
+      ],
+      "publication": "Econviews, August 2015",
+      "publicationYear": 2015,
+      "category": "decision",
+      "abstract": "Different funders, like bankers, business angels or venture capitalists, put the accent on various investment criteria while making investment decisions. Entrepreneurs need to be familiar with these criteria or different requirements of potential investors in order to adjust their business plans. Motivated by the phenomenon of venture capital, numerous researchers worldwide are trying to identify the venture capitalists’ investment criteria. Despite the large number of studies, there is still no unambiguous answer to what the key venture capitalists’ investment criteria are. This paper provides an overview of research about investment criteria set by different suppliers of capital with a special emphasis on venture capitalists’ investment criteria.  The most used VCs’ investment criteria discussed in the literature are identifed and analysed in order to provide a new set of VC investment criteria.",
+      "sourceUrl": "http://hrcak.srce.hr/file/221353",
+      "sourcePath": "_articles/investment-criteria-set-by-venture.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "92441ab1da1b68f8de688e3cee7fc4bfe13861865aa9961c3ca3a737d6f2ea2a",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-974d31a29eed0bfef161",
+      "title": "Investors prefer entrepreneurial ventures pitched by attractive men",
+      "authors": [
+        "Alison Wood Brooks",
+        "Laura Huang",
+        "Sarah Wood Kearney",
+        "Fiona E. Murray"
+      ],
+      "publication": "PNAS, 2014",
+      "publicationYear": 2014,
+      "category": "diversity",
+      "abstract": "Entrepreneurship is a central path to job creation, economic growth, and prosperity. In the earliest stages of start-up business creation, the matching of entrepreneurial ventures to investors is critically important. The entrepreneur’s business proposition and previous experience are regarded as the main criteria for investment decisions. Our research, however, documents other critical criteria that investors use to make these decisions: the gender and physical attractiveness of the entrepreneurs themselves. Across a field setting (three entrepreneurial pitch competitions in the United States) and two experiments, we identify a profound and consistent gender gap in entrepreneur persuasiveness. Investors prefer pitches presented by male entrepreneurs compared with pitches made by female entrepreneurs, even when the content of the pitch is the same. This effect is moderated by male physical attractiveness: attractive males were particularly persuasive, whereas physical attractiveness did not matter among female entrepreneurs.",
+      "sourceUrl": "http://www.hbs.edu/faculty/Publication%20Files/Brooks%20Huang%20Kearney%20Murray_59b551a9-8218-4b84-be15-eaff58009767.pdf",
+      "sourcePath": "_articles/investors-prefer-entrepreneurial-ventures-pitched.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "9083e892c3cf37ca1e2a22af49c78c6b9fcea211c2d878bf6c8efbba14bee41a",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-cc4bc4c2e35fc2ca2700",
+      "title": "Learning from the Crowd: The Feedback Value of Crowdfunding",
+      "authors": [
+        "Ting Xu"
+      ],
+      "publication": "Working paper, 2017",
+      "publicationYear": 2017,
+      "category": "entrepreneurship",
+      "abstract": "Entrepreneurship is characterized by high failure rates and extreme uncertainty. In light of this, entrepreneurs’ learning about potential returns at an early stage is essential to their entry and allocation of resources. This paper uses the crowdfunding market to provide direct micro-level evidence on entrepreneurial learning. I find that entrepreneurs update beliefs based on feedbacks from the crowd in ways consistent with a simple Bayesian learning model, placing more weight on information with relatively higher precision. Moreover, entrepreneurs make entry and project choice decisions based on what they learned. Over time, learning improves an entrepreneur’s funding outcomes and reduces her likelihood of switching projects. I further establish the learning advantage of crowdfunding using local housing price movements and small business loan supply shocks as changes to the relative cost of crowdfunding vis-à-vis bank borrowing. I find that, as crowdfunding becomes relatively more costly, entrepreneurs choosing crowdfunding face higher uncertainty ex-ante and engage in more learning ex-post. My paper uncovers a new role of crowdfunding: the facilitation of learning. It suggests that feedback from financial markets, traditionally only available to listed firms, can become accessible to entrepreneurs of new ventures as early- stage financing is disintermediated by the involvement of the crowd.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2637699",
+      "sourcePath": "_articles/learning-from-the-crowd-the.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "df08c2398e4269e6771e57d54e46ae95a7f00de06cba93df35f3acd1f88ff79f",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-8ab56c78f46f70782917",
+      "title": "Managing the Unknowable: The Effectiveness of Early-Stage Investor Gut Feel in Entrepreneurial Investment Decisions",
+      "authors": [
+        "Laura Huang",
+        "Jone L. Pearce"
+      ],
+      "publication": "Administrative Science Quarterly, 2015",
+      "publicationYear": 2015,
+      "category": "decision",
+      "abstract": "Based on an inductive theory-development study, a field experiment, and a longitudinal field test, we examine early-stage entrepreneurial investment decision making under conditions of extreme uncertainty. Building on existing literature on decision making and risk in organizations, intuition, and theories of entrepreneurial financing, we test the effectiveness of angel investors’ criteria for making investment decisions. We use this prior work as an integrated lens to ground our empirical findings, and discover that angel investors’ decisions have several characteristics that have not been adequately captured in existing theory: angel investors have clear objectives (extraordinarily profitable investments rather than seeking to maximize return on each investment), and they rely on a combination of expertise-based intuition and formal analysis in which intuition trumps analysis, contrary to reports in other investment contexts. We also found, as proposed, that their reported emphasis on assessments of the entrepreneur accurately predict extraordinarily profitable venture success four years later. We develop this theory by examining situations in which uncertainty is so extreme that it qualifies as unknowable and propose using the term of art, “gut feel,” to describe their dynamic emotion-cognitions in which they blend analysis and intuition in ways that do not impair intuitive processes, and in turn, effectively predict extraordinarily profitable investments.",
+      "sourceUrl": "http://escholarship.org/uc/item/54j7z903",
+      "sourcePath": "_articles/managing-the-unknowable-the-effectiveness.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "edbf527ce4ac0b22dc6c5489098e11e319c73ac00f81d28324e5216e27b0407f",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-35ef0e1980692a57503c",
+      "title": "Motivational Cues and Angel Investing: Interactions Among Enthusiasm, Preparedness, and Commitment",
+      "authors": [
+        "Melissa S. Cardon",
+        "Cheryl Mitteness",
+        "Richard Sudek"
+      ],
+      "publication": "Entrepreneurship: Theory and Practice, October 2016",
+      "publicationYear": 2016,
+      "category": "angel",
+      "abstract": "Angel investors often make investment decisions based on motivational cues communicated during pitches – including enthusiasm, preparedness, and commitment – to evaluate potentially important qualities of entrepreneurs. We tested the independent and interaction effects of these cues by having 72 angels complete 1,995 evaluations of 133 live pitches. We found a positive effect of preparedness on angel evaluations, an effect enhanced by one form of commitment. The relationship between enthusiasm and evaluations of funding potential varies depending on the type of commitment considered. Our findings suggest that enthusiasm, preparedness, and commitment should be treated as conceptually and empirically distinct.",
+      "sourceUrl": "https://www.researchgate.net/profile/Melissa_Cardon/publication/305619822_Motivational_Cues_and_Angel_Investing_Interactions_Among_Enthusiasm_Preparedness_and_Commitment/links/5795f96008ae33e89fad7027.pdf",
+      "sourcePath": "_articles/motivational-cues-and-angel-investing.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "4e11f630fb25528243bccfdcfa0e86ddea1bd10e37c6602d1bc34f3b2a0c56d5",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-5c73db3d59a3ebe5f9d9",
+      "title": "Network dynamics and idea-based performance advantages: Experimental results from an entrepreneurship bootcamp",
+      "authors": [
+        "Rembrand Koning"
+      ],
+      "publication": "Working paper, 2015",
+      "publicationYear": 2015,
+      "category": "entrepreneurship",
+      "abstract": "Do networks plentiful in ideas provide early stage startups with performance advantages? On the one hand, network positions that provide access to a multitude of ideas are thought to increase team performance. On the other hand, research on network formation argues that such positional advantages should be fleeting as entrepreneurs both strategically compete for the most valuable network positions and form relationships with others who have similar characteristics and abilities. I embed a field experiment in a three-week-long startup bootcamp to test if networks that are plentiful in ideas lead to performance advantages. Using detailed data from the bootcamp’s custom-designed learning management platform, I find support for the first hypothesis. Teams with networks more plentiful in ideas receive better peer evaluations and more crowdfunding page views. I find little evidence that entrepreneurs actively build networks to others who could have provided a greater quantity of information and ideas. Instead, entrepreneurs seek feedback from those they have collaborated with in the past or who share similar ascriptive characteristics. These findings provide first-order evidence for the importance of knowledge spillovers within bootcamps, incubators, and accelerators. Furthermore, the findings provide a potential explanation for the durability of idea and information-based network advantages.",
+      "sourceUrl": "https://www.gsb.stanford.edu/sites/gsb/files/phd-job-market-paper/koning_job_market_paper.pdf",
+      "sourcePath": "_articles/network-dynamics-and-ideabased-performance.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "288a804c83a954478dc40769f70ae64a637f8d140dafb94e571da7dfde5277ce",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-40afe1fd896315a4967a",
+      "title": "New Technology Assessment in Entrepreneurial Financing - Can Crowdfunding Predict Venture Capital Investments?",
+      "authors": [
+        "Jermain Kaminski",
+        "Christian Hopp†",
+        "Tereza Tykvova"
+      ],
+      "publication": "arXiv.org, 2016",
+      "publicationYear": 2016,
+      "category": "finance",
+      "abstract": "Recent years have seen an upsurge of novel sources of new venture financing through crowdfunding (CF). We draw on 54,943 successfully crowdfunded projects and 3,313 venture capital (VC) investments throughout the period 04/2012-06/2015 to investigate, on the aggregate level, how crowdfunding is related to a more traditional source of entrepreneurial finance, venture capital. Granger causality tests support the view that VC investments follow crowdfunding investments. Cointegration tests also suggest a long-run relationship between crowdfunding and VC investments, while impulse response functions (IRF) indicate a positive effect running from CF to VC within two to six months. Crowdfunding seems to help VC investors in assessing future trends rather than crowding them out of the market.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2829777",
+      "sourcePath": "_articles/new-technology-assessment-in-entrepreneurial.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "financing_dynamics",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "aa074aa676d7b00c73013b501cbd42bb783f8323fc013e291937bc5d413502b1",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-26c7cb437bf447f58bfc",
+      "title": "New Venture Valuation by Venture Capitalists: An Integrative Approach",
+      "authors": [
+        "Dingkun Ge Assistant",
+        "James M. Mahoney Economist",
+        "Joseph T. Mahoney"
+      ],
+      "publication": "University of Illinois at Urbana-Champaign, College of Business Working Papers 05-0124",
+      "publicationYear": null,
+      "category": "strategy",
+      "abstract": "How to valuate accurately a new venture is a critical and under-researched question in entrepreneurial financing. Leveraging established theories in strategic management, this research study develops an integrative theoretical framework to examine whether venture capitalists’ valuation of a new venture can be explained by variables identified in the strategy literature as important to predicting firm-level economic performance. A systematic linkage between well-developed theories in strategy and venture capital valuation practice are corroborated empirically. This research study proposes a complementary method to extant valuation methods to valuate a new venture.",
+      "sourceUrl": "https://business.illinois.edu/working_papers/papers/05-0124.pdf",
+      "sourcePath": "_articles/new-venture-valuation-by-venture-.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "9f5e3c0c12868e43a627f84507514e826685ff2e7ad4ab0ce96e2e218dcac838",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-6a476286236e662eab5b",
+      "title": "Nowcasting and Placecasting: Entrepreneurial Quality and Performance",
+      "authors": [
+        "Jorge Guzman",
+        "Scott Stern"
+      ],
+      "publication": "NBER/CRIW Measuring Entrepreneurial Businesses: Current Knowledge and Challenges conference, Washington, DC, December, 2014.",
+      "publicationYear": 2014,
+      "category": "decision",
+      "abstract": "A central challenge in the measurement of entrepreneurship is accounting for the wide variation in entrepreneurial quality across firms. This paper develops a new approach for estimating entrepreneurial quality by linking the probability of a growth outcome (e.g., achieving an IPO or a significant acquisition) as a function of start-up characteristics observable at or near the time of initial business registration (e.g., the firm name or filing for a trademark/patent). Our approach allows us to characterize entrepreneurial quality at an arbitrary level of geographic granularity (placecasting) and in advance of observing the ultimate growth outcomes associated with any cohort of start-ups (nowcasting). We implement this approach in Massachusetts from 1988-2014, yielding several key findings. First, consistent with Guzman and Stern (2015), we find that a small number of observable start-up characteristics allow us to distinguish the potential for a significant growth outcome: in an out-of-sample test, more than 77% of growth outcomes occur in the top 5% of our estimated quality distribution. Second, we propose two new economic statistics for the measurement of entrepreneurship: the Entrepreneurship Quality Index (EQI) and the Regional Entrepreneurship Cohort Potential Index (RECPI). We use these indices to offer a novel characterization of changes in entrepreneurial quality across space and time. For example, we are able to document changes in entrepreneurial quality leadership between the Route 128 corridor, Cambridge and Boston, as well as more granular assessments that allow us to distinguish variation in average entrepreneurial quality down to the level of individual addresses. Third, we find a high correlation between an index that depends only on information directly observable from business registration records (and so can be calculated on a real-time basis) with an index that allows for a two-year lag that allows the estimate of entrepreneurial quality to incorporate early milestones such as patent or trademark application or being featured in local newspapers. Finally, we find that the most significant “gap” between our index and the realized growth outcomes of a given cohort seem to be closely related to investment cycles: while the most successful cohort of Massachusetts start-ups was founded in 1995, the year 2000 cohort registered the highest estimated quality.",
+      "sourceUrl": "http://www.nber.org/chapters/c13493.pdf",
+      "sourcePath": "_articles/nowcasting-and-placecasting-entrepreneurial-quality.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "6cec0d7ed853691ef956000c08d556d2e4fdd2f6f7b0532f64737aba6fcd3145",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-39c43026cd535297c842",
+      "title": "Organizational Decision-Making and Information: Angel Investments by Venture Capital Partners",
+      "authors": [
+        "Andy Wu"
+      ],
+      "publication": "Working paper, 2015",
+      "publicationYear": 2015,
+      "category": "angel",
+      "abstract": "We study information aggregation in organizational decision-making for the financing of entrepreneurial ventures. We introduce a formal model of voting where agents face costly tacit information to improve their decision quality. Equilibrium outcomes suggest a theoretical tension for group decision-making between the benefits of information aggregation and a cost from the participation of uninformed agents, and this tension presents a boundary condition for when a group decision is superior to an individual decision.\nWe test the implications of the model for a particular phenomenon in venture capital: private angel investments by the partners outside of their employer, which represent investments passed on by the employer. Venture capital partners, acting independently with their personal funds, make investments into younger firms with less educated and younger founding teams than their employing VC firms, but these investments perform financially similarly or better on some metrics even when controlling for investment size, stage, and industry. Geographic distance and technological inexperience by the VC increase the probability the investment is taken up by a partner and not the VC. This work contributes to an emerging stream of literature on information aggregation in organizations and the established literatures on resource allocation and incumbent spin-outs.",
+      "sourceUrl": "http://www.hbs.edu/faculty/Publication%20Files/Wu%202015_1_8c642e5c-51a2-4a7a-975f-a606eaa106f9.pdf",
+      "sourcePath": "_articles/organizational-decisionmaking-and-information-angel.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "91d28df0e201154905de08fb3bd8057033df533d9beabe81ed163ac45e5a119b",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-1dea0e04128f0583a723",
+      "title": "Postcolonial feminist analysis of high-technology entrepreneuring",
+      "authors": [
+        "Banu Ozkazanc-Pan"
+      ],
+      "publication": "International Journal of Entrepreneurial Behavior & Research, 2014",
+      "publicationYear": 2014,
+      "category": "diversity",
+      "abstract": "The purpose of this paper is to examine identity formation and networking practices relevant for high-technology entrepreneuring or the enactment of entrepreneurship in Silicon Valley by Turkish business people. Design/methodology/approach - Guided by postcolonial feminist frameworks, the author conducted a combination of ethnographic and auto-ethnographic fieldwork at high-technology conferences in Silicon Valley by focussing on talk and text as relevant for understanding entrepreneuring. Through a reflexive stance, the author analyzed observations, conversations, and experiences inclusive of her own positionality during the research process as they related to entrepreneurial identity formation and networking. Findings – During business networking conferences taking place among Turkish business people in Silicon Valley, women and older males became marginalized through the emergence of a hegemonic masculinity associated with young Turkish male entrepreneurs. In addition, local context impacted whether and how actors engaged in practices that produced marginalization and resistance simultaneously. Originality/value – The research is of value for scholars interested in understanding how identity formation and networking in high-technology entrepreneuring take place through gendered practices and ideas. Scholars interested in deploying postcolonial feminist perspectives will also benefit by understanding how key analytic tools and research methods from these lenses can be used for conducting fieldwork in other contexts.",
+      "sourceUrl": "https://www.researchgate.net/profile/Banu_Ozkazanc-Pan/publication/263245483_Postcolonial_feminist_analysis_of_high-technology_entrepreneuring/links/543fee210cf21227a11b9bfb.pdf",
+      "sourcePath": "_articles/postcolonial-feminist-analysis-of-hightechnology.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "98930b5905ff5d557174dcd81205fadfca4321bc67495767ec5b95d05a215ee7",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-362ab5bb1b47caf05b25",
+      "title": "Researchers of venture capitalists' decision making, beware!",
+      "authors": [
+        "Dean A. Shepherd"
+      ],
+      "publication": "Small Enterprise Association of Australia and New Zealand, 10th Annual Conference",
+      "publicationYear": null,
+      "category": "decision",
+      "abstract": "Researchers of venture capitalists’ decision making must be aware of potential biases and errors associated with self reported data especially in light of this study’s findings that venture capitalists’ lack introspection into the policies they “use” to assess likely profitability. Surprisingly, venture capitalists demonstrate some introspection into the policies they “use” to assess probability of survival.",
+      "sourceUrl": "http://www.seaanz.org/sites/seaanz/documents/1997SEAANZConference/1997-12.pdf",
+      "sourcePath": "_articles/researchers-of-venture-capitalists-decision.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "7bade76370d1a43578c8ef2e2e847ccd75de30e97e210d8901d7015fc0a1c6a1",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-65be367c6f9b4751a3dc",
+      "title": "Schumpeterian Entrepreneurship",
+      "authors": [
+        "Atsushi Ohyama",
+        "Serguey Braguinsky",
+        "Steven Klepper"
+      ],
+      "publication": "Atlanta Competitive Advantage Conference, 2009",
+      "publicationYear": 2009,
+      "category": "entrepreneurship",
+      "abstract": "Based on recent findings concerning the best performing startups, we develop a model of Schumpeterian entrepreneurship in which founders exploit ideas they learned through their employment. The model yields distinctive implications about how labor market experience and earnings at work influence the probability of a worker becoming an entrepreneur, earnings as an entrepreneur relative to paid work, and persistence in entrepreneurship. These implications are tested using data on the earnings of scientists and engineers, which are common founders of high growth startups. The sample is pared down to those that worked in and founded businesses related to their education in order to isolate the best candidates for Schumpeterian entrepreneurship.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1347063",
+      "sourcePath": "_articles/schumpeterian-entrepreneurship.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "8fc1d47811e111c39f451cadd1066c02e0ce02a9783a9d69bbdc70cf71a0a245",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-7f9c993557ff6610fbe1",
+      "title": "Should Investors Bet on the Jockey or the Horse? Evidence from the Evolution of Firms from Early Business Plans to Public Companies",
+      "authors": [
+        "Steven Kaplan",
+        "Berk Sensoy",
+        "Per Stromberg"
+      ],
+      "publication": "Journal of Finance, 2009",
+      "publicationYear": 2009,
+      "category": "strategy",
+      "abstract": "We study how firm characteristics evolve from early business plan to initial public offering (IPO) to public company for 50 venture capital (VC)-financed companies. Firm business lines remain remarkably stable while management turnover is substantial. Management turnover is positively related to alienable asset formation. We obtain similar results using all 2004 IPOs, suggesting that our main results are not specific to VC-backed firms or the time period. The results suggest that, at the margin, investors in start-ups should place more weight on the business (“the horse”) than on the management team (“the jockey”). The results also inform theories of the firm.",
+      "sourceUrl": "http://faculty.chicagobooth.edu/steven.kaplan/research/kss.pdf",
+      "sourcePath": "_articles/should-investors-bet-on-the.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "17f17c135c0752ba58611d4525592f41d8a76d730efa979311c867a611f47e24",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-34103392c6c2ed2f8832",
+      "title": "Skill vs. Luck in Entrepreneurship and Venture Capital: Evidence from Serial Entrepreneurs",
+      "authors": [
+        "Paul Gompers",
+        "Anna Kovner",
+        "Josh Lerner",
+        "David Scharfstein"
+      ],
+      "publication": "NBER Working Paper No. 12592, October 2006",
+      "publicationYear": 2006,
+      "category": "entrepreneurship",
+      "abstract": "This paper argues that a large component of success in entrepreneurship and venture capital can be attributed to skill. We show that entrepreneurs with a track record of success are more likely to succeed than first time entrepreneurs and those who have previously failed. Funding by more experienced venture capital firms enhances the chance of success, but only for entrepreneurs without a successful track record. Similarly, more experienced venture capitalists are able to identify and invest in first time entrepreneurs who are more likely to become serial entrepreneurs. Investments by venture capitalists in successful serial entrepreneurs generate higher returns for their venture capital investors. This finding provides further support for the role of skill in both entrepreneurship and venture capital.",
+      "sourceUrl": "http://www.nber.org/papers/w12592.pdf",
+      "sourcePath": "_articles/skill-vs-luck-in-entrepreneurship.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "traction_interpretation",
+        "investment_screening"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "b74185d7fcdef165ab3b6637db07a7230b2b0fcaa276d4bfd33841c99eb5a9fb",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-5bb0c7e6419371bc7202",
+      "title": "Status Beliefs and the Spirit of Capitalism: Accounting for Gender Biases in Entrepreneurship and Innovation",
+      "authors": [
+        "Sarah Thébaud"
+      ],
+      "publication": "Social Forces, 2014",
+      "publicationYear": 2014,
+      "category": "diversity",
+      "abstract": "In this article, I develop and empirically test the theoretical argument that widely shared cultural beliefs about men’s and women’s abilities in entrepreneurship (i.e., “gender status beliefs”) systematically influence the social interactions during which an entrepreneur, particularly an innovative entrepreneur, seeks support from potential stakeholders for his or her new organization. To evaluate this argument, I conducted three experimental studies in the United Kingdom and the United States in which student participants were asked to evaluate the pro les of two entrepreneurs and to make investment decisions for each. The studies manipulated the gender of the entrepreneur and the innovativeness of the business plan. The main finding is consistent across studies: gender status beliefs disadvantage typical women entrepreneurs vis-à-vis their male counterparts, but innovation in a business model has a stronger and more positive impact on ratings of women’s entrepreneurial ability and overall support for their business ideas than it does for men’s. However, the strength of these patterns varies significantly depending on the societal and industry context of the new venture in question. Findings indicate that gender status beliefs can be understood as an important “demand-side” mechanism contributing to gender inequality in aggregate entrepreneurship rates and a micro-level factor affecting the likelihood that a new and novel organization will emerge and survive.",
+      "sourceUrl": "https://pdfs.semanticscholar.org/1417/79ca61a7caa436d69d30cbbdb0b5801d61f5.pdf",
+      "sourcePath": "_articles/status-beliefs-and-the-spirit.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "17e2d9aabb7c14886119ab08a799d16dd3490f652d8bc74cfd623342563b3480",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-6a2afbd6324a1798b3f2",
+      "title": "Swept Away by the Crowd? Crowdfunding, Venture Capital, and the Selection of Entrepreneurs",
+      "authors": [
+        "Ethan R. Mollick"
+      ],
+      "publication": "Working paper",
+      "publicationYear": null,
+      "category": "decision",
+      "abstract": "Venture Capitalists (VCs) are experts in assessing the quality of entrepreneurial ventures. A long tradition of research has examined the signals of quality that VCs look for in new ventures, and the biases that result from the VC selection process. Recently, an alternative form of new venture funding has arisen in the form of crowdfunding, which relies on the judgement of millions of amateurs about which entrepreneurial projects are worth funding. Little is known about the degree to which amateurs respond to the same signals of quality as VCs, and whether they are subject to the same biases. To address this gap, I examine 2,101 crowdfunded projects that match characteristics of more traditional VC-backed seed ventures. Despite the radical differences in selection environments, I find that entrepreneurial quality is assessed in similar ways by both VCs and crowdfunders, but that crowdfunding alleviates some of geographic and gender biases associated with the way that VCs look for signals of quality.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2239204",
+      "sourcePath": "_articles/swept-away-by-the-crowd.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "db2960152278e58c0793d8cce80de011480f87b9e419bc9c11562cdaa5da724c",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-2b2fdb1e506c6155863c",
+      "title": "The Consequences of Entrepreneurial Finance: Evidence from Angel Financings",
+      "authors": [
+        "William R. Kerr",
+        "Josh Lerner",
+        "Antoinette Schoar"
+      ],
+      "publication": "Review of Financial Studies, 2011",
+      "publicationYear": 2011,
+      "category": "angel",
+      "abstract": "This paper documents that ventures that are funded by two successful angel groups experience superior outcomes to those that are rejected: they have improved survival, exits, employment levels, patenting, web traffic, and financing. We use strong discontinuities in the funding behavior of angels over small changes in their collective interest levels to implement a regression discontinuity approach. We confirm the positive effect of angel financing on most operations of the venture, with qualitative support for a higher likelihood of successful exits. On the other hand, there is no difference in access to additional financing around the discontinuity. This might suggest that financing is not a central input of angel groups.",
+      "sourceUrl": "http://www.hbs.edu/faculty/Publication%20Files/10-086.pdf",
+      "sourcePath": "_articles/the-consequences-of-entrepreneurial-finance.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "6290c249a1c62c5819a1cab68edc14f10b545c8b19406d42eaea837467a46e57",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-84efcb74001b253b2324",
+      "title": "The Emergence of the Lean Global Startup as a New Type of Firm",
+      "authors": [],
+      "publication": "Technology Innovation Management Review, 2015",
+      "publicationYear": 2015,
+      "category": "economics",
+      "abstract": "This article contributes to the interplay between international entrepreneurship, innovation networks, and early internationalization research by emphasizing the need to conceptualize and introduce a new type of firm: the lean global startup. It discussed two different paths in linking the lean startup and born-global internationalization strategies. The first path refers to generic lean startups that have undertaken a rapid internationalization strategy (i.e., lean-to-global startups). The second path refers to startups that have started operating on global scale since their inception and adopted the lean startup approach by seamlessly synergizing their global and lean product development activities. The article emphasizes several aspects that could be used as part of the theoretical foundation for conceptualizing lean global startups as a special new type of firm: i) the emergent nature of their business models, including the challenges of partnership development on a global scale; ii) the inherently relational nature of the global resource allocation processes; iii) the integration of the entrepreneurial, effectuation, and global marketing perspectives; iv) the need to deal with a high degree of uncertainty, including the uncertainty associated with cross-border business operations; and v) linking the ex-ante characteristics of lean startups with the ex-post characteristics of born-global firms in order to develop a technology adop- tion marketing perspective that considers the “crossing the chasm” process as a successful entry into a global market niche.",
+      "sourceUrl": "http://findresearcher.sdu.dk/portal/files/117858292/RasmussenTanev_TIMReview_November2015.pdf",
+      "sourcePath": "_articles/the-emergence-of-the-lean.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "business_model_analysis",
+        "traction_interpretation",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "a6a35f0c55ea29b90eb13b92e7e4ce40d52ab608656d4e4bba4155f4adcf858c",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-1b2492ba6091f62a92e0",
+      "title": "The Impact of Venture Capital Monitoring",
+      "authors": [
+        "Shai Bernstein",
+        "Xavier Giroud",
+        "Richard R. Townsend"
+      ],
+      "publication": "Research Handbook on Mergers and Acquisitions (Davidoff-Solomon & Hill, eds.), Forthcoming",
+      "publicationYear": null,
+      "category": "strategy",
+      "abstract": "We show that venture capitalists’ (VCs) on-site involvement with their portfolio companies leads to an increase in (1) innovation and (2) the likelihood of a successful exit. We rule out selection effects by exploiting an exogenous source of variation in VC involvement: the introduction of new airline routes that reduce VCs’ travel times to their existing portfolio companies. We confirm the importance of this channel by conducting a large-scale survey of VCs, of whom almost 90% indicate that direct flights increase their interaction with their portfolio companies and management, and help them better understand companies’ activities.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2664236",
+      "sourcePath": "_articles/the-impact-of-venture-capital.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "26a6129eb009f66bbbdf4130e5b2ed10cccb7183b9abe909c620ceb427789a4c",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-9847ec0a9b7078106239",
+      "title": "The importance angels place on passion when making investment decisions: why does it matter to some and not all angels?",
+      "authors": [
+        "Cheryl R. Mitteness",
+        "Melissa S. Cardon",
+        "Richard Sudek"
+      ],
+      "publication": "Frontiers of Entrepreneurship Research, 2010",
+      "publicationYear": 2010,
+      "category": "angel",
+      "abstract": "Despite increasing interest in understanding the role passion plays in investor decision making, little is known about the conditions under which displayed passion is likely to play a significant role in this process. This study seeks to explain the individual characteristics of angel investors that influence the importance angels place on the passion displayed by the entrepreneur when angels make investment decisions. We use affective reactivity as our theoretical framework and integrate literature specific to each individual characteristic to explain how each characteristic likely impacts individuals’ affective reactivity and ultimately the importance these individuals place on passion when making investment decisions.",
+      "sourceUrl": "http://digitalknowledge.babson.edu/cgi/viewcontent.cgi?article=1875&context=fer",
+      "sourcePath": "_articles/the-importance-angels-place-on.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "cd171b7198513ef98bed4585c00b048845f8afa96657b4f2edfdd72f908f4ad0",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-f48cb9a9a734a68afc67",
+      "title": "The Narrative Advantage: Gender and the Language of Crowdfunding",
+      "authors": [
+        "Andreea Gorbatai",
+        "Laura Nelson"
+      ],
+      "publication": "Working paper",
+      "publicationYear": null,
+      "category": "diversity",
+      "abstract": "In this study, we set out to examine the role of language in the success of online fundraising—a new form of entrepreneurial project financing. In particular, we evaluate the influence of linguistic content on fundraising outcomes, above and beyond type of product or service offered. Online fundraising settings pose an interesting empirical puzzle: women are systematically more successful than men, an outcome contrary to offline gender inequality. We propose that this outcome is partially explained by linguistic differences between men and women in terms of language they use, and we test this mechanism using data from the online crowdfunding platform Indiegogo. The results support our theory, suggesting a link between micro-level linguistic choices and macro level outcomes: the institution of crowdfunding may reduce gender inequalities in the fundraising arena by benefitting the communication style of women.",
+      "sourceUrl": "http://faculty.haas.berkeley.edu/gorbatai/working%20papers%20and%20word/Crowdfunding-GenderGorbataiNelson.pdf",
+      "sourcePath": "_articles/the-narrative-advantage-gender-and.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "bf76dbb18022f5a63cdf98628a61f0ea4f5bb0c58f4fb141db4f5072f74b72ff",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-2282001eb9903e222a8d",
+      "title": "The Persistent Effect of Initial Success: Evidence from Venture Capital",
+      "authors": [
+        "Ramana Nanda",
+        "Sampsa Samila",
+        "Olav Sorenson"
+      ],
+      "publication": "Harvard Business School Entrepreneurial Management Working Paper No. 17-065",
+      "publicationYear": null,
+      "category": "strategy",
+      "abstract": "We used data on individual investments in the portfolios of venture capital firms to study persistence in their performance. Each additional IPO among a VC's first five investments predicted a 13% higher IPO rate for its subsequent 50 investments. Roughly half of this performance persistence stemmed from investment \"styles\" ― investing in particular regions and industries. We found no evidence of performance persistence stemming from a differential ability to select or govern portfolio companies. Rather, our results suggest that early success in venture investing yields better deal flow in subsequent investments, thereby perpetuating differences in the outcomes of initial investments.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2900862",
+      "sourcePath": "_articles/the-persistent-effect-of-initial.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "6f9daba2fa9e4daea81f88986965c59e37e8d04b08a84244034464a176eb4ee3",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-e8ae5ec827fa0757db8b",
+      "title": "The Rise of the Unicorns - How Media Affects Start-Up Valuations",
+      "authors": [
+        "Severin Johannes Zörgiebel"
+      ],
+      "publication": "Working paper, 2016",
+      "publicationYear": 2016,
+      "category": "economics",
+      "abstract": "Within the last years, start-ups have achieved extraordinary high valuation levels which have never been seen in such dimensions before. These high-valued start-ups with valuations above or equal to US$1bn are also called unicorns. Similarly, media coverage of start-ups has increased significantly. In this paper the impact of media coverage on global unicorn valuations between 1990 and October 2015 is empirically analyzed. In addition, the impact of technology advancements on the media and start-ups is discussed. The here presented results indicate that technology advancements increase media coverage for start-ups. Investors which are typically not primarily active in the VC market are most affected by increasing media coverage. Start-up and especially unicorn valuations are driven to a large extent by increasing media coverage before a funding round. These results add new insights on the driving factors of start-up valuations and are consistent across a variety of different regression models and robustness checks.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2808458",
+      "sourcePath": "_articles/the-rise-of-the-unicorns.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "business_model_analysis",
+        "traction_interpretation",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "7b846060cd09fb5206bfc77287c820c534b316170dd097dd6994f36f13c60d39",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-fec43307dc6d45bd21f0",
+      "title": "The Role of Prediction in New Venture Investing",
+      "authors": [
+        "Robert Wiltbank",
+        "Richard Sudek",
+        "Stuart Read"
+      ],
+      "publication": "Frontiers of Entrepreneurship Research, 2009",
+      "publicationYear": 2009,
+      "category": "decision",
+      "abstract": "Early stage investors openly discount/ignore the predictions that entrepreneurs show in their business plans as they pitch to investors. At the same time, many predictions about the venture continue to anchor investor evaluations. However, investors’ use of predictive and non-predictive information varies based on their own approach to dealing with uncertainty, their own entrepreneurial experience, and the steps in the evaluation process (i.e. screening, due diligence, and funding). Evaluating data from more than 2,700 individual investor evaluations of 150 new ventures, we find that investors with more entrepreneurial experience are more effectual in how they approach the development of new ventures. We also find that investors grade their area of emphasis more stringently, i.e. those who weight predictive information grade it “tougher.” Overall, investors emphasize predictive information more than they might suppose, especially early in the selection process, but once a venture has moved through the funding process to due diligence and investment, non-predictive information is the key factor.",
+      "sourceUrl": "http://digitalknowledge.babson.edu/cgi/viewcontent.cgi?article=1490&context=fer",
+      "sourcePath": "_articles/the-role-of-prediction-in.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "bb7aeccb339907a725016357cfd5759bd60add71ccebc5aea92561a8691b7ac6",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-f481cd7d4bf2d78611e2",
+      "title": "The Social Value of the Marginal Startup",
+      "authors": [
+        "John J. Horton"
+      ],
+      "publication": "Working paper, 2014",
+      "publicationYear": 2014,
+      "category": "economics",
+      "abstract": "I present a model of technology entrepreneurship in which “engineers” choose to either found a startup as an entrepreneur, pursuing a single business idea—obtaining seed funding from VCs in exchange for equity—or join an established startup as an employee. The model predicts the number of startups formed and their success probability. It also predicts the wages of engineers, the share of equity retained by founders, the fraction of engineers pursuing entrepreneurship, and the profits of successful startups. The model characterizes the total output of the entrepreneurial system and the social value of the marginal entrepreneurial venture.",
+      "sourceUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2442439",
+      "sourcePath": "_articles/the-social-value-of-the.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "business_model_analysis",
+        "traction_interpretation",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "9b3be53e0887cc9c50ac1301578ab8f593f57ac1a0950ca4daf9dc4ba3b4e5e0",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-a6ccc91c7cc03fc15f22",
+      "title": "The transformation of the business angel market: empirical evidence and research implications",
+      "authors": [
+        "Colin Mason",
+        "Tiago Botelho",
+        "Richard Harrison"
+      ],
+      "publication": "Venture Capital, 2016",
+      "publicationYear": 2016,
+      "category": "angel",
+      "abstract": "Business angel investing – a key source of finance for entrepreneurial businesses – is rapidly evolving from a fragmented and largely anonymous activity dominated by individuals investing on their own to one that is increasingly characterised by groups of investors investing together through managed angel groups. The implications of this change have been largely ignored by scholars. The paper examines the investment activity and operation of angel groups in Scotland to highlight the implications of this change for the nature of angel investing. It goes on to argue that this transformation challenges both the ongoing relevance of prior research on business angels and current methodological practices, and raises a set of new research questions.",
+      "sourceUrl": "http://www.gla.ac.uk/media/media_302219_en.pdf",
+      "sourcePath": "_articles/the-transformation-of-the-business.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "602b368a5123ee4392d111ab93dd866e476c814a72366ccc577a985316c4c325",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-76d1fde71660f10b2236",
+      "title": "Trustworthiness: A Critical Ingredient for Entrepreneurs Seeking Investors",
+      "authors": [
+        "Andrew L. Maxwell",
+        "Moren Lévesque"
+      ],
+      "publication": "Entrepreneurship Theory & Practice, 2014",
+      "publicationYear": 2014,
+      "category": "angel",
+      "abstract": "e investigate how specific behaviors by an entrepreneur during an initial interaction with a business angel investor build, damage or violate trust, and how the investor’s changes in his or her level of trust affects the decision to make an investment offer, or not. Our empirical analysis shows that entrepreneurs who receive offers are expected to exhibit a larger number of trustbuilding behaviors, a smaller number of trust-damaging behaviors, and to be unlikely to display trust-violating behaviors, as compared to those who do not receive an offer. We further observe that the offer of a trust-repair mechanism by the investor is a prerequisite for all of the entrepreneurs who damage or violate trust to receive an investment offer.",
+      "sourceUrl": "http://digitalknowledge.babson.edu/cgi/viewcontent.cgi?article=1874&context=fer",
+      "sourcePath": "_articles/trustworthiness-a-critical-ingredient-for.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "92c7e7d0c27a657da30ba5ccc5667a12b4658d17ec8a9715357fe5ef6092c520",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-127e3a68c26046a90d9b",
+      "title": "Understanding the value proposition as a cocreated claim",
+      "authors": [
+        "Noelle London",
+        "Gregory Pogue",
+        "Clay Spinuzzi"
+      ],
+      "publication": "markdown=\"1\">",
+      "publicationYear": null,
+      "category": "entrpreneurship",
+      "abstract": "In this paper, we examine five cases of technology commercialization in terms of how entrepreneurs advance a specific kind of claim: the value proposition. The value proposition can describe the characteristics of the innovation itself (Goods- Dominant Logic) or propose how the innovation will co-create value with stakeholders (Service-Dominant Logic); in the examined cases, the value proposition transitions between these two logics, addressing different needs in the ongoing argument. We conclude by discussing the needs that each “logic” serves and the implications for better understanding entrepreneurship communication.",
+      "sourceUrl": "https://repositories.lib.utexas.edu/bitstream/handle/2152/31275/london-2015-value-proposition-as-a-co-created-claim.pdf?sequence=2",
+      "sourcePath": "_articles/understanding-the-value-proposition-as.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "a223be83efa978d42aa7a2bc722bbeb0ea8a8824803d63c34fbe561b936cab76",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-5132e574a3b88bc42bd3",
+      "title": "Values and judgment under uncertainty: evidence from venture capitalist assessments of founders",
+      "authors": [
+        "Sharon F. Matusik",
+        "Jennifer M. George",
+        "Michael B. Heeley"
+      ],
+      "publication": "Strategic Entrepreneurship Journal, 2008",
+      "publicationYear": 2008,
+      "category": "decision",
+      "abstract": "We examine how judgments in the context of uncertainty vary, depending on the values of those making these judgments. We test these ideas in the context of venture capitalists' (VCs') evaluations of founders. Drawing on theoretical and empirical research on the role of values in judgment and decision making and on Schwartz's (1992, 1996) conceptualization of the basic motivational dimensions underlying human values, we hypothesize and find that decision makers' process values (i.e., values governing the types of means to an end that an individual values) influence the perceived worth of founders' human capital. We discuss implications of these findings for judgment and decision-making research, as well as practical implications for entrepreneurs and venture capitalists.",
+      "sourceUrl": "https://www.researchgate.net/publication/229741196_Values_and_judgment_under_uncertainty_evidence_from_venture_capitalist_assessments_of_founders",
+      "sourcePath": "_articles/values-and-judgment-under-uncertainty.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "6b638ba5091f261c28cf93df44cc66898597aa67b041b712bfba482d91fcb673",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-f55dc2245591f9035446",
+      "title": "Venture Capital Ownership as a Contingent Resource: How Owner–Firm Fit Influences IPO Outcomes",
+      "authors": [
+        "Razvan Lungeanu",
+        "Edward J. Zajac"
+      ],
+      "publication": "Academy of Management Journal, 2016",
+      "publicationYear": 2016,
+      "category": "finance",
+      "abstract": "This study seeks to contribute to the literature on corporate ownership and firm performance by advancing an expertise-based perspective that views owners as a contingent resource. Specifically, we propose that heterogeneous prior experiences of corporate owners creates identifiable and evolving differences in owner expertise, and that these differences in expertise, when matched appropriately to firms’ specific and changing strategic needs, will be a source of value over the life cycle of a firm. We draw from the venture capital (VC) context to identify ex ante the meaningful differences in owner expertise, as well as the firm-specific situations in which we believe a fit or misfit would exist between VC owners and these private firms. We test and find support for our predictions regarding the performance benefits of well-matched owners and firms using an extensive longitudinal dataset of the population of U.S. private firms seeking to go public from 1997 to 2004, and their VC owners. We discuss the implications of our approach as they relate to future research opportunities across the corporate governance, strategy, and entrepreneurship literatures.",
+      "sourceUrl": "http://amj.aom.org/content/59/3/930.abstract",
+      "sourcePath": "_articles/venture-capital-ownership-as-a.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "financing_dynamics",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "3d34b713772246d003734e73b8b67f6cf84c396f951336e878f79648bed54aac",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-6e9dff52278116a7ffae",
+      "title": "Venture-Backed Firms: How Does Venture Capital Involvement Affect Their Likelihood of Going Public or Being Acquired?",
+      "authors": [
+        "Roberto Ragozzino",
+        "Dane Blevins"
+      ],
+      "publication": "Entrepreneurship Theory and Practice, 2015",
+      "publicationYear": 2015,
+      "category": "finance",
+      "abstract": "This paper investigates how venture capitalists' involvement in new ventures affects the likelihood of entrepreneurial exit, either via an acquisition or via an initial public offering. We examine the prominence of venture capitals (VCs), the number of VCs invested in a company, as well as the timing, duration, and magnitude of their investments in new ventures. We find that each of these dimensions directly explains entrepreneurial exit, although their effects tend to differ depending on whether the exit occurs via an acquisition or an initial public offering (IPO). These results withstand several robustness checks and offer a more precise account of how the relationship between new ventures and VC firms unfolds in the early years of the entrepreneurial cycle.",
+      "sourceUrl": "https://www.researchgate.net/publication/273330703_Venture-Backed_Firms_How_Does_Venture_Capital_Involvement_Affect_Their_Likelihood_of_Going_Public_or_Being_Acquired",
+      "sourcePath": "_articles/venturebacked-firms-how-does-venture.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "financing_dynamics",
+        "business_model_analysis",
+        "portfolio_value_creation"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "53e5d81b6d2fba71a6ea01ae2c43028bcfd621f2ddddcd40b4b472df29a27074",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-2418dd0b06335ddbe4c9",
+      "title": "What matters, matters differently: a conjoint analysis of the decision policies of angel and venture capital investors",
+      "authors": [
+        "Dan K. Hsua",
+        "J. Michael Haynieb",
+        "Sharon A. Simmonsc",
+        "Alexander McKelvie"
+      ],
+      "publication": "Venture Capital, 2014",
+      "publicationYear": 2014,
+      "category": "angel",
+      "abstract": "Prior studies have examined the importance of economic, strategic, and human factors to decision policies of angel investors and venture capitalists. As more angels professionalize into angel funds and as markets for technologies and ideas become more competitive, it is becoming more important to compare their decision policies with those of venture capitalists. Drawing upon agency theory, we examine whether economic potential, specific human capital, strategic readiness, and passion matter differently to venture capitalists and angel investors. Our study is an experimental conjoint analysis of more than 2700 investment decisions nested within a mixed sample of venture capitalists and angel investors. We find that strategic readiness for funding and affective passion matter more to angel investors, while economic potential matters more to venture capitalists. We also find that both investor types place similar weights on the specific human capital of entrepreneurs. These findings support the agency view that differences in the investment decision policies of angel investors and venture capitalists can be explained by examining the agency costs, market risks, information asymmetry, and control mechanisms that are structured into angel and venture capital deals.",
+      "sourceUrl": "https://www.researchgate.net/profile/Dan_Hsu2/publication/259192950_What_matters_matters_differently_a_conjoint_analysis_of_the_decision_policies_of_angel_and_venture_capital_investors/links/55115afa0cf24e9311ce1957.pdf?origin=publication_detail",
+      "sourcePath": "_articles/what-matters-matters-differently-a.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "7007c99c5da2bafd1d77200af905491b32daf8a85dbf79d1ce1a1cb251018455",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-aebef779c1bfbe018612",
+      "title": "Who Gets Started on Kickstarter? Demographic Variations in Fundraising Success",
+      "authors": [
+        "Lauren Rhue"
+      ],
+      "publication": "Proceedings of ICIS Conference, 2015",
+      "publicationYear": 2015,
+      "category": "diversity",
+      "abstract": "Crowdfunding platforms like Kickstarter are expected to democratize funding by increasing the availability of capital to traditionally underrepresented groups, but there is conflicting evidence about racial disparities in success rates. This paper contributes to the information systems literature on crowdfunding by examining the racial dynamics in the crowdfunding platform Kickstarter. The race of subjects in project and user photos are determined with facial recognition software for 138,778 fundraising projects, and matched sample techniques are used to control for observable differences in project categories among racial groups. Even controlling for these observable differences, this study finds that projects with African-American photo subjects achieve lower success rates. African-American fundraisers also achieve significantly lower success than other groups, and this effect is larger than the effect from project photos. This study has practical implications for individuals seeking capital in these markets as well as design implications for the platforms themselves.",
+      "sourceUrl": "http://aisel.aisnet.org/cgi/viewcontent.cgi?article=1408&context=icis2015",
+      "sourcePath": "_articles/who-gets-started-on-kickstarter.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "team_assessment",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "14f4d92a64e50b5fb1938f11bc8af5a5191b60fc27e2d98d7483cd73e447b93e",
+      "status": "active"
+    },
+    {
+      "documentId": "vc-methodology-f2ea2ebd0135bc46a734",
+      "title": "Why Business Angels Reject Investment Opportunities: it is personal?",
+      "authors": [
+        "Colin Mason",
+        "Tiago Botelho",
+        "Justyna Zygmunt"
+      ],
+      "publication": "International Small Business Journal, 2016",
+      "publicationYear": 2016,
+      "category": "angel",
+      "abstract": "A major focus of research on business angels has examined their decision-making processes and investment criteria. As business angels reject most of the opportunities that they receive, this article explores the reasons informing such decisions. In view of angel heterogeneity, investment opportunities might be expected to be rejected for differing reasons. Two sources of data are used to examine this issue. Face-to-face interviews with 30 business angels in Scotland and Northern Ireland provided information on typical ‘deal killers’ This was complemented by an internet survey of UK that attracted responses from 238 UK business angels. The findings confirm that the main reason for rejection relates to the entrepreneur/management team. However, angel characteristics do not explain the number of reasons given for opportunity rejection nor do they predict the reasons for rejecting investment opportunities. This could be related to the increasing trend for business angels to join organized groups which, in turn, leads to the development of a shared repertoire of investment approaches. We suggest the concept of ‘communities-of-practice’ as an explanation for this finding.",
+      "sourceUrl": "http://www.anzam.org/wp-content/uploads/pdf-manager/2734_468.PDF",
+      "sourcePath": "_articles/why-business-angels-reject-investment.md",
+      "evidenceClass": "PRODUCT_KNOWLEDGE",
+      "authorityLevel": "scholarly_abstract",
+      "knowledgeAge": "historical",
+      "permittedRetrievalPurposes": [
+        "investment_screening",
+        "financing_dynamics",
+        "investment_objections"
+      ],
+      "currentMarketAuthority": false,
+      "contentHash": "02c04dd4bc8f5967d41994caa503db503854cc84546e854637e98e9dc077d08a",
+      "status": "active"
+    }
+  ]
+}

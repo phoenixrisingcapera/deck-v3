@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Core window access. Filesystem reach is provided by explicit commands in lib.rs, each rooted at the workspace folder, so no plugin scope is declared here.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

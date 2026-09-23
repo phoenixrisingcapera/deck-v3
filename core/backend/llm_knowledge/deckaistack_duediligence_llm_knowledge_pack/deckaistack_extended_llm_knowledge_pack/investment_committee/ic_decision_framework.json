@@ -1,0 +1,32 @@
+{
+  "ic_sections": [
+    "one_line_recommendation",
+    "company_snapshot",
+    "investment_thesis",
+    "market_validation",
+    "traction_evidence",
+    "team_assessment",
+    "competitive_position",
+    "deal_terms",
+    "risks_and_mitigations",
+    "decision_questions"
+  ],
+  "partner_question_bank": [
+    "Why now?",
+    "Why this team?",
+    "What evidence shows pull rather than push?",
+    "What breaks the model?",
+    "What has to be true for this to return the fund?",
+    "What would make us pass?",
+    "What is the strongest bear case?",
+    "How do we win allocation?"
+  ],
+  "decision_states": [
+    "proceed_to_partner_meeting",
+    "request_more_data",
+    "pass_for_now",
+    "hard_pass",
+    "monitor"
+  ],
+  "output_policy": "Separate evidence, interpretation, and recommendation. Do not mix unsupported claims into recommendation."
+}

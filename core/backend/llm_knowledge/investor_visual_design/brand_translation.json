@@ -1,0 +1,1 @@
+{"module":"brand_translation","rules":[{"id":"brand.tokens","when":"rendering","require":"use observed canonical palette and typography"},{"id":"brand.semantic_accent","when":"using accent color","require":"reserve it for evidence, transition, or argument emphasis"}]}

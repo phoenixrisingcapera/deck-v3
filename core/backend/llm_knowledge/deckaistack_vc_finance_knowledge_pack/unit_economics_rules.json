@@ -1,0 +1,40 @@
+{
+  "module": "unit_economics_rules",
+  "version": "0.1.0",
+  "rules": [
+    {
+      "id": "gross_margin_definition",
+      "principle": "Gross margin must be based on revenue minus cost of goods or service delivery, not total sales or GMV.",
+      "redFlags": ["GMV treated as revenue", "gross margin claim without cost basis", "services margin presented as SaaS margin"],
+      "slideFix": "Clarify revenue basis and margin basis. If margin is unknown, request COGS/service delivery assumptions."
+    },
+    {
+      "id": "cac_scope",
+      "principle": "CAC should include sales and marketing costs needed to acquire customers over a defined period.",
+      "redFlags": ["CAC excludes sales headcount", "CAC based only on ad spend", "CAC used before repeatable acquisition exists"],
+      "slideFix": "Label CAC as early/proxy if not mature. Request acquisition cost components and conversion assumptions."
+    },
+    {
+      "id": "ltv_requires_retention",
+      "principle": "LTV is not credible without retention, churn, gross margin, and average revenue assumptions.",
+      "redFlags": ["LTV without churn", "LTV/CAC ratio without method", "retention missing"],
+      "slideFix": "Either show LTV calculation assumptions or replace with early retention/usage proxies."
+    },
+    {
+      "id": "payback_for_b2b",
+      "principle": "B2B decks should connect CAC, sales cycle, gross margin, and payback period where possible.",
+      "redFlags": ["enterprise sales motion without payback", "long sales cycle ignored", "implementation cost ignored"],
+      "slideFix": "Add payback-period assumptions or request data before presenting unit economics as proven."
+    }
+  ],
+  "earlyStageProxies": [
+    "paid pilot conversion",
+    "repeat usage frequency",
+    "retention cohort",
+    "pipeline quality",
+    "founder-led sales learnings",
+    "sales cycle evidence",
+    "LOIs or procurement progress",
+    "gross margin proxy from delivery cost"
+  ]
+}

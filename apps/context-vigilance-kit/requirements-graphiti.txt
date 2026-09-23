@@ -1,0 +1,43 @@
+# context-vigilance-kit — Graphiti (temporal knowledge graph) dependencies
+#
+# Kept separate from requirements.txt on purpose. The Chroma path is cheap
+# and local; the Graphiti path drags in a graph driver and an LLM SDK and
+# only matters if you're running the knowledge-graph experiment.
+#
+# Install with `uv` (preferred):
+#     uv pip install -r requirements-graphiti.txt
+#
+# Version is pinned to match the commit of the graphiti submodule pinned in
+# ai-labs/studies/memory-layers-for-agents/graphiti (9a2d6d0, v0.29.0), so
+# the source we read is the source we run. Bump both together.
+
+graphiti-core[anthropic]==0.29.0
+
+# Frontmatter parsing — shared with the Chroma ingesters.
+pyyaml==6.0.2
+
+# NOTE ON THE EMBEDDER
+# graphiti-core 0.29.0 ships exactly four embedders: openai, azure_openai,
+# gemini, voyage (graphiti_core/embedder/). There is NO sentence-transformers
+# embedder, despite mcp_server/README.md advertising
+# `provider: "sentence_transformers"` — that value hits the
+# `case _: raise ValueError(f'Unsupported Embedder provider: {provider}')`
+# fallthrough in mcp_server/src/services/factories.py.
+#
+# So "local embeddings" here means pointing OpenAIEmbedder at Ollama's
+# OpenAI-compatible endpoint. No extra Python dependency is needed —
+# graphiti-core already vendors the `openai` SDK as its HTTP client, and
+# OpenAIEmbedder truncates dimensions client-side rather than sending a
+# `dimensions` parameter Ollama would reject. You need the Ollama daemon
+# and an embedding model:
+#
+#     ollama pull all-minilm     # 384-dim, same family Chroma already uses
+#     ollama serve
+#
+# OPTIONAL — local cross-encoder reranking.
+# By default this kit passes a passthrough cross-encoder so that search
+# needs no reranking API. If you want real reranking without an API key,
+# uncomment the line below and set GRAPHITI_CROSS_ENCODER=bge. It pulls
+# torch + BAAI/bge-reranker-v2-m3 (~2.5GB), which is why it is not default.
+#
+# sentence-transformers>=3.2.1

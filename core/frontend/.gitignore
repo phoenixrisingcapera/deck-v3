@@ -1,0 +1,24 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.svelte-kit
+.svelte-kit/
+.vercel
+.vercel/
+.vercel/output/
+node_modules
+coverage
+playwright-report
+test-results
+dist
+build
+.cache/
+*.tsbuildinfo
+npm-debug.log*
+graphify-out/
+.codex/
+
+# Local docs and audit notes
+documentation/
+tests/

@@ -1,0 +1,91 @@
+---
+/**
+ * MemoMark — the MemoPop AI logo.
+ *
+ * Concept: three vertical "agent" stems of varying heights, each topped with
+ * a "pop" dot. They sit on a single horizontal baseline that reads as the
+ * memo. Geometry: many specialized agents → one synthesized document.
+ *
+ * Three orchestrated heights also intentionally form an "M" silhouette.
+ *
+ * Pure SVG, single color via `currentColor`. Use the `gradient` prop for the
+ * hero treatment which paints the dots with --gradient-thread.
+ */
+interface Props {
+  size?: number;
+  gradient?: boolean;
+  animate?: boolean;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  size = 32,
+  gradient = false,
+  animate = false,
+  ariaLabel = 'MemoPop AI',
+  class: className = '',
+} = Astro.props;
+
+const id = `memomark-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<svg
+  class={`memomark ${animate ? 'is-animated' : ''} ${className}`}
+  width={size}
+  height={size}
+  viewBox="0 0 32 32"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={ariaLabel}
+>
+  {gradient && (
+    <defs>
+      <linearGradient id={`${id}-grad`} x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="var(--color-accent)" />
+        <stop offset="50%" stop-color="var(--color-accent-soft)" />
+        <stop offset="100%" stop-color="var(--color-accent-hot)" />
+      </linearGradient>
+    </defs>
+  )}
+
+  {/* Stems — three "agent threads" rising to varied heights. */}
+  <line x1="7"  y1="24" x2="7"  y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="stem stem-1" />
+  <line x1="16" y1="24" x2="16" y2="6"  stroke="currentColor" stroke-width="2.2" stroke-linecap="round" class="stem stem-2" />
+  <line x1="25" y1="24" x2="25" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="stem stem-3" />
+
+  {/* Pop dots — what each agent surfaces. */}
+  <circle cx="7"  cy="9.5" r="2.1" fill={gradient ? `url(#${id}-grad)` : 'currentColor'} class="dot dot-1" />
+  <circle cx="16" cy="4.5" r="2.6" fill={gradient ? `url(#${id}-grad)` : 'currentColor'} class="dot dot-2" />
+  <circle cx="25" cy="12.5" r="1.9" fill={gradient ? `url(#${id}-grad)` : 'currentColor'} class="dot dot-3" />
+
+  {/* Baseline — the assembled memo. */}
+  <line x1="3.5" y1="27" x2="28.5" y2="27" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.85" class="baseline" />
+</svg>
+
+<style>
+  .memomark {
+    display: inline-block;
+    color: var(--color-accent);
+    transition: color var(--transition-mid);
+  }
+
+  .memomark .stem,
+  .memomark .dot,
+  .memomark .baseline {
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease;
+  }
+
+  .memomark.is-animated .dot-1 { animation: pop 2.4s ease-in-out infinite; animation-delay: 0s;    transform-origin: 7px 9.5px; }
+  .memomark.is-animated .dot-2 { animation: pop 2.4s ease-in-out infinite; animation-delay: 0.4s;  transform-origin: 16px 4.5px; }
+  .memomark.is-animated .dot-3 { animation: pop 2.4s ease-in-out infinite; animation-delay: 0.8s;  transform-origin: 25px 12.5px; }
+
+  @keyframes pop {
+    0%, 60%, 100% { transform: scale(1); opacity: 1; }
+    30%           { transform: scale(1.18); opacity: 0.85; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .memomark.is-animated .dot { animation: none; }
+  }
+</style>

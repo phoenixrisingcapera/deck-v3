@@ -1,0 +1,17 @@
+{
+  "designVersionName": "string",
+  "variantId": "zero | hypercut | continuum",
+  "variantRationale": "string",
+  "slides": [
+    {
+      "sourceSlideId": "string",
+      "slideNumber": 1,
+      "title": "string",
+      "archetypeId": "string",
+      "narrativeRole": "string",
+      "renderSchema": {
+        "schemaVersion": "smart-deck-render-schema.v1"
+      }
+    }
+  ]
+}

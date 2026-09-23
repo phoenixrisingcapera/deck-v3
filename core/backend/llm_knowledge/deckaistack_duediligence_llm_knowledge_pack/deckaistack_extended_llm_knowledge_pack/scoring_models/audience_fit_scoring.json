@@ -1,0 +1,36 @@
+{
+  "score_range": "0-100",
+  "dimensions": [
+    {
+      "name": "evidence_strength",
+      "weight": 25
+    },
+    {
+      "name": "audience_relevance",
+      "weight": 20
+    },
+    {
+      "name": "venture_scale",
+      "weight": 20
+    },
+    {
+      "name": "risk_clarity",
+      "weight": 15
+    },
+    {
+      "name": "narrative_quality",
+      "weight": 10
+    },
+    {
+      "name": "source_quality",
+      "weight": 10
+    }
+  ],
+  "grade_bands": {
+    "85-100": "strong",
+    "70-84": "credible but needs refinement",
+    "50-69": "weak or incomplete",
+    "0-49": "not investor-ready"
+  },
+  "rule": "Scores must cite missing evidence and cannot reward unsupported claims."
+}

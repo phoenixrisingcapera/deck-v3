@@ -1,0 +1,68 @@
+{
+  "audiences": [
+    {
+      "key": "founder",
+      "cares_about": [
+        "clarity",
+        "fundraising narrative",
+        "visual polish",
+        "deck completeness"
+      ]
+    },
+    {
+      "key": "seed_vc",
+      "cares_about": [
+        "team",
+        "market",
+        "why now",
+        "early proof",
+        "speed"
+      ]
+    },
+    {
+      "key": "series_a_vc",
+      "cares_about": [
+        "traction",
+        "retention",
+        "unit economics",
+        "go-to-market",
+        "pipeline"
+      ]
+    },
+    {
+      "key": "growth_equity",
+      "cares_about": [
+        "scale metrics",
+        "capital efficiency",
+        "market leadership",
+        "forecast quality"
+      ]
+    },
+    {
+      "key": "lp",
+      "cares_about": [
+        "fund return potential",
+        "risk visibility",
+        "portfolio construction",
+        "exit path",
+        "liquidity"
+      ]
+    },
+    {
+      "key": "corporate",
+      "cares_about": [
+        "strategic fit",
+        "integration",
+        "defensibility",
+        "partnership or acquisition logic"
+      ]
+    }
+  ],
+  "output_fields": [
+    "audience_fit",
+    "missing_evidence",
+    "likely_questions",
+    "risk_language",
+    "deck_improvement_recommendations"
+  ]
+}

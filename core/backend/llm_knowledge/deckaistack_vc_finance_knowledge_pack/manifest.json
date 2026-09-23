@@ -1,0 +1,32 @@
+{
+  "name": "deckaistack_vc_finance_knowledge_pack",
+  "version": "0.1.0",
+  "purpose": "Finance-aware VC judgment rules for validating investor deck claims, market sizing, ROI, unit economics, fundraising logic, and valuation credibility.",
+  "copyrightPolicy": "Curated original rules and taxonomies only. Do not store copyrighted book text. Store lawful notes, derived frameworks, and source metadata separately from proprietary excerpts.",
+  "modules": [
+    "financial_claim_taxonomy",
+    "market_sizing_rules",
+    "roi_validation_rules",
+    "unit_economics_rules",
+    "fundraising_logic_rules",
+    "valuation_red_flags",
+    "stage_benchmark_rules",
+    "audience_finance_matrix"
+  ],
+  "requiredOutputs": [
+    "financialClaims",
+    "financialConsistencyIssues",
+    "overstatedClaims",
+    "missingFinancialEvidence",
+    "saferWording",
+    "slideImplementationInstructions"
+  ],
+  "hardRules": [
+    "Never restate a deck number as true unless evidence or calculation logic supports it.",
+    "Never invent market size, ROI, revenue, valuation, or unit economics.",
+    "Separate TAM, SAM, and SOM.",
+    "Separate GMV, revenue, gross profit, and contribution margin.",
+    "Flag contradictions between market size, pricing, customer segment, traction, revenue projection, use of funds, and milestones.",
+    "Convert financial critique into slide-level implementation instructions."
+  ]
+}

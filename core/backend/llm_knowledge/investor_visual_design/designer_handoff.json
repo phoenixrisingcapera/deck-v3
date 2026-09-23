@@ -1,0 +1,1 @@
+{"module":"designer_handoff","rules":[{"id":"handoff.execute","when":"designer receives visual intelligence","require":"execute typed asset and composition contracts"},{"id":"handoff.no_substitution","when":"required chart exists","forbid":"substitute cards, prose, or decorative numbers"}]}

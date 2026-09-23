@@ -1,0 +1,12 @@
+{
+  "name": "instant_deck_knowledge_pack",
+  "package": "instant_deck_knowledge_pack",
+  "version": "2026-09-22.v8",
+  "purpose": "Product-owned investor narrative, visual composition, financial storytelling, brand, geometry, and renderer guidance for Instant Deck whole-deck regeneration.",
+  "referenceRoots": [
+    "deck-old/references/context-vigilance-kit-master",
+    "deck-old/references/VC-Aistack-main"
+  ],
+  "defaultGenerationMode": "instant_deck",
+  "defaultPromptPackage": "instant_deck"
+}

@@ -1,0 +1,34 @@
+{
+  "package": "deckaistack_extended_llm_knowledge_pack",
+  "version": "0.2.0",
+  "created_for": "DeckAiStack backend/llm_knowledge",
+  "modules": [
+    "audience_profiles",
+    "vc_due_diligence",
+    "lp_intelligence",
+    "investment_committee",
+    "scoring_models",
+    "schemas",
+    "prompts",
+    "examples"
+  ],
+  "recommended_pipeline": [
+    "ingest deck",
+    "extract slide text/blocks/visual metadata",
+    "classify slide archetypes and block roles",
+    "extract diligence claims",
+    "run audience-fit analysis",
+    "run market-research vigilance",
+    "run LP and IC readiness",
+    "return structured JSON to UI"
+  ],
+  "ui_panels": [
+    "Audience Fit",
+    "Due Diligence",
+    "Market Accuracy",
+    "LP View",
+    "IC Readiness",
+    "Missing Evidence",
+    "Recommended Fixes"
+  ]
+}

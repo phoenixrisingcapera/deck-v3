@@ -1,0 +1,44 @@
+name: Production Instant Deck acceptance
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: production-acceptance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Materialize protected Angel House input
+        env:
+          DECK_E2E_ANGEL_HOUSE_PDF_BASE64: ${{ secrets.DECK_E2E_ANGEL_HOUSE_PDF_BASE64 }}
+        run: |
+          test -n "$DECK_E2E_ANGEL_HOUSE_PDF_BASE64"
+          mkdir -p "$RUNNER_TEMP/deck-e2e-input"
+          printf '%s' "$DECK_E2E_ANGEL_HOUSE_PDF_BASE64" | base64 --decode > "$RUNNER_TEMP/deck-e2e-input/Angel-House.pdf"
+      - name: Run real production browser gate
+        run: xvfb-run --auto-servernum npm run test:e2e:instant-deck:production
+        env:
+          DECK_E2E_BASE_URL: https://deck.aistack.codes
+          DECK_E2E_EMAIL: ${{ secrets.DECK_E2E_EMAIL }}
+          DECK_E2E_PASSWORD: ${{ secrets.DECK_E2E_PASSWORD }}
+          DECK_E2E_ANGEL_HOUSE_PDF: ${{ runner.temp }}/deck-e2e-input/Angel-House.pdf
+          DECK_E2E_TIMEOUT_MS: '1200000'
+      - name: Upload production evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: instant-deck-production-evidence
+          path: test-results/instant-deck-production/
+          if-no-files-found: error
+          retention-days: 14

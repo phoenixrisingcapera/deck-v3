@@ -1,0 +1,196 @@
+/*
+ * prompt-template-manager styles. Imported as a side effect from index.ts
+ * (standalone) and mount.ts (federation) — webpack's CSS pipeline injects
+ * it in both modes. All selectors namespaced under .ptm-app so they can't
+ * leak into the shell or sibling remotes.
+ */
+
+.ptm-app .ptm-status-bar {
+  padding: 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 11px;
+}
+
+.ptm-app h2 {
+  font-size: 0.85rem;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ptm-app .muted { color: var(--color-text-muted); }
+
+.ptm-app .handoff-note {
+  margin-top: 1rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--color-field);
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ptm-app code {
+  background: var(--color-field);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+
+.ptm-app .ptm-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  align-items: start;
+}
+
+.ptm-app .ptm-layout > aside,
+.ptm-app .ptm-layout > section {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-xl);   /* was 1rem — exact token match; a pane is a layout */
+  min-width: 0;
+}
+
+/* The list region is GONE — `ul.prompts` carried list-style, padding, margin,
+ * display, flex-direction and gap, and ListContainer owns every one of them.
+ * The comment it used to carry said "spacing BETWEEN rows is the list's job";
+ * that is now true structurally rather than by convention.
+ *
+ * This member had already picked `--space-2xs` (4px) for its gap, and the
+ * layout's `gap="2xs"` is that exact token — names that look like the scale ARE
+ * the scale, so the gap is byte-for-byte what it was. */
+.ptm-app .ptm-head-title { margin: 0; }
+.ptm-app li.empty { padding: var(--space-sm); }
+
+/* DEVIATION (rung 4, declared at the call site with data-deviation).
+ * CardRow ships no hover state, and hover was this member's only cue that a row
+ * is clickable at all — deleting it with the old `li:hover` would have been a
+ * silent affordance regression.
+ *
+ * This is (0,3,0); CardRow's own `.ui-cardrow[data-selected]` is also (0,3,0)
+ * after Svelte hashing, so border-color is a genuine tie resolved by source
+ * order. It does not matter here: both resolve to the same accent colour
+ * (--color-accent is an alias of --color-primary in all three modes), and the
+ * selected BACKGROUND comes only from the component, which this rule never
+ * touches. Verified in the probe: hovering a selected row keeps the tint. */
+.ptm-app .ptm-prompt-row:hover { border-color: var(--color-primary); }
+
+/* Rung 0 wrapper. `.ptm-prompt-label` is the single flex item that carries the
+ * two-line label. SelectWrapper--ClickPrimary is `display: inline-flex;
+ * align-items: baseline`, so without this wrapper <strong> and <span> become
+ * two flex items and the name / output-column stack collapses onto one line.
+ * One child, and the stack survives with no override of the component at all. */
+.ptm-app .ptm-prompt-label {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: block;
+  text-align: start;
+}
+.ptm-app .ptm-prompt-label strong {
+  display: block;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3xs);
+}
+/* MEMBER HOOK, not a restyle. `flex` is not a property Button sets, so this
+ * cannot lose a specificity tie on anything the component owns. It exists
+ * because the row's flex container was measured shrinking this icon button to
+ * 18x28 — under the 24px WCAG 2.2 SC 2.5.8 target floor. */
+.ptm-app .ptm-row-action { flex: 0 0 auto; }
+
+/* MEMBER HOOK on a federal class — the only hook available, because
+ * SelectWrapper--ClickPrimary spreads {...rest} LAST and does not destructure
+ * `class`, so `class="…"` at the call site REPLACES `ui-selectprimary` and
+ * deletes the component's own styling. Raised, not fixed.
+ *
+ * Two properties, neither of which the component sets:
+ *   flex            ui-selectprimary is inline-flex, so as a flex item of the
+ *                   CardRow it shrinks to content. Measured: the clickable
+ *                   fraction of the row fell from 84-92% (raw .prompt-select)
+ *                   to 43-59%. This restores it.
+ *   min-inline-size flex items default to min-width:auto, so a single long
+ *                   unbreakable token (`a_rather_long_output_column_name`)
+ *                   pushed the sibling delete button clean out of the card —
+ *                   measured at 0% of the row reachable for delete. */
+.ptm-app .ptm-prompt-row .ui-selectprimary {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+.ptm-app label {
+  display: block;
+  margin: 0.75rem 0 0;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+.ptm-app label.checkbox,
+.ptm-app label.inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text);
+  font-size: 13px;
+}
+.ptm-app label.inline input[type=number] { width: 5rem; }
+
+.ptm-app input[type=text],
+.ptm-app textarea,
+.ptm-app select {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 5px 7px;
+  background: var(--color-field);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font: inherit;
+  box-sizing: border-box;
+}
+.ptm-app textarea { resize: vertical; }
+
+.ptm-app .row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ptm-app .tokens,
+.ptm-app .bindcheck {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.ptm-app .token { background: var(--color-border); }
+.ptm-app .token.bound { background: var(--color-ok-bg); color: var(--color-ok-text); }
+.ptm-app .token.unbound { background: var(--color-error-bg); color: var(--color-error-text); }
+
+.ptm-app .warn {
+  width: 100%;
+  margin-top: 0.35rem;
+  color: var(--color-error-text);
+  font-size: 11px;
+}
+
+.ptm-app .progress {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--color-field);
+  border-radius: 4px;
+  color: var(--color-accent-2);
+}
+
+.ptm-app .result {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: color-mix(in srgb, var(--color-ok-text) 7%, transparent);
+  border: 1px solid var(--color-ok-bg);
+  border-radius: 4px;
+}
+
+/* Enrichment-mode switch moved to packages/shared-ui as ToggleHeader__PromptOrPackage--Icons
+ * (Phase 2c). The shell renders it as the composite slot's header. */

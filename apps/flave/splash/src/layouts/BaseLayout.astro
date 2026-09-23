@@ -1,0 +1,174 @@
+---
+import MetaTags from '@components/MetaTags.astro';
+import Header from '@components/Header.astro';
+import { STATIC_SEO } from '@lib/seo';
+import '@styles/theme.css';
+import '@styles/prose.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageType?: string;
+  ogImageAlt?: string;
+  ogType?: string;
+  noindex?: boolean;
+  canonical?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+  /** Hide the global header — used on the index so it can render its own. */
+  hideHeader?: boolean;
+}
+
+const {
+  title,
+  description = STATIC_SEO.root.description,
+  ogImage,
+  ogImageWidth,
+  ogImageHeight,
+  ogImageType,
+  ogImageAlt,
+  ogType,
+  noindex,
+  canonical,
+  publishedTime,
+  modifiedTime,
+  author,
+  tags,
+  hideHeader = false,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-mode="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <MetaTags
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogImageWidth={ogImageWidth}
+      ogImageHeight={ogImageHeight}
+      ogImageType={ogImageType}
+      ogImageAlt={ogImageAlt}
+      ogType={ogType}
+      noindex={noindex}
+      canonical={canonical}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      author={author}
+      tags={tags}
+    />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="sitemap" type="application/xml" href={`${base}sitemap-index.xml`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      // Resolve persisted mode before paint to avoid FOUC.
+      // Dark is the default for this splash — see DESIGN.md §3.
+      (() => {
+        try {
+          const stored = localStorage.getItem('flave-splash-mode');
+          if (stored === 'light' || stored === 'dark' || stored === 'vibrant') {
+            document.documentElement.setAttribute('data-mode', stored);
+          }
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="press-grid" aria-hidden="true"></div>
+    {!hideHeader && <Header />}
+    <slot />
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <div class="site-footer__col">
+          <p class="eyebrow">Source</p>
+          <p>
+            <a href="https://github.com/lossless-group/flave" target="_blank" rel="noopener">github</a>
+            ·
+            <a href="https://jsr.io/@lossless-group/lfm" target="_blank" rel="noopener">lfm</a>
+          </p>
+        </div>
+        <div class="site-footer__col">
+          <p class="eyebrow">Read</p>
+          <p>
+            <a href={`${base}changelog/`}>changelog</a>
+            ·
+            <a href={`${base}context-v/`}>context</a>
+          </p>
+        </div>
+        <div class="site-footer__col">
+          <p class="eyebrow">Org</p>
+          <p>
+            <a href="https://lossless.group" target="_blank" rel="noopener">lossless.group</a>
+          </p>
+        </div>
+        <div class="site-footer__legal">
+          <p>Pre-implementation. Spec of record in <a href={`${base}context-v/`}>context-v</a>.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  /* Press-room ground: a faint horizontal rule grid, like a plate guide.
+     Deliberately not a radial mesh (memopop) and not paper grain (lfm). */
+  .press-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-border) 55%, transparent) 0 1px,
+      transparent 1px 96px
+    );
+    mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.55), transparent 62%);
+    -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.55), transparent 62%);
+  }
+
+  .site-footer {
+    margin-top: var(--space-24);
+    border-top: 1px solid var(--color-border-strong);
+    padding: var(--space-12) 0 var(--space-16);
+  }
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: var(--space-8);
+    align-items: end;
+  }
+  .site-footer__col p:not(.eyebrow) {
+    margin-top: var(--space-2);
+    color: var(--color-text-soft);
+    font-size: 0.92rem;
+    font-family: var(--font__mono);
+  }
+  .site-footer__legal {
+    color: var(--color-text-dim);
+    font-size: 0.82rem;
+  }
+  @media (max-width: 800px) {
+    .site-footer__inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .site-footer__legal {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-4);
+    }
+  }
+</style>

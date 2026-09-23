@@ -1,0 +1,32 @@
+{
+  "domain": "lp_intelligence",
+  "core_logic": [
+    "LPs evaluate fund-level return impact, not only company appeal.",
+    "A strong deal should be explainable as a potential fund-returning outcome or strategic portfolio position.",
+    "LP-facing analysis must connect company upside, ownership, reserve strategy, exit path, and downside risk."
+  ],
+  "lp_metrics": [
+    "MOIC",
+    "DPI",
+    "TVPI",
+    "IRR",
+    "ownership at entry",
+    "pro-rata reserve need",
+    "exit multiple sensitivity",
+    "concentration risk"
+  ],
+  "assessment_questions": [
+    "Can this company return the fund?",
+    "Does it fit the fund thesis?",
+    "What is the credible exit path?",
+    "How much capital is required to maintain ownership?",
+    "What risk would an LP challenge?"
+  ],
+  "red_flags": [
+    "Deal cannot materially affect fund returns",
+    "No credible buyer/universe of exits",
+    "Valuation too high for ownership target",
+    "Follow-on capital need not modelled",
+    "Narrative lacks downside case"
+  ]
+}

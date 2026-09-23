@@ -1,0 +1,46 @@
+{
+  "deck_id": "deck_001",
+  "access_mode": "private",
+  "organisation": {
+    "id": "aistack.codes",
+    "display_name": "AiStack"
+  },
+  "members": [
+    {
+      "name": "Andrea Capera",
+      "email": "acp215@outlook.com",
+      "access_level": "owner"
+    },
+    {
+      "name": "Reviewer",
+      "email": "reviewer@example.com",
+      "access_level": "commenter"
+    }
+  ],
+  "share_links": [
+    {
+      "id": "share_001",
+      "label": "Investor Presentation",
+      "intent": "presentation",
+      "can_download": false,
+      "can_print": false,
+      "expires_at": "2026-07-20",
+      "active": true
+    }
+  ],
+  "access_events": [
+    {
+      "decision": "allowed",
+      "surface": "play",
+      "intent": "presentation",
+      "actor": "reviewer@example.com"
+    },
+    {
+      "decision": "denied",
+      "surface": "editor",
+      "intent": "workflow",
+      "actor": "external@example.com",
+      "reason": "no_workflow_permission"
+    }
+  ]
+}

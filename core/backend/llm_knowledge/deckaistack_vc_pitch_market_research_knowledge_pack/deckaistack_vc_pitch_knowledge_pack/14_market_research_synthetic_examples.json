@@ -1,0 +1,69 @@
+{
+  "purpose": "Training/evaluation examples for deck market claim extraction.",
+  "examples": [
+    {
+      "slide_text": "The AI diligence market is a $40B opportunity growing 30% YoY. Investors waste 12 hours per deck.",
+      "expected_claims": [
+        "tam_claim",
+        "market_growth_claim",
+        "spend_claim"
+      ],
+      "issues": [
+        "No source",
+        "unclear geography",
+        "unclear whether AI diligence is defined category",
+        "12 hours per deck needs evidence"
+      ],
+      "suggested_fix": "Define market as investor/advisory diligence workflow spend, cite source/year, separate TAM from beachhead SAM."
+    },
+    {
+      "slide_text": "Competitors: Notion, ChatGPT, consultants. We are faster and cheaper.",
+      "expected_claims": [
+        "competitor_claim"
+      ],
+      "issues": [
+        "Competitor set mixes tools and services",
+        "No buying criteria",
+        "No proof for faster/cheaper"
+      ],
+      "suggested_fix": "Create competitor table by workflow: generic AI, deck tools, consultants, internal analysts."
+    },
+    {
+      "slide_text": "By 2030, compliance automation will be worth $75B globally.",
+      "expected_claims": [
+        "market_growth_claim",
+        "tam_claim"
+      ],
+      "issues": [
+        "Needs source",
+        "needs base year",
+        "global may not match initial ICP",
+        "unclear if compliance automation includes product category"
+      ],
+      "suggested_fix": "Add source/year and show SAM for target vertical."
+    },
+    {
+      "slide_text": "Our first market is UK seed-stage VC funds reviewing 100+ decks monthly.",
+      "expected_claims": [
+        "sam_claim",
+        "customer_segment_claim"
+      ],
+      "issues": [
+        "Needs count of UK seed funds",
+        "needs average deck volume",
+        "needs pricing assumption"
+      ],
+      "suggested_fix": "Estimate bottom-up SAM: number of funds x users x monthly price or service fee."
+    },
+    {
+      "slide_text": "No one else is doing this.",
+      "expected_claims": [
+        "competitor_claim"
+      ],
+      "issues": [
+        "High investor risk; likely false; ignores manual process and adjacent tools"
+      ],
+      "suggested_fix": "Replace with: Existing alternatives are manual analyst review, generic AI tools, consultants, and deck design products; our wedge is structured diligence + editable deck intelligence."
+    }
+  ]
+}

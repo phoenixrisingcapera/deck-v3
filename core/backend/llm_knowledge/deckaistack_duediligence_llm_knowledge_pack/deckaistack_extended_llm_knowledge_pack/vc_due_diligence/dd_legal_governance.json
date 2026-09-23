@@ -1,0 +1,34 @@
+{
+  "domain": "legal_governance",
+  "classification_goal": "Extract and assess evidence for legal_governance diligence from uploaded deck content.",
+  "evidence_types": [
+    "cap table",
+    "contracts",
+    "IP assignment",
+    "privacy",
+    "regulatory exposure",
+    "board governance"
+  ],
+  "questions": [
+    "What evidence supports cap table?",
+    "What evidence supports contracts?",
+    "What evidence supports IP assignment?",
+    "What evidence supports privacy?",
+    "What evidence supports regulatory exposure?"
+  ],
+  "risk_labels": [
+    "low",
+    "medium",
+    "high",
+    "unknown"
+  ],
+  "missing_evidence_policy": "If not present in deck, mark missing_evidence rather than infer.",
+  "output_fields": [
+    "claim",
+    "evidence_found",
+    "source_slide_ids",
+    "confidence",
+    "risk_level",
+    "recommended_follow_up"
+  ]
+}

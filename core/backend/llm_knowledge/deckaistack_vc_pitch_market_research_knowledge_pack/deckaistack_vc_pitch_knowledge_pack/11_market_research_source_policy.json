@@ -1,0 +1,85 @@
+{
+  "purpose": "Rank sources for market and competitor claims. This helps the LLM avoid hallucinated market sizes.",
+  "source_tiers": [
+    {
+      "tier": "A",
+      "name": "Primary or authoritative",
+      "examples": [
+        "Government statistics",
+        "Regulator publications",
+        "Public company annual reports",
+        "SEC/Companies House filings",
+        "World Bank/OECD/IMF",
+        "Industry association datasets",
+        "Peer-reviewed research"
+      ],
+      "use_for": [
+        "market size",
+        "regulatory drivers",
+        "macro trends",
+        "public competitor revenue"
+      ]
+    },
+    {
+      "tier": "B",
+      "name": "Reputable market intelligence",
+      "examples": [
+        "Gartner",
+        "IDC",
+        "Forrester",
+        "CB Insights",
+        "PitchBook",
+        "Crunchbase",
+        "Statista when cited carefully",
+        "McKinsey/BCG/Bain/Deloitte reports"
+      ],
+      "use_for": [
+        "market forecasts",
+        "investment trends",
+        "category growth",
+        "competitive maps"
+      ]
+    },
+    {
+      "tier": "C",
+      "name": "Company/operator evidence",
+      "examples": [
+        "Competitor websites",
+        "pricing pages",
+        "case studies",
+        "job posts",
+        "customer reviews",
+        "app marketplace listings"
+      ],
+      "use_for": [
+        "positioning",
+        "features",
+        "pricing",
+        "ICP",
+        "traction signals"
+      ]
+    },
+    {
+      "tier": "D",
+      "name": "Weak evidence",
+      "examples": [
+        "Uncited blog posts",
+        "AI-generated articles",
+        "old infographics",
+        "generic PR claims",
+        "unknown market reports"
+      ],
+      "use_for": [
+        "only as lead, never final evidence"
+      ]
+    }
+  ],
+  "recency_policy": {
+    "market_size": "prefer <=24 months unless stable government statistic",
+    "AI_or_fast_changing_markets": "prefer <=12 months",
+    "regulation": "must verify current effective date",
+    "competitors": "prefer <=6 months",
+    "pricing": "prefer current web page"
+  },
+  "citation_policy": "Every rewritten market claim should include source name, source year, geography, and method note when possible."
+}

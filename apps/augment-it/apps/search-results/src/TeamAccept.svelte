@@ -1,0 +1,241 @@
+<script lang="ts">
+  // Team accept surface — StagedPeople copy-adapted from org-workbench (spec
+  // D7). Candidates in state, never auto-written: accept runs
+  // person.candidates first; no-candidate rows flow straight through
+  // person.apply(create) + person.affiliate, ambiguous rows open the gate
+  // (pick the match or explicitly create). Crawled LinkedIn/bio links land on
+  // CREATED persons only (matched ones may already carry them — additive,
+  // not duplicative). An accepted row is CONSUMED (gh #37); the entity-updated
+  // broadcast refreshes the org card's People list. Skip discards a row.
+
+  import Button from '@augment-it/shared-ui/Button.svelte';
+  import CardRow from '@augment-it/shared-ui/CardRow.svelte';
+  import ListContainer from '@augment-it/shared-ui/ListContainer.svelte';
+  import ExternalLink from '@augment-it/shared-ui/ExternalLink.svelte';
+  import SelectWrapperClickBody from '@augment-it/shared-ui/SelectWrapper--ClickBody.svelte';
+  import {
+    addOrgObservation,
+    addPersonLink,
+    affiliatePerson,
+    applyPerson,
+    fetchPersonCandidates,
+  } from './lib/search-client';
+  import type { CrawledPerson, PersonCandidate } from './lib/types';
+
+  let {
+    people,
+    source_urls,
+    filtered_note = '',
+    org_slug,
+    orgName,
+    client,
+    onremaining,
+  }: {
+    people: CrawledPerson[];
+    source_urls: string[];
+    // didi's crawl synopsis (who the policy excluded and why) — persisted
+    // as a search_synopsis observation on the ORG the first time the
+    // operator accepts from this card (gh #60).
+    filtered_note?: string;
+    org_slug: string;
+    orgName: string;
+    client: string;
+    onremaining: (n: number) => void;
+  } = $props();
+
+  type RowPhase = 'staged' | 'gate' | 'writing';
+  type Row = {
+    person: CrawledPerson;
+    phase: RowPhase;
+    candidates: PersonCandidate[];
+    error: string | null;
+    consumed: boolean;
+  };
+
+  // Seed-once by design — the parent fetches results once per expand.
+  // svelte-ignore state_referenced_locally
+  let rows = $state<Row[]>(
+    people.map((person) => ({ person, phase: 'staged', candidates: [], error: null, consumed: false })),
+  );
+
+  $effect(() => {
+    onremaining(rows.filter((r) => !r.consumed).length);
+  });
+
+  function sourceFor(row: Row): string {
+    return row.person.bio_url ?? source_urls[0] ?? 'didi-crawl';
+  }
+
+  // Write-once: the first successful accept from this card also persists
+  // didi's synopsis on the org. Soft-fail — the synopsis is context, never
+  // a reason to fail the accept.
+  let synopsisWritten = $state(false);
+  async function persistSynopsis() {
+    if (synopsisWritten || !filtered_note) return;
+    synopsisWritten = true;
+    try {
+      await addOrgObservation({
+        org_slug,
+        predicate: 'search_synopsis',
+        value: filtered_note,
+        source: source_urls[0] ?? 'didi-crawl',
+        client,
+      });
+    } catch {
+      synopsisWritten = false; // retry on the next accept
+    }
+  }
+
+  async function accept(row: Row) {
+    row.error = null;
+    row.phase = 'writing';
+    try {
+      const candidates = await fetchPersonCandidates(
+        { name: row.person.name, linkedin_url: row.person.linkedin_url, role: row.person.role },
+        client,
+      );
+      if (candidates.length === 0) {
+        await write(row, 'create');
+      } else {
+        row.candidates = candidates;
+        row.phase = 'gate';
+      }
+    } catch (err) {
+      row.error = err instanceof Error ? err.message : String(err);
+      row.phase = 'staged';
+    }
+  }
+
+  async function write(row: Row, action: 'match' | 'create', person_uuid?: string) {
+    row.phase = 'writing';
+    row.error = null;
+    try {
+      const applied = await applyPerson({
+        action,
+        person_uuid,
+        record: {
+          name: row.person.name,
+          linkedin_url: row.person.linkedin_url,
+          role: row.person.role,
+          bio: row.person.headline,
+        },
+        client,
+        source: sourceFor(row),
+      });
+      await affiliatePerson({
+        person_uuid: applied.person_uuid,
+        org_slug,
+        role: row.person.role,
+        // The card's context line is didi's judgment — persist it on the
+        // edge instead of losing it at Accept (gh #59).
+        agent_search_rationale: row.person.headline ?? null,
+        client,
+        source: sourceFor(row),
+      });
+      // Soft-fail the link adds: person + affiliation are the core writes.
+      if (applied.created) {
+        const links = [row.person.linkedin_url, row.person.bio_url].filter(
+          (u): u is string => Boolean(u),
+        );
+        for (const url of links) {
+          try {
+            await addPersonLink({ person_uuid: applied.person_uuid, url, client });
+          } catch {
+            /* soft */
+          }
+        }
+      }
+      row.consumed = true;
+      void persistSynopsis();
+      window.dispatchEvent(
+        new CustomEvent('augment-it:entity-updated', { detail: { org_slug } }),
+      );
+    } catch (err) {
+      row.error = err instanceof Error ? err.message : String(err);
+      row.phase = row.candidates.length > 0 ? 'gate' : 'staged';
+    }
+  }
+</script>
+
+{#if rows.length === 0}
+  <p class="srq-empty">didi staged nobody — retry, or add people from the org card directly</p>
+{:else}
+  <p class="srq-note">
+    accept writes person + affiliation with <strong>{orgName}</strong>
+    {#if source_urls.length > 0}
+      · from
+      {#each source_urls.slice(0, 2) as u (u)}
+        <ExternalLink href={u} label={new URL(u).hostname} noTruncate />{' '}
+      {/each}
+    {/if}
+  </p>
+  <!-- `.srq-staged-list` DELETED — ListContainer owns it. NOTE: the CardRow
+       below still names `direction="column"` explicitly. `layout="list"`
+       publishes `row`, which is also CardRow's own default, so context could
+       not have removed this prop. -->
+  <ListContainer as="ul" gap="xs" label="Staged people">
+    {#each rows as row (row.person.name)}
+      {#if !row.consumed}
+        <!-- No SelectWrapper: nothing here selects the row. Four controls and a
+             disclosure, all acting on their own. -->
+        <CardRow as="li" density="compact" direction="column">
+          <div class="srq-staged-main">
+            <span class="srq-person-name">{row.person.name}</span>
+            {#if row.person.role}<span class="srq-person-role">{row.person.role}</span>{/if}
+            {#if row.person.linkedin_url}
+              <ExternalLink href={row.person.linkedin_url} label="linkedin" noTruncate />
+            {/if}
+            {#if row.person.bio_url}
+              <ExternalLink href={row.person.bio_url} label="bio" noTruncate />
+            {/if}
+            <span class="srq-staged-actions">
+              {#if row.phase === 'writing'}
+                <span class="srq-busy">writing…</span>
+              {:else}
+                <Button variant="primary" size="sm" onclick={() => accept(row)}>Accept</Button>
+                <Button variant="secondary" size="sm" onclick={() => (row.consumed = true)}>Skip</Button>
+              {/if}
+            </span>
+          </div>
+          {#if row.person.headline}<p class="srq-headline">{row.person.headline}</p>{/if}
+          {#if row.phase === 'gate'}
+            <div class="srq-gate">
+              <p class="srq-gate-note">Existing persons that might be “{row.person.name}” — pick one or create new:</p>
+              <!-- `.srq-gate-list` DELETED. Nested ListContainer: layouts nest. -->
+              <ListContainer as="ul" gap="2xs" label="Candidate matches">
+                {#each row.candidates as c (c.person_uuid)}
+                  <!-- The other declared Button holdout. Zero sibling controls
+                       inside this card, so the overlay has nothing to sit above —
+                       the clean end of the ClickBody range, against SearchCard's
+                       two siblings at the other. The hover cue this briefly spent
+                       a rung-4 class= on is CardRow's own now. -->
+                  <CardRow as="li" density="compact">
+                      <SelectWrapperClickBody
+                        label={`Match ${row.person.name} to ${c.name ?? c.person_uuid}, score ${c.score}`}
+                        onselect={() => write(row, 'match', c.person_uuid)}
+                      >
+                        <!-- rung 0 — ClickBody is inline-flex/baseline; the
+                             three-line stack is the member's own. -->
+                        <span class="srq-gate-pick-stack">
+                          <strong>{c.name ?? c.person_uuid}</strong>
+                          {#if c.headline}<span class="srq-gate-headline">{c.headline}</span>{/if}
+                          <span class="srq-gate-score">{c.score} · {c.match_reason.join(', ')}</span>
+                        </span>
+                      </SelectWrapperClickBody>
+                  </CardRow>
+                {/each}
+              </ListContainer>
+              <span class="srq-staged-actions">
+                <Button variant="primary" size="sm" onclick={() => write(row, 'create')}>
+                  Create new person + affiliate
+                </Button>
+                <Button variant="secondary" size="sm" onclick={() => (row.phase = 'staged')}>Back</Button>
+              </span>
+            </div>
+          {/if}
+          {#if row.error}<div class="srq-error">{row.error}</div>{/if}
+        </CardRow>
+      {/if}
+    {/each}
+  </ListContainer>
+{/if}

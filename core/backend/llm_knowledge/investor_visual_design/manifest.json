@@ -1,0 +1,11 @@
+{
+  "corpusVersion": "investor-visual-design.2026-09-22.v2",
+  "factualAuthority": "none",
+  "classification": "PRODUCT_KNOWLEDGE",
+  "modules": [
+    "visual_decision_rules", "evidence_shape", "investor_visual_grammar",
+    "financial_visualization", "forecast_semantics", "composition_grammar",
+    "deck_rhythm", "brand_translation", "chart_selection", "diagram_selection",
+    "image_policy", "typography", "visual_compliance", "designer_handoff"
+  ]
+}

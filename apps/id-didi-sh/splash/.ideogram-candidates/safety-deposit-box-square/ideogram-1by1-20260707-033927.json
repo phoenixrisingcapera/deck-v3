@@ -1,0 +1,41 @@
+{
+  "created": "2026-07-07T08:39:28.525944+00:00",
+  "data": [
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains an open brass safety deposit box overflowing with gold coins and loose diamonds, one neighboring vault box visible at the edge.",
+      "resolution": "1024x1024",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/4YVlRwnxXDir829wMfeEag.png?exp=1783499987&sig=4969939acc43f9639ed288c4dbb2f51b905c88f1444f20831c83f682d055e351"
+    },
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains an open brass safety deposit box overflowing with gold coins and loose diamonds, one neighboring vault box visible at the edge.",
+      "resolution": "1024x1024",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/9dHJsQamUJGuYU-tPHWgIg.png?exp=1783499987&sig=ded3293f4418cb5e35cc4ff5ed4caa5a27bf7424894962b5e2d04f0af7f2ece6"
+    },
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains an open brass safety deposit box overflowing with gold coins and loose diamonds, one neighboring vault box visible at the edge.",
+      "resolution": "1024x1024",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/YeMA9Gr7W5GO1bIbRiPpjQ.png?exp=1783499987&sig=8f734d5a65b1cfa476eab92d565d5342a151cc544f37eefe602b1b3c82ebe2f2"
+    },
+    {
+      "is_image_safe": true,
+      "prompt": "Top 1/3 of frame is empty negative space, dark guilloche-etched sky. Bottom 2/3 contains an open brass safety deposit box overflowing with gold coins and loose diamonds, one neighboring vault box visible at the edge.",
+      "resolution": "1024x1024",
+      "seed": 20260706,
+      "style_type": "GENERAL",
+      "upscaled_resolution": null,
+      "url": "https://ideogram.ai/api/images/ephemeral/snIaeLoMV-uHcERq6tEocA.png?exp=1783499987&sig=caa511de5c298cf25af6eaa7591ff73d99649dfaff6db76e8dc384679effb01e"
+    }
+  ]
+}

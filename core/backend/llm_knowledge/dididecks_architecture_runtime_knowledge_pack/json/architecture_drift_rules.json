@@ -1,0 +1,51 @@
+{
+  "severity_model": [
+    "critical",
+    "blocker",
+    "warning",
+    "architecture_drift",
+    "info"
+  ],
+  "rules": [
+    {
+      "key": "no_api_v1_for_dididecks",
+      "severity": "blocker",
+      "description": "DidiDecks product APIs must not use /api/v1."
+    },
+    {
+      "key": "no_frontend_secrets",
+      "severity": "critical",
+      "description": "Frontend source must not contain database/Stripe/OpenAI/private keys."
+    },
+    {
+      "key": "editor_must_use_shared_model",
+      "severity": "architecture_drift",
+      "description": "Editor must not use an independent local-only model disconnected from persistent fields."
+    },
+    {
+      "key": "blocks_support_field_binding",
+      "severity": "architecture_drift",
+      "description": "DeckBlock must support persistent field binding."
+    },
+    {
+      "key": "field_usages_required",
+      "severity": "architecture_drift",
+      "description": "Product cannot preview affected slides without field usages."
+    },
+    {
+      "key": "version_audit_required_for_ai_changes",
+      "severity": "architecture_drift",
+      "description": "Accepted/rejected AI changes must be auditable and versioned."
+    },
+    {
+      "key": "no_vacuous_ready",
+      "severity": "warning",
+      "description": "Empty variants cannot be marked ready only because no blockers exist."
+    },
+    {
+      "key": "private_deck_routes_backend_validated",
+      "severity": "blocker",
+      "description": "Private deck surfaces must be backend access-checked."
+    }
+  ]
+}

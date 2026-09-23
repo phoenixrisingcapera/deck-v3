@@ -1,0 +1,31 @@
+{
+  "module": "valuation_red_flags",
+  "version": "0.1.0",
+  "redFlags": [
+    {
+      "id": "valuation_without_basis",
+      "description": "The deck states or implies valuation without explaining basis, comparable logic, ownership, or scenario assumptions.",
+      "fix": "Request valuation basis or remove valuation language from the deck version."
+    },
+    {
+      "id": "public_comps_misapplied",
+      "description": "Public-company multiples are applied to a company without comparable scale, margin profile, growth, or revenue quality.",
+      "fix": "Label comps as directional only and explain differences."
+    },
+    {
+      "id": "exit_case_without_ownership",
+      "description": "The return case ignores investor ownership, dilution, exit timing, or exit multiple assumptions.",
+      "fix": "Request ownership and dilution assumptions before presenting fund-return logic."
+    },
+    {
+      "id": "projection_drives_valuation_without_support",
+      "description": "Valuation depends on projections that are not supported by traction, pipeline, or unit economics.",
+      "fix": "Flag the projection as an assumption and request evidence supporting the revenue ramp."
+    }
+  ],
+  "safeWording": [
+    "The deck does not provide enough support for this valuation claim.",
+    "Treat valuation and return case as scenario analysis until evidence is provided.",
+    "Separate current evidence from upside case."
+  ]
+}

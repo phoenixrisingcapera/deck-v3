@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DeckAiStackDiligenceOutput",
+  "type": "object",
+  "required": [
+    "deck_id",
+    "target_audience",
+    "slide_classification",
+    "audience_fit",
+    "due_diligence",
+    "lp_view",
+    "ic_readiness",
+    "market_research_flags",
+    "recommended_actions"
+  ],
+  "properties": {
+    "deck_id": {
+      "type": "string"
+    },
+    "target_audience": {
+      "type": "string"
+    },
+    "slide_classification": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slide_id": {
+            "type": "string"
+          },
+          "archetype": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number"
+          },
+          "reasoning_summary": {
+            "type": "string"
+          },
+          "block_roles": {
+            "type": "array"
+          }
+        }
+      }
+    },
+    "audience_fit": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number"
+        },
+        "strengths": {
+          "type": "array"
+        },
+        "gaps": {
+          "type": "array"
+        }
+      }
+    },
+    "due_diligence": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "risk_level": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array"
+          },
+          "missing_evidence": {
+            "type": "array"
+          },
+          "follow_up_questions": {
+            "type": "array"
+          }
+        }
+      }
+    },
+    "lp_view": {
+      "type": "object"
+    },
+    "ic_readiness": {
+      "type": "object"
+    },
+    "market_research_flags": {
+      "type": "array"
+    },
+    "recommended_actions": {
+      "type": "array"
+    }
+  }
+}

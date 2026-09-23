@@ -1,0 +1,172 @@
+{
+  "version": "1.0.0",
+  "description": "Training examples for classifier. These are synthetic examples for prompt-tuning and evaluation.",
+  "examples": [
+    {
+      "input": {
+        "position": 3,
+        "title": "The hidden cost of manual diligence",
+        "text_blocks": [
+          "Analysts spend 8-12 hours restructuring a single deck",
+          "Feedback lives across email, notes and PowerPoint",
+          "Decision quality suffers when materials are inconsistent"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "slide_title",
+          "pain_point",
+          "current_workaround",
+          "cost_of_inaction"
+        ]
+      }
+    },
+    {
+      "input": {
+        "position": 5,
+        "title": "From messy deck to IC-ready narrative",
+        "text_blocks": [
+          "Upload PDF or PPTX",
+          "AI maps every slide into investor logic",
+          "Generate VC, advisor and founder-ready versions"
+        ],
+        "visuals": [
+          "product screenshot",
+          "three-step flow"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "product_demo",
+        "block_roles": [
+          "input",
+          "process_step",
+          "output",
+          "product_screenshot"
+        ]
+      }
+    },
+    {
+      "input": {
+        "position": 7,
+        "title": "£4.2B spent annually on pitch advisory and capital raising support",
+        "text_blocks": [
+          "52,000 funded startups in target regions",
+          "£80k average advisory and deck-prep spend",
+          "Initial wedge: VC-backed AI and SaaS founders"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "market",
+        "block_roles": [
+          "tam",
+          "bottom_up_assumption",
+          "market_segment"
+        ]
+      }
+    },
+    {
+      "input": {
+        "position": 9,
+        "title": "Early users keep returning after first upload",
+        "text_blocks": [
+          "27 beta users",
+          "64 decks uploaded",
+          "41% returned within 7 days",
+          "6 advisory firms requested paid export workflow"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "traction",
+        "block_roles": [
+          "usage_metric",
+          "retention_metric",
+          "pipeline_metric"
+        ]
+      }
+    },
+    {
+      "input": {
+        "position": 10,
+        "title": "Built for diligence, not generic slide design",
+        "text_blocks": [
+          "Canva: visual design",
+          "Consultants: expensive manual rewrite",
+          "DeckAiStack: diligence-aware AI workspace"
+        ],
+        "visuals": [
+          "comparison table"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "competition",
+        "block_roles": [
+          "competitor_name",
+          "differentiator",
+          "comparison_cell"
+        ]
+      }
+    },
+    {
+      "input": {
+        "position": 14,
+        "title": "Raising £750k to reach paid repeatable export",
+        "text_blocks": [
+          "18 months runway",
+          "45% engineering, 35% GTM, 20% compliance/data",
+          "Milestone: £50k MRR and 20 advisor accounts"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "fundraising_ask",
+        "block_roles": [
+          "fundraising_amount",
+          "runway",
+          "use_of_funds",
+          "milestone"
+        ]
+      }
+    },
+    {
+      "input": {
+        "position": 8,
+        "title": "Customers do the same thing today — badly",
+        "text_blocks": [
+          "Spreadsheets for evidence tracking",
+          "Screenshots copied into Word docs",
+          "Manual version control before partner meetings"
+        ],
+        "visuals": [
+          "icons of spreadsheet/email/powerpoint"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "problem",
+        "block_roles": [
+          "current_workaround",
+          "pain_point",
+          "decorative_visual"
+        ]
+      }
+    },
+    {
+      "input": {
+        "position": 12,
+        "title": "The data advantage compounds with every reviewed deck",
+        "text_blocks": [
+          "Slide archetype mapping improves with labelled feedback",
+          "Investor-specific rewrite patterns become reusable",
+          "Accepted changes form proprietary diligence signals"
+        ]
+      },
+      "expected": {
+        "slide_archetype": "moat",
+        "block_roles": [
+          "data_asset",
+          "network_effect",
+          "moat_claim"
+        ]
+      }
+    }
+  ]
+}

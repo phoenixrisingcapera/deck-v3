@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SearchBox from '@components/SearchBox.astro';
+import { STATIC_SEO } from '@lib/seo';
+---
+
+<BaseLayout title={STATIC_SEO.search.title} description={STATIC_SEO.search.description}>
+  <main class="search-page">
+    <div class="container-narrow">
+      <header class="search-page__head">
+        <p class="folio" data-num="§ 04">Find anything</p>
+        <h1 class="search-page__title">Search the corpus</h1>
+        <p class="search-page__lede">
+          Indexed across every context-v file in the corpus. Filter by
+          <span class="chip">kind</span>,
+          <span class="chip">tag</span>, or
+          <span class="chip">from</span> (which repo it came from). Press
+          <kbd class="mono">/</kbd> from anywhere to focus the header search box.
+        </p>
+      </header>
+
+      <SearchBox variant="full" autoFocus />
+
+      <p class="search-page__hint mono">
+        Search runs on a static index built at deploy time. In <code>astro dev</code>
+        the index isn't generated — run <code>pnpm build &amp;&amp; pnpm preview</code>
+        to test locally.
+      </p>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .search-page { padding: var(--space-12) 0 var(--space-24); }
+  .search-page__head {
+    margin-bottom: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .search-page__title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    margin: var(--space-2) 0 var(--space-3);
+  }
+  .search-page__lede {
+    font-size: 1.02rem;
+    color: var(--color-text-soft);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+  .search-page__lede kbd {
+    font-size: 0.78rem;
+    padding: 1px 7px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-bg-soft);
+    color: var(--color-text);
+  }
+  .search-page__hint {
+    margin-top: var(--space-8);
+    color: var(--color-text-faint);
+    font-size: 0.78rem;
+  }
+  .search-page__hint code {
+    font-family: var(--font__mono);
+    background: color-mix(in oklab, var(--color-text) 5%, transparent);
+    padding: 1px 6px;
+    border-radius: var(--radius-sm);
+  }
+</style>

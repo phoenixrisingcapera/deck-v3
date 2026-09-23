@@ -1,0 +1,552 @@
+/* =============================================================================
+ * augment-it theme.css — the two-tier token system, three-mode contract.
+ *
+ * Adapted from the Astro Knots blueprint
+ * (astro-knots/context-v/blueprints/Maintain-Themes-Mode-Across-CSS-Tailwind.md)
+ * for a non-Astro, non-Tailwind, federated multi-remote app. No Tailwind layer;
+ * the tokens are plain CSS custom properties. One brand, three modes.
+ *
+ * Author: RawNuke
+ * Copyright (c) 2026 RawNuke. All rights reserved.
+ *
+ * TWO TIERS:
+ *   Tier 1 — named tokens   --color__name      raw palette values, `__` separator
+ *   Tier 2 — semantic tokens --color-role       what components consume, kebab-case
+ * Components reference ONLY Tier 2. To re-skin: re-point a Tier-2 token at a
+ * different Tier-1 named token. Components never change.
+ *
+ * THREE MODES, switched by `data-mode` on <html>:
+ *   dark    — the default (:root with no data-mode). augment-it's native look.
+ *   light   — warm paper, dark ink.
+ *   vibrant — dark-based, louder accent, real glows.
+ * ========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * Tier 1 — NAMED TOKENS. The raw palette: "the things we have."
+ * Components do NOT reference these. Only the Tier-2 blocks below do.
+ * The user iterates here — add a colour, re-point a semantic token, done.
+ *
+ * Phase 1 additions: --color__graphite-600, --color__paper-400, --color__void-600,
+ * --color__shadow-black, --color__shadow-ink. Step numbers track luminance.
+ * -------------------------------------------------------------------------- */
+:root {
+  /* greyscale — dark side */
+  --color__graphite-1000: #0c0d12;
+  --color__graphite-950:  #0f1115;
+  --color__graphite-900:  #16181f;
+  --color__graphite-850:  #1a1d27;
+  --color__graphite-800:  #343a54;   /* separated 2026-09-13: was #232634, IDENTICAL to graphite-700, so dark-mode --color-border on --color-surface measured 1.00:1. Now 1.34:1 on surface / 1.69:1 on background — inside gate A22's intended 1.2-1.5 hairline band, matching light (1.41) and vibrant (1.45). */
+  --color__graphite-700:  #232634;
+  --color__graphite-600:  #75789c;   /* lightened 2026-09-13: #646785 measured 2.73:1 on --color-surface, under F7's 3:1 control-boundary floor. Five independent migrations measured it the same night. Now 3.52:1 on surface / 4.43:1 on background — matching light's 3.52. Light (3.52) and vibrant (3.14) already passed; only dark was short. */
+  --color__mist-100:      #e8eaf0;
+  --color__mist-400:      #8a8f9b;
+
+  /* greyscale — light side (warm paper / ink) */
+  --color__paper-0:    #ffffff;
+  --color__paper-50:   #faf9f6;
+  --color__paper-100:  #f1efe9;
+  --color__paper-200:  #f4f2ec;
+  --color__paper-300:  #ddd9cd;
+  /* Darkened 2026-09-13: #c4bfb0 measured 1.60:1 on --color-surface-raised, far
+     under F7's 3:1 floor for a control BOUNDARY. Its sole consumer is
+     --color-border-strong in light mode — the token Button reaches for precisely
+     because plain --color-border was already measured too faint (gate A22). A
+     replacement that also fails the floor is not a fix.
+     #8f8878 clears 3:1 against every light surface it can sit on: 3.06 on
+     surface-raised, 3.35 on background, 3.52 on white. */
+  --color__paper-400:  #8f8878;
+  --color__ink-900:    #1b1d22;
+  --color__ink-500:    #686c77;
+
+  /* greyscale — vibrant side (violet-tinted near-black) */
+  --color__void-1000:  #0a0710;
+  --color__void-950:   #0c0814;
+  --color__void-900:   #1c1429;
+  --color__void-850:   #241934;
+  --color__void-800:   #3a2a52;
+  --color__void-700:   #16101f;
+  --color__void-600:   #6b5d88;
+  --color__halo-100:   #f4ecff;
+  --color__halo-400:   #a594c4;
+
+  /* accents — magenta-violet + cyan, per intensity */
+  --color__magenta-electric: #c75bfb;
+  --color__magenta-deep:     #9a3fd4;
+  --color__magenta-loud:     #d96bff;
+  --color__magenta-ink:      #873ab9;   /* light-mode accent FOREGROUND. magenta-deep on the 8% accent ground measures 4.42:1 — under the 4.5 floor. This is 5.35:1. Same role red-ink / amber-ink / green-ink play for their families. */
+  --color__cyan-bright:      #5bbcfb;
+  --color__cyan-deep:        #2563a8;
+  --color__cyan-loud:        #54c8ff;
+  --color__cyan-deepest:     #10293f;   /* info chip ground, dark    — cyan-bright reads 7.11:1 on it */
+  --color__cyan-wash:        #d3e8fa;   /* info chip ground, light   — cyan-ink reads 5.56:1 on it */
+  --color__cyan-ink:         #1a5c94;   /* info foreground, light */
+  --color__cyan-void:        #0d2136;   /* info chip ground, vibrant — cyan-loud reads 8.61:1 on it */
+
+  /* status — success */
+  --color__green-deep:    #1b3d2f;
+  --color__green-bright:  #a4e3b5;
+  --color__green-wash:    #d8efdd;
+  --color__green-ink:     #1d6b3a;
+  --color__green-neon:    #5fffa8;
+  --color__green-void:    #143d2a;
+
+  /* status — error / danger */
+  --color__red-deep:    #3d1b1b;
+  --color__red-bright:  #f29a9a;
+  --color__red-wash:    #f6dada;
+  --color__red-ink:     #a83737;   /* darkened 2026-09-13: #b23b3b measured 4.46 on red-wash — below the 4.5 F7 floor */
+  --color__red-neon:    #ff8fb0;
+  --color__red-void:    #3d1430;
+
+  /* status — warn / mid-confidence */
+  --color__amber-deep:    #3d2c0c;
+  --color__amber-bright:  #f5c971;
+  --color__amber-wash:    #fbeed1;
+  --color__amber-ink:     #8f5d1b;   /* darkened 2026-09-13: #95621d measured 4.51 — passing by 0.01 is not passing */
+  --color__amber-neon:    #ffd47d;
+  --color__amber-void:    #2a1d08;
+
+  /* shadow — Phase 1: so --fx-* tokens carry no literal (F11) */
+  --color__shadow-black: #000000;
+  --color__shadow-ink:   #1b1d22;
+
+  /* typeface — augment-it is a monospace tool surface */
+  --font__mono: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  /* The second face. augment-it is a monospace instrument panel for DATA, and
+     ten members set their root to --font-mono accordingly — but nine set theirs
+     to --font-sans, which until now did not exist. Those nine were not wrong;
+     prose next to a data grid wants a proportional face. What was wrong is that
+     each of them had to invent a fallback stack, and four different ones shipped.
+     One definition, decided once. Leads with the modern generic, matching the
+     mono stack above. */
+  --font__sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* -----------------------------------------------------------------------------
+ * Tier 2 — DIMENSION SCALES. Space, size, layering.
+ *
+ * Declared ONCE, in :root — not in the three mode blocks. These are dimension,
+ * not colour; they do not change between light, dark and vibrant. Triplicating
+ * them would imply a variance that does not exist. DESIGN.md anticipated this
+ * under "Where Tier 1 is required, and where it is noise": brand choices need a
+ * Tier-1 name, dimensional scales do not.
+ *
+ * PROMOTED, NOT INVENTED. Every name and value below is DESIGN.md's own
+ * proposal, shipped verbatim — Layout & Spacing (Spacing, Sizing) and
+ * Elevation & Depth (Layering), all three marked proposed and none ever
+ * shipped. This phase moves them proposed to shipped; it decides nothing.
+ * Where any spec and DESIGN.md disagree on a value here, DESIGN.md is the
+ * federal document and wins.
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Spacing — ten steps on a 2px base. Dense by design: an 8px grid is the
+     industry convention and would roughly double this product's whitespace,
+     destroying the instrument-panel density that is its identity (P5).
+     Max displacement against measured values is 1.6px, median under 1px.
+     WARNING: space-hairline may NEVER be a control's vertical padding (P10, F7). */
+  /* TYPEFACE — Tier 2, and mode-independent like the scales below. It does not
+     belong in the three mode blocks: a font does not change between dark, light
+     and vibrant, and declaring it there made the drift checker correctly report
+     it "missing in light vibrant" for a variance that does not exist. */
+  --font-mono: var(--font__mono);
+  --font-sans: var(--font__sans);
+
+  --space-hairline: 1px;
+  --space-3xs:      2px;
+  --space-2xs:      4px;
+  --space-xs:       6px;
+  --space-sm:       8px;
+  --space-md:      10px;
+  --space-lg:      12px;
+  --space-xl:      16px;
+  --space-2xl:     24px;
+  --space-3xl:     32px;
+
+  /* Type scale — the six steps DESIGN.md L738-775 specifies, shipped 2026-09-13.
+     ROLE-NAMED on purpose: the doc rejects --text-sm / --text-md BY NAME, because
+     "which small?" is the exact question that produced 35 font sizes in the wild.
+     SEVEN steps, not the doc's six — --text-meta (12px) added 2026-09-13 on the
+     operator's call, and the reasoning is better than the doc's. DESIGN.md
+     rejected an 11/12 adjacency because perceptually indistinguishable steps do
+     not force a choice, and folded 12px into --text-body (13px). But that fold
+     is a 1px INCREASE across 123 declarations of dense table content, which can
+     reflow fixed-width columns — a real regression paid up front to win an
+     argument about author discipline.
+     The indirection makes that trade unnecessary. Give both values a token now,
+     and if we later decide we only want one, MERGE THEM THROUGH THE TOKEN:
+     --text-label: var(--text-meta) is a one-line edit. Converging later costs
+     nothing; reflowing every dense table now costs something. So the scale
+     absorbs what members already use, and convergence becomes a decision we can
+     take with evidence instead of in advance.
+     Tier 2 only: --text-* is dimensional and has no Tier 1, by rule. */
+  --text-micro:    10px;
+  --text-label:    11px;
+  --text-meta:     12px;
+  --text-body:     13px;
+  --text-emphasis: 15px;
+  --text-heading:  18px;
+  --text-display:  28px;
+
+  /* Shapes — five values, promoted from DESIGN.md's Shapes table verbatim.
+     radius-md (4px) is the house default: buttons, inputs, chips, small cards.
+
+     WHY 4px AND NOT 3px. The measured split is a dead heat, 3px 86 times
+     against 4px 80 times. At 52/48 there is no house style to preserve; this
+     is a coin flip that was flipped independently 166 times. 4px wins because
+     it is the only value aligned with the 2px spacing grid above; 3px is off
+     every other scale in the system.
+
+     THIS COMMIT FIXES A LIVE DEFECT. Until now radius-md was undefined, so the
+     22 member declarations that reference it fell back to whatever each author
+     guessed: 6px in 11 uses, 8px in 4, 4px in 7 for radius-sm. One name, two
+     radii, depending which app you were looking at. They now tighten to the
+     scale. That is the fix landing, not a regression. */
+  --radius-sm:     2px;
+  --radius-md:     4px;
+  --radius-lg:     8px;
+  --radius-pill: 999px;
+  --radius-round:  50%;
+
+  /* Control height — the accessibility floor lives here. 24px is WCAG 2.2
+     2.5.8's target minimum, and contract F7 defines the federal target floor
+     AS this token. Lowering it lowers the floor for the whole federation. */
+  --control-h-sm: 24px;
+  --control-h-md: 28px;
+  --control-h-lg: 32px;
+
+  /* Icon size */
+  --icon-sm: 12px;
+  --icon-md: 16px;
+  --icon-lg: 20px;
+
+  /* Panel scroll — for when a panel genuinely must be bounded. NOT a
+     substitute for `flex: 1; overflow: auto; min-height: 0`, which is the
+     correct idiom and is currently used in only three places. */
+  --panel-h-sm: 240px;
+  --panel-h-md: 320px;
+  --panel-h-lg: 480px;
+
+  /* Label column */
+  --col-label-sm:  88px;
+  --col-label-md: 160px;
+  --col-label-lg: 224px;
+
+  /* Shell chrome */
+  --shell-header-h:  56px;
+  --shell-rail-w:    64px;
+  --shell-chat-w:   360px;
+
+  /* Layering — banded by OWNERSHIP, not by component (contract F4).
+     Remotes use the four remote-local tokens and NOTHING else. They are not
+     assigned private numeric bands: a shared four-token vocabulary is
+     coordinable across independent deploys in a way sixteen private ranges
+     are not. Measured today, three remotes and the shell all collide at 50. */
+
+  /* 0-899 — remote-local. The only four a member may write. */
+  --z-base:            0;
+  --z-raised:         10;
+  --z-sticky:         30;
+  --z-remote-overlay: 60;
+
+  /* 900-999 — slot geometry. Shell-assigned, not authorable by a member. */
+  --z-slot-peek:  900;
+  --z-slot-hover: 910;
+  --z-slot-focus: 920;
+
+  /* 1000+ — shell chrome. Remotes never write these. */
+  --z-shell-chrome: 1000;
+  --z-flow-widget:  1100;
+  --z-overlay:      1200;
+  --z-modal:        1300;
+  --z-tooltip:      1400;
+  --z-toast:        1500;
+}
+
+/* -----------------------------------------------------------------------------
+ * Tier 2 — SEMANTIC TOKENS. What every component reads.
+ * dark is the default — :root with no data-mode resolves here.
+ * Phase 1 additions marked with ✅.
+ * -------------------------------------------------------------------------- */
+:root,
+[data-mode='dark'] {
+  --color-background:      var(--color__graphite-950);
+  --color-surface:         var(--color__graphite-700);
+  --color-surface-2:       var(--color__graphite-900);
+  --color-surface-raised:  var(--color__graphite-1000);
+  --color-bg-elevated:     var(--color__graphite-850);
+  --color-field:           var(--color__graphite-900);
+  --color-field-focus:     var(--color__graphite-850);
+  --color-border:          var(--color__graphite-800);
+  --color-border-strong:   var(--color__graphite-600);
+  --color-text:            var(--color__mist-100);
+  --color-text-muted:      var(--color__mist-400);
+  /* PRIMARY / SECONDARY are the canonical semantic names — the vocabulary every
+     UI kit uses and every agent already knows. --color-accent* remain as ALIASES
+     that CHAIN to them — var() resolving to var() — so there is one value, two
+     spellings, and they cannot drift. Not deprecated: 416 member declarations
+     read the accent names, and a name the product prefers is a name worth
+     keeping. Edit the value at the canonical name; every alias follows. */
+  --color-primary:            var(--color__magenta-electric);
+  --color-primary-foreground: var(--color__graphite-950);
+  --color-secondary:          var(--color__cyan-bright);
+  --color-secondary-foreground: var(--color__graphite-950);
+  --color-tertiary:           var(--color__amber-bright);
+  --color-tertiary-foreground: var(--color__graphite-950);
+
+  --color-accent:          var(--color-primary);
+  --color-accent-fg:       var(--color-primary);      /* 5.16:1 on the accent ground */
+  --color-accent-2:        var(--color-secondary);    /* alias → --color-secondary */
+  --color-accent-warm:     var(--color-tertiary);      /* alias → --color-tertiary */
+  --color-on-accent:       var(--color-primary-foreground);  /* alias → --color-primary-foreground */
+  --color-link:            var(--color__cyan-bright);
+  --color-thread:          var(--color__graphite-800);
+  --color-ok-bg:           var(--color__green-deep);
+  --color-ok-fg:           var(--color__green-bright);
+  --color-ok-text:         var(--color-ok-fg);        /* alias → --color-ok-fg */
+  --color-error-bg:        var(--color__red-deep);
+  --color-error-fg:        var(--color__red-bright);
+  --color-error-text:      var(--color-error-fg);     /* alias → --color-error-fg */
+  --color-warn-bg:         var(--color__amber-deep);
+  --color-warn-fg:         var(--color__amber-bright);
+  --color-warn-text:       var(--color-warn-fg);      /* alias → --color-warn-fg */
+  --color-info-bg:         var(--color__cyan-deepest);
+  --color-info-fg:         var(--color__cyan-bright);
+  --color-info-text:       var(--color-info-fg);      /* alias → --color-info-fg */
+
+  --focus-ring: 0 0 0 2px var(--color__graphite-950), 0 0 0 3px var(--color__magenta-electric);
+
+  /* ALIAS, not a duplicate — and not deprecated. It chains to --color-background,
+     so there is exactly one value and the two names cannot drift apart.
+     Measured 2026-09-13: --color-bg has 79 uses across 13 members against
+     --color-background's 30. It was marked "deleted end of Phase 4" while being
+     the name two thirds of the product actually reaches for. Kept. */
+  --color-bg: var(--color-background);
+
+  /* confidence pills — packs-and-bundles. One token per band. */
+  --color-confidence-low:  var(--color__red-bright);
+  --color-confidence-med:  var(--color__amber-bright);
+  --color-confidence-high: var(--color__green-bright);
+
+  /* Foreground partners. Every surface token has one, so nothing ever has to
+     reach for a literal to answer "what colour is text on this?" — the absence
+     of exactly this pairing is why a primary button once hardcoded #fff. */
+  --color-surface-foreground: var(--color__mist-100);
+
+  /* tints derived from the accent */
+  --color-accent-bg:       color-mix(in srgb, var(--color-primary) 9%, transparent);
+  --color-accent-hover:    color-mix(in srgb, var(--color-primary) 86%, var(--color-background));
+  /* A specialisation of accent-bg, not a second value. Members wrote
+     --color-accent-bg 9 times against a token that did not exist, while this one
+     shipped and was found by roughly one of them. Same paint, two names: the
+     general surface, and the selection state. */
+  --color-selected-tint:   var(--color-accent-bg);
+  --color-danger-tint:     color-mix(in srgb, var(--color-error-text) 7%, transparent);
+
+  /* effect tokens — moderate in dark */
+  --fx-accent-glow:  0 0 0 1px color-mix(in srgb, var(--color-accent) 30%, transparent);
+  --fx-card-shadow:  0 1px 3px color-mix(in srgb, var(--color__shadow-black) 35%, transparent);
+  --fx-popover-shadow: 0 4px 16px color-mix(in srgb, var(--color__shadow-black) 45%, transparent);
+  --fx-flash:        color-mix(in srgb, var(--color-accent-2) 30%, transparent);
+
+}
+
+[data-mode='light'] {
+  --color-background:      var(--color__paper-50);
+  --color-surface:         var(--color__paper-0);
+  --color-surface-2:       var(--color__paper-100);
+  --color-surface-raised:  var(--color__paper-100);
+  --color-bg-elevated:     var(--color__paper-200);
+  --color-field:           var(--color__paper-200);
+  --color-field-focus:     var(--color__paper-0);
+  --color-border:          var(--color__paper-300);
+  --color-border-strong:   var(--color__paper-400);
+  --color-text:            var(--color__ink-900);
+  --color-text-muted:      var(--color__ink-500);
+  /* PRIMARY / SECONDARY are the canonical semantic names — the vocabulary every
+     UI kit uses and every agent already knows. --color-accent* remain as ALIASES
+     that CHAIN to them — var() resolving to var() — so there is one value, two
+     spellings, and they cannot drift. Not deprecated: 416 member declarations
+     read the accent names, and a name the product prefers is a name worth
+     keeping. Edit the value at the canonical name; every alias follows. */
+  --color-primary:            var(--color__magenta-deep);
+  --color-primary-foreground: var(--color__paper-0);
+  --color-secondary:          var(--color__cyan-deep);
+  --color-secondary-foreground: var(--color__paper-0);
+  --color-tertiary:           var(--color__amber-ink);
+  --color-tertiary-foreground: var(--color__paper-0);
+
+  --color-accent:          var(--color-primary);      /* alias → --color-primary */
+  --color-accent-fg:       var(--color__magenta-ink);  /* NOT --color-primary: magenta-deep on the 8% accent ground measures 4.42:1, under the 4.5 floor. This is 5.35:1. */
+  --color-accent-2:        var(--color-secondary);    /* alias → --color-secondary */
+  --color-accent-warm:     var(--color-tertiary);      /* alias → --color-tertiary */
+  --color-on-accent:       var(--color-primary-foreground);  /* alias → --color-primary-foreground */
+  --color-link:            var(--color__cyan-deep);
+  --color-thread:          var(--color__paper-300);
+  --color-ok-bg:           var(--color__green-wash);
+  --color-ok-fg:           var(--color__green-ink);
+  --color-ok-text:         var(--color-ok-fg);        /* alias → --color-ok-fg */
+  --color-error-bg:        var(--color__red-wash);
+  --color-error-fg:        var(--color__red-ink);
+  --color-error-text:      var(--color-error-fg);     /* alias → --color-error-fg */
+  --color-warn-bg:         var(--color__amber-wash);
+  --color-warn-fg:         var(--color__amber-ink);
+  --color-warn-text:       var(--color-warn-fg);      /* alias → --color-warn-fg */
+  --color-info-bg:         var(--color__cyan-wash);
+  --color-info-fg:         var(--color__cyan-ink);
+  --color-info-text:       var(--color-info-fg);      /* alias → --color-info-fg */
+
+  --focus-ring: 0 0 0 2px var(--color__paper-0), 0 0 0 3px var(--color__magenta-deep);
+
+  --color-bg: var(--color-background);
+
+  --color-confidence-low:  var(--color__red-ink);
+  --color-confidence-med:  var(--color__amber-ink);
+  --color-confidence-high: var(--color__green-ink);
+
+  --color-surface-foreground: var(--color__ink-900);
+  --color-accent-bg:       color-mix(in srgb, var(--color-primary) 8%, transparent);
+  --color-accent-hover:    color-mix(in srgb, var(--color-primary) 86%, var(--color-background));
+  --color-selected-tint:   var(--color-accent-bg);
+  --color-danger-tint:     color-mix(in srgb, var(--color-error-text) 8%, transparent);
+
+  /* effect tokens — minimal in light */
+  --fx-accent-glow:  none;
+  --fx-card-shadow:  0 1px 3px color-mix(in srgb, var(--color__shadow-ink) 8%, transparent);
+  --fx-popover-shadow: 0 4px 16px color-mix(in srgb, var(--color__shadow-ink) 14%, transparent);
+  --fx-flash:        color-mix(in srgb, var(--color-accent-2) 18%, transparent);
+}
+
+[data-mode='vibrant'] {
+  --color-background:      var(--color__void-950);
+  --color-surface:         var(--color__void-700);
+  --color-surface-2:       var(--color__void-900);
+  --color-surface-raised:  var(--color__void-1000);
+  --color-bg-elevated:     var(--color__void-850);
+  --color-field:           var(--color__void-900);
+  --color-field-focus:     var(--color__void-850);
+  --color-border:          var(--color__void-800);
+  --color-border-strong:   var(--color__void-600);
+  --color-text:            var(--color__halo-100);
+  --color-text-muted:      var(--color__halo-400);
+  /* PRIMARY / SECONDARY are the canonical semantic names — the vocabulary every
+     UI kit uses and every agent already knows. --color-accent* remain as ALIASES
+     that CHAIN to them — var() resolving to var() — so there is one value, two
+     spellings, and they cannot drift. Not deprecated: 416 member declarations
+     read the accent names, and a name the product prefers is a name worth
+     keeping. Edit the value at the canonical name; every alias follows. */
+  --color-primary:            var(--color__magenta-loud);
+  --color-primary-foreground: var(--color__void-950);
+  --color-secondary:          var(--color__cyan-loud);
+  --color-secondary-foreground: var(--color__void-950);
+  --color-tertiary:           var(--color__amber-neon);
+  --color-tertiary-foreground: var(--color__void-950);
+
+  --color-accent:          var(--color-primary);      /* alias → --color-primary */
+  --color-accent-fg:       var(--color-primary);      /* 6.42:1 on the accent ground */
+  --color-accent-2:        var(--color-secondary);    /* alias → --color-secondary */
+  --color-accent-warm:     var(--color-tertiary);      /* alias → --color-tertiary */
+  --color-on-accent:       var(--color-primary-foreground);  /* alias → --color-primary-foreground */
+  --color-link:            var(--color__cyan-loud);
+  --color-thread:          var(--color__void-800);
+  --color-ok-bg:           var(--color__green-void);
+  --color-ok-fg:           var(--color__green-neon);
+  --color-ok-text:         var(--color-ok-fg);        /* alias → --color-ok-fg */
+  --color-error-bg:        var(--color__red-void);
+  --color-error-fg:        var(--color__red-neon);
+  --color-error-text:      var(--color-error-fg);     /* alias → --color-error-fg */
+  --color-warn-bg:         var(--color__amber-void);
+  --color-warn-fg:         var(--color__amber-neon);
+  --color-warn-text:       var(--color-warn-fg);      /* alias → --color-warn-fg */
+  --color-info-bg:         var(--color__cyan-void);
+  --color-info-fg:         var(--color__cyan-loud);
+  --color-info-text:       var(--color-info-fg);      /* alias → --color-info-fg */
+
+  --focus-ring: 0 0 0 2px var(--color__void-950), 0 0 0 3px var(--color__magenta-loud);
+
+  --color-bg: var(--color-background);
+
+  --color-confidence-low:  var(--color__red-neon);
+  --color-confidence-med:  var(--color__amber-neon);
+  --color-confidence-high: var(--color__green-neon);
+
+  --color-surface-foreground: var(--color__halo-100);
+  --color-accent-bg:       color-mix(in srgb, var(--color-primary) 16%, transparent);
+  --color-accent-hover:    color-mix(in srgb, var(--color-primary) 86%, var(--color-background));
+  --color-selected-tint:   var(--color-accent-bg);
+  --color-danger-tint:     color-mix(in srgb, var(--color-error-text) 14%, transparent);
+
+  /* effect tokens — loud in vibrant */
+  --fx-accent-glow:  0 0 20px color-mix(in srgb, var(--color-accent) 45%, transparent);
+  --fx-card-shadow:  0 0 24px color-mix(in srgb, var(--color__magenta-loud) 12%, transparent);
+  --fx-popover-shadow: 0 4px 24px color-mix(in srgb, var(--color__magenta-loud) 20%, transparent);
+  --fx-flash:        color-mix(in srgb, var(--color-accent-2) 45%, transparent);
+}
+
+/* -----------------------------------------------------------------------------
+ * Accessibility — global blocks.
+ * Phase 1: prefers-reduced-motion and forced-colors.
+ * Phase 2: the federal focus ring.
+ * -------------------------------------------------------------------------- */
+
+/* The federal focus ring (F7: ":focus-visible only", "every interactive element
+   has an accessible name"). --focus-ring is defined in all three modes and was
+   consumed by only 3 of 19 members; this lands the other sixteen in one
+   declaration, and a member that wants a different ring overrides it locally.
+
+   :focus-visible, NOT :focus — a mouse click on a button must not paint a ring.
+   That distinction is the whole reason this is safe to apply universally.
+
+   ORDER IS LOAD-BEARING. This rule MUST stay above the forced-colors block
+   below. Both are `*:focus-visible`, so specificity ties and source order
+   decides. Forced-colors mode (Windows High Contrast) discards box-shadow, so
+   if this rule's `outline: none` won, high-contrast users would get NO focus
+   indicator at all — the accessibility floor would be lower after this phase
+   than before it. Moving this declaration below the forced-colors block is a
+   silent a11y regression that no drift check catches. */
+*:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  body * {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .app-shell,
+  [class*='-app'] {
+    border: 1px solid ButtonText;
+  }
+  *:focus-visible {
+    outline: 2px solid ButtonText;
+    outline-offset: 2px;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * Base rules — replace the per-app STANDALONE_BODY_CSS hacks. Every frontend
+ * imports this file, so body / box-sizing / the theme-swap transition are
+ * defined once here.
+ * -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font: 13px/1.45 var(--font-mono);
+}
+
+/* 75ms swap so cycling modes feels instant but not jarring (blueprint §8.4) */
+body,
+body * {
+  transition: background-color 75ms ease, border-color 75ms ease, color 75ms ease;
+}

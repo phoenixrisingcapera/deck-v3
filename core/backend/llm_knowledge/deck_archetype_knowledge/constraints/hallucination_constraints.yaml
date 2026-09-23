@@ -1,0 +1,23 @@
+hallucination_constraints:
+  rule: "Knowledge base content is structure, not user facts."
+  never_invent:
+    - "traction metrics"
+    - "customer names"
+    - "investor names"
+    - "team credentials"
+    - "revenue"
+    - "clinical or regulatory approvals"
+    - "fund returns"
+    - "portfolio company outcomes"
+    - "legal terms"
+    - "financial projections"
+  missing_input_behavior:
+    - "Prefer a missing_inputs field over an invented detail."
+    - "Use conservative language when source support is weak."
+    - "Preserve original source facts exactly unless the user supplied a correction."
+  source_priority:
+    - "User-uploaded deck content"
+    - "User instruction"
+    - "Persisted deck LLM artifacts"
+    - "Workspace brand/profile context"
+    - "Knowledge base structure and rubrics"

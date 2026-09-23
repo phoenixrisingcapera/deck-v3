@@ -1,0 +1,16 @@
+{
+  "claims": [
+    {
+      "claim": "string",
+      "slideId": "string|null",
+      "evidenceStatus": "supported|weak|unsupported",
+      "riskLevel": "high|medium|low"
+    }
+  ],
+  "unsupportedClaims": ["string"],
+  "investorQuestions": ["string"],
+  "icMemo": {
+    "summary": "string"
+  },
+  "clientRequestList": ["string"]
+}

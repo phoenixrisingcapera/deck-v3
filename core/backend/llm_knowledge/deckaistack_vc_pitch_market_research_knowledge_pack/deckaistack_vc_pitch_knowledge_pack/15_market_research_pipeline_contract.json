@@ -1,0 +1,26 @@
+{
+  "purpose": "Recommended backend workflow for DeckAiStack market vigilance.",
+  "pipeline_steps": [
+    "extract_slide_text_and_blocks",
+    "classify_slide_archetype",
+    "detect_market_claims",
+    "normalise_numbers_and_units",
+    "check_internal_consistency",
+    "trigger_live_research_if_enabled",
+    "score_source_quality",
+    "generate_investor_risk_notes",
+    "suggest_slide_rewrite",
+    "store_market_claim_audit"
+  ],
+  "backend_objects": {
+    "MarketClaim": "deck_id, slide_id, block_id, claim_type, raw_text, normalised_value, source_status, confidence, verification_status",
+    "MarketResearchAudit": "deck_id, created_at, model, live_research_used, overall_risk, missing_sources, suggested_sources",
+    "CompetitorMention": "deck_id, slide_id, company_name, competitor_type, comparison_dimension, evidence_url_optional"
+  },
+  "api_suggestions": [
+    "POST /api/products/deck-aistack-codes/decks/{deck_id}/market-audit",
+    "GET /api/products/deck-aistack-codes/decks/{deck_id}/market-claims",
+    "POST /api/products/deck-aistack-codes/decks/{deck_id}/market-claims/{claim_id}/research",
+    "POST /api/products/deck-aistack-codes/decks/{deck_id}/slides/{slide_id}/rewrite-market-claim"
+  ]
+}

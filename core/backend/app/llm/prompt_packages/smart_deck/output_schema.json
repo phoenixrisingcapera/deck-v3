@@ -1,0 +1,13 @@
+{
+  "designVersionName": "string",
+  "slides": [
+    {
+      "sourceSlideId": "string",
+      "slideNumber": 1,
+      "title": "string",
+      "renderSchema": {
+        "schemaVersion": "smart-deck-render-schema.v1"
+      }
+    }
+  ]
+}

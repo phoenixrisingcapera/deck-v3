@@ -1,0 +1,33 @@
+{
+  "domain": "competition",
+  "classification_goal": "Extract and assess evidence for competition diligence from uploaded deck content.",
+  "evidence_types": [
+    "direct competitors",
+    "indirect alternatives",
+    "incumbents",
+    "switching costs",
+    "moat"
+  ],
+  "questions": [
+    "What evidence supports direct competitors?",
+    "What evidence supports indirect alternatives?",
+    "What evidence supports incumbents?",
+    "What evidence supports switching costs?",
+    "What evidence supports moat?"
+  ],
+  "risk_labels": [
+    "low",
+    "medium",
+    "high",
+    "unknown"
+  ],
+  "missing_evidence_policy": "If not present in deck, mark missing_evidence rather than infer.",
+  "output_fields": [
+    "claim",
+    "evidence_found",
+    "source_slide_ids",
+    "confidence",
+    "risk_level",
+    "recommended_follow_up"
+  ]
+}

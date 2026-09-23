@@ -1,0 +1,23 @@
+{
+  "name": "@augment-it/decile-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MCP server for the Decile Hub API v1 — per-client VC CRM + fund-admin connector.",
+  "type": "module",
+  "bin": {
+    "decile-mcp": "dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,1 @@
+{"module":"deck_rhythm","rules":[{"id":"rhythm.no_triples","when":"three adjacent slides","forbid":"same composition family repeated three times"},{"id":"rhythm.contrast","when":"deck sequence","require":"alternate statement, proof, explanation, and implication modes"}]}

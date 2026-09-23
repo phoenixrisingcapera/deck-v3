@@ -1,0 +1,28 @@
+{
+  "module": "fundraising_logic_rules",
+  "version": "0.1.0",
+  "principle": "A credible fundraising ask connects capital requested, spend plan, runway, measurable milestones, and the next financing or operating outcome.",
+  "rules": [
+    {
+      "id": "raise_must_unlock_milestones",
+      "redFlags": ["generic use of funds", "milestones absent", "milestones not measurable", "raise amount not tied to plan"],
+      "slideFix": "Convert use-of-funds into a milestone runway slide: capital, runway months, spend categories, measurable outcomes."
+    },
+    {
+      "id": "runway_required",
+      "redFlags": ["runway missing", "monthly burn not implied", "team plan absent", "timeline unclear"],
+      "slideFix": "Add runway months and milestone dates. If burn is unknown, request monthly burn and hiring plan."
+    },
+    {
+      "id": "next_round_logic",
+      "redFlags": ["no next financing logic", "milestones do not support next valuation step", "growth projection disconnected from raise"],
+      "slideFix": "Add next-round readiness logic: metrics to reach, evidence to produce, and risks to retire."
+    }
+  ],
+  "audienceEmphasis": {
+    "VC Partner": ["milestone credibility", "fund-return path", "capital efficiency"],
+    "VC Associate": ["extractable ask", "runway", "use-of-funds questions"],
+    "Investment Committee": ["risk retired by round", "next financing assumptions", "downside plan"],
+    "Board Member": ["budget", "runway", "resource allocation", "operating milestones"]
+  }
+}

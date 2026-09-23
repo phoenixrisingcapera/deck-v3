@@ -1,0 +1,199 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import GuiCallout from '@components/GuiCallout.astro';
+import { readProvenance, threadStyle, pickDate, pickString, fmtDate, fromKindLabel } from '@lib/provenance';
+import { seoFromEntry, pickHeroImage } from '@lib/seo';
+import '@styles/prose.css';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('changelog');
+  return entries.map((entry) => {
+    const data = entry.data as Record<string, unknown>;
+    const { from } = readProvenance(data, 'memopop-ai');
+    const slug = entry.id.replace(new RegExp(`^${from}/`), '');
+    return {
+      params: { from, slug },
+      props: { entry },
+    };
+  });
+}
+
+interface Props { entry: CollectionEntry<'changelog'>; }
+
+const { entry } = Astro.props as Props;
+const data = entry.data as Record<string, unknown>;
+const { from, fromKind } = readProvenance(data, 'memopop-ai');
+const { Content } = await render(entry);
+
+const title = pickString(data, 'title') ?? entry.id;
+const summary = pickString(data, 'lede', 'summary', 'description');
+const date = pickDate(data, entry.id);
+const version = pickString(data, 'at_semantic_version', 'semantic_version');
+const status = pickString(data, 'status');
+const category = pickString(data, 'category');
+const augmentedWith = pickString(data, 'augmented_with');
+const tags = Array.isArray(data.tags) ? (data.tags as string[]) : [];
+const authors = Array.isArray(data.authors) ? (data.authors as string[]) : [];
+
+const base = import.meta.env.BASE_URL;
+const seo = seoFromEntry({
+  astro: { url: Astro.url, site: Astro.site },
+  kind: 'changelog',
+  data,
+  fallbackTitle: title,
+});
+const hero = pickHeroImage(data);
+---
+
+<BaseLayout seo={seo}>
+  <Header active="changelog" compact />
+
+  <main class="entry-page">
+    <div class="container-narrow">
+      <a href={`${base}changelog`} class="back-link mono">← All changelog entries</a>
+
+      <article
+        class="entry-article"
+        data-pagefind-body
+        data-pagefind-meta={`from:${from}`}
+      >
+        <span data-pagefind-filter="kind:Changelog" hidden></span>
+        <span data-pagefind-filter={`from:${from}`} hidden></span>
+        <span data-pagefind-meta={`source-kind:${fromKindLabel(fromKind)}`} hidden></span>
+
+        {hero && (
+          <figure class="entry-hero" data-pagefind-ignore>
+            <img src={hero.url} alt={hero.alt ?? title} loading="eager" decoding="async" />
+          </figure>
+        )}
+
+        <header class="entry-header">
+          <div class="entry-header__meta" data-pagefind-ignore>
+            <span class="from-tag mono" style={threadStyle(from)}>{from}</span>
+            <span class="entry-header__kind mono">{fromKindLabel(fromKind)}</span>
+            {date && <time class="entry-header__date mono" datetime={date.toISOString()}>{fmtDate(date, 'long')}</time>}
+            {version && <span class="pill mono">v{version}</span>}
+            {status && <span class="pill mono" data-status={status}>{status}</span>}
+            {category && <span class="entry-header__category mono">{category}</span>}
+          </div>
+
+          <h1 class="entry-header__title">{title}</h1>
+          {summary && <p class="entry-header__lede">{summary}</p>}
+
+          {(authors.length > 0 || augmentedWith) && (
+            <p class="entry-header__byline" data-pagefind-ignore>
+              {authors.length > 0 && <span>By {authors.join(', ')}</span>}
+              {augmentedWith && <span class="augmented"> · augmented with {augmentedWith}</span>}
+            </p>
+          )}
+
+          {tags.length > 0 && (
+            <div class="entry-header__tags" data-pagefind-ignore>
+              {tags.map((t) => <span class="tag mono">{t}</span>)}
+            </div>
+          )}
+        </header>
+
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+
+      <GuiCallout variant="compact" />
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .entry-page { padding: 2rem 0 5rem; }
+
+  .entry-hero {
+    margin: 0 0 2rem 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-elevated);
+    background: var(--color-bg-soft);
+  }
+  .entry-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: var(--color-text-dim);
+    margin-bottom: 1.25rem;
+    transition: color var(--transition-fast);
+  }
+  .back-link:hover { color: var(--color-accent); }
+
+  .entry-header {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .entry-header__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+  }
+
+  .entry-header__kind {
+    font-size: 0.7rem;
+    color: var(--color-text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .entry-header__date,
+  .entry-header__category {
+    color: var(--color-text-dim);
+    font-size: 0.82rem;
+  }
+
+  .entry-header__title {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    color: var(--color-text);
+    line-height: 1.2;
+    margin: 0 0 0.85rem 0;
+  }
+
+  .entry-header__lede {
+    font-size: 1.18rem;
+    color: var(--color-text-soft);
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .entry-header__byline {
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+    margin-bottom: 1rem;
+  }
+  .augmented { font-style: italic; }
+
+  .entry-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    background: color-mix(in oklab, var(--color-text) 4%, transparent);
+    color: var(--color-text-soft);
+  }
+</style>

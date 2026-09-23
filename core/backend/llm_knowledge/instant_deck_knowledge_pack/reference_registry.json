@@ -1,0 +1,27 @@
+{
+  "sources": [
+    {
+      "id": "context_vigilance_kit",
+      "label": "Context Vigilance Kit",
+      "root": "deck-old/references/context-vigilance-kit-master",
+      "focus": [
+        "context hierarchy",
+        "prompt discipline",
+        "embedding ingestion patterns",
+        "source curation"
+      ]
+    },
+    {
+      "id": "vc_aistack",
+      "label": "VC AiStack",
+      "root": "deck-old/references/VC-Aistack-main",
+      "focus": [
+        "venture workflows",
+        "decks, diligence, memos, and research adjacency",
+        "app module framing",
+        "frontend/backend ownership boundary"
+      ]
+    }
+  ],
+  "usageRule": "These references shape narrative, workflow, and evidence expectations. They do not authorize invented founder facts."
+}

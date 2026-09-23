@@ -1,0 +1,38 @@
+{
+  "audience_id": "lp",
+  "primary_question": "Does this deal or fund decision improve portfolio-level returns?",
+  "cares_about": [
+    "fund-return potential",
+    "portfolio construction",
+    "reserves impact",
+    "ownership target",
+    "exit potential",
+    "risk concentration"
+  ],
+  "red_flags": [
+    "deal too small to move fund",
+    "unclear exit path",
+    "overconcentration",
+    "weak DPI path"
+  ],
+  "preferred_evidence": [
+    "ownership model",
+    "exit comparables",
+    "fund model impact",
+    "portfolio fit memo"
+  ],
+  "output_adaptation_rules": {
+    "tone": "evidence-led, concise, commercially credible",
+    "must_surface": [
+      "why now",
+      "why this team",
+      "why this market",
+      "what could kill it"
+    ],
+    "avoid": [
+      "unsupported hype",
+      "generic AI claims",
+      "inflated TAM without method"
+    ]
+  }
+}

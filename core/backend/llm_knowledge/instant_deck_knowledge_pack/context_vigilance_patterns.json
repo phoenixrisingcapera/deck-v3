@@ -1,0 +1,20 @@
+{
+  "patterns": [
+    {
+      "name": "context_as_parent",
+      "rule": "Use curated context to shape structure and decisions before changing output artifacts."
+    },
+    {
+      "name": "corpus_before_confidence",
+      "rule": "A stale or weak corpus should produce explicit uncertainty and next-evidence requests, not confident invention."
+    },
+    {
+      "name": "foldered_prompt_discipline",
+      "rule": "Separate specs, plans, prompts, and reminders so generation instructions reflect stable product truth instead of one-off improvisation."
+    },
+    {
+      "name": "embedding_ready_sources",
+      "rule": "Organize reusable runtime knowledge as machine-readable JSON so it can later be indexed, chunked, and embedded without re-authoring the source."
+    }
+  ]
+}

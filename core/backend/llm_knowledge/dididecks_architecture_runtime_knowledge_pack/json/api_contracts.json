@@ -1,0 +1,93 @@
+{
+  "api_prefix": "/api/products/dididecks",
+  "forbidden_prefixes": [
+    "/api/v1"
+  ],
+  "helpers": [
+    {
+      "name": "listDecks",
+      "method": "GET",
+      "path": "/decks"
+    },
+    {
+      "name": "getDeck",
+      "method": "GET",
+      "path": "/decks/{deckId}"
+    },
+    {
+      "name": "getDeckEditorView",
+      "method": "GET",
+      "path": "/decks/{deckId}/editor-view"
+    },
+    {
+      "name": "getDeckMap",
+      "method": "GET",
+      "path": "/decks/{deckId}/map"
+    },
+    {
+      "name": "getEditableFields",
+      "method": "GET",
+      "path": "/decks/{deckId}/editable-fields"
+    },
+    {
+      "name": "getFieldDetail",
+      "method": "GET",
+      "path": "/decks/{deckId}/fields/{fieldKey}"
+    },
+    {
+      "name": "previewChanges",
+      "method": "POST",
+      "path": "/decks/{deckId}/changes/preview"
+    },
+    {
+      "name": "applyChanges",
+      "method": "POST",
+      "path": "/decks/{deckId}/changes/apply"
+    },
+    {
+      "name": "getRebuildJobStatus",
+      "method": "GET",
+      "path": "/rebuild-jobs/{jobId}"
+    },
+    {
+      "name": "updateBlock",
+      "method": "PATCH",
+      "path": "/blocks/{blockId}"
+    },
+    {
+      "name": "runAiCommand",
+      "method": "POST",
+      "path": "/ai-commands"
+    },
+    {
+      "name": "acceptAiCommand",
+      "method": "POST",
+      "path": "/ai-commands/{commandId}/accept"
+    },
+    {
+      "name": "rejectAiCommand",
+      "method": "POST",
+      "path": "/ai-commands/{commandId}/reject"
+    },
+    {
+      "name": "listVersions",
+      "method": "GET",
+      "path": "/decks/{deckId}/versions"
+    },
+    {
+      "name": "listExports",
+      "method": "GET",
+      "path": "/decks/{deckId}/exports"
+    },
+    {
+      "name": "getDeckAccess",
+      "method": "GET",
+      "path": "/decks/{deckId}/access"
+    }
+  ],
+  "rules": [
+    "Frontend helpers may use mock fallback.",
+    "Frontend helpers must not hardcode localhost.",
+    "Backend owns persistence and secret-bearing logic."
+  ]
+}

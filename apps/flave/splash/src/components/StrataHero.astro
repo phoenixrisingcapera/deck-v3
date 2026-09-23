@@ -1,0 +1,316 @@
+---
+/**
+ * StrataHero — the splash's centerpiece.
+ *
+ * Not an illustration of the clearance model; a working demonstration of it.
+ * The same fact from a real investor update is rendered at four clearance
+ * levels, and the reader switches between them. By the time they reach the
+ * prose below, they already understand what a `.flave` does.
+ *
+ * Vanilla JS only (Astro Knots prohibits React/JSX). Buttons carry
+ * aria-pressed; the panels are a radiogroup-flavored tablist in practice but
+ * kept as plain buttons + aria-live so screen readers announce the swap.
+ */
+
+interface Level {
+  key: string;
+  label: string;
+  token: string;
+  note: string;
+  body: string;
+}
+
+const LEVELS: Level[] = [
+  {
+    key: 'private',
+    label: 'private',
+    token: 'var(--color-clearance-private)',
+    note: 'my notes · never leaves the file',
+    body:
+      "Call w/ Dana 8/12 — she's worried about the Q3 churn number and honestly so am I. 61% CM is real but it's flattered by the infra renegotiation, which is one-time. Normalized we're nearer 54%. Don't lead with 61.",
+  },
+  {
+    key: 'team',
+    label: 'team',
+    token: 'var(--color-clearance-team)',
+    note: 'internal circulation',
+    body:
+      'Contribution margin reached 61% in Q3, up from 48%. The renegotiated infrastructure contract accounts for roughly 7 points and will not recur; normalized margin is ~54%. Support load per account fell 12% after self-serve onboarding.',
+  },
+  {
+    key: 'lp',
+    label: 'lp',
+    token: 'var(--color-clearance-lp)',
+    note: 'shared under care',
+    body:
+      'Contribution margin reached 61% in Q3, up from 48%, driven by the renegotiated infrastructure contract and a 12% reduction in support load per account following the self-serve onboarding launch.',
+  },
+  {
+    key: 'public',
+    label: 'public',
+    token: 'var(--color-clearance-public)',
+    note: 'the one-pager',
+    body: 'Margins hit 61%, up 13 points. Cheaper infrastructure, less support per account.',
+  },
+];
+---
+
+<section class="hero">
+  <span class="regmark" style="top: 0; left: 0;"></span>
+  <span class="regmark" style="top: 0; right: 0;"></span>
+
+  <div class="container">
+    <p class="eyebrow hero__eyebrow">
+      <span class="hero__dot" aria-hidden="true"></span>
+      Pre-implementation · spec of record
+    </p>
+
+    <h2 class="hero__title">
+      <span class="misreg" data-text="A document that">A document that</span><br />
+      <span class="misreg" data-text="keeps its workings.">keeps its workings.</span>
+    </h2>
+
+    <p class="hero__lede">
+      Publish it and people see the conclusion. Send the file itself and they get the evidence,
+      the data and its sources, the reasoning, and the design vocabulary that produced it —
+      written in the languages agents already speak fluently.
+    </p>
+
+    <!-- ── The strata ────────────────────────────────────────────── -->
+    <div class="strata" data-strata data-active="lp">
+      <div class="strata__head">
+        <p class="eyebrow">One paragraph · four clearances</p>
+        <div class="strata__rail" role="group" aria-label="Choose a clearance level">
+          {
+            LEVELS.map((lv) => (
+              <button
+                type="button"
+                class="strata__tab"
+                data-level={lv.key}
+                style={`--lv: ${lv.token};`}
+                aria-pressed={lv.key === 'lp' ? 'true' : 'false'}
+              >
+                {lv.label}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="strata__stack">
+        {
+          LEVELS.map((lv, i) => (
+            <article
+              class="plate"
+              data-level={lv.key}
+              style={`--lv: ${lv.token}; --i: ${i};`}
+              aria-hidden={lv.key === 'lp' ? 'false' : 'true'}
+            >
+              <header class="plate__head">
+                <span class="chip chip--clearance" style={`--lv: ${lv.token};`}>
+                  {lv.label}
+                </span>
+                <span class="plate__note">{lv.note}</span>
+              </header>
+              <p class="plate__body">{lv.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="strata__caption">
+        Same source, same file. Clearance is monotonic and machine-checkable — publishing at
+        <code>public</code> fails if anything above it survives into the output bytes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector('[data-strata]');
+  if (root) {
+    const tabs = root.querySelectorAll<HTMLButtonElement>('.strata__tab');
+    const plates = root.querySelectorAll<HTMLElement>('.plate');
+
+    const select = (key: string) => {
+      root.setAttribute('data-active', key);
+      tabs.forEach((t) =>
+        t.setAttribute('aria-pressed', String(t.dataset.level === key)),
+      );
+      plates.forEach((p) =>
+        p.setAttribute('aria-hidden', String(p.dataset.level !== key)),
+      );
+    };
+
+    tabs.forEach((t) =>
+      t.addEventListener('click', () => select(t.dataset.level ?? 'lp')),
+    );
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    padding: var(--space-12) 0 var(--space-12);
+    border-top: 1px solid var(--color-border-strong);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .hero__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+    flex: none;
+  }
+
+  .hero__title {
+    margin-top: var(--space-4);
+    font-size: clamp(2.5rem, 7vw, var(--text-5xl));
+    max-width: 16ch;
+  }
+
+  .hero__lede {
+    margin-top: var(--space-6);
+    max-width: 62ch;
+    color: var(--color-text-soft);
+    font-size: var(--text-lg);
+  }
+
+  /* ── Strata ─────────────────────────────────────────────────────── */
+
+  .strata {
+    margin-top: var(--space-12);
+    border-top: 1px solid var(--color-border-strong);
+    padding-top: var(--space-6);
+  }
+
+  .strata__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .strata__rail {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .strata__tab {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-right: 1px solid var(--color-border);
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font__mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    cursor: pointer;
+    transition: color 120ms ease, background 120ms ease;
+  }
+  .strata__tab:last-child {
+    border-right: 0;
+  }
+  .strata__tab:hover {
+    color: var(--color-text);
+  }
+  .strata__tab[aria-pressed='true'] {
+    color: var(--lv);
+    background: color-mix(in oklab, var(--lv) 14%, transparent);
+    font-weight: 600;
+  }
+
+  /* The stack: planes occupy one grid cell, offset by index. The active
+     plate lifts to full opacity; the others sit behind as visible strata. */
+  .strata__stack {
+    display: grid;
+    position: relative;
+    min-height: 230px;
+  }
+
+  .plate {
+    grid-area: 1 / 1;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--lv);
+    background: var(--color-bg-raised);
+    box-shadow: var(--shadow-plate);
+    padding: var(--space-6);
+    transform: translate(calc(var(--i) * 10px), calc(var(--i) * 10px));
+    opacity: 0;
+    z-index: 0;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .plate[aria-hidden='false'] {
+    opacity: 1;
+    z-index: 3;
+    transform: translate(0, 0);
+  }
+
+  /* Inactive plates remain faintly visible so the stack reads as strata
+     rather than as a tab panel. */
+  .plate[aria-hidden='true'] {
+    opacity: 0.14;
+    pointer-events: none;
+  }
+
+  .plate__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+  .plate__note {
+    font-family: var(--font__mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-mono);
+    color: var(--color-text-dim);
+  }
+  .plate__body {
+    font-size: var(--text-lg);
+    line-height: 1.55;
+    max-width: 68ch;
+    color: var(--color-text);
+  }
+
+  .strata__caption {
+    margin-top: var(--space-6);
+    color: var(--color-text-dim);
+    font-size: var(--text-sm);
+    max-width: var(--measure);
+  }
+  .strata__caption code {
+    font-family: var(--font__mono);
+    font-size: 0.9em;
+    color: var(--color-clearance-public);
+  }
+
+  @media (max-width: 720px) {
+    .strata__stack {
+      min-height: 300px;
+    }
+    .plate {
+      padding: var(--space-4);
+      transform: translate(calc(var(--i) * 5px), calc(var(--i) * 5px));
+    }
+    .strata__head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

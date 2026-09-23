@@ -1,0 +1,1 @@
+{"module":"typography","rules":[{"id":"type.hierarchy","when":"every slide","require":"display claim, readable proof, restrained annotation"},{"id":"type.budget","when":"body copy","require":"respect per-slide copy budget"}]}

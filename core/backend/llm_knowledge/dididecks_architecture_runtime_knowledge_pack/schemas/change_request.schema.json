@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChangeRequest",
+  "type": "object",
+  "required": [
+    "id",
+    "deck_id",
+    "change_type",
+    "status",
+    "items"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "deck_id": {
+      "type": "string"
+    },
+    "change_type": {
+      "enum": [
+        "field_change",
+        "block_change",
+        "layout_change",
+        "ai_proposal",
+        "bulk_update"
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "previewed",
+        "accepted",
+        "rejected",
+        "applied",
+        "failed"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "deck": {
+    "id": "deck_001",
+    "title": "NovaSeed Investor Pitch",
+    "deck_type": "pitch_deck",
+    "status": "in_review"
+  },
+  "slides": [
+    {
+      "id": "slide_01",
+      "deck_id": "deck_001",
+      "slide_number": 1,
+      "slide_key": "cover",
+      "title": "Cover",
+      "slide_type": "cover"
+    },
+    {
+      "id": "slide_02",
+      "deck_id": "deck_001",
+      "slide_number": 2,
+      "slide_key": "problem",
+      "title": "Problem",
+      "slide_type": "problem"
+    },
+    {
+      "id": "slide_03",
+      "deck_id": "deck_001",
+      "slide_number": 3,
+      "slide_key": "traction",
+      "title": "Traction",
+      "slide_type": "traction"
+    }
+  ],
+  "activeSlide": {
+    "id": "slide_02",
+    "deck_id": "deck_001",
+    "slide_number": 2,
+    "slide_key": "problem",
+    "title": "Problem",
+    "slide_type": "problem"
+  },
+  "activeVariant": {
+    "id": "variant_baseline_problem",
+    "slide_id": "slide_02",
+    "variant_key": "baseline",
+    "component_key": "ProblemStatementSplit"
+  },
+  "blocks": [
+    {
+      "id": "block_problem_headline",
+      "deck_id": "deck_001",
+      "slide_id": "slide_02",
+      "variant_id": "variant_baseline_problem",
+      "block_key": "problem.headline",
+      "block_type": "text",
+      "content_json": {
+        "text": "Manual workflows are costing teams millions"
+      },
+      "style_json": {
+        "fontSize": 46,
+        "fontWeight": 700
+      },
+      "position_json": {
+        "x": 80,
+        "y": 70,
+        "width": 820,
+        "height": 120
+      },
+      "data_binding_key": "problem.headline",
+      "is_locked": false,
+      "is_generated": true
+    },
+    {
+      "id": "block_problem_cost_metric",
+      "deck_id": "deck_001",
+      "slide_id": "slide_02",
+      "variant_id": "variant_baseline_problem",
+      "block_key": "problem.cost_metric",
+      "block_type": "metric",
+      "content_json": {
+        "label": "Annual wasted spend",
+        "value": "$4.2M"
+      },
+      "style_json": {
+        "fontSize": 32,
+        "fontWeight": 700
+      },
+      "position_json": {
+        "x": 80,
+        "y": 250,
+        "width": 280,
+        "height": 130
+      },
+      "data_binding_key": "metrics.annual_wasted_spend",
+      "is_locked": false,
+      "is_generated": true
+    }
+  ],
+  "persistentFields": [
+    {
+      "id": "field_problem_headline",
+      "deck_id": "deck_001",
+      "field_key": "problem.headline",
+      "field_label": "Problem headline",
+      "field_group": "problem",
+      "field_type": "text",
+      "value_json": {
+        "value": "Manual workflows are costing teams millions"
+      },
+      "source": "manual"
+    },
+    {
+      "id": "field_metrics_annual_waste",
+      "deck_id": "deck_001",
+      "field_key": "metrics.annual_wasted_spend",
+      "field_label": "Annual wasted spend",
+      "field_group": "metrics",
+      "field_type": "currency",
+      "value_json": {
+        "value": 4200000,
+        "display": "$4.2M"
+      },
+      "source": "research"
+    }
+  ],
+  "fieldUsages": [
+    {
+      "id": "usage_001",
+      "deck_id": "deck_001",
+      "persistent_field_id": "field_problem_headline",
+      "field_key": "problem.headline",
+      "slide_id": "slide_02",
+      "variant_id": "variant_baseline_problem",
+      "block_id": "block_problem_headline",
+      "usage_type": "text_render",
+      "is_required": true
+    },
+    {
+      "id": "usage_002",
+      "deck_id": "deck_001",
+      "persistent_field_id": "field_metrics_annual_waste",
+      "field_key": "metrics.annual_wasted_spend",
+      "slide_id": "slide_02",
+      "variant_id": "variant_baseline_problem",
+      "block_id": "block_problem_cost_metric",
+      "usage_type": "metric_render",
+      "is_required": false
+    }
+  ],
+  "comments": [],
+  "versions": [
+    {
+      "id": "version_001",
+      "version_number": "1.0.0",
+      "summary": "Initial deck import"
+    }
+  ],
+  "exports": [],
+  "surfaceReviewSummary": {
+    "scroll": "passable",
+    "play": "needs_work",
+    "print": "untested"
+  }
+}

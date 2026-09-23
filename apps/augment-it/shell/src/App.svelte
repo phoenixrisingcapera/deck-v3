@@ -1,0 +1,1022 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import CountBadge from '@augment-it/shared-ui/CountBadge.svelte';
+  import ModeToggle from './ModeToggle.svelte';
+  import MountHost from './MountHost.svelte';
+  import FlowWidget from './FlowWidget.svelte';
+  import WorkspaceSwitcher from './WorkspaceSwitcher.svelte';
+  import DidiBadge from './DidiBadge.svelte';
+  import DevelopersMenu from './DevelopersMenu.svelte';
+  import SignInWall from './SignInWall.svelte';
+  import JumboPopdown, { type PopdownItem } from './JumboPopdown.svelte';
+  import ToggleHeader from '@augment-it/shared-ui/ToggleHeader__PromptOrPackage--Icons.svelte';
+  import Button from '@augment-it/shared-ui/Button.svelte';
+  import { workspace, bootMark, resolveWsUrl, resolveHttpBase } from '@augment-it/workspace';
+  import {
+    PAIRINGS,
+    CHAT_REMOTE,
+    SEARCH_RESULTS_REMOTE,
+    DESIGN_SYSTEM_REMOTE,
+    remoteById,
+    slotById,
+    type RemoteEntry,
+    type Slot,
+  } from './remotes';
+  import {
+    COMPOSITES,
+    readActiveMemberId,
+    writeActiveMemberId,
+    compositeFor,
+    type CompositeEntry,
+  } from './composites';
+  import { layout, type LayoutMode } from './layout.svelte';
+  import { activeFlow, FLOWS } from './flows.svelte';
+
+  // workspace-service's WS endpoint — every app that connects to it directly
+  // (this shell, plus the corpora-curator and chat remotes independently)
+  // reads the same PUBLIC_WS_URL, defaulting to localhost for dev. Rsbuild
+  // inlines PUBLIC_-prefixed env vars into import.meta.env at build time
+  // (same convention DidiBadge.svelte's PUBLIC_ID_BASE already uses).
+  // Deriving the plain-HTTP base from it (ws→http, wss→https) rather than a
+  // second env var — Step 7's /config check needs the same origin, not the
+  // WS scheme.
+  const WS_URL = resolveWsUrl();
+  const WS_HTTP_BASE = resolveHttpBase(WS_URL);
+
+  // Chat rail visibility — persistent left-side companion to the focused
+  // Window. Toggleable from the header; persisted to localStorage so a
+  // user's preference survives reloads. Per the four-roles model in
+  // context-v/blueprints/Chat-As-Verb-Surface-Patterns.md, the chat is a
+  // peer to the Window (not a remote in the rotation) — it goes WITH the
+  // user as they switch which Window they're focused on.
+  const CHAT_VISIBLE_KEY = 'augment-it:chat-rail-visible';
+  let chatVisible = $state<boolean>(
+    typeof localStorage === 'undefined' ? true : localStorage.getItem(CHAT_VISIBLE_KEY) !== 'false',
+  );
+  function toggleChat(): void {
+    chatVisible = !chatVisible;
+    try {
+      localStorage.setItem(CHAT_VISIBLE_KEY, String(chatVisible));
+    } catch {
+      /* localStorage unavailable */
+    }
+  }
+
+  // Search-queue rail visibility — the chat rail's right-side mirror (spec
+  // D4 of Search-Results-Queue-Remote). Hidden by default until the first
+  // search fires (any door dispatches augment-it:search-submitted, which
+  // flips it visible) or the operator toggles it on.
+  const QUEUE_VISIBLE_KEY = 'augment-it:queue-rail-visible';
+  let queueVisible = $state<boolean>(
+    typeof localStorage === 'undefined' ? false : localStorage.getItem(QUEUE_VISIBLE_KEY) === 'true',
+  );
+  function setQueueVisible(next: boolean): void {
+    queueVisible = next;
+    try {
+      localStorage.setItem(QUEUE_VISIBLE_KEY, String(next));
+    } catch {
+      /* localStorage unavailable */
+    }
+  }
+
+  // Done-count badge on the header toggle — visible even while the rail is
+  // collapsed (D4: arrival is an event, not a discovery). The rail remote
+  // unmounts when hidden, so the SHELL tracks the count: refetch search.list
+  // on every search.updated broadcast (+ once per workspace resolution).
+  let queueDoneCount = $state(0);
+  async function refreshQueueCount(): Promise<void> {
+    const client = workspace.active_client_id;
+    if (!client) return;
+    try {
+      const r = (await workspace.invoke('search.list', { client })) as {
+        ok?: boolean;
+        searches?: { status: string }[];
+      };
+      queueDoneCount = (r.searches ?? []).filter((s) => s.status === 'done').length;
+    } catch {
+      /* badge is best-effort — the rail itself is the source of truth */
+    }
+  }
+  let lastQueueSeq = -1;
+  $effect(() => {
+    const ev = workspace.events[workspace.events.length - 1];
+    if (!ev || ev.seq <= lastQueueSeq) return;
+    lastQueueSeq = ev.seq;
+    if (ev.subject === 'search.updated') void refreshQueueCount();
+  });
+  $effect(() => {
+    if (workspace.active_client_id && workspace.workspaces_status === 'ready') {
+      void refreshQueueCount();
+    }
+  });
+  onMount(() => {
+    const onSearchSubmitted = () => setQueueVisible(true);
+    window.addEventListener('augment-it:search-submitted', onSearchSubmitted);
+    return () => window.removeEventListener('augment-it:search-submitted', onSearchSubmitted);
+  });
+
+  // ---- design-system surface --------------------------------------------
+  // The portal mounts as its own full-bleed surface rather than a step in a
+  // flow: it documents the system, it is not part of any pipeline, and it must
+  // be reachable OUTSIDE the sign-in wall. Brand guidelines and a token
+  // contract are not client data, so gating them behind a session buys nothing
+  // and costs a developer the one reference they need while debugging a
+  // themed surface.
+  //
+  // It gets a slim header of its own rather than the full one. The full header
+  // carries workspace switching, chat and queue rails, all of which assume a
+  // session — rendering it pre-auth would mean guarding every one of them for
+  // a surface that needs none. Brand, mode toggle and a way back is the whole
+  // requirement.
+  let designSystemOpen = $state(false);
+
+  /**
+   * `view` picks which half of the portal opens — the federal token layer or
+   * the members' component libraries.
+   *
+   * Handed over in sessionStorage rather than as a prop, because the portal is
+   * a federation remote whose only contract is `mount(target)`. A prop would
+   * mean widening that contract for every remote; a window event would race the
+   * remote's own async load. A key the portal reads once at mount and clears is
+   * neither. See apps/docs-portal/src/App.svelte's PENDING_VIEW_KEY.
+   */
+  function openDesignSystem(view?: 'tokens' | 'components'): void {
+    if (view) {
+      try {
+        sessionStorage.setItem('augment-it:design-portal-view', view);
+      } catch {
+        // Private-mode / disabled storage — the portal just opens on its
+        // default view, which is a worse landing but not a broken one.
+      }
+    }
+    designSystemOpen = true;
+  }
+  function closeDesignSystem(): void {
+    designSystemOpen = false;
+  }
+
+  // ---- pre-auth wall (Build-Order Step 7) --------------------------------
+  // A single-tenant deploy sets DIDI_AUTH=required; the session frame
+  // carries that posture (workspace.didi_auth_mode) so the shell can
+  // decide BEFORE mounting any remote, rather than let each one fail
+  // capability calls closed one at a time. Unknown (null, pre-session)
+  // reads as "don't show the wall yet" — the session frame lands
+  // effectively instantly after the WS opens, so there's nothing worth
+  // building a loading skeleton around.
+  const showWall = $derived(
+    workspace.didi_auth_mode === 'required' && !workspace.user?.didi_id,
+  );
+
+  // A pinned (single-tenant) instance should default to Build Corpora, not
+  // FLOWS[0] (Improve a CSV — Record Collector's flow, whose remotes are
+  // deliberately unreachable on a humain-vc-pinned deploy). `pinned` only
+  // resolves after workspace.list, well after activeFlow's own module-init
+  // default was already chosen — this effect catches up once it's known.
+  // Real bug, not hypothetical: every fresh sign-in landed on Record
+  // Collector / DB Resolver first, both showing "remote exposes no mount
+  // function" on the deployed instance.
+  $effect(() => {
+    if (workspace.pinned) activeFlow.applyPinnedDefault();
+  });
+
+  // ---- composite slots — active-member state ----------------------------
+  // A composite slot hosts one-of-N remotes based on shared state. We
+  // keep the active member id per composite as reactive state so the
+  // stage derived re-builds when the user clicks the in-slot toggle.
+  // The state is also published via the composite's modeKey window event,
+  // so external dispatchers (e.g. cross-remote augment-it:navigate) keep
+  // working.
+  let activeMembers = $state<Record<string, string>>(
+    Object.fromEntries(COMPOSITES.map((c) => [c.id, readActiveMemberId(c)])),
+  );
+
+  function setCompositeMember(c: CompositeEntry, memberId: string): void {
+    activeMembers = { ...activeMembers, [c.id]: memberId };
+    writeActiveMemberId(c, memberId);
+  }
+
+  // ---- geometry constants -------------------------------------------------
+  const HOVER_PCT = 38;       // a hovered peek neighbour expands to this width
+  const MIN_PEEK = 4;         // a peek neighbour never narrower than this
+
+  type StageRole = 'focused' | 'prev' | 'next' | 'pair-left' | 'pair-right' | 'full';
+  type StageItem = {
+    id: string;                  // rotation slot id (remote id or composite id); stable across composite toggles
+    remote: RemoteEntry;         // the active remote for this slot (resolved composite member, or the remote itself)
+    label: string;               // user-facing label — composite.label for composites, remote.label otherwise
+    widthPct: number;
+    zIndex: number;
+    role: StageRole;
+    composite?: CompositeEntry;  // when set, render ToggleHeader above MountHost and {#key} the mount on active-member changes
+  };
+
+  function materializeSlot(slot: Slot, widthPct: number, role: StageRole, zIndex = 1): StageItem | null {
+    if (slot.kind === 'remote') {
+      return {
+        id: slot.remote.id,
+        remote: slot.remote,
+        label: slot.remote.label,
+        widthPct,
+        zIndex,
+        role,
+      };
+    }
+    const c = slot.composite;
+    const activeId = activeMembers[c.id] ?? c.defaultMemberId;
+    const remote = remoteById(activeId);
+    if (!remote) return null;
+    return {
+      id: c.id,
+      remote,
+      label: c.label,
+      widthPct,
+      zIndex,
+      role,
+      composite: c,
+    };
+  }
+
+  // ---- transient interaction state (never persisted) ----------------------
+  let hoveredNeighborId = $state<string | null>(null);
+  // HTMLElement, not HTMLDivElement — this binds to <main class="stage">, and
+  // only getBoundingClientRect() is ever called on it.
+  let stageEl = $state<HTMLElement | undefined>(undefined);
+  let resizing = $state<boolean>(false);
+  let splitting = $state<boolean>(false);
+
+  // ---- the stage geometry — derived from layout + interaction -------------
+  // All three modes walk activeFlow.rotation (the ACTIVE flow's list of
+  // slot ids — shell/src/flows.svelte.ts) and resolve each id via
+  // slotById() — a slot can be a federated remote or a composite. The
+  // composite case keeps a ToggleHeader in the slot in every layout mode,
+  // so the in-slot toggle (e.g. enrichment's PTM⇄Pack-Runner pair) works
+  // in Flow, Split, and Full alike (Phase 2d).
+  const stage = $derived.by<StageItem[]>(() => {
+    const rotation = activeFlow.rotation;
+    if (layout.mode === 'full') {
+      const slot = slotById(rotation[layout.focusIndex]);
+      if (!slot) return [];
+      const item = materializeSlot(slot, 100, 'full');
+      return item ? [item] : [];
+    }
+
+    if (layout.mode === 'co-existence') {
+      const pairing = PAIRINGS.find((p) => p.key === layout.activePairKey) ?? PAIRINGS[0];
+      if (!pairing) return [];
+      const leftSlot = slotById(pairing.left);
+      const rightSlot = slotById(pairing.right);
+      if (!leftSlot || !rightSlot) return [];
+      const leftPct = layout.ratioFor(pairing.key, pairing.defaultLeftPct);
+      const items: StageItem[] = [];
+      const l = materializeSlot(leftSlot, leftPct, 'pair-left');
+      const r = materializeSlot(rightSlot, 100 - leftPct, 'pair-right');
+      if (l) items.push(l);
+      if (r) items.push(r);
+      return items;
+    }
+
+    // peek-flow
+    const i = layout.focusIndex;
+    const focusedSlot = slotById(rotation[i]);
+    if (!focusedSlot) return [];
+    const prevSlot = i > 0 ? slotById(rotation[i - 1]) : undefined;
+    const nextSlot = i < rotation.length - 1 ? slotById(rotation[i + 1]) : undefined;
+    const neighbourCount = (prevSlot ? 1 : 0) + (nextSlot ? 1 : 0);
+    const remainder = 100 - layout.focusedWidthPct;
+    const peekEach = neighbourCount ? Math.max(MIN_PEEK, remainder / neighbourCount) : 0;
+
+    const slotKey = (s: Slot): string => (s.kind === 'remote' ? s.remote.id : s.composite.id);
+    // Hover-expand never applies mid-resize — the drag owns the geometry.
+    const isHovered = (s: Slot): boolean =>
+      !resizing && hoveredNeighborId !== null && slotKey(s) === hoveredNeighborId;
+    const widthOf = (s: Slot): number => (isHovered(s) ? HOVER_PCT : peekEach);
+
+    const items: StageItem[] = [];
+    if (prevSlot) {
+      const item = materializeSlot(
+        prevSlot,
+        widthOf(prevSlot),
+        'prev',
+        isHovered(prevSlot) ? 2 : 1,
+      );
+      if (item) items.push(item);
+    }
+    const consumed =
+      (prevSlot ? widthOf(prevSlot) : 0) + (nextSlot ? widthOf(nextSlot) : 0);
+    const focused = materializeSlot(focusedSlot, Math.max(20, 100 - consumed), 'focused', 3);
+    if (focused) items.push(focused);
+    if (nextSlot) {
+      const item = materializeSlot(
+        nextSlot,
+        widthOf(nextSlot),
+        'next',
+        isHovered(nextSlot) ? 2 : 1,
+      );
+      if (item) items.push(item);
+    }
+    return items;
+  });
+
+  // ---- peek-flow: commit a neighbour as the new focus ---------------------
+  function commitFocus(slotId: string): void {
+    const idx = activeFlow.rotation.findIndex((id) => id === slotId);
+    if (idx >= 0) {
+      hoveredNeighborId = null;
+      layout.setFocusIndex(idx);
+    }
+  }
+
+  // ---- focused-panel edge resize (peek-flow) ------------------------------
+  // The dragged edge's stage-relative position maps to the focused width
+  // according to which neighbours share the leftover: centred between two
+  // peeks → symmetric doubling; anchored at a stage edge (first/last step)
+  // → the edge position IS the width. The old centre-only math jumped on
+  // grab and tracked 2× at the rotation's ends. Pointer capture keeps the
+  // drag from feeding the peek overlays' hover-expand, which used to fight
+  // the resize mid-drag.
+  function startResize(e: PointerEvent, side: 'left' | 'right'): void {
+    e.preventDefault();
+    resizing = true;
+    hoveredNeighborId = null;
+    (e.currentTarget as HTMLElement | null)?.setPointerCapture?.(e.pointerId);
+    const i = layout.focusIndex;
+    const hasPrev = i > 0;
+    const hasNext = i < activeFlow.rotation.length - 1;
+    const onMove = (ev: PointerEvent) => {
+      if (!stageEl) return;
+      const rect = stageEl.getBoundingClientRect();
+      const p = ((ev.clientX - rect.left) / rect.width) * 100;
+      const pct =
+        hasPrev && hasNext ? Math.abs(p - 50) * 2 : side === 'right' ? p : 100 - p;
+      layout.setFocusedWidth(pct);
+    };
+    const onUp = () => {
+      resizing = false;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  }
+
+  // ---- co-existence splitter drag ----------------------------------------
+  function startSplitter(e: PointerEvent): void {
+    e.preventDefault();
+    const pairing = PAIRINGS.find((p) => p.key === layout.activePairKey) ?? PAIRINGS[0];
+    if (!pairing) return;
+    splitting = true;
+    const onMove = (ev: PointerEvent) => {
+      if (!stageEl) return;
+      const rect = stageEl.getBoundingClientRect();
+      const pct = ((ev.clientX - rect.left) / rect.width) * 100;
+      layout.setRatio(pairing.key, pct);
+    };
+    const onUp = () => {
+      splitting = false;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  }
+
+  // ---- single-record enrich trigger (dispatched by record-collector) ------
+  onMount(() => {
+    const onEnrich = () => {
+      const pairing = PAIRINGS[0];
+      if (pairing) layout.openPair(pairing.key);
+    };
+    window.addEventListener('augment-it:enrich-record', onEnrich);
+    return () => window.removeEventListener('augment-it:enrich-record', onEnrich);
+  });
+
+  // ---- workspace bootstrap -----------------------------------------------
+  // The shell now makes its own capability calls (workspace.list / .activate
+  // from the header switcher), so its singleton needs its OWN transport.
+  // Each federation remote also connects, but those instances are separate
+  // — no `shared` block in rsbuild config — and pre-today the shell didn't
+  // dispatch anything itself.
+  //
+  // Connect first, then load workspaces. `workspace.connect()` is idempotent
+  // on the singleton, so if a remote raced us and connected first the
+  // second call is a no-op.
+  onMount(() => {
+    bootMark('shell:mount'); // T0 for the boot timeline — see Refactoring-for-API-Speed
+    const TOKEN_KEY = 'augment_it_session_token';
+    // Fire BEFORE/alongside connect(), not after — an anonymous WS upgrade
+    // against a DIDI_AUTH=required instance is rejected (4401) before any
+    // session frame ships, so this plain GET is the only way an
+    // unauthenticated visitor's shell learns the wall should render.
+    void workspace.fetchDidiAuthMode(WS_HTTP_BASE);
+    workspace.connect({
+      url: WS_URL,
+      getToken: () => localStorage.getItem(TOKEN_KEY),
+      saveToken: (t) => localStorage.setItem(TOKEN_KEY, t),
+      onStatus: () => {
+        /* shell doesn't render its own connection indicator — the chat rail does */
+      },
+    });
+    let cancelled = false;
+    const tryLoad = async (attempt = 0): Promise<void> => {
+      if (cancelled) return;
+      try {
+        await workspace.loadWorkspaces();
+      } catch (err) {
+        if (attempt < 8) {
+          setTimeout(() => tryLoad(attempt + 1), 200 * (attempt + 1));
+        } else {
+          console.warn('[shell] workspace.list failed; switcher will be empty', err);
+        }
+      }
+    };
+    void tryLoad();
+    return () => {
+      cancelled = true;
+    };
+  });
+
+  // ---- cross-remote navigation (dispatched by any remote) -----------------
+  // Remotes that want to send the user to a different surface dispatch a
+  // window event:  window.dispatchEvent(new CustomEvent('augment-it:navigate',
+  //   { detail: { remoteId: 'promptTemplateManager', mode?: 'full'|'co-existence' }}))
+  // The shell switches layout accordingly. Used by enhanced-records-list's
+  // post-promotion "Do another round of enhancements" affordance.
+  onMount(() => {
+    const onNavigate = (e: Event) => {
+      const detail = (e as CustomEvent).detail as
+        | { remoteId?: string; mode?: LayoutMode }
+        | undefined;
+      if (!detail?.remoteId) return;
+      // Direct rotation hit — the requested id is a slot in the ACTIVE
+      // flow's rotation (a remote or a composite). Set focus + mode and
+      // we're done.
+      const rotIdx = activeFlow.rotation.findIndex((id) => id === detail.remoteId);
+      if (rotIdx >= 0) {
+        layout.setFocusIndex(rotIdx);
+        layout.setMode(detail.mode ?? 'full');
+        return;
+      }
+      // The id might be a composite member (e.g. `packRunner` inside the
+      // enrichment composite). Set the composite's active member; then
+      // either focus its rotation slot (if the composite is in the active
+      // flow's rotation) or open its co-existence pairing.
+      const composite = compositeFor(detail.remoteId);
+      if (composite) {
+        setCompositeMember(composite, detail.remoteId);
+        const compIdx = activeFlow.rotation.findIndex((id) => id === composite.id);
+        if (compIdx >= 0) {
+          layout.setFocusIndex(compIdx);
+          layout.setMode(detail.mode ?? 'full');
+          return;
+        }
+        const pair = PAIRINGS.find(
+          (p) => p.left === composite.id || p.right === composite.id,
+        );
+        if (pair) layout.openPair(pair.key);
+        return;
+      }
+      // Otherwise — a "pair-only" remote referenced directly by a PAIRING.
+      const pairing = PAIRINGS.find(
+        (p) => p.left === detail.remoteId || p.right === detail.remoteId,
+      );
+      if (pairing) {
+        layout.openPair(pairing.key);
+      }
+    };
+    window.addEventListener('augment-it:navigate', onNavigate);
+
+    // Listen for external composite-mode broadcasts so peer surfaces that
+    // change a composite's active member (e.g. a future analytics overlay)
+    // stay in sync. Internal toggle clicks update activeMembers directly
+    // via setCompositeMember; this handler covers everything else.
+    const compositeListeners = COMPOSITES.map((c) => {
+      const handler = (ev: Event) => {
+        const d = (ev as CustomEvent).detail as { memberId?: string } | undefined;
+        if (d?.memberId && d.memberId !== activeMembers[c.id]) {
+          activeMembers = { ...activeMembers, [c.id]: d.memberId };
+        }
+      };
+      window.addEventListener(c.modeKey, handler);
+      return () => window.removeEventListener(c.modeKey, handler);
+    });
+
+    return () => {
+      window.removeEventListener('augment-it:navigate', onNavigate);
+      compositeListeners.forEach((off) => off());
+    };
+  });
+
+  function selectMode(mode: LayoutMode): void {
+    if (mode === 'co-existence') {
+      const pairing = PAIRINGS[0];
+      if (pairing) layout.openPair(pairing.key);
+    } else {
+      layout.setMode(mode);
+    }
+  }
+
+  // Click a bubble in the Flow widget — navigate to that rotation step.
+  // In peek-flow we just move focusIndex; in co-existence / full we move
+  // focusIndex AND drop back to peek-flow (the user picked a step, not a
+  // pairing). Matches the augment-it:navigate handler's behaviour when the
+  // caller doesn't request a specific mode.
+  function selectStep(slotId: string): void {
+    const idx = activeFlow.rotation.findIndex((id) => id === slotId);
+    if (idx < 0) return;
+    layout.setFocusIndex(idx);
+    if (layout.mode !== 'peek-flow') layout.setMode('peek-flow');
+  }
+
+  function toggleFlowWidgetPosition(): void {
+    layout.setFlowWidgetPosition(layout.flowWidgetPosition === 'top' ? 'left' : 'top');
+  }
+
+  const showSplitter = $derived(layout.mode === 'co-existence' && stage.length === 2);
+
+  // ---- flows popdown — "what are you trying to do?" ----------------------
+  // See context-v/explorations/Augment-It-Has-Outgrown-One-Flow-The-Choose-A-Flow-Front-Door.md
+  // and shell/src/flows.svelte.ts. Each FLOWS entry owns its own rotation;
+  // picking one here switches activeFlow, which FlowWidget and the stage
+  // derivation both read reactively — the bubble strip resizes to however
+  // many steps the picked flow actually has.
+  const FLOW_ITEMS: PopdownItem[] = FLOWS.map((f) => ({
+    id: f.id,
+    title: f.label,
+    description: f.description,
+  }));
+
+  function onFlowSelect(flowId: string): void {
+    if (flowId === activeFlow.activeFlowId) return;
+    activeFlow.setActiveFlow(flowId);
+    // Reset to the new flow's first step — a stale focusIndex from the
+    // previous flow is meaningless once the rotation length changes.
+    // Layout MODE is deliberately preserved (peek-flow / full carry over)
+    // EXCEPT co-existence: PAIRINGS are tied to specific slot ids from
+    // CSV_AUGMENTATION_ROTATION, not scoped per-flow, so an old pairing
+    // could reference slots that make no sense in the new flow. Fall back
+    // to peek-flow rather than show a stale/broken split.
+    if (layout.mode === 'co-existence') layout.setMode('peek-flow');
+    layout.setFocusIndex(0);
+  }
+</script>
+
+{#if designSystemOpen}
+  <header class="ds-header">
+    <div class="brand">
+      <strong>augment-it</strong>
+      <span class="muted">· design system</span>
+    </div>
+    <div class="ds-header-right">
+      <ModeToggle />
+      <Button size="sm" onclick={closeDesignSystem}>
+        {showWall ? 'Back to sign in' : 'Back to app'}
+      </Button>
+    </div>
+  </header>
+  <div class="ds-surface">
+    <MountHost remote={DESIGN_SYSTEM_REMOTE} />
+  </div>
+{:else if showWall}
+  <SignInWall />
+  <div class="wall-dev">
+    <!-- Wrapped, not passed directly: openDesignSystem now takes a view, and a
+         bare handler would hand it the MouseEvent. -->
+    <Button size="sm" onclick={() => openDesignSystem('tokens')}>⚙ Design system</Button>
+  </div>
+{:else}
+<header>
+  <div class="header-left">
+    <div class="brand">
+      <strong>augment-it</strong>
+      <span class="muted">· shell</span>
+    </div>
+    <JumboPopdown triggerLabel="Flows" items={FLOW_ITEMS} onSelect={onFlowSelect} />
+    {#if layout.flowWidgetPosition === 'top'}
+      <FlowWidget
+        rotation={activeFlow.rotation}
+        activeIndex={layout.focusIndex}
+        mode={layout.mode}
+        orientation="top"
+        onSelectStep={selectStep}
+        onSelectMode={selectMode}
+        onTogglePosition={toggleFlowWidgetPosition}
+      />
+    {/if}
+  </div>
+
+  <!-- Layout toggles in the center of the header (Phase 4 Decision §8
+       refinement, 2026-06-01). Split / Full are shell-level layout
+       controls about HOW the current Flow step renders — not Flow-step
+       controls. Separating them visually from the bubble strip makes
+       the hierarchy clearer at a glance. They sit centered between the
+       Flow widget (left) and the metrics (right). -->
+  <div class="header-layout-toggles" role="group" aria-label="Layout sub-option">
+    <Button
+      variant={layout.mode === 'co-existence' ? 'primary' : 'outline'}
+      size="icon"
+      aria-pressed={layout.mode === 'co-existence'}
+      aria-label="Split — two cooperating panes"
+      title="Split — two cooperating panes"
+      onclick={() => selectMode('co-existence')}
+    >
+      <span aria-hidden="true">⊟</span>
+    </Button>
+    <Button
+      variant={layout.mode === 'full' ? 'primary' : 'outline'}
+      size="icon"
+      aria-pressed={layout.mode === 'full'}
+      aria-label="Full — one pane, full bleed"
+      title="Full — one pane, full bleed"
+      onclick={() => selectMode('full')}
+    >
+      <span aria-hidden="true">▢</span>
+    </Button>
+  </div>
+
+  <div class="metrics">
+    <Button
+      variant={chatVisible ? 'secondary' : 'outline'}
+      size="sm"
+      onclick={() => toggleChat()}
+      aria-pressed={chatVisible}
+      title={chatVisible ? 'Hide chat rail' : 'Show chat rail'}
+    >
+      💬 chat
+    </Button>
+    <Button
+      variant={queueVisible ? 'secondary' : 'outline'}
+      size="sm"
+      onclick={() => setQueueVisible(!queueVisible)}
+      aria-pressed={queueVisible}
+      title={queueVisible ? 'Hide the search queue' : 'Show the search queue'}
+    >
+      🔎 queue{#if queueDoneCount > 0}<CountBadge
+          count={queueDoneCount}
+          size="sm"
+          tone="accent"
+          label="Finished searches waiting"
+        />{/if}
+    </Button>
+    <DevelopersMenu wsHttpBase={WS_HTTP_BASE} onOpenDesignSystem={openDesignSystem} />
+    <DidiBadge />
+    <ModeToggle />
+    {#if !workspace.pinned}
+      <WorkspaceSwitcher />
+    {/if}
+  </div>
+</header>
+
+<div class="below-header" class:has-chat={chatVisible} class:has-flow-rail={layout.flowWidgetPosition === 'left'}>
+  {#if layout.flowWidgetPosition === 'left'}
+    <aside class="flow-rail" aria-label="Workflow rail">
+      <FlowWidget
+        rotation={activeFlow.rotation}
+        activeIndex={layout.focusIndex}
+        mode={layout.mode}
+        orientation="left"
+        onSelectStep={selectStep}
+        onSelectMode={selectMode}
+        onTogglePosition={toggleFlowWidgetPosition}
+      />
+    </aside>
+  {/if}
+  {#if chatVisible}
+    <aside class="chat-rail" aria-label="Chat panel">
+      <MountHost remote={CHAT_REMOTE} />
+    </aside>
+  {/if}
+  <main
+    class="stage"
+    class:fast={hoveredNeighborId !== null}
+    class:dragging={resizing || splitting}
+    bind:this={stageEl}
+  >
+  {#each stage as item (item.id)}
+    {@const isInteractive = item.role !== 'prev' && item.role !== 'next'}
+    <section class="slot" class:slot-peek={!isInteractive} class:slot-composite={!!item.composite}
+      style="width: {item.widthPct}%; z-index: {item.zIndex};">
+      {#if item.composite}
+        <ToggleHeader
+          slotLabel={item.composite.label}
+          members={item.composite.members.map((m) => ({ id: m.remoteId, icon: m.icon, label: m.label }))}
+          activeId={activeMembers[item.composite.id] ?? item.composite.defaultMemberId}
+          onSelect={(memberId) => setCompositeMember(item.composite!, memberId)}
+        />
+        <!-- {#key activeMember} re-mounts MountHost when the toggle flips.
+             MountHost only runs its dynamic import in onMount, so without
+             the key change a swapped `remote` prop would leak the previous
+             member. -->
+        {#key activeMembers[item.composite.id]}
+          <MountHost remote={item.remote} />
+        {/key}
+      {:else}
+        <MountHost remote={item.remote} />
+      {/if}
+
+      {#if !isInteractive}
+        <!-- peek neighbour: a click-capture overlay. Hover expands it,
+             click commits it as the new focus. The live app underneath is
+             not interactive while it is a neighbour.
+             When the Flow widget is on the left rail, the bubble strip
+             carries the "where am I" information, so we hide the per-slot
+             label here to avoid double-rendering it (spec §8 coherence
+             with §6 — same information, two locations is silly). -->
+        <button
+          class="peek-overlay"
+          aria-label={`Focus ${item.label}`}
+          onmouseenter={() => (hoveredNeighborId = item.id)}
+          onmouseleave={() => (hoveredNeighborId = null)}
+          onclick={() => commitFocus(item.id)}
+        >
+          {#if layout.flowWidgetPosition !== 'left'}
+            <span class="peek-label">{item.label}</span>
+          {/if}
+        </button>
+      {/if}
+
+      {#if item.role === 'focused'}
+        <!-- focused-panel resize edges — distinct pixels from the peek
+             overlays, so a resize-drag never fires a focus-commit. Only
+             sides that actually border a peek get one; the first/last
+             step's outer edge is the stage boundary, not a divider. -->
+        {#if layout.focusIndex > 0}
+          <div class="resize-edge resize-edge-left"
+            onpointerdown={(e) => startResize(e, 'left')}
+            role="separator" aria-label="Resize focused panel" tabindex="-1"></div>
+        {/if}
+        {#if layout.focusIndex < activeFlow.rotation.length - 1}
+          <div class="resize-edge resize-edge-right"
+            onpointerdown={(e) => startResize(e, 'right')}
+            role="separator" aria-label="Resize focused panel" tabindex="-1"></div>
+        {/if}
+      {/if}
+    </section>
+  {/each}
+
+  {#if showSplitter}
+    {@const leftPct = stage[0].widthPct}
+    <div class="splitter" style="left: {leftPct}%;"
+      onpointerdown={startSplitter}
+      role="separator" aria-orientation="vertical"
+      aria-label="Resize the two panels" tabindex="-1"></div>
+  {/if}
+
+  {#if stage.length === 0}
+    <div class="empty">no frontend to show</div>
+  {/if}
+  </main>
+  {#if queueVisible}
+    <aside class="queue-rail" aria-label="Search queue panel">
+      <MountHost remote={SEARCH_RESULTS_REMOTE} />
+    </aside>
+  {/if}
+</div>
+{/if}
+
+<style>
+  header {
+    display: grid;
+    /* Three-section layout: Flow widget anchors left (auto), layout
+       sub-options sit centered in the 1fr column (justify-self), metrics
+       anchor right. Putting Split/Full in the middle gives them their
+       own visual identity instead of being huddled with the Flow step
+       bubbles. */
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-raised);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 56px;
+    box-sizing: border-box;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .brand strong { color: var(--color-accent); font-size: 1.05rem; }
+  .brand .muted { color: var(--color-text-muted); }
+  .header-layout-toggles {
+    display: flex;
+    gap: 0.3rem;
+    justify-self: center;
+  }
+  .metrics { display: flex; gap: 0.75rem; align-items: center; font-size: 11px; }
+  .muted { color: var(--color-text-muted); }
+
+  /* The done-count is a <CountBadge size="sm" tone="accent">. It could not be
+     until the badge had an `sm`: this metrics row is uniformly sm, and the
+     badge's single size was a sm Button's entire outer height, so adopting it
+     here would have painted a pill across the control's border — or forced the
+     whole row to grow. tone="accent", not "inherit", because arrival is meant to
+     be loud while the rail is collapsed (Search-Results-Queue-Remote spec D4);
+     inherit would have muted it to the toggle's own colour. The one layout thing
+     the component does not own stays here. */
+  /* The badge is inline in the Button's label, so the gap is the Button's own
+     flex gap. Nothing left for the member to own here. */
+
+  /* ---- below-header: chat rail on the left, stage on the right ---- */
+  .below-header {
+    display: flex;
+    align-items: stretch;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+  }
+  .chat-rail {
+    width: 360px;
+    min-width: 280px;
+    max-width: 480px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--color-border);
+    background: var(--color-surface-raised, var(--color-background));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Flow widget when positioned as a left rail (spec §8 + Phase 4).
+     Persistent vertical workflow indicator; sits outside the chat-rail
+     so the order is: flow-rail | chat-rail | stage. */
+  .flow-rail {
+    width: 64px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--color-border);
+    background: var(--color-surface-raised, var(--color-background));
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  /* Search-queue rail — the chat rail's right-side mirror. Order across
+     .below-header: flow-rail | chat-rail | stage | queue-rail. */
+  .queue-rail {
+    width: 340px;
+    min-width: 280px;
+    max-width: 440px;
+    flex-shrink: 0;
+    border-left: 1px solid var(--color-border);
+    background: var(--color-surface-raised, var(--color-background));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .queue-rail :global(.mount-host) {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  /* ---- the tiling stage ---- */
+  .stage {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-background);
+  }
+  .stage.dragging { user-select: none; cursor: col-resize; }
+
+  .slot {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-background);
+    /* default: the slow, eased snap-back (~1.9s, slow → fast → slow) */
+    transition: width 1.9s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+  /* while a neighbour is hovered, every slot redistributes FAST */
+  .stage.fast .slot { transition: width 0.2s ease-out; }
+  /* no transition mid-drag — the pointer drives the width directly */
+  .stage.dragging .slot { transition: none; }
+
+  /* the focused / interactive slot reads as raised */
+  .slot:not(.slot-peek) {
+    box-shadow: var(--fx-card-shadow);
+  }
+
+  /* Composite slots stack the toggle header above the mounted remote;
+     the MountHost takes the remaining vertical space (Phase 2c). */
+  .slot-composite {
+    display: flex;
+    flex-direction: column;
+  }
+  .slot-composite :global(.mount-host) {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  /* peek neighbour click-capture overlay.
+     Labels anchor at the slice's left margin (spec Decision §6) — they
+     are landmarks, not floating titles. Uniform left-anchor across prev
+     and next peeks for now; if the right-peek's inner-edge label reads
+     wrong against the focused pane, revisit with role-aware positioning. */
+  /* NOT a <Button>, deliberately. This is a full-bleed panel hit-area:
+     position:absolute; inset:0, a translucent scrim, and a label written in
+     vertical writing-mode anchored to the top-left. Adopting the shared
+     control would mean overriding position, inset, display, justify-content,
+     align-items, padding, background, border and both intrinsic dimensions —
+     every geometric property the component contributes — leaving only a focus
+     ring the federal *:focus-visible rule already provides. That is a missing
+     organ (a slot hit-area), not a deviation. Raised, not forced. */
+  .peek-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    padding-left: 0.75rem;
+    background: color-mix(in srgb, var(--color-background) 55%, transparent);
+    border: 0;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    cursor: pointer;
+    font: inherit;
+  }
+  .peek-overlay:hover {
+    background: color-mix(in srgb, var(--color-background) 22%, transparent);
+  }
+  .peek-label {
+    color: var(--color-text-muted);
+    font-size: 11px;
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* focused-panel resize edges */
+  .resize-edge {
+    position: absolute;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 5;
+  }
+  .resize-edge-left { left: 0; }
+  .resize-edge-right { right: 0; }
+  .resize-edge:hover {
+    background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+
+  /* co-existence splitter */
+  .splitter {
+    position: absolute;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    margin-left: -4px;
+    cursor: col-resize;
+    z-index: 50;
+    background: var(--color-border);
+  }
+  .splitter:hover {
+    background: var(--color-accent);
+    box-shadow: var(--fx-accent-glow);
+  }
+
+  .empty {
+    margin: auto;
+    color: var(--color-text-muted);
+  }
+  /* ---- design-system surface -------------------------------------------
+     A slim header of its own rather than the full one: the full header
+     carries workspace switching plus the chat and queue rails, all of which
+     assume a session, and this surface must render pre-auth. */
+  .ds-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-raised);
+  }
+  .ds-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  /* .ds-back and its :focus-visible rule are gone with the buttons. The focus
+     rule never painted anything in its life: --focus-ring holds a box-shadow
+     value, so `outline: var(--focus-ring, …)` is invalid at computed-value
+     time and dropped — and because the token IS defined, the fallback after
+     the comma never applied either. Button declares the real ring. */
+
+  .ds-surface {
+    height: calc(100vh - 45px);
+    overflow: auto;
+  }
+
+  /* The one developer affordance that survives the sign-in wall. */
+  .wall-dev {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+  }
+</style>

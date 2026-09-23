@@ -1,0 +1,1 @@
+{"module":"composition_grammar","rules":[{"id":"composition.one_dominant_object","when":"every slide","require":"one dominant object and no more than two supporting groups"},{"id":"composition.occupancy","when":"chart, diagram, or table","require":"dominant object occupies at least 48 percent of usable canvas"}]}

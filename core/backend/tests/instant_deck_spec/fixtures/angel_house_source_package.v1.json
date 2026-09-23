@@ -1,0 +1,1604 @@
+{
+  "assets": [
+    {
+      "alt_text": "Slide 1 image 1",
+      "asset_id": "asset_s01_01",
+      "asset_type": "embedded_image",
+      "height": 1050,
+      "mime_type": "image/png",
+      "sha256": "b8a2375ae6abeaadc958b989164cb0c25814603fddd917eb488ac464b1bed789",
+      "source_reference_ids": [
+        "ref_s01_a01"
+      ],
+      "width": 1524
+    },
+    {
+      "alt_text": "Angel House source mark",
+      "asset_id": "asset_s01_02",
+      "asset_type": "embedded_image",
+      "height": 949,
+      "mime_type": "image/png",
+      "sha256": "ed3037cf935f9ec95bb3a2f6d5bc760066455ba4da5e1c613fafbe74d2ee0c88",
+      "source_reference_ids": [
+        "ref_s01_a02"
+      ],
+      "width": 949
+    },
+    {
+      "alt_text": "Paula Schwarz source portrait",
+      "asset_id": "asset_s10_01",
+      "asset_type": "embedded_image",
+      "height": 1280,
+      "mime_type": "image/jpeg",
+      "sha256": "a7af0359e215388d9f2171805465e2664a066c3ddfa274cfca7bf51ef602745f",
+      "source_reference_ids": [
+        "ref_s10_a01"
+      ],
+      "width": 714
+    }
+  ],
+  "brand": {
+    "audience_candidate": "Families and multi-generational leaders navigating values, money and AI-driven change.",
+    "audience_source_reference_ids": [
+      "ref_s01_b00",
+      "ref_s02_b02",
+      "ref_s03_b01"
+    ],
+    "deck_type_candidate": "investor and partner presentation",
+    "deck_type_source_reference_ids": [
+      "ref_s09_b00",
+      "ref_s13_b00",
+      "ref_s13_b01"
+    ],
+    "logo_asset_id": "asset_s01_02",
+    "organization_name": "Angel House",
+    "organization_source_reference_ids": [
+      "ref_s01_b00"
+    ],
+    "product_candidate": "A community combining family change consulting, workshops, projects and follow-up funding.",
+    "product_source_reference_ids": [
+      "ref_s02_b02",
+      "ref_s05_b00",
+      "ref_s08_b00"
+    ],
+    "roles": [
+      {
+        "colour": "#EEEBE3",
+        "provenance": "source_observed",
+        "role_id": "brand_paper",
+        "source_reference_ids": [
+          "ref_s01_slide",
+          "ref_s02_slide",
+          "ref_s03_slide",
+          "ref_s04_slide",
+          "ref_s05_slide",
+          "ref_s06_slide",
+          "ref_s07_slide",
+          "ref_s08_slide",
+          "ref_s09_slide",
+          "ref_s10_slide",
+          "ref_s11_slide",
+          "ref_s12_slide",
+          "ref_s13_slide",
+          "ref_s14_slide"
+        ]
+      },
+      {
+        "colour": "#000000",
+        "provenance": "source_observed",
+        "role_id": "brand_ink",
+        "source_reference_ids": [
+          "ref_s05_slide",
+          "ref_s06_slide",
+          "ref_s07_slide",
+          "ref_s08_slide"
+        ]
+      },
+      {
+        "colour": "#CA0012",
+        "provenance": "source_observed",
+        "role_id": "brand_signature",
+        "source_reference_ids": [
+          "ref_s01_slide",
+          "ref_s02_slide",
+          "ref_s03_slide",
+          "ref_s05_slide",
+          "ref_s06_slide",
+          "ref_s07_slide",
+          "ref_s08_slide",
+          "ref_s09_slide",
+          "ref_s10_slide",
+          "ref_s11_slide",
+          "ref_s12_slide",
+          "ref_s13_slide",
+          "ref_s14_slide"
+        ]
+      },
+      {
+        "colour": "#FFFFFF",
+        "provenance": "source_observed",
+        "role_id": "brand_white",
+        "source_reference_ids": [
+          "ref_s01_slide",
+          "ref_s02_slide",
+          "ref_s03_slide",
+          "ref_s04_slide",
+          "ref_s05_slide",
+          "ref_s06_slide",
+          "ref_s07_slide",
+          "ref_s08_slide",
+          "ref_s09_slide",
+          "ref_s10_slide",
+          "ref_s11_slide",
+          "ref_s12_slide",
+          "ref_s13_slide",
+          "ref_s14_slide"
+        ]
+      }
+    ]
+  },
+  "claims": [
+    {
+      "claim_id": "claim_s01_00",
+      "fact_ids": [
+        "fact_s01_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s01_b00"
+      ],
+      "text": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING"
+    },
+    {
+      "claim_id": "claim_s02_00",
+      "fact_ids": [
+        "fact_s02_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s02_b00"
+      ],
+      "text": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families"
+    },
+    {
+      "claim_id": "claim_s02_01",
+      "fact_ids": [
+        "fact_s02_01"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s02_b01"
+      ],
+      "text": "MINDFULNESS, HEART & 15 Workshops 45 Consultations"
+    },
+    {
+      "claim_id": "claim_s02_02",
+      "fact_ids": [
+        "fact_s02_02"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s02_b02"
+      ],
+      "text": "REPUTATION Angel House is a community of people who rethink the meaning of value and family in times of ai. We meet in private homes of different kinds around the world to start with the revolution where it hits closest to home: at home. We help families transform through change consultations, help jumpstart new projects and enable families or groups to process their transformation offline in dedicated Angel Houses around the world."
+    },
+    {
+      "claim_id": "claim_s03_00",
+      "fact_ids": [
+        "fact_s03_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s03_b00"
+      ],
+      "text": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY."
+    },
+    {
+      "claim_id": "claim_s03_01",
+      "fact_ids": [
+        "fact_s03_01"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s03_b01"
+      ],
+      "text": "STAKEHOLDER ENGAGEMENT WORKSHOPS In selected private houses, Angel House brings together voices from leading innovation ecosystems who are ready to evolve. Participants discover how small groups can catalyse meaningful exchange across industries and engage in hands-on, collective activities that build real material and intellectual value for the community. These solutions are built by multi-generational teams and harness the constructive power of artificial intelligence."
+    },
+    {
+      "claim_id": "claim_s05_00",
+      "fact_ids": [
+        "fact_s05_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s05_b00"
+      ],
+      "text": "HOW DOES IT WORK? 1. PRIVATE FINANCIAL CHANGE CONSULTING FOR FAMILIES ONLINE & OFFLINE 2. RETREATS & WORKSHOPS 3. PROJECT REGISTRATION FOR FOLLOW-UP FUNDING AFTER RETREATS & WORKSHOPS"
+    },
+    {
+      "claim_id": "claim_s06_00",
+      "fact_ids": [
+        "fact_s06_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s06_b00"
+      ],
+      "text": "CONNECTING VALUES & MONEY & AI STEP 1: FINANCIAL CHANGE CONSULTING THE ANGEL HOUSE PROCESS GO DOWN HISTORY LANE DEAL WITH THE PAIN PIN DOWN YOUR VALUES CONNECT WITH THE COMMUNITY RELATE YOUR VALUES TO YOUR FAMILY VALUES OPEN UP TO THE PROBLEMS AT HAND TALK IT OUT WITH YOUR FAMILY DEVELOP A PLAN TO ALIGN THE PROBLEM MORE WITH COMMON VALUES AND SOLUTIONS EXECUTE"
+    },
+    {
+      "claim_id": "claim_s07_00",
+      "fact_ids": [
+        "fact_s07_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s07_b00"
+      ],
+      "text": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP STEP 2: JOIN A RETREAT OR WORKSHOP OF YOUR LIKING DEFINE THE VALUES YOU DESIRE TO FOCUS ON CREATE PATHS TO INTRODUCE THEM TO SOCIETY PARTNER WITH LIKEMINDED LEADERS COME UP WITH A PROJECT PLAN HAND IN YOUR PROJECT TO ANGEL HOUSE LIST IT FOR FOLLOW-UP FUNDING"
+    },
+    {
+      "claim_id": "claim_s08_00",
+      "fact_ids": [
+        "fact_s08_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s08_b00"
+      ],
+      "text": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE STEP 3: SENIOR AND JUNIOR LEADERS FROM AROUND THE WORLD ARE READY TO START FAIR, VALUE BASED PROJECTS TOGETHER PARTICIPATE IN COLLABORATIVE WORKSHOPS IN ANGEL HOUSES CREATE PROJECT OUTLINE LIST THE PROJECT FOR FUNDING TICKET SIZE ON ANGEL HOUSE 10-15.000€ PER PROJECT, ANGEL HOUSE FACILITATES THE FUNDING, PATRONS CONNECT WITH THE FOUNDING TEAM PATRONS CAN POSSIBLY RECEIVE THE MONEY BACK IN CASE THE COMPANY FUNDRAISES EFFECTIVELY OR TURN THE PATRONAGE INTO A LARGER TICKET IN THE MATURED COMPANY LATER ON"
+    },
+    {
+      "claim_id": "claim_s09_00",
+      "fact_ids": [
+        "fact_s09_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "text": "THE NUMBERS 12 PROJECTS STARTED ON ANGEL HOUSE WITHOUT PLATFORM SUPPORT 40+ COACHING CLIENTS SUPPORTED SINCE AUGUST 2025 200 HOUSES HAVE BEEN REGISTERED ON ANGEL HOUSE FOR RESIDENTIAL EXCHANGE WITH OTHER FAMILIES FINANCIAL MODEL & TRACTION SUMMARY COACHING CLIENTS WITH AT LEAST 500.000 € - 10.000.000 € IN ASSET REALLOCATION 80 NEW PROJECTS OVER 20 WORKSHOPS + EVENTS STEP 1: CUSTOM AMOUNTS FOR FINANCIAL CONSULTING SESSIONS 50% UP FRONT AND 50% AT THE END STEP 2: 20 EVENTS = 70.000€ IN REVENUE UNTIL EARLY 2027 STEP 3: 80 NEW PROJECTS FUNDED OVER A SPV WITH 20.000€ EACH, 1.600.000€ UNDER MANAGEMENT BY CLIENTS OF FINANCIAL CONSULTING SESSIONS ANGEL HOUSE MANAGES THE SPV, KEEPS 20% OF THE FUNDING PER PROJECT"
+    },
+    {
+      "claim_id": "claim_s10_00",
+      "fact_ids": [
+        "fact_s10_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s10_b00"
+      ],
+      "text": "THE FOUNDER"
+    },
+    {
+      "claim_id": "claim_s10_01",
+      "fact_ids": [
+        "fact_s10_01"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s10_b01"
+      ],
+      "text": "PAULA SCHWARZ"
+    },
+    {
+      "claim_id": "claim_s10_02",
+      "fact_ids": [
+        "fact_s10_02"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s10_b02"
+      ],
+      "text": "INVESTMENT MANAGEMENT AT STANFORD UNIVERSITY OXFORD SAÏD STRATEGIC MANAGEMENT EXECUTIVE PROGRAMME 30 UNDER 30 FORBES LIST FOR SOCIAL ENTREPRENEURSHIP PUBLISHED AUTHOR BY RANDOM HOUSE PREVIOUSLY ON THE BOARD OF THE BAYER CARES FOUNDATION MOTHER OF 3"
+    },
+    {
+      "claim_id": "claim_s11_00",
+      "fact_ids": [
+        "fact_s11_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b00"
+      ],
+      "text": "HOW ANGEL HOUSE"
+    },
+    {
+      "claim_id": "claim_s11_01",
+      "fact_ids": [
+        "fact_s11_01"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b01"
+      ],
+      "text": "ANGEL SUPPORTS PROJECTS THAT TURN INTO COMPANIES"
+    },
+    {
+      "claim_id": "claim_s11_02",
+      "fact_ids": [
+        "fact_s11_02"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b02"
+      ],
+      "text": "INSTITUTE ANGELS HAVE ACCESS TO TECHNOLOGY, RECORDING STUDIOS AND ANGEL SUPPORT IN LOCATIONS AROUND THE"
+    },
+    {
+      "claim_id": "claim_s11_03",
+      "fact_ids": [
+        "fact_s11_03"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b03"
+      ],
+      "text": "(07) WORLD."
+    },
+    {
+      "claim_id": "claim_s12_00",
+      "fact_ids": [
+        "fact_s12_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s12_b00"
+      ],
+      "text": "ANGEL FUND"
+    },
+    {
+      "claim_id": "claim_s13_00",
+      "fact_ids": [
+        "fact_s13_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s13_b00"
+      ],
+      "text": "THE ANGEL FUND HELP ANGELS HEAL THE WORLD MISSION: ENABLE ANGELS TO GROW PROJECTS AND COMPANIES THAT CREATE REVENUE AND SOCIAL IMPACT. VISION: TO FINANCE ANGELS WHO ARE GROWING VALUABLE COMPANIES OR PROJECTS IN THE SPIRIT OF THE COMMUNITY."
+    },
+    {
+      "claim_id": "claim_s13_01",
+      "fact_ids": [
+        "fact_s13_01"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s13_b01"
+      ],
+      "text": "The Angel Fund selects growing projects and companies of Angels and supports with grants or funding. The fund is industry agnostic. Carefully selected companies are chosen by a distinguished investment committee. Angels are welcome to contribute Angel Checks of 50k €."
+    },
+    {
+      "claim_id": "claim_s14_00",
+      "fact_ids": [
+        "fact_s14_00"
+      ],
+      "material": true,
+      "source_reference_ids": [
+        "ref_s14_b00"
+      ],
+      "text": "PARTNERS, GUEST & HOSTS WALL OF LOVE SINGULARITY UNIVERSITY FOUNDER INSTITUTE LONDON BUSINESS SCHOOL ETON COLLEGE FOUNDERS FORUM OXFORD CAMBRIDGE HARROW SCHOOL ANGEL HACK IMPERIAL COLLEGE LONDON 500 GLOBAL KING’S COLLEGE LONDON XPRIZE SCIENCES PO INSEAD WHARTON HARVARD STANFORD ETH ZURICH PRINCETON UNIVERSITY GLOBAL SHAPERS ASPEN INSTITUTE FORBES UNDER 30 NETWORK"
+    }
+  ],
+  "conflicts": [],
+  "debris_exclusions": [
+    {
+      "reason": "ocr_debris",
+      "source_reference_ids": [
+        "ref_s04_b00"
+      ],
+      "source_slide_id": "src_s04"
+    }
+  ],
+  "embedding_policy": {
+    "embedding_action": "none",
+    "global_knowledge_eligible": false,
+    "scope": "request_data_only"
+  },
+  "facts": [
+    {
+      "fact_id": "fact_s01_00",
+      "kind": "identity",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s01_b00"
+      ],
+      "text": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING"
+    },
+    {
+      "fact_id": "fact_s02_00",
+      "kind": "metric",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s02_b00"
+      ],
+      "text": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families"
+    },
+    {
+      "fact_id": "fact_s02_01",
+      "kind": "metric",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s02_b01"
+      ],
+      "text": "MINDFULNESS, HEART & 15 Workshops 45 Consultations"
+    },
+    {
+      "fact_id": "fact_s02_02",
+      "kind": "process",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s02_b02"
+      ],
+      "text": "REPUTATION Angel House is a community of people who rethink the meaning of value and family in times of ai. We meet in private homes of different kinds around the world to start with the revolution where it hits closest to home: at home. We help families transform through change consultations, help jumpstart new projects and enable families or groups to process their transformation offline in dedicated Angel Houses around the world."
+    },
+    {
+      "fact_id": "fact_s03_00",
+      "kind": "positioning",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s03_b00"
+      ],
+      "text": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY."
+    },
+    {
+      "fact_id": "fact_s03_01",
+      "kind": "process",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s03_b01"
+      ],
+      "text": "STAKEHOLDER ENGAGEMENT WORKSHOPS In selected private houses, Angel House brings together voices from leading innovation ecosystems who are ready to evolve. Participants discover how small groups can catalyse meaningful exchange across industries and engage in hands-on, collective activities that build real material and intellectual value for the community. These solutions are built by multi-generational teams and harness the constructive power of artificial intelligence."
+    },
+    {
+      "fact_id": "fact_s05_00",
+      "kind": "financial",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s05_b00"
+      ],
+      "text": "HOW DOES IT WORK? 1. PRIVATE FINANCIAL CHANGE CONSULTING FOR FAMILIES ONLINE & OFFLINE 2. RETREATS & WORKSHOPS 3. PROJECT REGISTRATION FOR FOLLOW-UP FUNDING AFTER RETREATS & WORKSHOPS"
+    },
+    {
+      "fact_id": "fact_s06_00",
+      "kind": "metric",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s06_b00"
+      ],
+      "text": "CONNECTING VALUES & MONEY & AI STEP 1: FINANCIAL CHANGE CONSULTING THE ANGEL HOUSE PROCESS GO DOWN HISTORY LANE DEAL WITH THE PAIN PIN DOWN YOUR VALUES CONNECT WITH THE COMMUNITY RELATE YOUR VALUES TO YOUR FAMILY VALUES OPEN UP TO THE PROBLEMS AT HAND TALK IT OUT WITH YOUR FAMILY DEVELOP A PLAN TO ALIGN THE PROBLEM MORE WITH COMMON VALUES AND SOLUTIONS EXECUTE"
+    },
+    {
+      "fact_id": "fact_s07_00",
+      "kind": "financial",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s07_b00"
+      ],
+      "text": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP STEP 2: JOIN A RETREAT OR WORKSHOP OF YOUR LIKING DEFINE THE VALUES YOU DESIRE TO FOCUS ON CREATE PATHS TO INTRODUCE THEM TO SOCIETY PARTNER WITH LIKEMINDED LEADERS COME UP WITH A PROJECT PLAN HAND IN YOUR PROJECT TO ANGEL HOUSE LIST IT FOR FOLLOW-UP FUNDING"
+    },
+    {
+      "fact_id": "fact_s08_00",
+      "kind": "financial",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s08_b00"
+      ],
+      "text": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE STEP 3: SENIOR AND JUNIOR LEADERS FROM AROUND THE WORLD ARE READY TO START FAIR, VALUE BASED PROJECTS TOGETHER PARTICIPATE IN COLLABORATIVE WORKSHOPS IN ANGEL HOUSES CREATE PROJECT OUTLINE LIST THE PROJECT FOR FUNDING TICKET SIZE ON ANGEL HOUSE 10-15.000€ PER PROJECT, ANGEL HOUSE FACILITATES THE FUNDING, PATRONS CONNECT WITH THE FOUNDING TEAM PATRONS CAN POSSIBLY RECEIVE THE MONEY BACK IN CASE THE COMPANY FUNDRAISES EFFECTIVELY OR TURN THE PATRONAGE INTO A LARGER TICKET IN THE MATURED COMPANY LATER ON"
+    },
+    {
+      "fact_id": "fact_s09_00",
+      "kind": "financial",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "text": "THE NUMBERS 12 PROJECTS STARTED ON ANGEL HOUSE WITHOUT PLATFORM SUPPORT 40+ COACHING CLIENTS SUPPORTED SINCE AUGUST 2025 200 HOUSES HAVE BEEN REGISTERED ON ANGEL HOUSE FOR RESIDENTIAL EXCHANGE WITH OTHER FAMILIES FINANCIAL MODEL & TRACTION SUMMARY COACHING CLIENTS WITH AT LEAST 500.000 € - 10.000.000 € IN ASSET REALLOCATION 80 NEW PROJECTS OVER 20 WORKSHOPS + EVENTS STEP 1: CUSTOM AMOUNTS FOR FINANCIAL CONSULTING SESSIONS 50% UP FRONT AND 50% AT THE END STEP 2: 20 EVENTS = 70.000€ IN REVENUE UNTIL EARLY 2027 STEP 3: 80 NEW PROJECTS FUNDED OVER A SPV WITH 20.000€ EACH, 1.600.000€ UNDER MANAGEMENT BY CLIENTS OF FINANCIAL CONSULTING SESSIONS ANGEL HOUSE MANAGES THE SPV, KEEPS 20% OF THE FUNDING PER PROJECT"
+    },
+    {
+      "fact_id": "fact_s10_00",
+      "kind": "team",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s10_b00"
+      ],
+      "text": "THE FOUNDER"
+    },
+    {
+      "fact_id": "fact_s10_01",
+      "kind": "team",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s10_b01"
+      ],
+      "text": "PAULA SCHWARZ"
+    },
+    {
+      "fact_id": "fact_s10_02",
+      "kind": "metric",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s10_b02"
+      ],
+      "text": "INVESTMENT MANAGEMENT AT STANFORD UNIVERSITY OXFORD SAÏD STRATEGIC MANAGEMENT EXECUTIVE PROGRAMME 30 UNDER 30 FORBES LIST FOR SOCIAL ENTREPRENEURSHIP PUBLISHED AUTHOR BY RANDOM HOUSE PREVIOUSLY ON THE BOARD OF THE BAYER CARES FOUNDATION MOTHER OF 3"
+    },
+    {
+      "fact_id": "fact_s11_00",
+      "kind": "positioning",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b00"
+      ],
+      "text": "HOW ANGEL HOUSE"
+    },
+    {
+      "fact_id": "fact_s11_01",
+      "kind": "product",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b01"
+      ],
+      "text": "ANGEL SUPPORTS PROJECTS THAT TURN INTO COMPANIES"
+    },
+    {
+      "fact_id": "fact_s11_02",
+      "kind": "general",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b02"
+      ],
+      "text": "INSTITUTE ANGELS HAVE ACCESS TO TECHNOLOGY, RECORDING STUDIOS AND ANGEL SUPPORT IN LOCATIONS AROUND THE"
+    },
+    {
+      "fact_id": "fact_s11_03",
+      "kind": "metric",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s11_b03"
+      ],
+      "text": "(07) WORLD."
+    },
+    {
+      "fact_id": "fact_s12_00",
+      "kind": "product",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s12_b00"
+      ],
+      "text": "ANGEL FUND"
+    },
+    {
+      "fact_id": "fact_s13_00",
+      "kind": "product",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s13_b00"
+      ],
+      "text": "THE ANGEL FUND HELP ANGELS HEAL THE WORLD MISSION: ENABLE ANGELS TO GROW PROJECTS AND COMPANIES THAT CREATE REVENUE AND SOCIAL IMPACT. VISION: TO FINANCE ANGELS WHO ARE GROWING VALUABLE COMPANIES OR PROJECTS IN THE SPIRIT OF THE COMMUNITY."
+    },
+    {
+      "fact_id": "fact_s13_01",
+      "kind": "financial",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s13_b01"
+      ],
+      "text": "The Angel Fund selects growing projects and companies of Angels and supports with grants or funding. The fund is industry agnostic. Carefully selected companies are chosen by a distinguished investment committee. Angels are welcome to contribute Angel Checks of 50k €."
+    },
+    {
+      "fact_id": "fact_s14_00",
+      "kind": "metric",
+      "material": true,
+      "source_reference_ids": [
+        "ref_s14_b00"
+      ],
+      "text": "PARTNERS, GUEST & HOSTS WALL OF LOVE SINGULARITY UNIVERSITY FOUNDER INSTITUTE LONDON BUSINESS SCHOOL ETON COLLEGE FOUNDERS FORUM OXFORD CAMBRIDGE HARROW SCHOOL ANGEL HACK IMPERIAL COLLEGE LONDON 500 GLOBAL KING’S COLLEGE LONDON XPRIZE SCIENCES PO INSEAD WHARTON HARVARD STANFORD ETH ZURICH PRINCETON UNIVERSITY GLOBAL SHAPERS ASPEN INSTITUTE FORBES UNDER 30 NETWORK"
+    }
+  ],
+  "missing_evidence": [
+    {
+      "detail": "No sourced TAM, SAM or SOM evidence appears in the extraction.",
+      "topic": "market size"
+    },
+    {
+      "detail": "No complete legal or operating terms for the Angel Fund appear in the extraction.",
+      "topic": "fund structure"
+    }
+  ],
+  "numbers": [
+    {
+      "exact_text": "200+",
+      "normalized_value": 200.0,
+      "number_id": "num_s02_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s02_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "500 Families",
+      "normalized_value": 500.0,
+      "number_id": "num_s02_01",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s02_b00"
+      ],
+      "unit": "families"
+    },
+    {
+      "exact_text": "15 Workshops",
+      "normalized_value": 15.0,
+      "number_id": "num_s02_02",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s02_b01"
+      ],
+      "unit": "workshops"
+    },
+    {
+      "exact_text": "45 Consultations",
+      "normalized_value": 45.0,
+      "number_id": "num_s02_03",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s02_b01"
+      ],
+      "unit": "consultations"
+    },
+    {
+      "exact_text": "1",
+      "normalized_value": 1.0,
+      "number_id": "num_s05_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s05_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "2",
+      "normalized_value": 2.0,
+      "number_id": "num_s05_01",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s05_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "3",
+      "normalized_value": 3.0,
+      "number_id": "num_s05_02",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s05_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "10",
+      "normalized_value": 10.0,
+      "number_id": "num_s08_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s08_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "15.000€",
+      "normalized_value": 15000.0,
+      "number_id": "num_s08_01",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s08_b00"
+      ],
+      "unit": "EUR"
+    },
+    {
+      "exact_text": "12 PROJECTS",
+      "normalized_value": 12.0,
+      "number_id": "num_s09_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "projects"
+    },
+    {
+      "exact_text": "40+",
+      "normalized_value": 40.0,
+      "number_id": "num_s09_01",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "2025",
+      "normalized_value": 2025.0,
+      "number_id": "num_s09_02",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "200 HOUSES",
+      "normalized_value": 200.0,
+      "number_id": "num_s09_03",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "houses"
+    },
+    {
+      "exact_text": "500.000 €",
+      "normalized_value": 500000.0,
+      "number_id": "num_s09_04",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "EUR"
+    },
+    {
+      "exact_text": "10.000.000 €",
+      "normalized_value": null,
+      "number_id": "num_s09_05",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "EUR"
+    },
+    {
+      "exact_text": "80",
+      "normalized_value": 80.0,
+      "number_id": "num_s09_06",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "20 WORKSHOPS",
+      "normalized_value": 20.0,
+      "number_id": "num_s09_07",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "workshops"
+    },
+    {
+      "exact_text": "50%",
+      "normalized_value": 50.0,
+      "number_id": "num_s09_08",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "percent"
+    },
+    {
+      "exact_text": "50%",
+      "normalized_value": 50.0,
+      "number_id": "num_s09_09",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "percent"
+    },
+    {
+      "exact_text": "20 EVENTS",
+      "normalized_value": 20.0,
+      "number_id": "num_s09_10",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "events"
+    },
+    {
+      "exact_text": "70.000€",
+      "normalized_value": 70000.0,
+      "number_id": "num_s09_11",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "EUR"
+    },
+    {
+      "exact_text": "2027",
+      "normalized_value": 2027.0,
+      "number_id": "num_s09_12",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "80",
+      "normalized_value": 80.0,
+      "number_id": "num_s09_13",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "20.000€",
+      "normalized_value": 20000.0,
+      "number_id": "num_s09_14",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "EUR"
+    },
+    {
+      "exact_text": "1.600.000€",
+      "normalized_value": null,
+      "number_id": "num_s09_15",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "EUR"
+    },
+    {
+      "exact_text": "20%",
+      "normalized_value": 20.0,
+      "number_id": "num_s09_16",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s09_b00"
+      ],
+      "unit": "percent"
+    },
+    {
+      "exact_text": "30",
+      "normalized_value": 30.0,
+      "number_id": "num_s10_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s10_b02"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "30",
+      "normalized_value": 30.0,
+      "number_id": "num_s10_01",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s10_b02"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "3",
+      "normalized_value": 3.0,
+      "number_id": "num_s10_02",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s10_b02"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "07",
+      "normalized_value": 7.0,
+      "number_id": "num_s11_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s11_b03"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "50k",
+      "normalized_value": 50.0,
+      "number_id": "num_s13_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s13_b01"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "500",
+      "normalized_value": 500.0,
+      "number_id": "num_s14_00",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s14_b00"
+      ],
+      "unit": null
+    },
+    {
+      "exact_text": "30",
+      "normalized_value": 30.0,
+      "number_id": "num_s14_01",
+      "qualifier": "source-exact; do not strengthen",
+      "source_reference_ids": [
+        "ref_s14_b00"
+      ],
+      "unit": null
+    }
+  ],
+  "package_id": "srcpkg_7c0af58586d3d6e4",
+  "schema_version": "instant-deck-source-package.v1",
+  "source_checksum": "7c0af58586d3d6e4c4a559a07da3da3835666c77b997b26b06ab0413d6ebf40e",
+  "source_file": {
+    "byte_size": 39979607,
+    "extraction_id": "process_1bd41d2df2a62d30",
+    "extractor_version": "pdf_deterministic_v1",
+    "filename": "Kopie von Angel House.pdf",
+    "mime_type": "application/pdf",
+    "page_count": 14
+  },
+  "source_references": [
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING",
+      "reference_id": "ref_s01_slide",
+      "source_slide_id": "src_s01"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING",
+      "reference_id": "ref_s01_b00",
+      "source_slide_id": "src_s01"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "WWW.ANGELHOUSE.LIFE",
+      "reference_id": "ref_s01_b01",
+      "source_slide_id": "src_s01"
+    },
+    {
+      "block_index": null,
+      "kind": "asset",
+      "quoted_text": null,
+      "reference_id": "ref_s01_a01",
+      "source_slide_id": "src_s01"
+    },
+    {
+      "block_index": null,
+      "kind": "asset",
+      "quoted_text": null,
+      "reference_id": "ref_s01_a02",
+      "source_slide_id": "src_s01"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families",
+      "reference_id": "ref_s02_slide",
+      "source_slide_id": "src_s02"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families",
+      "reference_id": "ref_s02_b00",
+      "source_slide_id": "src_s02"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "MINDFULNESS, HEART & 15 Workshops 45 Consultations",
+      "reference_id": "ref_s02_b01",
+      "source_slide_id": "src_s02"
+    },
+    {
+      "block_index": 2,
+      "kind": "block",
+      "quoted_text": "REPUTATION Angel House is a community of people who rethink the meaning of value and family in times of ai. We meet in private homes of different kinds around the world to start with the revolution where it hits closest to home: at home. We help families transform through change consultations, help jumpstart new projects and enable families or groups to process their transformation offline in dedicated Angel Houses around the world.",
+      "reference_id": "ref_s02_b02",
+      "source_slide_id": "src_s02"
+    },
+    {
+      "block_index": 3,
+      "kind": "block",
+      "quoted_text": "(01)",
+      "reference_id": "ref_s02_b03",
+      "source_slide_id": "src_s02"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY.",
+      "reference_id": "ref_s03_slide",
+      "source_slide_id": "src_s03"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY.",
+      "reference_id": "ref_s03_b00",
+      "source_slide_id": "src_s03"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "STAKEHOLDER ENGAGEMENT WORKSHOPS In selected private houses, Angel House brings together voices from leading innovation ecosystems who are ready to evolve. Participants discover how small groups can catalyse meaningful exchange across industries and engage in hands-on, collective activities that build real material and intellectual value for the community. These solutions are built by multi-generational teams and harness the constructive power of artificial intelligence.",
+      "reference_id": "ref_s03_b01",
+      "source_slide_id": "src_s03"
+    },
+    {
+      "block_index": 2,
+      "kind": "block",
+      "quoted_text": "(02)",
+      "reference_id": "ref_s03_b02",
+      "source_slide_id": "src_s03"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "OCR debris from an image-only source page",
+      "reference_id": "ref_s04_slide",
+      "source_slide_id": "src_s04"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": ". ™ iil oe ‘es “3 | a ’ ” cere 4. oe : 5 Sams ep | Ff . : ‘“ .. Ad ee Ld ® , . ‘ _ : ’ le - ¥. > ‘ . : é. fa j * . , ys ¥: Ais a if : 2 ja 4 > . ’ ~ 2 - Yo EF ~ ile 5 al al ‘ ‘ . rs ee a oe Ps - 4 se os ~— “al / P e . S a ae &, “a ~. ~ ‘ ” ts . g-%.”",
+      "reference_id": "ref_s04_b00",
+      "source_slide_id": "src_s04"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "HOW DOES IT WORK?",
+      "reference_id": "ref_s05_slide",
+      "source_slide_id": "src_s05"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "HOW DOES IT WORK? 1. PRIVATE FINANCIAL CHANGE CONSULTING FOR FAMILIES ONLINE & OFFLINE 2. RETREATS & WORKSHOPS 3. PROJECT REGISTRATION FOR FOLLOW-UP FUNDING AFTER RETREATS & WORKSHOPS",
+      "reference_id": "ref_s05_b00",
+      "source_slide_id": "src_s05"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "www.angelhouse.life (03)",
+      "reference_id": "ref_s05_b01",
+      "source_slide_id": "src_s05"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "CONNECTING VALUES & MONEY & AI",
+      "reference_id": "ref_s06_slide",
+      "source_slide_id": "src_s06"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "CONNECTING VALUES & MONEY & AI STEP 1: FINANCIAL CHANGE CONSULTING THE ANGEL HOUSE PROCESS GO DOWN HISTORY LANE DEAL WITH THE PAIN PIN DOWN YOUR VALUES CONNECT WITH THE COMMUNITY RELATE YOUR VALUES TO YOUR FAMILY VALUES OPEN UP TO THE PROBLEMS AT HAND TALK IT OUT WITH YOUR FAMILY DEVELOP A PLAN TO ALIGN THE PROBLEM MORE WITH COMMON VALUES AND SOLUTIONS EXECUTE",
+      "reference_id": "ref_s06_b00",
+      "source_slide_id": "src_s06"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP",
+      "reference_id": "ref_s07_slide",
+      "source_slide_id": "src_s07"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP STEP 2: JOIN A RETREAT OR WORKSHOP OF YOUR LIKING DEFINE THE VALUES YOU DESIRE TO FOCUS ON CREATE PATHS TO INTRODUCE THEM TO SOCIETY PARTNER WITH LIKEMINDED LEADERS COME UP WITH A PROJECT PLAN HAND IN YOUR PROJECT TO ANGEL HOUSE LIST IT FOR FOLLOW-UP FUNDING",
+      "reference_id": "ref_s07_b00",
+      "source_slide_id": "src_s07"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "www.angelhouse.life",
+      "reference_id": "ref_s07_b01",
+      "source_slide_id": "src_s07"
+    },
+    {
+      "block_index": 2,
+      "kind": "block",
+      "quoted_text": "(06)",
+      "reference_id": "ref_s07_b02",
+      "source_slide_id": "src_s07"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE",
+      "reference_id": "ref_s08_slide",
+      "source_slide_id": "src_s08"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE STEP 3: SENIOR AND JUNIOR LEADERS FROM AROUND THE WORLD ARE READY TO START FAIR, VALUE BASED PROJECTS TOGETHER PARTICIPATE IN COLLABORATIVE WORKSHOPS IN ANGEL HOUSES CREATE PROJECT OUTLINE LIST THE PROJECT FOR FUNDING TICKET SIZE ON ANGEL HOUSE 10-15.000€ PER PROJECT, ANGEL HOUSE FACILITATES THE FUNDING, PATRONS CONNECT WITH THE FOUNDING TEAM PATRONS CAN POSSIBLY RECEIVE THE MONEY BACK IN CASE THE COMPANY FUNDRAISES EFFECTIVELY OR TURN THE PATRONAGE INTO A LARGER TICKET IN THE MATURED COMPANY LATER ON",
+      "reference_id": "ref_s08_b00",
+      "source_slide_id": "src_s08"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "THE NUMBERS",
+      "reference_id": "ref_s09_slide",
+      "source_slide_id": "src_s09"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "THE NUMBERS 12 PROJECTS STARTED ON ANGEL HOUSE WITHOUT PLATFORM SUPPORT 40+ COACHING CLIENTS SUPPORTED SINCE AUGUST 2025 200 HOUSES HAVE BEEN REGISTERED ON ANGEL HOUSE FOR RESIDENTIAL EXCHANGE WITH OTHER FAMILIES FINANCIAL MODEL & TRACTION SUMMARY COACHING CLIENTS WITH AT LEAST 500.000 € - 10.000.000 € IN ASSET REALLOCATION 80 NEW PROJECTS OVER 20 WORKSHOPS + EVENTS STEP 1: CUSTOM AMOUNTS FOR FINANCIAL CONSULTING SESSIONS 50% UP FRONT AND 50% AT THE END STEP 2: 20 EVENTS = 70.000€ IN REVENUE UNTIL EARLY 2027 STEP 3: 80 NEW PROJECTS FUNDED OVER A SPV WITH 20.000€ EACH, 1.600.000€ UNDER MANAGEMENT BY CLIENTS OF FINANCIAL CONSULTING SESSIONS ANGEL HOUSE MANAGES THE SPV, KEEPS 20% OF THE FUNDING PER PROJECT",
+      "reference_id": "ref_s09_b00",
+      "source_slide_id": "src_s09"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "(07)",
+      "reference_id": "ref_s09_b01",
+      "source_slide_id": "src_s09"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "THE FOUNDER",
+      "reference_id": "ref_s10_slide",
+      "source_slide_id": "src_s10"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "THE FOUNDER",
+      "reference_id": "ref_s10_b00",
+      "source_slide_id": "src_s10"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "PAULA SCHWARZ",
+      "reference_id": "ref_s10_b01",
+      "source_slide_id": "src_s10"
+    },
+    {
+      "block_index": 2,
+      "kind": "block",
+      "quoted_text": "INVESTMENT MANAGEMENT AT STANFORD UNIVERSITY OXFORD SAÏD STRATEGIC MANAGEMENT EXECUTIVE PROGRAMME 30 UNDER 30 FORBES LIST FOR SOCIAL ENTREPRENEURSHIP PUBLISHED AUTHOR BY RANDOM HOUSE PREVIOUSLY ON THE BOARD OF THE BAYER CARES FOUNDATION MOTHER OF 3",
+      "reference_id": "ref_s10_b02",
+      "source_slide_id": "src_s10"
+    },
+    {
+      "block_index": 3,
+      "kind": "block",
+      "quoted_text": "(08)",
+      "reference_id": "ref_s10_b03",
+      "source_slide_id": "src_s10"
+    },
+    {
+      "block_index": null,
+      "kind": "asset",
+      "quoted_text": null,
+      "reference_id": "ref_s10_a01",
+      "source_slide_id": "src_s10"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "HOW ANGEL HOUSE",
+      "reference_id": "ref_s11_slide",
+      "source_slide_id": "src_s11"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "HOW ANGEL HOUSE",
+      "reference_id": "ref_s11_b00",
+      "source_slide_id": "src_s11"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "ANGEL SUPPORTS PROJECTS THAT TURN INTO COMPANIES",
+      "reference_id": "ref_s11_b01",
+      "source_slide_id": "src_s11"
+    },
+    {
+      "block_index": 2,
+      "kind": "block",
+      "quoted_text": "INSTITUTE ANGELS HAVE ACCESS TO TECHNOLOGY, RECORDING STUDIOS AND ANGEL SUPPORT IN LOCATIONS AROUND THE",
+      "reference_id": "ref_s11_b02",
+      "source_slide_id": "src_s11"
+    },
+    {
+      "block_index": 3,
+      "kind": "block",
+      "quoted_text": "(07) WORLD.",
+      "reference_id": "ref_s11_b03",
+      "source_slide_id": "src_s11"
+    },
+    {
+      "block_index": 4,
+      "kind": "block",
+      "quoted_text": "WWW.ANGELHOUSE.LIFE",
+      "reference_id": "ref_s11_b04",
+      "source_slide_id": "src_s11"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "ANGEL FUND",
+      "reference_id": "ref_s12_slide",
+      "source_slide_id": "src_s12"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "ANGEL FUND",
+      "reference_id": "ref_s12_b00",
+      "source_slide_id": "src_s12"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "THE ANGEL FUND",
+      "reference_id": "ref_s13_slide",
+      "source_slide_id": "src_s13"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "THE ANGEL FUND HELP ANGELS HEAL THE WORLD MISSION: ENABLE ANGELS TO GROW PROJECTS AND COMPANIES THAT CREATE REVENUE AND SOCIAL IMPACT. VISION: TO FINANCE ANGELS WHO ARE GROWING VALUABLE COMPANIES OR PROJECTS IN THE SPIRIT OF THE COMMUNITY.",
+      "reference_id": "ref_s13_b00",
+      "source_slide_id": "src_s13"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "The Angel Fund selects growing projects and companies of Angels and supports with grants or funding. The fund is industry agnostic. Carefully selected companies are chosen by a distinguished investment committee. Angels are welcome to contribute Angel Checks of 50k €.",
+      "reference_id": "ref_s13_b01",
+      "source_slide_id": "src_s13"
+    },
+    {
+      "block_index": null,
+      "kind": "slide",
+      "quoted_text": "PARTNERS, GUEST & HOSTS WALL OF LOVE",
+      "reference_id": "ref_s14_slide",
+      "source_slide_id": "src_s14"
+    },
+    {
+      "block_index": 0,
+      "kind": "block",
+      "quoted_text": "PARTNERS, GUEST & HOSTS WALL OF LOVE SINGULARITY UNIVERSITY FOUNDER INSTITUTE LONDON BUSINESS SCHOOL ETON COLLEGE FOUNDERS FORUM OXFORD CAMBRIDGE HARROW SCHOOL ANGEL HACK IMPERIAL COLLEGE LONDON 500 GLOBAL KING’S COLLEGE LONDON XPRIZE SCIENCES PO INSEAD WHARTON HARVARD STANFORD ETH ZURICH PRINCETON UNIVERSITY GLOBAL SHAPERS ASPEN INSTITUTE FORBES UNDER 30 NETWORK",
+      "reference_id": "ref_s14_b00",
+      "source_slide_id": "src_s14"
+    },
+    {
+      "block_index": 1,
+      "kind": "block",
+      "quoted_text": "(10)",
+      "reference_id": "ref_s14_b01",
+      "source_slide_id": "src_s14"
+    }
+  ],
+  "source_slides": [
+    {
+      "asset_ids": [
+        "asset_s01_01",
+        "asset_s01_02"
+      ],
+      "claim_ids": [
+        "claim_s01_00"
+      ],
+      "fact_ids": [
+        "fact_s01_00"
+      ],
+      "normalized_text": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING WWW.ANGELHOUSE.LIFE",
+      "number_ids": [],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 1,
+      "source_page_number": 1,
+      "source_slide_id": "src_s01",
+      "title": "ANGEL HOUSE HELPING FAMILIES RETHINK FAMILY AT A TIME WHERE EVERYTHING IS CHANGING"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s02_00",
+        "claim_s02_01",
+        "claim_s02_02"
+      ],
+      "fact_ids": [
+        "fact_s02_00",
+        "fact_s02_01",
+        "fact_s02_02"
+      ],
+      "normalized_text": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families MINDFULNESS, HEART & 15 Workshops 45 Consultations REPUTATION Angel House is a community of people who rethink the meaning of value and family in times of ai. We meet in private homes of different kinds around the world to start with the revolution where it hits closest to home: at home. We help families transform through change consultations, help jumpstart new projects and enable families or groups to process their transformation offline in dedicated Angel Houses around the world.",
+      "number_ids": [
+        "num_s02_00",
+        "num_s02_01",
+        "num_s02_02",
+        "num_s02_03"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 2,
+      "source_page_number": 2,
+      "source_slide_id": "src_s02",
+      "title": "200+ Houses Registered WE STAND FOR MANNERS, 500 Families"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s03_00",
+        "claim_s03_01"
+      ],
+      "fact_ids": [
+        "fact_s03_00",
+        "fact_s03_01"
+      ],
+      "normalized_text": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY. STAKEHOLDER ENGAGEMENT WORKSHOPS In selected private houses, Angel House brings together voices from leading innovation ecosystems who are ready to evolve. Participants discover how small groups can catalyse meaningful exchange across industries and engage in hands-on, collective activities that build real material and intellectual value for the community. These solutions are built by multi-generational teams and harness the constructive power of artificial intelligence.",
+      "number_ids": [],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 3,
+      "source_page_number": 3,
+      "source_slide_id": "src_s03",
+      "title": "WE PROTECT AND FOSTER THE SPIRIT OF OUR COMMUNITY."
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [],
+      "fact_ids": [],
+      "normalized_text": "",
+      "number_ids": [],
+      "omission_eligible": true,
+      "omission_reason": "OCR-only source page; exclude from narrative but retain for audit.",
+      "position": 4,
+      "source_page_number": 4,
+      "source_slide_id": "src_s04",
+      "title": "OCR debris from an image-only source page"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s05_00"
+      ],
+      "fact_ids": [
+        "fact_s05_00"
+      ],
+      "normalized_text": "HOW DOES IT WORK? 1. PRIVATE FINANCIAL CHANGE CONSULTING FOR FAMILIES ONLINE & OFFLINE 2. RETREATS & WORKSHOPS 3. PROJECT REGISTRATION FOR FOLLOW-UP FUNDING AFTER RETREATS & WORKSHOPS",
+      "number_ids": [
+        "num_s05_00",
+        "num_s05_01",
+        "num_s05_02"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 5,
+      "source_page_number": 5,
+      "source_slide_id": "src_s05",
+      "title": "HOW DOES IT WORK?"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s06_00"
+      ],
+      "fact_ids": [
+        "fact_s06_00"
+      ],
+      "normalized_text": "CONNECTING VALUES & MONEY & AI STEP 1: FINANCIAL CHANGE CONSULTING THE ANGEL HOUSE PROCESS GO DOWN HISTORY LANE DEAL WITH THE PAIN PIN DOWN YOUR VALUES CONNECT WITH THE COMMUNITY RELATE YOUR VALUES TO YOUR FAMILY VALUES OPEN UP TO THE PROBLEMS AT HAND TALK IT OUT WITH YOUR FAMILY DEVELOP A PLAN TO ALIGN THE PROBLEM MORE WITH COMMON VALUES AND SOLUTIONS EXECUTE",
+      "number_ids": [],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 6,
+      "source_page_number": 6,
+      "source_slide_id": "src_s06",
+      "title": "CONNECTING VALUES & MONEY & AI"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s07_00"
+      ],
+      "fact_ids": [
+        "fact_s07_00"
+      ],
+      "normalized_text": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP STEP 2: JOIN A RETREAT OR WORKSHOP OF YOUR LIKING DEFINE THE VALUES YOU DESIRE TO FOCUS ON CREATE PATHS TO INTRODUCE THEM TO SOCIETY PARTNER WITH LIKEMINDED LEADERS COME UP WITH A PROJECT PLAN HAND IN YOUR PROJECT TO ANGEL HOUSE LIST IT FOR FOLLOW-UP FUNDING",
+      "number_ids": [],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 7,
+      "source_page_number": 7,
+      "source_slide_id": "src_s07",
+      "title": "JOIN A RETREAT OR ANGEL HOUSE WORKSHOP"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s08_00"
+      ],
+      "fact_ids": [
+        "fact_s08_00"
+      ],
+      "normalized_text": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE STEP 3: SENIOR AND JUNIOR LEADERS FROM AROUND THE WORLD ARE READY TO START FAIR, VALUE BASED PROJECTS TOGETHER PARTICIPATE IN COLLABORATIVE WORKSHOPS IN ANGEL HOUSES CREATE PROJECT OUTLINE LIST THE PROJECT FOR FUNDING TICKET SIZE ON ANGEL HOUSE 10-15.000€ PER PROJECT, ANGEL HOUSE FACILITATES THE FUNDING, PATRONS CONNECT WITH THE FOUNDING TEAM PATRONS CAN POSSIBLY RECEIVE THE MONEY BACK IN CASE THE COMPANY FUNDRAISES EFFECTIVELY OR TURN THE PATRONAGE INTO A LARGER TICKET IN THE MATURED COMPANY LATER ON",
+      "number_ids": [
+        "num_s08_00",
+        "num_s08_01"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 8,
+      "source_page_number": 8,
+      "source_slide_id": "src_s08",
+      "title": "ANGEL PROJECTS - LISTED ON ANGEL HOUSE"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s09_00"
+      ],
+      "fact_ids": [
+        "fact_s09_00"
+      ],
+      "normalized_text": "THE NUMBERS 12 PROJECTS STARTED ON ANGEL HOUSE WITHOUT PLATFORM SUPPORT 40+ COACHING CLIENTS SUPPORTED SINCE AUGUST 2025 200 HOUSES HAVE BEEN REGISTERED ON ANGEL HOUSE FOR RESIDENTIAL EXCHANGE WITH OTHER FAMILIES FINANCIAL MODEL & TRACTION SUMMARY COACHING CLIENTS WITH AT LEAST 500.000 € - 10.000.000 € IN ASSET REALLOCATION 80 NEW PROJECTS OVER 20 WORKSHOPS + EVENTS STEP 1: CUSTOM AMOUNTS FOR FINANCIAL CONSULTING SESSIONS 50% UP FRONT AND 50% AT THE END STEP 2: 20 EVENTS = 70.000€ IN REVENUE UNTIL EARLY 2027 STEP 3: 80 NEW PROJECTS FUNDED OVER A SPV WITH 20.000€ EACH, 1.600.000€ UNDER MANAGEMENT BY CLIENTS OF FINANCIAL CONSULTING SESSIONS ANGEL HOUSE MANAGES THE SPV, KEEPS 20% OF THE FUNDING PER PROJECT",
+      "number_ids": [
+        "num_s09_00",
+        "num_s09_01",
+        "num_s09_02",
+        "num_s09_03",
+        "num_s09_04",
+        "num_s09_05",
+        "num_s09_06",
+        "num_s09_07",
+        "num_s09_08",
+        "num_s09_09",
+        "num_s09_10",
+        "num_s09_11",
+        "num_s09_12",
+        "num_s09_13",
+        "num_s09_14",
+        "num_s09_15",
+        "num_s09_16"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 9,
+      "source_page_number": 9,
+      "source_slide_id": "src_s09",
+      "title": "THE NUMBERS"
+    },
+    {
+      "asset_ids": [
+        "asset_s10_01"
+      ],
+      "claim_ids": [
+        "claim_s10_00",
+        "claim_s10_01",
+        "claim_s10_02"
+      ],
+      "fact_ids": [
+        "fact_s10_00",
+        "fact_s10_01",
+        "fact_s10_02"
+      ],
+      "normalized_text": "THE FOUNDER PAULA SCHWARZ INVESTMENT MANAGEMENT AT STANFORD UNIVERSITY OXFORD SAÏD STRATEGIC MANAGEMENT EXECUTIVE PROGRAMME 30 UNDER 30 FORBES LIST FOR SOCIAL ENTREPRENEURSHIP PUBLISHED AUTHOR BY RANDOM HOUSE PREVIOUSLY ON THE BOARD OF THE BAYER CARES FOUNDATION MOTHER OF 3",
+      "number_ids": [
+        "num_s10_00",
+        "num_s10_01",
+        "num_s10_02"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 10,
+      "source_page_number": 10,
+      "source_slide_id": "src_s10",
+      "title": "THE FOUNDER"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s11_00",
+        "claim_s11_01",
+        "claim_s11_02",
+        "claim_s11_03"
+      ],
+      "fact_ids": [
+        "fact_s11_00",
+        "fact_s11_01",
+        "fact_s11_02",
+        "fact_s11_03"
+      ],
+      "normalized_text": "HOW ANGEL HOUSE ANGEL SUPPORTS PROJECTS THAT TURN INTO COMPANIES INSTITUTE ANGELS HAVE ACCESS TO TECHNOLOGY, RECORDING STUDIOS AND ANGEL SUPPORT IN LOCATIONS AROUND THE WORLD.",
+      "number_ids": [
+        "num_s11_00"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 11,
+      "source_page_number": 11,
+      "source_slide_id": "src_s11",
+      "title": "HOW ANGEL HOUSE"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s12_00"
+      ],
+      "fact_ids": [
+        "fact_s12_00"
+      ],
+      "normalized_text": "ANGEL FUND",
+      "number_ids": [],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 12,
+      "source_page_number": 12,
+      "source_slide_id": "src_s12",
+      "title": "ANGEL FUND"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s13_00",
+        "claim_s13_01"
+      ],
+      "fact_ids": [
+        "fact_s13_00",
+        "fact_s13_01"
+      ],
+      "normalized_text": "THE ANGEL FUND HELP ANGELS HEAL THE WORLD MISSION: ENABLE ANGELS TO GROW PROJECTS AND COMPANIES THAT CREATE REVENUE AND SOCIAL IMPACT. VISION: TO FINANCE ANGELS WHO ARE GROWING VALUABLE COMPANIES OR PROJECTS IN THE SPIRIT OF THE COMMUNITY. The Angel Fund selects growing projects and companies of Angels and supports with grants or funding. The fund is industry agnostic. Carefully selected companies are chosen by a distinguished investment committee. Angels are welcome to contribute Angel Checks of 50k €.",
+      "number_ids": [
+        "num_s13_00"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 13,
+      "source_page_number": 13,
+      "source_slide_id": "src_s13",
+      "title": "THE ANGEL FUND"
+    },
+    {
+      "asset_ids": [],
+      "claim_ids": [
+        "claim_s14_00"
+      ],
+      "fact_ids": [
+        "fact_s14_00"
+      ],
+      "normalized_text": "PARTNERS, GUEST & HOSTS WALL OF LOVE SINGULARITY UNIVERSITY FOUNDER INSTITUTE LONDON BUSINESS SCHOOL ETON COLLEGE FOUNDERS FORUM OXFORD CAMBRIDGE HARROW SCHOOL ANGEL HACK IMPERIAL COLLEGE LONDON 500 GLOBAL KING’S COLLEGE LONDON XPRIZE SCIENCES PO INSEAD WHARTON HARVARD STANFORD ETH ZURICH PRINCETON UNIVERSITY GLOBAL SHAPERS ASPEN INSTITUTE FORBES UNDER 30 NETWORK",
+      "number_ids": [
+        "num_s14_00",
+        "num_s14_01"
+      ],
+      "omission_eligible": false,
+      "omission_reason": null,
+      "position": 14,
+      "source_page_number": 14,
+      "source_slide_id": "src_s14",
+      "title": "PARTNERS, GUEST & HOSTS WALL OF LOVE"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "guardrail_groups": [
+    {
+      "group": "API Boundary",
+      "rules": [
+        "no_api_v1_for_dididecks",
+        "api_prefix_must_be_products_dididecks"
+      ]
+    },
+    {
+      "group": "Frontend Boundary",
+      "rules": [
+        "no_frontend_secrets",
+        "no_backend_persistence_in_frontend",
+        "no_training_pipelines_in_frontend"
+      ]
+    },
+    {
+      "group": "Editor Architecture",
+      "rules": [
+        "editor_must_use_shared_model",
+        "blocks_support_field_binding",
+        "inspector_shows_field_binding"
+      ]
+    },
+    {
+      "group": "Private Deck Safety",
+      "rules": [
+        "private_deck_routes_require_backend_access_check",
+        "share_links_validate_token",
+        "presentation_links_hide_workflow_controls"
+      ]
+    },
+    {
+      "group": "Review Surface Safety",
+      "rules": [
+        "surface_specific_review_required",
+        "no_vacuous_ready",
+        "play_print_export_risk_checked"
+      ]
+    },
+    {
+      "group": "AI Change Safety",
+      "rules": [
+        "ai_proposes_not_mutates",
+        "guardrails_before_accept",
+        "audit_and_version_after_accept"
+      ]
+    }
+  ]
+}

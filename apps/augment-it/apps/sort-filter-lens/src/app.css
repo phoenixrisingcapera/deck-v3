@@ -1,0 +1,365 @@
+/* Sort & Filter Lens — first instance of the Lens primitive. Styles
+   follow the existing :root theme tokens so the lens fits in alongside
+   pack-runner and prompt-template-manager visually. */
+
+.sort-filter-lens {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 13px;
+  overflow: hidden;
+}
+
+.lens-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lens-title { display: flex; align-items: baseline; gap: 0.6rem; }
+.lens-title h2 { margin: 0; font-size: 1rem; font-weight: 600; }
+/* --- labels ---
+   There are no badge recipes in this file any more. .lens-badge, .corpus-chip
+   with its .loading / .cold / .warm variants, .pending-chip and .failed-chip are
+   all <Chip> from @augment-it/shared-ui, at override-ladder rung 1 (tone + size)
+   — no radius override, no class passthrough, no data-deviation.
+
+   Two of them were spending `var(--color-accent-bg, rgba(120,160,255,.18))`
+   beside `var(--color-accent, #9ab8ff)` — two literal fallbacks the theme never
+   chose, one blue, next to a token that resolves federally to magenta.
+   MEASURED 2026-09-13 rather than assumed: both fallbacks are dead today,
+   because --color-accent-bg now ships in packages/theme as a color-mix off
+   --color-primary, so .lens-badge and .corpus-chip.warm render magenta-on-magenta
+   and NOT the magenta-border-on-blue-fill that
+   context-v/refactors/The-Sort-Filter-Lens-Containment-Breach.md describes in its
+   Phase 3. That doc's symptom has already been repaired federally; the literals
+   it points at are still in this file, just no longer reachable. Raised, not
+   chased — this rollout deletes the two it owns and leaves the other nine.
+
+   The semantic fix in the same move is .failed-chip, which drew a FAILURE in
+   --color-warn-fg — amber. A failed corpus add is `error`, and it is red now in
+   all three modes. Tone by meaning is exactly what that recipe was not doing.
+
+   Also gone: .chip-x, the remove affordance in the sort chip. It was a 14x14
+   `<span role="button" tabindex="0">` nested inside a <button>; it is now a real
+   sibling <Button size="icon"> in a .sfl-sort-chip wrapper. See App.svelte.
+
+   Four fewer leaked leftmost class names in a member whose containment breach is
+   its own tracked refactor. Incidental, not aimed at — that refactor is a
+   separate piece of work and nothing here touches .row, .error, .muted or
+   .empty, which are the live collisions. */
+.lens-sub { font-size: 11px; color: var(--color-text-muted); }
+.muted { color: var(--color-text-muted); }
+
+/* --- record-set picker --- */
+.record-set-picker { position: relative; }
+.picker-name { font-weight: 500; max-width: 24rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.picker-meta { color: var(--color-text-muted); font-size: 11px; }
+.picker-caret { color: var(--color-text-muted); font-size: 11px; }
+.picker-popover {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  min-width: 22rem;
+  max-height: 24rem;
+  overflow-y: auto;
+  background: var(--color-field, var(--color-bg));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 6px);
+  box-shadow: var(--fx-popover-shadow);
+  z-index: 20;
+  padding: 0.3rem;
+  /* Rung 0 — a Button never positions itself. The popover is the only thing
+     that knows its items are a full-width column, so the column lives here. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+/* A column-flex container shrinks its items when it runs out of room, and both
+   popovers cap their height — which silently crushed every item to 17px against
+   a 24px WCAG floor. Measured in the probe, not reasoned about. Still rung 0:
+   how children flex is the container's business, never the control's.
+   The child is now the Selector--Listbox rather than N Buttons; the rule holds
+   for the same reason, and the listbox itself caps nothing, so its options sit
+   at their natural height and the popover scrolls. */
+.picker-popover > * { flex: 0 0 auto; }
+.picker-row-name { font-weight: 500; }
+.picker-row-meta { color: var(--color-text-muted); font-size: 11px; }
+
+/* --- sort toolbar --- */
+.sort-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+.toolbar-label { font-size: 11px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.chip-rank {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px;
+  border-radius: 999px;
+  font-size: 10px;
+  background: var(--color-accent, #9ab8ff);
+  color: var(--color-on-accent, var(--color-bg));
+}
+.chip-arrow { color: var(--color-accent, #9ab8ff); }
+/* Rung 0 — the two controls of a sort chip sit side by side, and only their
+   container knows that. The wrapper is what makes them SIBLINGS rather than one
+   nested in the other, which is the entire fix. */
+.sfl-sort-chip { display: inline-flex; align-items: center; gap: var(--space-3xs); }
+
+.add-sort { position: relative; }
+.add-sort > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.25rem 0.55rem;
+  border: 1px dashed var(--color-border);
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+.add-sort > summary::-webkit-details-marker { display: none; }
+.add-sort > summary:hover { color: var(--color-text); border-color: var(--color-accent); }
+.add-sort-popover {
+  position: absolute;
+  top: calc(100% + 0.3rem);
+  left: 0;
+  min-width: 16rem;
+  max-height: 22rem;
+  overflow-y: auto;
+  padding: 0.4rem;
+  background: var(--color-field, var(--color-bg));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 6px);
+  box-shadow: var(--fx-popover-shadow);
+  z-index: 15;
+  /* Rung 0, as above — the popover owns the column, the Button owns the control. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+.add-sort-popover > * { flex: 0 0 auto; }
+.add-sort-group-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  padding: 0.3rem 0.5rem 0.15rem;
+}
+/* Rung 0 — Reset sits at the end of the toolbar. Placement is the container's
+   job, so it is a wrapper, not a class on the control. */
+.sfl-toolbar-end { margin-inline-start: auto; }
+
+/* Layout for a Button whose label is a full-width row rather than a centred
+   word — the popover items. The Button centres one child; this child is that
+   child, and it fills. Structure, not an override: no rung is used. */
+.sfl-btn-content-row {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+/* --- row list --- */
+.row-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0.8rem 1.2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.row:last-child { border-bottom: none; }
+.row-expanded { background: var(--color-field, rgba(255, 255, 255, 0.02)); }
+.row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.row-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.row-name { font-weight: 500; }
+/* .row-url is GONE — ExternalLink owns the colour, the truncation and the
+   hover. `max-width: 36rem` went with it rather than moving to a rung-0
+   wrapper: `.row-main` is already `min-width: 0` inside a flex `.row-head`
+   whose `.row-meta` is `flex-shrink: 0`, so the column absorbs the shrink and
+   the component truncates against a real constraint. The 11px muted type went
+   too — it was a raw px value against the seven-step scale, and the link now
+   inherits the row's size, which is the contract ExternalLink states by
+   declaring `font-size: inherit`. */
+
+/* --- inline URL edit per row --- */
+.row-url-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.row-url-edit {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+.row-url-input {
+  flex: 1;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--color-accent, #9ab8ff);
+  border-radius: var(--radius-md, 6px);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  min-width: 0;
+}
+/* No :focus rule here. It declared the same border-colour the base rule
+   already sets, and its box-shadow OVERRODE the federal *:focus-visible ring
+   with an undefined token — so the input's focus ring was a literal blue the
+   theme never chose. Deleting it hands the ring back to --focus-ring. */
+.row-url-input:disabled { opacity: 0.5; }
+.row-url-err {
+  margin: 0.2rem 0 0;
+  font-size: 11px;
+  color: var(--color-warn-fg);
+}
+.row-meta { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+.row-socials { font-size: 11px; color: var(--color-text-muted); }
+.error {
+  margin: 0.8rem 1rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--color-warn-fg);
+  border-radius: var(--radius-md, 6px);
+  color: var(--color-warn-fg);
+  font-size: 12px;
+}
+.loading, .empty { padding: 1.5rem 1rem; text-align: center; }
+
+/* --- per-row corpus-add affordance --- */
+.row-add {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem 0.2rem 0.2rem;
+}
+.row-add-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+.row-add-label code {
+  font-family: var(--font-mono, monospace);
+  color: var(--color-text);
+  padding: 0.05rem 0.3rem;
+  background: var(--color-bg);
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+}
+.row-add-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.row-add-input {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 6px);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 12px;
+  font-family: var(--font-mono, monospace);
+}
+.row-add-input:focus { outline: none; border-color: var(--color-accent, #9ab8ff); }
+.row-add-input:disabled { opacity: 0.5; }
+.row-add-err {
+  margin: 0;
+  font-size: 11px;
+  color: var(--color-warn-fg);
+}
+.row-add-ok {
+  margin: 0;
+  font-size: 11px;
+  color: var(--color-ok-text, #6c6);
+}
+
+/* --- in-flight + failed adds (fire-and-forget queue) --- */
+.pending-list {
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+/* Each queued add is <CardRow as="li" density="compact" tone={…}>. The whole
+   surface recipe — display, gap, padding, border, radius, background — came out
+   with it, along with three dead hex-literal fallbacks the theme has never not
+   defined (see the note at the top of this file), the wrapper <li> the card
+   used to nest inside, and all three `.p-*` state classes.
+
+   Two things moved rather than disappeared, and BOTH have the same cause:
+   CardRow sets `font-family`, `font-size` and `color` on ITSELF, so a rule on
+   an ancestor no longer reaches across it. Typography and status colour are
+   therefore stated on the children directly. These rows are URLs; mono is
+   load-bearing, not decoration.
+
+   The state hook is `data-tone`, which CardRow publishes — so the member does
+   not carry a second copy of the status as a class. Scoped under
+   `.pending-list` so it cannot reach any other CardRow in this member. The
+   text tone and the boundary tone now resolve to the SAME token, which the
+   hand-rolled version never managed (it drew a warn border over ok text).
+
+   Also removed with the recipe: `.p-ok { opacity: 0.75 }` — appearance standing
+   in for state, dimming a success row's text on a background it was already
+   low-contrast against. The ✓ glyph and the ok token carry it now. */
+.pending-icon,
+.pending-url,
+.pending-meta { font-family: var(--font-mono, monospace); }
+.pending-icon,
+.pending-url { font-size: 11px; }
+
+.pending-list [data-tone='ok'] .pending-icon,
+.pending-list [data-tone='ok'] .pending-url { color: var(--color-ok-fg); }
+.pending-list [data-tone='error'] .pending-icon,
+.pending-list [data-tone='error'] .pending-url { color: var(--color-error-fg); }
+.pending-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+}
+.pending-list [data-tone='info'] .pending-icon { animation: pending-spin 1s linear infinite; }
+@keyframes pending-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.pending-url {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+.pending-meta {
+  color: var(--color-text-muted);
+  font-size: 10px;
+  flex-shrink: 0;
+  max-width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pending-list [data-tone='error'] .pending-meta { color: var(--color-error-fg); max-width: 50%; }

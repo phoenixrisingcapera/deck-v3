@@ -1,0 +1,1 @@
+{"module":"investor_visual_grammar","rules":[{"id":"grammar.belief","when":"every slide","require":"one investor belief and one dominant proof"},{"id":"grammar.implication","when":"supporting copy","require":"explain investor implication, not editorial production notes"}]}

@@ -1,0 +1,855 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SearchBox from '@components/SearchBox.astro';
+import { STATIC_SEO } from '@lib/seo';
+import { formatDate, toDate } from '@lib/date';
+import { deriveKind, COGNITIVE_MODE } from '@lib/kind';
+import { loadManifestStats } from '@lib/manifest';
+
+// ─── Live numbers from corpus-manifest.md frontmatter ─────────────────────
+const stats = await loadManifestStats();
+
+// ─── Catalog teaser: 6 most-recently-modified entries across all repos ────
+const all = await getCollection('corpus');
+const published = all.filter((e) => (e.data as any).publish !== false && (e.data as any).private !== true);
+
+const repoSet = new Set(published.map((e) => (e.data as any).source_repo_slug ?? 'unknown'));
+const totalRepos = repoSet.size;
+
+const teaser = [...published]
+  .sort((a, b) => {
+    const am = toDate((a.data as any).date_modified ?? (a.data as any).date_created);
+    const bm = toDate((b.data as any).date_modified ?? (b.data as any).date_created);
+    return (bm ? bm.getTime() : 0) - (am ? am.getTime() : 0);
+  })
+  .slice(0, 6);
+
+// ─── Act 2: matrix examples — pick one canonical example per kind ────────
+// Walk the corpus once and keep the first hit per canonical kind. The Act 2
+// diagram surfaces these as the "click a folder, see a real example" affordance.
+const canonicalKinds = ['specs', 'plans', 'prompts', 'blueprints', 'reminders', 'agent-skills', 'explorations', 'issues'] as const;
+type CanonicalKind = (typeof canonicalKinds)[number];
+
+const matrixExamples: Record<CanonicalKind, { id: string; title: string; lede?: string; repo: string } | null> = {
+  specs: null, plans: null, prompts: null, blueprints: null, reminders: null,
+  'agent-skills': null, explorations: null, issues: null,
+};
+for (const entry of published) {
+  const data = entry.data as any;
+  const k = deriveKind(data.source_relative_path, entry.id).slug;
+  if (canonicalKinds.includes(k as CanonicalKind) && !matrixExamples[k as CanonicalKind]) {
+    matrixExamples[k as CanonicalKind] = {
+      id: entry.id,
+      title: data.title ?? entry.id,
+      lede: data.lede ?? data.description ?? data.summary,
+      repo: data.source_repo_slug ?? 'unknown',
+    };
+  }
+  if (canonicalKinds.every((c) => matrixExamples[c])) break;
+}
+
+// ─── Long-tail kinds — what's actually in the corpus beyond the canonical six ────
+// Brief says: "in isolation they all make sense" — so render them honestly.
+const tailCounts = new Map<string, number>();
+for (const entry of published) {
+  const k = deriveKind((entry.data as any).source_relative_path, entry.id);
+  if (k.canonical || k.slug === 'other') continue;
+  tailCounts.set(k.slug, (tailCounts.get(k.slug) ?? 0) + 1);
+}
+const tailKinds = Array.from(tailCounts.entries())
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 8);
+
+const base = import.meta.env.BASE_URL;
+
+const KIND_BLURB: Record<CanonicalKind, string> = {
+  specs:          'What we plan to build, written so it can be regenerated.',
+  plans:          'Sequenced, scoped work plans — between a spec and a prompt.',
+  prompts:        'Reusable prompts the team has tuned over months.',
+  blueprints:     'Patterns proven enough to lift into the next project.',
+  reminders:      'Things we keep forgetting until we wrote them down.',
+  'agent-skills': 'Executable know-how agents load and follow, not just read.',
+  explorations:   'Research where the destination isn\'t clear yet.',
+  issues:         'The painful debugging paths and what they taught us.',
+};
+
+// The skill's experimental tier — proposed folders whose shape is
+// deliberately not yet enforced across repos. Keep in sync with the
+// context-vigilance skill (lossless-agent-skills repo).
+const EXPERIMENTAL_TIER: { slug: string; blurb: string }[] = [
+  { slug: 'loops',    blurb: 'Recurring operational loops — scope, cadence, per-iteration procedure, exit conditions.' },
+  { slug: 'handoffs', blurb: 'End-of-session state capture so the next session — human or agent — resumes without re-derivation.' },
+  { slug: 'decisions', blurb: 'Isolated artifacts of decisions made — what, when, why, and the alternatives passed over. Kin to ADRs.' },
+  { slug: 'contracts', blurb: 'Not suggestions: constitution rules agents must always follow, or ironclad API-level data-flow contracts.' },
+];
+
+const MODE_LABEL: Record<'prep' | 'reflection' | 'journey', string> = {
+  prep: 'Prep',
+  reflection: 'Reflection',
+  journey: 'Journey',
+};
+
+const MODE_BLURB: Record<'prep' | 'reflection' | 'journey', string> = {
+  prep: 'Deciding what to build before we build it.',
+  reflection: 'Codifying what works and what doesn\'t after we built it.',
+  journey: 'Capturing research and the painful debugging paths along the way.',
+};
+---
+
+<BaseLayout title={STATIC_SEO.root.title} description={STATIC_SEO.root.description}>
+  <main class="home">
+
+    <!-- ─── ACT 1 — HOOK ─────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="folio" data-num="§ 01">The Hook</p>
+          <h1 class="hero__title">
+            Treat context with the same vigilance as <span class="hero__strike">code</span>
+            <span class="gradient-text">— and the context becomes the parent to the code.</span>
+          </h1>
+          <p class="hero__lede">
+            Most coding agents fail not because the code is hard, but because the
+            <span class="highlight">context is missing.</span>
+            You hand the agent a problem; it doesn't know your conventions, your prior
+            decisions, the mistakes you made last quarter. So it guesses.
+          </p>
+          <p class="hero__lede hero__lede--dim">
+            Treat context with vigilance — versioned, reviewed, cross-linked — and something flips.
+            <strong>Code becomes regenerable.</strong> A bug fix compresses from days to minutes.
+            Migrating across languages goes from "we'll plan a quarter for that" to "we did it
+            Tuesday afternoon." The agent didn't get smarter. It finally has the ground it needed
+            to stand on.
+          </p>
+
+          <div class="hero__search">
+            <SearchBox variant="hero" />
+          </div>
+
+          <div class="hero__ctas">
+            <a class="btn" href={`${base}corpus/`}>Browse the corpus</a>
+            <a class="btn" href={`${base}#practice`}>What is this practice?</a>
+          </div>
+        </div>
+
+        <aside class="hero__stats" aria-label="Live corpus stats">
+          <p class="eyebrow">Live count</p>
+          <div class="stats">
+            <div class="stat stat--lead">
+              <span class="stat__num">{stats.total_files}</span>
+              <span class="stat__label mono">context-v files</span>
+            </div>
+            <div class="stat__row">
+              <div class="stat">
+                <span class="stat__num">{totalRepos}</span>
+                <span class="stat__label mono">projects</span>
+              </div>
+              <div class="stat">
+                <span class="stat__num stat__num--thread">{stats.worked_on}</span>
+                <span class="stat__label mono">worked-on</span>
+              </div>
+            </div>
+            <div class="stat__row">
+              <div class="stat">
+                <span class="stat__num stat__num--accent">{stats.idea_started}</span>
+                <span class="stat__label mono">idea-started</span>
+              </div>
+              <div class="stat">
+                <span class="stat__num stat__num--warm">{stats.stub}</span>
+                <span class="stat__label mono">stubs</span>
+              </div>
+            </div>
+            {stats.date_generated && (
+              <p class="stats__footnote mono">
+                manifest: {stats.date_generated}
+              </p>
+            )}
+          </div>
+        </aside>
+      </div>
+
+      <div class="hero__pullquote container" aria-hidden="true">
+        <span class="hero__pullquote-mark mono">&gt;</span>
+        <span>days to minutes &middot; quarter to Tuesday afternoon &middot; the ground it needed to stand on</span>
+      </div>
+    </section>
+
+    <!-- ─── ACT 2 — PRACTICE ─────────────────────────────────────────── -->
+    <section id="practice" class="practice">
+      <div class="container">
+        <header class="section__head">
+          <p class="folio" data-num="§ 02">The Practice</p>
+          <h2 class="section__title">Eight folders. Three cognitive modes.</h2>
+          <p class="section__lede">
+            Every file is written for three readers: the human editing it, the agent loading it
+            as context tomorrow, and the public reader who lands on it cold.
+            <span class="highlight">Frontmatter is a contract.</span>
+            Cross-links are how attention navigates a tree too big for any one head.
+          </p>
+        </header>
+
+        <div class="matrix" role="list">
+          {canonicalKinds.map((kind) => {
+            const ex = matrixExamples[kind];
+            const mode = COGNITIVE_MODE[kind] || 'prep';
+            return (
+              <article class={`matrix__cell matrix__cell--${mode}`} role="listitem">
+                <header class="matrix__head">
+                  <span class="matrix__mode mono">{MODE_LABEL[mode]}</span>
+                  <h3 class="matrix__kind">{kind}/</h3>
+                </header>
+                <p class="matrix__blurb">{KIND_BLURB[kind]}</p>
+                {ex && (
+                  <a class="matrix__example" href={`${base}corpus/${ex.id}/`}>
+                    <span class="matrix__example-label mono">e.g.</span>
+                    <span class="matrix__example-title">{ex.title}</span>
+                    <span class="matrix__example-repo from-tag">{ex.repo}</span>
+                  </a>
+                )}
+              </article>
+            );
+          })}
+        </div>
+
+        <div class="modes">
+          <div class="modes__head">
+            <span class="eyebrow">Modes</span>
+          </div>
+          <ul class="modes__list">
+            {(['prep', 'reflection', 'journey'] as const).map((m) => (
+              <li class={`modes__item modes__item--${m}`}>
+                <span class="modes__dot" aria-hidden="true"></span>
+                <strong class="modes__name">{MODE_LABEL[m]}</strong>
+                <span class="modes__blurb">{MODE_BLURB[m]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="tail">
+          <p class="tail__lede">
+            <span class="eyebrow">Experimental tier</span>
+          </p>
+          <p class="tail__copy">
+            Four proposed folders the practice is actively trialing. Their shape is deliberately
+            not yet enforced — divergence between repos is expected and surfaced, not normalized.
+            This is the on-ramp every canonical folder took: <span class="mono">plans/</span> and
+            <span class="mono">agent-skills/</span> both started here.
+          </p>
+          <ul class="tail__list tail__list--stacked">
+            {EXPERIMENTAL_TIER.map((f) => (
+              <li class="tail__item">
+                <span class="tail__slug mono">{f.slug}/</span>
+                <span class="tail__blurb">{f.blurb}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {tailKinds.length > 0 && (
+          <div class="tail">
+            <p class="tail__lede">
+              <span class="eyebrow">In practice, also</span>
+            </p>
+            <p class="tail__copy">
+              Real-world context-v has a long tail beyond the canonical eight. Counted across the
+              corpus, the most common extra surfaces:
+            </p>
+            <ul class="tail__list">
+              {tailKinds.map(([slug, count]) => (
+                <li class="tail__item">
+                  <span class="tail__slug mono">{slug}/</span>
+                  <span class="tail__count mono">{count}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="tail__copy tail__copy--dim">
+              In isolation each makes sense; some are domain-specific and correct where they are.
+              The discipline tolerates the long tail — that's part of the proof — and promotes
+              what earns it: assimilation, not enforcement.
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- ─── ACT 3 — PROOF (teaser) ───────────────────────────────────── -->
+    <section class="proof">
+      <div class="container">
+        <header class="section__head">
+          <p class="folio" data-num="§ 03">The Proof</p>
+          <h2 class="section__title">{stats.total_files} living docs. {totalRepos} projects.</h2>
+          <p class="section__lede">
+            One small agency's actual work over 18 months — not a theory paper.
+            <span class="highlight">{stats.worked_on}</span> mature.
+            <span class="highlight">{stats.idea_started}</span> started.
+            <span class="highlight">{stats.stub}</span> stubs we'll fill out with agent help.
+            Some are specs you can fork. Some are reminders born after the third time we made
+            the same mistake. Some are explorations that ended in <em>"we decided not to pursue"</em> —
+            and those are valuable too.
+          </p>
+        </header>
+
+        <ul class="teaser" aria-label="Recently modified entries">
+          {teaser.map((entry) => {
+            const data = entry.data as any;
+            const modified = toDate(data.date_modified ?? data.date_created);
+            const kind = deriveKind(data.source_relative_path, entry.id);
+            return (
+              <li class="teaser__item">
+                <a href={`${base}corpus/${entry.id}/`}>
+                  <div class="teaser__meta mono">
+                    {modified && <time datetime={modified.toISOString()}>{formatDate(modified)}</time>}
+                    <span class="teaser__kind">{kind.label}</span>
+                    <span class="teaser__repo">{data.source_repo_slug ?? 'unknown'}</span>
+                  </div>
+                  <h3 class="teaser__title">{data.title ?? entry.id}</h3>
+                  {(data.lede || data.description) && (
+                    <p class="teaser__lede">{data.lede || data.description}</p>
+                  )}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div class="proof__cta">
+          <a class="btn btn-primary" href={`${base}corpus/`}>
+            Browse all {stats.total_files} docs →
+          </a>
+          <a class="btn" href={`${base}search/`}>
+            Search the corpus
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ACT 4 — INVITATION ───────────────────────────────────────── -->
+    <section class="invite">
+      <div class="container">
+        <header class="section__head section__head--centered">
+          <p class="folio" data-num="§ 04">The Invitation</p>
+          <h2 class="section__title">This isn't our IP.</h2>
+          <p class="section__lede">
+            The directory pattern, the file format, the practice — they're an
+            <span class="highlight">open specification</span>, in the spirit of the original
+            Hyperloop paper. We thought of this; here's how it works; someone please build it,
+            fork it, improve on it, or adopt it as-is. Schema and tooling are MIT.
+          </p>
+        </header>
+
+        <div class="invite__grid">
+          <article class="invite__card">
+            <p class="invite__audience eyebrow">For developers</p>
+            <h3 class="invite__cta-title">Fork the kit.</h3>
+            <p class="invite__cta-body">
+              The collator script, the schema, the splash you're reading — all on GitHub.
+              MIT-licensed. Treat it as a starter, not a framework.
+            </p>
+            <a
+              class="btn btn-primary"
+              href="https://github.com/lossless-group/context-vigilance-kit"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub →
+            </a>
+          </article>
+
+          <article class="invite__card">
+            <p class="invite__audience eyebrow">For practitioners</p>
+            <h3 class="invite__cta-title">Browse the corpus.</h3>
+            <p class="invite__cta-body">
+              {stats.total_files} files of working notes from {totalRepos} projects.
+              Search, sort by repo, lift what's useful. The vocabulary is yours to use.
+            </p>
+            <a class="btn" href={`${base}corpus/`}>Open the corpus →</a>
+          </article>
+
+          <article class="invite__card">
+            <p class="invite__audience eyebrow">For everyone else</p>
+            <h3 class="invite__cta-title">Read the spec.</h3>
+            <p class="invite__cta-body">
+              The practice, the why, and where it sits among
+              <code class="chip">agents.md</code>,
+              <code class="chip">llms.txt</code>, and
+              <code class="chip">spec-kit</code>.
+              Fellow travelers, not competitors.
+            </p>
+            <a class="btn" href={`${base}corpus/`}>The spec →</a>
+          </article>
+        </div>
+
+        <p class="invite__sign">
+          <span class="mono">— Build with us, build alongside us, or build your own.</span>
+        </p>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* ─── Section-level shared chrome ─────────────────────────────────── */
+  .home > section {
+    padding: var(--space-16) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .home > section:last-child { border-bottom: 0; }
+
+  .section__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-12);
+    max-width: 880px;
+  }
+  .section__head--centered {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section__title {
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    margin: var(--space-2) 0 var(--space-3);
+    letter-spacing: -0.03em;
+  }
+  .section__lede {
+    color: var(--color-text-soft);
+    font-size: 1.04rem;
+    line-height: 1.65;
+    max-width: 70ch;
+  }
+  .section__lede strong { color: var(--color-text); font-weight: 600; }
+  .section__lede em {
+    color: var(--color-text);
+    font-style: italic;
+  }
+
+  /* ─── Hero (Act 1) ────────────────────────────────────────────────── */
+  .hero {
+    padding-top: var(--space-20) !important;
+    padding-bottom: var(--space-20) !important;
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+  @media (max-width: 980px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 4.8vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    margin: var(--space-3) 0 var(--space-6);
+  }
+  .hero__strike {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--color-accent-warm);
+    color: var(--color-text-dim);
+  }
+  .hero__lede {
+    font-family: var(--font__sans);
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--color-text-soft);
+    max-width: 60ch;
+    margin-top: var(--space-4);
+  }
+  .hero__lede--dim {
+    color: var(--color-text-dim);
+    border-left: 2px solid var(--color-accent);
+    padding-left: var(--space-4);
+    margin-top: var(--space-5);
+  }
+  .hero__lede strong { color: var(--color-text); }
+
+  .hero__search {
+    margin-top: var(--space-8);
+  }
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  /* Stats widget (right column) */
+  .hero__stats {
+    padding: var(--space-5) var(--space-5);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero__stats::before {
+    /* faint dot-grid texture, scoped to the card */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--color-grid-dot) 1px, transparent 1px);
+    background-size: 16px 16px;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  .hero__stats > * { position: relative; z-index: 1; }
+  .stats { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-3); }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat__num {
+    font-family: var(--font__display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+  }
+  .stat__num--thread { color: var(--color-thread); }
+  .stat__num--accent { color: var(--color-accent); }
+  .stat__num--warm   { color: var(--color-accent-warm); }
+  .stat--lead .stat__num {
+    font-size: 2.6rem;
+    color: var(--color-accent);
+  }
+  .stat__label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+  .stat__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .stats__footnote {
+    margin-top: var(--space-2);
+    color: var(--color-text-faint);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* Pull-quote ribbon under the hero */
+  .hero__pullquote {
+    margin-top: var(--space-12);
+    font-family: var(--font__mono);
+    font-size: 0.82rem;
+    color: var(--color-text-dim);
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .hero__pullquote-mark {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* ─── Practice / matrix (Act 2) ───────────────────────────────────── */
+  .matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
+  }
+  .matrix__cell {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+  }
+  .matrix__cell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--cell-color, var(--color-accent));
+  }
+  .matrix__cell--prep        { --cell-color: var(--color-accent); }
+  .matrix__cell--reflection  { --cell-color: var(--color-accent-warm); }
+  .matrix__cell--journey     { --cell-color: var(--color-thread); }
+
+  .matrix__cell:hover {
+    border-color: var(--color-border-strong);
+    transform: translateY(-1px);
+  }
+
+  .matrix__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .matrix__mode {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cell-color, var(--color-accent));
+  }
+  .matrix__kind {
+    font-family: var(--font__mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+  }
+  .matrix__blurb {
+    color: var(--color-text-soft);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .matrix__example {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    background: color-mix(in oklab, var(--color-text) 2%, transparent);
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+  }
+  .matrix__example:hover {
+    text-decoration: none;
+    border-color: var(--cell-color, var(--color-accent));
+    background: color-mix(in oklab, var(--color-text) 5%, transparent);
+  }
+  .matrix__example-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+  .matrix__example-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .matrix__example-repo {
+    align-self: flex-start;
+    font-size: 0.65rem;
+  }
+
+  /* Mode legend */
+  .modes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-soft);
+    margin-bottom: var(--space-10);
+  }
+  .modes__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+  }
+  .modes__item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    font-family: var(--font__mono);
+    font-size: 0.84rem;
+    color: var(--color-text-soft);
+  }
+  .modes__dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    align-self: center;
+  }
+  .modes__item--prep .modes__dot       { background: var(--color-accent); }
+  .modes__item--reflection .modes__dot { background: var(--color-accent-warm); }
+  .modes__item--journey .modes__dot    { background: var(--color-thread); }
+  .modes__name {
+    color: var(--color-text);
+    font-weight: 600;
+    margin-right: var(--space-1);
+  }
+  .modes__blurb {
+    color: var(--color-text-dim);
+  }
+
+  /* Long-tail row */
+  .tail {
+    padding: var(--space-5);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  .tail__lede { margin-bottom: var(--space-2); }
+  .tail__copy {
+    color: var(--color-text-soft);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+    max-width: 70ch;
+  }
+  .tail__copy--dim { color: var(--color-text-dim); margin-top: var(--space-3); margin-bottom: 0; }
+  .tail__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: var(--space-3) 0;
+  }
+  .tail__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 4px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    font-size: 0.8rem;
+  }
+  .tail__slug { color: var(--color-text); font-weight: 600; }
+  .tail__count {
+    color: var(--color-text-dim);
+    font-size: 0.74rem;
+  }
+  .tail__list--stacked {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tail__list--stacked .tail__item {
+    display: flex;
+    align-items: baseline;
+    padding: 8px 12px;
+  }
+  .tail__list--stacked .tail__slug { flex: 0 0 7.5rem; }
+  .tail__blurb {
+    color: var(--color-text-soft);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+  /* The tail blocks stack — space the experimental tier above the long tail. */
+  .tail + .tail { margin-top: var(--space-4); }
+
+  /* ─── Proof teaser (Act 3) ───────────────────────────────────────── */
+  .teaser {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-8);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+  }
+  .teaser__item a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+    color: var(--color-text);
+    height: 100%;
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+  }
+  .teaser__item a:hover {
+    text-decoration: none;
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+  .teaser__item a:hover .teaser__title { color: var(--color-accent); }
+  .teaser__meta {
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+    flex-wrap: wrap;
+    font-size: 0.74rem;
+    color: var(--color-text-dim);
+  }
+  .teaser__kind {
+    color: var(--color-thread);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .teaser__repo { color: var(--color-text-soft); }
+  .teaser__title {
+    font-family: var(--font__display);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+    transition: color var(--transition-fast);
+  }
+  .teaser__lede {
+    color: var(--color-text-soft);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    /* clamp 3 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .proof__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+  }
+
+  /* ─── Invitation (Act 4) ─────────────────────────────────────────── */
+  .invite__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
+  }
+  .invite__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+  }
+  .invite__audience { font-size: 0.66rem; }
+  .invite__cta-title {
+    font-family: var(--font__display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.025em;
+  }
+  .invite__cta-body {
+    color: var(--color-text-soft);
+    font-size: 0.94rem;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .invite__card .btn { align-self: flex-start; }
+
+  .invite__sign {
+    text-align: center;
+    color: var(--color-text-dim);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+</style>

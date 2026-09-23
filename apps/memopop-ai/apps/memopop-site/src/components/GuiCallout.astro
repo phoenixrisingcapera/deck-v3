@@ -1,0 +1,346 @@
+---
+interface Props {
+  variant?: 'default' | 'compact';
+}
+
+const { variant = 'default' } = Astro.props;
+
+const dialogId = `gui-lightbox-${Math.random().toString(36).slice(2, 10)}`;
+const screenshotUrl = 'https://ik.imagekit.io/xvpgfijuw/uploads/lossless/2025-dec/MemoPop_AI_content_1777866136156_bOoHTyHzX.webp';
+const screenshotAlt = 'MemoPop AI native desktop app screenshot';
+---
+
+<section class={`gui-callout ${variant === 'compact' ? 'is-compact' : ''}`}>
+  <aside class="callout-box">
+    <p class="callout-eyebrow">For investment professionals</p>
+    <h2 class="callout-heading">
+      Don't want to run LangChain through the command line?
+    </h2>
+    <p class="callout-body">
+      Don't know what that means, but you're still an investment professional?
+      Check out our <code>MemoPop</code> native desktop app — the same memo-generation
+      pipeline behind these pages, packaged for your laptop without the terminal.
+    </p>
+    <a
+      href="https://www.lossless.group/projects/gallery/memopop-ai"
+      class="callout-link"
+      target="_blank"
+      rel="noopener"
+    >
+      Visit MemoPop
+      <span aria-hidden="true">→</span>
+    </a>
+  </aside>
+  <button
+    type="button"
+    class="callout-image-link"
+    data-lightbox-trigger
+    data-lightbox-target={dialogId}
+    aria-label="Expand screenshot"
+  >
+    <img
+      src={screenshotUrl}
+      alt={screenshotAlt}
+      class="callout-image"
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="callout-image-hint" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      Click to expand
+    </span>
+  </button>
+</section>
+
+<dialog class="callout-lightbox" id={dialogId} aria-label="Screenshot preview">
+  <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <img
+    src={screenshotUrl}
+    alt={screenshotAlt}
+    class="lightbox-image"
+    loading="lazy"
+    decoding="async"
+  />
+</dialog>
+
+<script>
+  function initGuiCalloutLightboxes() {
+    const triggers = document.querySelectorAll<HTMLButtonElement>('[data-lightbox-trigger]');
+    triggers.forEach((trigger) => {
+      if (trigger.dataset.lightboxBound === 'true') return;
+      const targetId = trigger.dataset.lightboxTarget;
+      if (!targetId) return;
+      const dialog = document.getElementById(targetId) as HTMLDialogElement | null;
+      if (!dialog) return;
+
+      const open = () => {
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+      };
+      const close = () => {
+        if (dialog.open) dialog.close();
+        document.body.style.overflow = '';
+      };
+
+      trigger.addEventListener('click', open);
+      dialog.querySelector<HTMLButtonElement>('[data-lightbox-close]')?.addEventListener('click', close);
+      dialog.querySelector<HTMLImageElement>('.lightbox-image')?.addEventListener('click', close);
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) close();
+      });
+      dialog.addEventListener('close', () => {
+        document.body.style.overflow = '';
+      });
+
+      trigger.dataset.lightboxBound = 'true';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGuiCalloutLightboxes);
+  } else {
+    initGuiCalloutLightboxes();
+  }
+</script>
+
+<style>
+  .gui-callout {
+    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) 1fr;
+    gap: 1.75rem;
+    align-items: center;
+  }
+
+  .callout-box {
+    padding: 1.85rem 2rem;
+    background: linear-gradient(135deg, rgba(4, 229, 229, 0.06) 0%, rgba(111, 255, 214, 0.035) 100%);
+    border: 1px solid rgba(111, 255, 214, 0.22);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .callout-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(4, 229, 229, 0.5) 50%,
+      transparent 100%);
+  }
+
+  .callout-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--clr-lossless-accent--aquamarine);
+    margin: 0;
+  }
+
+  .callout-heading {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--clr-lossless-primary);
+    margin: 0.5rem 0 0 0;
+    line-height: 1.3;
+  }
+
+  .callout-body {
+    font-size: 0.95rem;
+    color: var(--clr-lossless-primary-light);
+    line-height: 1.6;
+    margin: 0.85rem 0 0 0;
+  }
+
+  .callout-body code {
+    font-family: var(--ff-monospace);
+    font-size: 0.88em;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--clr-lossless-accent--aquamarine);
+    border: 1px solid rgba(111, 255, 214, 0.15);
+  }
+
+  .callout-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: var(--clr-lossless-primary);
+    text-decoration: none;
+    transition: color 0.2s, gap 0.2s;
+  }
+
+  .callout-link:hover {
+    color: var(--clr-lossless-accent--brightest);
+    gap: 0.65rem;
+  }
+
+  .callout-image-link {
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--clr-border-subtle);
+    background: rgba(0, 0, 0, 0.3);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    line-height: 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    cursor: zoom-in;
+    padding: 0;
+    position: relative;
+    font: inherit;
+    color: inherit;
+    width: 100%;
+  }
+
+  .callout-image-link:hover {
+    border-color: rgba(4, 229, 229, 0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(4, 229, 229, 0.18);
+  }
+
+  .callout-image-link:hover .callout-image-hint {
+    opacity: 1;
+  }
+
+  .callout-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .callout-image-hint {
+    position: absolute;
+    bottom: 0.85rem;
+    right: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    background: rgba(10, 10, 15, 0.75);
+    border: 1px solid rgba(111, 255, 214, 0.3);
+    border-radius: 6px;
+    color: var(--clr-lossless-accent--aquamarine);
+    font-size: 0.74rem;
+    font-weight: 500;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 0.2s;
+    backdrop-filter: blur(6px);
+  }
+
+  .gui-callout.is-compact {
+    margin: 2rem 0;
+    grid-template-columns: 1fr;
+  }
+
+  .gui-callout.is-compact .callout-box {
+    padding: 1.35rem 1.5rem;
+  }
+
+  .gui-callout.is-compact .callout-heading {
+    font-size: 1.18rem;
+  }
+
+  .gui-callout.is-compact .callout-image-link {
+    display: none;
+  }
+
+  /* Lightbox */
+  .callout-lightbox {
+    width: 90vw;
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: visible;
+    color: inherit;
+  }
+
+  .callout-lightbox::backdrop {
+    background: rgba(5, 5, 10, 0.88);
+    backdrop-filter: blur(6px);
+  }
+
+  .callout-lightbox[open] {
+    animation: lightbox-in 0.18s ease-out;
+  }
+
+  @keyframes lightbox-in {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .lightbox-image {
+    width: 100%;
+    max-height: 90vh;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid rgba(111, 255, 214, 0.15);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+    cursor: zoom-out;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -2.75rem;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    padding: 0;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(4, 229, 229, 0.18);
+    border-color: rgba(4, 229, 229, 0.5);
+  }
+
+  @media (max-width: 860px) {
+    .gui-callout {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .callout-image-link {
+      order: -1;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .callout-image-hint {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .callout-box { padding: 1.4rem 1.3rem; }
+    .callout-heading { font-size: 1.15rem; }
+    .lightbox-close {
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(0, 0, 0, 0.65);
+    }
+  }
+</style>

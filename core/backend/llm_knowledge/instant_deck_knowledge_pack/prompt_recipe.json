@@ -1,0 +1,22 @@
+{
+  "defaultPrompt": "Redesign this deck as a VC. Redesign the complete uploaded company deck for a VC/investor audience, preserving source-backed facts, numerical meaning and brand identity. Choose the narrative, slide order, copy and visual composition from the content. Strengthen evidence hierarchy and readability; do not invent missing evidence or a funding request. No user-written prompt or predefined style family is required.",
+  "requiredBehaviors": [
+    "whole_deck_only",
+    "source_grounded",
+    "product_gist_first",
+    "brand_gist_preserved",
+    "application_owned_vc_redesign",
+    "venture_audience_tuned",
+    "missing_evidence_over_hallucination",
+    "presentation_scale_typography",
+    "reviewable_output_only"
+  ],
+  "narrativeObjectives": [
+    "Understand the company from the uploaded deck first: what the product is, who it serves, what pain matters, and why the company could matter to investors.",
+    "Extract the brand feel from the deck's existing language and visuals, then redesign in a sharper investor direction without losing the company's identity.",
+    "Apply the default VC redesign purpose to the whole deck without requiring the user to supply instructions.",
+    "Make the story scannable in one pass for VC partners and investment committees.",
+    "Turn raw source material into a cleaner problem -> solution -> traction -> market -> team -> ask progression when evidence allows.",
+    "Highlight risks, proof gaps, and diligence follow-ups instead of hiding them."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "module": "stage_benchmark_rules",
+  "version": "0.1.0",
+  "principle": "Financial expectations must be stage-appropriate. Do not force late-stage metrics onto pre-seed decks, but do require credible proxies.",
+  "stages": [
+    {
+      "stage": "pre_seed",
+      "expectedEvidence": ["problem urgency", "founder-market fit", "early discovery", "prototype or pilot", "market logic", "clear ask"],
+      "financialFocus": ["market size logic", "pricing hypothesis", "use of funds", "milestones"],
+      "avoidOverweighting": ["mature CAC", "full LTV", "large-scale revenue forecast"]
+    },
+    {
+      "stage": "seed",
+      "expectedEvidence": ["early traction", "paid pilots or early revenue", "repeat usage", "pipeline", "pricing signal"],
+      "financialFocus": ["revenue model", "market sizing", "gross margin proxy", "runway", "next-round milestones"]
+    },
+    {
+      "stage": "series_a",
+      "expectedEvidence": ["repeatable acquisition", "retention", "revenue growth", "sales motion", "unit-economics direction"],
+      "financialFocus": ["ARR/MRR quality", "growth rate", "CAC/payback", "gross margin", "forecast credibility"]
+    },
+    {
+      "stage": "growth",
+      "expectedEvidence": ["scalable economics", "cohort performance", "margin profile", "expansion revenue", "operational metrics"],
+      "financialFocus": ["forecast accuracy", "profitability path", "market share", "capital efficiency", "valuation support"]
+    }
+  ]
+}

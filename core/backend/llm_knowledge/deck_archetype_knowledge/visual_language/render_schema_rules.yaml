@@ -1,0 +1,57 @@
+render_schema_rules:
+  renderer_contract:
+    schema_version: "smart-deck-render-schema.v1"
+    canvas:
+      width: 1920
+      height: 1080
+    renderer: "GeneratedSlideRenderer.svelte"
+    instruction: "The LLM must output render_schema_json only. The Svelte renderer converts schema elements to DOM."
+    forbidden:
+      - "Do not output Svelte code."
+      - "Do not output Tailwind utility classes."
+      - "Do not output CSS files."
+      - "Do not reference unverified external images."
+  element_rules:
+    allowed_types:
+      - "text"
+      - "shape"
+      - "image"
+      - "chart"
+    bounds:
+      - "Every element must fit inside 1920x1080."
+      - "Maintain at least 72px safe margin unless the element is a deliberate full-bleed background."
+      - "Avoid overlapping text elements."
+    hierarchy:
+      - "One headline dominates the slide."
+      - "Use no more than 3 primary content groups."
+      - "Use contrast, spacing, and size before decoration."
+  layout_patterns:
+    claim_with_evidence:
+      use_when: "A slide needs one argument and 2-4 proof points."
+      structure:
+        - "Large claim headline"
+        - "Evidence cards or metric row"
+        - "Small source/missing-evidence note when needed"
+    two_column_before_after:
+      use_when: "Problem, solution, regulatory shift, or workflow comparison."
+      structure:
+        - "Left: current state or constraint"
+        - "Right: new state or unlocked opportunity"
+        - "Bridge label that explains the change"
+    metric_with_context:
+      use_when: "Traction, market, track record, pipeline, or economics."
+      structure:
+        - "One primary metric"
+        - "Short interpretation"
+        - "Context or caveat"
+    matrix_or_map:
+      use_when: "Competition, positioning, portfolio construction, or blue ocean strategy."
+      structure:
+        - "Axes or segments"
+        - "Positioned company/fund"
+        - "Short takeaway"
+  visual_quality_bar:
+    - "The slide can be understood in 5 seconds."
+    - "The visual structure reinforces the narrative job."
+    - "No decorative element competes with evidence."
+    - "Missing inputs are shown as conservative placeholders, not invented facts."

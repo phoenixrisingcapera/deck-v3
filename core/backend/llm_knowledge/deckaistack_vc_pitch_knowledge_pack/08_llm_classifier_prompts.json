@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "system_instruction": "You classify investor pitch decks by meaning, not only by title. Use slide text, layout, visual clues, numbers, deck position, and investor intent. Always return structured JSON. Do not invent metrics. Mark missing information explicitly.",
+  "slide_classifier_prompt": "Classify this slide into the best VC pitch archetype. Use evidence signals from title, text blocks, visuals, layout, and deck position. Return primary archetype, confidence, alternatives, block roles, missing information, and rewrite recommendations.",
+  "block_classifier_prompt": "Classify each block by its role inside the slide. Consider font size, location, neighbouring blocks, semantic meaning, and visual function. Separate decorative visuals from evidence-bearing visuals.",
+  "ambiguity_instruction": "When ambiguous, return the most useful investor-facing classification and include alternatives. Never force high confidence when the slide is sparse or conflicting."
+}

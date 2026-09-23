@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "instant-deck-design-rules.v1",
+  "ownership": "product_owned_non_customer_knowledge",
+  "rules": [
+    {
+      "id": "fixed-canvas-no-overflow",
+      "topics": ["geometry", "overflow", "clipping", "responsive"],
+      "guidance": "Compose every isolated slide for a 1920 by 1080 canvas. Keep every visible element within the slide bounds, reserve safe margins, and never rely on page growth, scrolling, overflow clipping, or hidden text to make content fit. Reduce copy, resize the composition, or split narrative roles before returning HTML."
+    },
+    {
+      "id": "bounded-content-density",
+      "topics": ["density", "readability", "copy", "hierarchy"],
+      "guidance": "Use one dominant idea per slide. Prefer a short assertion, one visual proof structure, and a small number of supporting facts. Avoid memo-like paragraphs, dense evidence dumps, tiny type, and panels whose content height is uncertain. Preserve whitespace intentionally without leaving the canvas visually unfinished."
+    },
+    {
+      "id": "creative-layout-freedom",
+      "topics": ["art-direction", "composition", "variety", "editorial"],
+      "guidance": "Exercise creative freedom inside the geometry contract. Select asymmetric editorial covers, metric-led proof, timelines, system diagrams, people strips, capital plans, or comparisons according to evidence. Vary scale, alignment, rhythm, and focal point; do not repeat one card grid or centred template across the deck."
+    },
+    {
+      "id": "typography-readability",
+      "topics": ["typography", "contrast", "legibility", "hierarchy"],
+      "guidance": "Create an obvious display, section-title, body, caption, and metric hierarchy using distinct display and body families. Maintain contrast on opaque surfaces, avoid long line lengths and undersized copy, and treat any text that only fits through clipping or extreme compression as a failed composition."
+    },
+    {
+      "id": "editorial-scale-and-canvas-use",
+      "topics": ["editorial", "scale", "typography", "canvas", "focal-point"],
+      "guidance": "Make the primary message readable at presentation distance. Use one unmistakable large-scale focal element, occupy the 16:9 canvas intentionally, and balance it with a secondary evidence zone. A small heading above several tiny bordered text boxes, a spreadsheet-like evidence dump, or content stranded in a corner with accidental empty space is a failed composition."
+    },
+    {
+      "id": "source-cleanup-not-transcription",
+      "topics": ["ocr", "cleanup", "source", "redesign", "copy"],
+      "guidance": "Redesign source evidence instead of transcribing it. Remove OCR debris, repeated boilerplate, page labels, generic titles such as Slide 9, and decorative source fragments that have no investor meaning. Synthesize dense tables into a dominant takeaway plus only the strongest supporting evidence; never shrink all source text merely to preserve it visibly."
+    },
+    {
+      "id": "operator-metadata-not-investor-copy",
+      "topics": ["editorial-notes", "test-instructions", "source", "redesign", "investor-copy"],
+      "guidance": "Treat authorial notes about testing, evaluating, reviewing, or redesigning the deck as local operator metadata, not investor content. Omit test-deck labels, concept-only disclaimers, workflow instructions, quality questions, and statements addressed to Deck V2 or the model. Extract the underlying company and product evidence, then write the presentation in the company's voice without mentioning the redesign process."
+    },
+    {
+      "id": "asset-led-storytelling",
+      "topics": ["images", "assets", "brand", "storytelling"],
+      "guidance": "Use only approved source assets, but use them deliberately as evidence and atmosphere. Preserve aspect ratio, choose intentional crops, avoid stretching and token thumbnails, and balance image mass with text. Never paste a miniature reproduction of a source page into the redesign. Feature useful evidence at meaningful scale or rebuild it natively as typography, a diagram, a timeline, or a chart. When no suitable image exists, prefer a restrained native diagram over invented imagery."
+    },
+    {
+      "id": "coherent-art-direction-varied-composition",
+      "topics": ["art-direction", "rhythm", "composition", "coherence", "variety"],
+      "guidance": "Choose one coherent visual system for the complete deck and vary composition rather than brand language. Build a deliberate sequence of thesis, timeline, system, comparison, metric, people, and decisive closing compositions as evidence permits. Each slide needs one dominant assertion or visual proof; nested cards, repeated equal tiles, chip walls, directories, and repeated two-column shells are failed substitutes for art direction."
+    },
+    {
+      "id": "source-backed-palette-provenance",
+      "topics": ["brand", "palette", "provenance", "colour", "coherence"],
+      "guidance": "Build art direction around source-observed or confirmed brand colours. Treat generated accessibility roles as tonal support, not as equally authoritative brand accents, and never distribute every supplied palette role as a synthetic three-colour template. Prefer one dominant field, one signature source-backed colour, and restrained neutral or tonal support."
+    },
+    {
+      "id": "visual-storytelling-coverage",
+      "topics": ["svg", "diagram", "chart", "timeline", "visual-proof"],
+      "guidance": "Across a full investor deck, use meaningful approved imagery or native SVG diagrams, timelines, charts, and process maps on multiple non-cover slides. Visuals must operate at presentation scale and communicate structure or evidence through substantial painted ink and readable labels; a large SVG viewport containing only a few thin lines or dots does not count. Use oversized typographic composition where evidence does not support a diagram."
+    },
+    {
+      "id": "synthesized-headlines-not-source-labels",
+      "topics": ["headlines", "titles", "synthesis", "hierarchy", "copy"],
+      "guidance": "Rewrite each slide title as a concise investor-facing assertion, normally one or two lines and never more than twelve words or eighty characters. Do not copy long source headings, process-step labels, URLs, or page titles into headline position. The headline must express the redesigned slide's takeaway rather than identify the source page."
+    },
+    {
+      "id": "no-empty-or-unreadable-panels",
+      "topics": ["panels", "contrast", "empty-space", "surfaces", "hierarchy"],
+      "guidance": "Every large painted panel must earn its area with readable content, a meaningful approved asset, or a native diagram. Never leave a large blank panel beside the main story. Explicitly set a contrast-safe foreground whenever a component changes to an opaque surface; inherited pale text on a pale panel is a render failure. Preserve intentional whitespace without creating unfinished or empty containment."
+    },
+    {
+      "id": "decisive-close-not-directory",
+      "topics": ["closing", "narrative", "people", "partners", "call-to-action"],
+      "guidance": "End with one grounded proposition, capital decision, or next action. Do not close on a partner directory, logo wall, chip collection, source inventory, or evidence appendix. Curate people and partner proof into a small number of meaningful relationships rather than a wall of labels."
+    },
+    {
+      "id": "investor-narrative-rhythm",
+      "topics": ["investor", "narrative", "sequence", "traction", "raise"],
+      "guidance": "Build an evidence-led investor arc rather than mirroring source pages: proposition, problem, differentiated solution, proof, business model, market or go-to-market, team, and capital plan when supported. Give traction and the ask decisive visual weight and group source evidence into the smallest coherent slide sequence."
+    },
+    {
+      "id": "investment-argument-determines-slide-count",
+      "topics": ["investor", "architecture", "slide-count", "authorship", "narrative"],
+      "guidance": "Let the investment argument determine the output length and sequence. Never preserve the input slide count or page order by default. Merge redundant evidence, split overloaded arguments, add only strategy roles supported by company or cited external evidence, and give every slide a distinct job in moving an investor from thesis to proof to decision."
+    },
+    {
+      "id": "financial-storytelling-with-evidence-lanes",
+      "topics": ["financials", "unit-economics", "projections", "charts", "investor"],
+      "guidance": "Select the financial facts and figures that best explain the investment case, but visibly distinguish actual company results, source-labelled projections, external benchmarks, and modelled scenarios. Every chart value needs units, period, status and lineage. Prefer one legible economic bridge, cohort pattern, margin story or use-of-funds logic over a spreadsheet dump; never manufacture traction or make an assumption look historical."
+    },
+    {
+      "id": "market-and-competition-as-investor-proof",
+      "topics": ["market", "competition", "why-now", "citations", "positioning"],
+      "guidance": "Turn verified external research into an investor argument: define the category, expose the structural change, show where alternatives stop, and state the company wedge. Use source citations for current market, regulation, pricing, funding and competitor claims. Do not fill a slide with research excerpts or academic language; synthesize the implication and keep provenance available in the product source summary."
+    },
+    {
+      "id": "brand-led-not-template-led",
+      "topics": ["brand", "website", "source-assets", "art-direction", "identity"],
+      "guidance": "Derive the deck's visual character from observed source or website brand evidence: signature colour, typography, logo treatment, imagery character and tone. Preserve recognisable identity while upgrading hierarchy and composition. When evidence is incomplete, use restrained neutrals and one confirmed accent rather than inventing a generic startup gradient or unrelated aesthetic."
+    },
+    {
+      "id": "visual-primitive-selection",
+      "topics": ["composition", "chart", "diagram", "product-ui", "people", "rhythm"],
+      "guidance": "Choose the primitive that best explains each argument: a thesis needs editorial scale; a workflow needs a journey; a platform needs a system map; traction needs a dominant verified metric or chart; competition needs meaningful axes; financials need an evidence-bound bridge; team needs capabilities that de-risk execution. Do not use equal cards when relationships, sequence, magnitude or contrast are the real message."
+    },
+    {
+      "id": "deck-level-visual-rhythm",
+      "topics": ["rhythm", "sequence", "density", "contrast", "presentation"],
+      "guidance": "Design the deck as a paced experience. Alternate high-impact thesis or metric moments with explanatory diagrams and proof, vary density intentionally, and create section transitions through scale and field colour without changing the brand system. Avoid seven slides with the same shell, repeated headers, identical cards or mechanically uniform whitespace."
+    },
+    {
+      "id": "render-before-persist",
+      "topics": ["validation", "render", "overflow", "quality-gate"],
+      "guidance": "A slide is acceptable only when isolated Chromium rendering confirms zero horizontal or vertical overflow, zero clipped visible elements, no severe overlaps, readable contrast, and stable 16:9 geometry. Never use scrollable containers inside a fixed slide. Static HTML plausibility is not proof of visual correctness."
+    }
+  ]
+}

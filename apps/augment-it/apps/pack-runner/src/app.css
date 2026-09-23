@@ -1,0 +1,281 @@
+/*
+ * pack-runner styles. Imported as a side effect from index.ts (standalone
+ * :3009) and mount.ts (federation). All selectors namespaced under .pr-app
+ * so they can't leak. Tokens only — no hex.
+ */
+
+.pr-app .pr-status-bar {
+  padding: 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 11px;
+}
+
+/* Enrichment-mode switch — symmetric with prompt-template-manager. */
+/* Enrichment-mode switch moved to packages/shared-ui (Phase 2c). The shell
+ * renders it as the composite slot's header above Pack Runner. */
+
+.pr-app .pr-body { padding: 1.25rem 1.5rem; max-width: 900px; }
+
+.pr-app .pr-head { margin-bottom: 1rem; }
+
+.pr-app h2 {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pr-app h3 {
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pr-app .muted { color: var(--color-text-muted); line-height: 1.5; max-width: 65ch; }
+.pr-app .hint { margin: 0 0 0.5rem; font-size: 0.8rem; }
+
+.pr-app code {
+  background: var(--color-field);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.pr-app .card {
+  margin: 0.6rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.pr-app select {
+  background: var(--color-field);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 0.35rem 0.5rem;
+  border-radius: 3px;
+  font: 0.85rem var(--font-mono);
+  width: 100%;
+  max-width: 480px;
+}
+
+.pr-app .row-filter-chips {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pr-app .row-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.pr-app .row-actions-hint {
+  font-size: 0.75rem;
+}
+
+.pr-app .row-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+.pr-app .row-status[data-status='has-url'] {
+  color: var(--color-confidence-high);
+}
+.pr-app .row-status[data-status='no-url'] {
+  color: var(--color-text-muted);
+}
+
+.pr-app .empty-row {
+  padding: 0.5rem 0.6rem;
+  font-style: italic;
+}
+
+.pr-app .rows {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background: var(--color-background);
+}
+
+/* `.pr-app .rows li` used to own the row's padding and hairline separator.
+   Each row IS the li now — <CardRow as="li"> — and CardRow paints its own
+   surface, border and padding, so this rule would have doubled them.
+
+   Deleted rather than reduced, and note WHY it could not simply stay: the
+   selector is (0,1,1), which out-specifies `.ui-cardrow` at (0,2,0)… no, it
+   loses — but `.pr-app .rows li` matches the CardRow element ITSELF now that
+   `as="li"` is in play, which is a sharper edge than the nested version had.
+   A member rule that targets the row's tag name is aimed straight at the
+   component the moment `as` is used. Worth knowing before the next member
+   reaches for `as="li"` with a `ul li` rule still in its stylesheet.
+
+   `.empty-row` is the one li that is NOT a CardRow; it carries its own padding
+   already, which is why deleting this was safe. */
+
+.pr-app .rows label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.pr-app .row-name { color: var(--color-text); }
+
+.pr-app .packs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pr-app .pack-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--color-field);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.pr-app .pack-chip:hover { border-color: var(--color-accent); }
+/* `.pack-chip input { margin: 0 }` is gone — SelectWrapper--Checkbox zeroes its
+   own input margin. A `.pack-chip > span` rung-0 rule lived here briefly too,
+   restoring the flex context the component's children lost; the component's
+   own `__label` span is `display: flex` as of 2026-09-13, so it came back out. */
+
+/* Bundle picker — dropdown form (matches Step 1's Record Set select for
+   sibling-symmetry per the cross-cutting principles §2). The picker is
+   the primary "what fires" choice; the roster panel below tunes the
+   chosen bundle's members. */
+.pr-app .bundle-select {
+  margin-top: 0.4rem;
+}
+.pr-app .bundle-desc {
+  font-size: 0.75rem;
+  margin: 0.3rem 0 0;
+}
+
+/* Per-pack row with a solo affordance. Layout only — the solo control is a
+   <Button variant="ghost" size="sm">, so its background, border, radius,
+   focus ring and disabled state all come from the federal component. */
+.pr-app .pack-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Entity-name hint affordance (spec Decision §9) — read-only line with
+   change-link. Replaces the prior Step 2 dropdown-as-primary-step. */
+.pr-app .entity-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.8rem;
+}
+.pr-app .entity-col {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.pr-app .entity-warn { color: var(--color-warn-text, var(--color-text)); }
+.pr-app .entity-select {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
+}
+
+/* Target-column line in the fire-card subhead (spec Decision §9) —
+   "Augmenting `socials` on N rows". Names what gets richer. */
+.pr-app .fire-target { margin-bottom: 0.15rem; }
+.pr-app .target-col {
+  color: var(--color-accent);
+  background: var(--color-field);
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* Pinned to the bottom of the scroll container so the run action stays
+   reachable no matter how long the row/pack lists get. */
+.pr-app .fire-card {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background: var(--color-background);
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+  margin-top: 0.5rem;
+}
+
+.pr-app .fire-sub {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.pr-app .fire-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.pr-app .result {
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  background: color-mix(in srgb, var(--color-ok-text) 7%, transparent);
+  border: 1px solid var(--color-ok-bg);
+  border-radius: 4px;
+  color: var(--color-text);
+}
+
+/* Per-row palette layout — checkbox + name on the left, chip palette on the
+   right of each row in the Augment record-picker. Lets the user fire one
+   pack on one record in-place instead of bulk fan-out.
+
+   `.row-line` is gone: <CardRow as="li"> is the flex row now, it paints the
+   surface, and it IS the list item — no wrapper. What survives is RUNG 0 — which child takes the slack and which
+   sits at its natural width. CardRow cannot know that; this member does.
+   `.row-palette` keeps `position: relative` for its own popdown anchor, which
+   is also what would keep it clickable above a --ClickBody overlay if this row
+   ever grew one.
+
+   Selection here is SelectWrapper--Checkbox as of 2026-09-13 (it was a bare
+   13x13 native input — 54% of the WCAG 2.2 SC 2.5.8 24px floor). The component
+   is the <label> now and paints display/align-items/gap itself, so those three
+   declarations came out; what survives is RUNG 0 sizing the component cannot
+   know: this row is the one that takes the slack. */
+.row-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+/* A `.row-label > span` rung-0 rule lived here briefly: the component's children
+   span was `display: inline`, which took `.row-name`'s ellipsis out (measured
+   scrollWidth 423 -> 0). `.ui-selectcheck__label` is `display: flex` with a
+   working `min-inline-size: 0` as of 2026-09-13, so the workaround is gone and
+   truncation comes from the component. */
+.row-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.row-palette {
+  flex: 0 0 auto;
+  position: relative;
+}

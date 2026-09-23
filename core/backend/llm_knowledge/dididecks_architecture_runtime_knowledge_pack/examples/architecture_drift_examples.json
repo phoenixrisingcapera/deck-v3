@@ -1,0 +1,29 @@
+{
+  "examples": [
+    {
+      "finding": "Editor has local-only slide objects",
+      "severity": "architecture_drift",
+      "why": "It cannot integrate Smart Edit/Rebuild field updates."
+    },
+    {
+      "finding": "No data_binding_key on blocks",
+      "severity": "architecture_drift",
+      "why": "Persistent fields cannot map to visual blocks."
+    },
+    {
+      "finding": "DidiDecks helper uses /api/v1",
+      "severity": "blocker",
+      "why": "Breaks AiStack product API boundary."
+    },
+    {
+      "finding": "Frontend contains STRIPE_SECRET",
+      "severity": "critical",
+      "why": "Secret in public/client code."
+    },
+    {
+      "finding": "Variant marked Ready with zero slides",
+      "severity": "warning",
+      "why": "Vacuous ready state creates false readiness."
+    }
+  ]
+}

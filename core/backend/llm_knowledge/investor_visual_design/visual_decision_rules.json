@@ -1,0 +1,1 @@
+{"module":"visual_decision_rules","rules":[{"id":"decision.intent_first","when":"always","require":"derive investor belief before primitive"},{"id":"decision.executable","when":"primitive requires data or relationships","require":"emit an executable typed contract"}]}

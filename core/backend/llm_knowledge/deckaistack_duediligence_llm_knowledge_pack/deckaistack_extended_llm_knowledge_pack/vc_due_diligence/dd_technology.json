@@ -1,0 +1,34 @@
+{
+  "domain": "technology",
+  "classification_goal": "Extract and assess evidence for technology diligence from uploaded deck content.",
+  "evidence_types": [
+    "architecture",
+    "IP defensibility",
+    "data advantage",
+    "security",
+    "scalability",
+    "technical debt"
+  ],
+  "questions": [
+    "What evidence supports architecture?",
+    "What evidence supports IP defensibility?",
+    "What evidence supports data advantage?",
+    "What evidence supports security?",
+    "What evidence supports scalability?"
+  ],
+  "risk_labels": [
+    "low",
+    "medium",
+    "high",
+    "unknown"
+  ],
+  "missing_evidence_policy": "If not present in deck, mark missing_evidence rather than infer.",
+  "output_fields": [
+    "claim",
+    "evidence_found",
+    "source_slide_ids",
+    "confidence",
+    "risk_level",
+    "recommended_follow_up"
+  ]
+}

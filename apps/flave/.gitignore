@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.astro/
+.svelte-kit/
+.vite/
+# Environment & secrets
+.env
+.env.*
+!.env.example
+.secrets
+secrets/
+# context-v: extra/ is scratch, never committed (context-vigilance convention)
+context-v/extra/
+# Editor & OS
+.DS_Store
+.idea/
+*.swp
+# Test output
+coverage/
+__snapshots__/*.snap.new
+node_modules
+dist
+.vite
+
+# Rust / Tauri build output — hundreds of MB, never committed
+src-tauri/target/
+src-tauri/gen/

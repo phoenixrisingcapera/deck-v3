@@ -1,0 +1,87 @@
+# build output
+dist/
+
+# Content files
+content/
+content
+
+extra/
+extra
+context-v/extra/*
+
+# Next.js build output
+next/
+next
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.vercel
+.vercel/
+.vercel/*
+.vercel/output/*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+*.local
+*.log*
+
+# jetbrains setting folder
+.idea/
+
+
+# Profile
+.rspack-profile-*/
+
+
+# Local agent + ad-hoc data backups
+.claude/
+.backups/
+
+# Playwright MCP browser-drive artifacts (session snapshots/logs)
+.playwright-mcp/
+
+# surreal sql REPL history (rustyline #V2 format) — a tool artifact that
+# lands at the repo root when you run the SurrealDB shell from here.
+history.txt
+
+# graphify knowledge-graph output (~7MB generated: graph.html, graph.json,
+# GRAPH_REPORT.md, AST cache, manifest). Rebuild with `graphify --update`.
+# Corpus scope is committed in .graphifyignore, not here.
+graphify-out/
+tools/
+
+# Local-only compose overrides (host port remaps, etc.)
+docker-compose.override.yml
+
+# staged images — CDN is the source of truth for served bytes
+.image-staging/
+
+# Design canvas working files (seeded into a published Artifact)
+design-canvas/
+
+# Verification probes — throwaway rsbuild harnesses built during component
+# migrations. Always deleted before the final gate run; ignored so that a stray
+# one can never be swept into a commit by a directory-wide `git add` (it was, once).
+apps/*/probe/
+shell/probe/
+
+# Archify visual-check screenshots and contact sheets. Regenerated on every
+# `archify visual-check` run (~2MB a pass, and every diagram edit is a new pass).
+# The .visual-check.json receipt stays tracked — that is the evidence record;
+# the rasters are just what it was measured from.
+context-v/diagrams/*.visual-check.*.png
+context-v/diagrams/*.visual-check.html

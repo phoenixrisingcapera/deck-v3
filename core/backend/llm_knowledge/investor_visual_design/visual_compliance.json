@@ -1,0 +1,1 @@
+{"module":"visual_compliance","rules":[{"id":"compliance.required_asset","when":"brief declares required asset","require":"rendered slide references exact asset ID"},{"id":"compliance.draft","when":"visual contract fails but factual and render safety pass","require":"persist failure and retain as non-published draft"}]}

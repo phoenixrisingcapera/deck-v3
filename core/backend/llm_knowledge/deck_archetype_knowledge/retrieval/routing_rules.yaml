@@ -1,0 +1,30 @@
+retrieval_routing:
+  smart_deck_generation:
+    always:
+      - "manifest"
+      - "deck_types"
+      - "render_schema_rules"
+      - "writing_rules"
+      - "hallucination_constraints"
+      - "quality_rubrics.slide_generation"
+    by_archetype:
+      - "llm_contract"
+      - "sequence"
+      - "render_contract"
+  smart_edit:
+    always:
+      - "writing_rules"
+      - "hallucination_constraints"
+      - "quality_rubrics.smart_edit"
+    by_context:
+      - "deck_types"
+      - "narrative_flows"
+  critique_or_repair:
+    always:
+      - "quality_rubrics"
+      - "hallucination_constraints"
+      - "render_schema_rules"
+    by_failure:
+      - "layout bounds"
+      - "missing evidence"
+      - "narrative duplication"

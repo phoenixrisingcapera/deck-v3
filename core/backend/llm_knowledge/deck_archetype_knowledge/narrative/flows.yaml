@@ -1,0 +1,35 @@
+narrative_flows:
+  investor_conviction:
+    deck_types:
+      - "startup_pitch"
+    arc:
+      - "Name the painful status quo."
+      - "Show why the timing changed."
+      - "Make the solution concrete."
+      - "Prove that demand or usage exists."
+      - "Explain why this team and this financing plan can win."
+    repair_rules:
+      - "If the slide has no proof, ask for evidence instead of inventing a metric."
+      - "If the slide repeats the previous slide, assign a sharper narrative job."
+  lp_conviction:
+    deck_types:
+      - "vc_fund_pitch"
+    arc:
+      - "State the investment worldview."
+      - "Show why now is attractive for the strategy."
+      - "Prove sourcing, selection, and support advantage."
+      - "Show track record without overstating attribution."
+      - "Explain portfolio construction, terms, and current commitments."
+    repair_rules:
+      - "Do not present unrealized marks as exits."
+      - "Separate thesis, process, pipeline, and terms into distinct jobs."
+  problem_solution_impact:
+    deck_types:
+      - "startup_pitch"
+      - "vc_fund_pitch"
+    arc:
+      - "Problem or market discontinuity."
+      - "Mechanism that creates opportunity."
+      - "Solution or strategy."
+      - "Evidence of advantage."
+      - "Action requested from the audience."

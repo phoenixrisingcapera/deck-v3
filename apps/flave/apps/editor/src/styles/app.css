@@ -1,0 +1,260 @@
+/* Layout and document prose. Every colour, font and space comes from theme.css
+   — the two-tier token contract at splash/DESIGN.md. Components never reference
+   a Tier-1 name directly.
+
+   NOTE: this is a PLAIN stylesheet, so `:global(...)` must never appear here.
+   It is a Svelte compiler construct; in plain CSS it is an invalid selector and
+   the browser discards the whole rule. That shipped once (2026-08-20) and took
+   every callout, table and code-block style down with it silently.
+   `scripts/check-styles.mjs` now fails the build on it. Component-specific
+   styling belongs in the component, scoped. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #app { height: 100%; margin: 0; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font__sans);
+}
+
+.shell { display: flex; flex-direction: column; height: 100%; }
+
+/* ── Menu bar ───────────────────────────────────────────────────────────── */
+
+.menubar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-raised);
+  flex: 0 0 auto;
+}
+.brand {
+  font-family: var(--font__display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+}
+.menus { display: flex; gap: var(--space-1); }
+.menus button {
+  background: none;
+  border: 0;
+  padding: var(--space-1) var(--space-3);
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+  cursor: not-allowed;
+}
+.toggle {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--color-text-soft);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ── Panes ──────────────────────────────────────────────────────────────── */
+
+.panes {
+  display: grid;
+  grid-template-columns: 18rem 1fr 1fr;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.panes--two { grid-template-columns: 18rem 1fr; }
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border-right: 1px solid var(--color-border);
+}
+.pane:last-child { border-right: 0; }
+
+.pane__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font__display);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.placeholder {
+  padding: var(--space-4);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--color-text-dim);
+}
+
+/* ── Source pane (CodeMirror) ───────────────────────────────────────────── */
+
+.cm-host { flex: 1 1 auto; overflow: auto; min-height: 0; }
+.cm-host .cm-editor { height: 100%; }
+.cm-host .cm-scroller {
+  font-family: var(--font__mono);
+  font-size: 0.85rem;
+}
+
+/* ── Rendered document ──────────────────────────────────────────────────── */
+
+.rendered {
+  flex: 1 1 auto;
+  overflow: auto;
+  min-height: 0;
+  padding: var(--space-6) var(--space-8);
+  line-height: 1.65;
+  max-width: 68ch;
+}
+
+.rendered h1, .rendered h2, .rendered h3,
+.rendered h4, .rendered h5, .rendered h6 {
+  font-family: var(--font__display);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: var(--space-8) 0 var(--space-3);
+}
+.rendered h1 { font-size: 1.9rem; }
+.rendered h2 { font-size: 1.45rem; }
+.rendered h3 { font-size: 1.15rem; }
+.rendered > :first-child { margin-top: 0; }
+
+.rendered p { margin: var(--space-4) 0; }
+
+.rendered a {
+  color: var(--color-accent);
+  text-underline-offset: 2px;
+}
+
+.rendered code {
+  font-family: var(--font__mono);
+  font-size: 0.86em;
+  background: var(--color-bg-code);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+.rendered pre {
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  overflow-x: auto;
+  margin: var(--space-4) 0;
+}
+.rendered pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.rendered blockquote {
+  margin: var(--space-4) 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-border-strong);
+  color: var(--color-text-soft);
+}
+
+.rendered ul, .rendered ol { padding-left: var(--space-6); }
+.rendered li { margin: var(--space-2) 0; }
+
+.rendered img { max-width: 100%; height: auto; }
+
+.rendered hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-8) 0;
+}
+
+/* ── Left rail: Files ⇄ Chat (D-27) ─────────────────────────────────────── */
+
+.pane--rail { min-width: 0; }
+
+.rail__switch {
+  display: flex;
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--color-border);
+}
+.rail__switch button {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font: inherit;
+  font-family: var(--font__display);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+  cursor: pointer;
+}
+.rail__switch button.is-active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+.rail__body {
+  flex: 1 1 auto;
+  overflow: auto;
+  min-height: 0;
+  padding: var(--space-2) 0;
+}
+
+.status {
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  color: var(--color-text-dim);
+}
+
+/* ── Heading blocks — lfm's `$$ eyebrow / ## heading / && subheading` ─────── */
+
+.rendered hgroup.heading-block { margin: var(--space-8) 0 var(--space-4); }
+.rendered hgroup.heading-block > :first-child { margin-top: 0; }
+
+.rendered .heading-block-eyebrow {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font__display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+}
+.rendered hgroup.heading-block h1,
+.rendered hgroup.heading-block h2,
+.rendered hgroup.heading-block h3 { margin: 0; }
+
+.rendered .heading-block-subheading {
+  margin: var(--space-2) 0 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text-soft);
+}
+
+/* ── Task lists ──────────────────────────────────────────────────────────── */
+
+.rendered li.task {
+  list-style: none;
+  margin-left: calc(var(--space-6) * -1);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.rendered li.task input[type='checkbox'] {
+  accent-color: var(--color-accent);
+  margin: 0;
+  flex: 0 0 auto;
+}
+.rendered li.task > p { margin: 0; }
+.rendered li.task[data-checked='true'] { color: var(--color-text-dim); }

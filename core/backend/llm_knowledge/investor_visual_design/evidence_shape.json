@@ -1,0 +1,1 @@
+{"module":"evidence_shape","rules":[{"id":"evidence.no_invention","when":"numeric mark","require":"evidence ID or durable calculation ID"},{"id":"evidence.shape","when":"selecting a primitive","require":"classify time series, comparison, bridge, funnel, scenario, table, or qualitative"}]}

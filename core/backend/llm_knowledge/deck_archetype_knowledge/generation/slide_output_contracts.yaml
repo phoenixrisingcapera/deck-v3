@@ -1,0 +1,43 @@
+slide_output_contracts:
+  smart_deck_generation:
+    output_location: "renderSchema.analytics and renderSchema.elements"
+    required_analytics_fields:
+      - "slidePurpose"
+      - "audience"
+      - "sourceFactsUsed"
+      - "assumptions"
+      - "missingInputs"
+      - "qualityWarnings"
+      - "confidence"
+    rules:
+      - "sourceFactsUsed must list only facts present in selected source slides, deck artifacts, or user instruction."
+      - "assumptions must be explicit and conservative."
+      - "missingInputs must be non-empty when required evidence is absent."
+      - "qualityWarnings must explain any weak evidence, unclear claim, or layout risk."
+      - "confidence must be between 0 and 1 and should decrease when evidence is missing."
+  slide_content_contract:
+    required_semantic_fields:
+      - "archetype"
+      - "headline"
+      - "supporting_points"
+      - "visual_suggestion"
+      - "speaker_notes"
+      - "missing_inputs"
+      - "quality_warnings"
+      - "source_facts_used"
+      - "assumptions"
+      - "confidence"
+    render_schema_mapping:
+      headline: "primary text element"
+      supporting_points: "secondary text elements or evidence cards"
+      visual_suggestion: "shape, chart, image, or layout structure"
+      speaker_notes: "analytics.qualityWarnings or assistant artifact, not visible slide text unless requested"
+      missing_inputs: "analytics.missingInputs"
+      source_facts_used: "analytics.sourceFactsUsed"
+      assumptions: "analytics.assumptions"
+      confidence: "analytics.confidence"
+  validation_rules:
+    - "Render schema must pass backend Pydantic validation."
+    - "Every text element must have visible text and fit inside canvas bounds."
+    - "No element may extend beyond 1920x1080."
+    - "No raw HTML, JavaScript, Svelte, Tailwind classes, or CSS strings may be returned."

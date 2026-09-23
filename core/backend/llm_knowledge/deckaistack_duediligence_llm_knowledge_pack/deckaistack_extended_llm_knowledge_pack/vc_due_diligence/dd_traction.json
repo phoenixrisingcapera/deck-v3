@@ -1,0 +1,34 @@
+{
+  "domain": "traction",
+  "classification_goal": "Extract and assess evidence for traction diligence from uploaded deck content.",
+  "evidence_types": [
+    "revenue",
+    "usage",
+    "retention",
+    "pipeline",
+    "conversion",
+    "customer quality"
+  ],
+  "questions": [
+    "What evidence supports revenue?",
+    "What evidence supports usage?",
+    "What evidence supports retention?",
+    "What evidence supports pipeline?",
+    "What evidence supports conversion?"
+  ],
+  "risk_labels": [
+    "low",
+    "medium",
+    "high",
+    "unknown"
+  ],
+  "missing_evidence_policy": "If not present in deck, mark missing_evidence rather than infer.",
+  "output_fields": [
+    "claim",
+    "evidence_found",
+    "source_slide_ids",
+    "confidence",
+    "risk_level",
+    "recommended_follow_up"
+  ]
+}

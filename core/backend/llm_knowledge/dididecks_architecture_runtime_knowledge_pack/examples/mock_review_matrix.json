@@ -1,0 +1,89 @@
+{
+  "deck_id": "deck_001",
+  "surfaces": [
+    "scroll",
+    "play",
+    "print",
+    "thumbnail"
+  ],
+  "variants": [
+    {
+      "variant_key": "baseline",
+      "label": "Baseline",
+      "readiness": "needs_work",
+      "slot_count": 12
+    },
+    {
+      "variant_key": "investor_concise",
+      "label": "Investor Concise",
+      "readiness": "ready",
+      "slot_count": 12
+    },
+    {
+      "variant_key": "data_heavy",
+      "label": "Data Heavy",
+      "readiness": "empty",
+      "slot_count": 0
+    }
+  ],
+  "slides": [
+    {
+      "slide_id": "slide_01",
+      "title": "Cover",
+      "cells": {
+        "baseline": {
+          "scroll": {
+            "status": "strong"
+          },
+          "play": {
+            "status": "strong"
+          }
+        },
+        "data_heavy": {
+          "scroll": {
+            "status": "empty"
+          },
+          "play": {
+            "status": "empty"
+          }
+        }
+      }
+    },
+    {
+      "slide_id": "slide_02",
+      "title": "Problem",
+      "cells": {
+        "baseline": {
+          "scroll": {
+            "status": "passable"
+          },
+          "play": {
+            "status": "needs_work"
+          }
+        },
+        "investor_concise": {
+          "scroll": {
+            "status": "strong"
+          },
+          "play": {
+            "status": "strong"
+          }
+        }
+      }
+    },
+    {
+      "slide_id": "slide_03",
+      "title": "Traction",
+      "cells": {
+        "baseline": {
+          "scroll": {
+            "status": "strong"
+          },
+          "play": {
+            "status": "missing"
+          }
+        }
+      }
+    }
+  ]
+}

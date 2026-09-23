@@ -1,0 +1,43 @@
+{
+  "module": "financial_claim_taxonomy",
+  "version": "0.1.0",
+  "claimTypes": [
+    {
+      "id": "market_size",
+      "labels": ["TAM", "SAM", "SOM", "market opportunity", "addressable market"],
+      "requiredEvidence": ["market definition", "geography", "customer segment", "source or bottom-up calculation", "date", "assumptions"],
+      "commonErrors": ["mixing TAM and SAM", "claiming global market for local launch", "top-down source without serviceable segment", "using outdated sources", "double counting customer pools"]
+    },
+    {
+      "id": "revenue_projection",
+      "labels": ["ARR", "MRR", "revenue forecast", "sales projection"],
+      "requiredEvidence": ["pricing", "customer count", "conversion rate", "sales cycle", "churn/retention if recurring", "pipeline basis"],
+      "commonErrors": ["ARR without retention", "pilot revenue treated as recurring", "enterprise ramp without sales motion", "GMV treated as revenue"]
+    },
+    {
+      "id": "roi_claim",
+      "labels": ["ROI", "payback", "cost saving", "time saving", "productivity gain"],
+      "requiredEvidence": ["baseline cost", "measured improvement", "implementation cost", "time to value", "who captures value", "customer proof"],
+      "commonErrors": ["ROI without baseline", "time saved not converted to buyer economics", "ignoring implementation cost", "assuming full adoption"]
+    },
+    {
+      "id": "unit_economics",
+      "labels": ["CAC", "LTV", "gross margin", "payback", "churn", "retention"],
+      "requiredEvidence": ["calculation definition", "cohort or period", "cost allocation", "revenue basis", "margin basis"],
+      "commonErrors": ["LTV without churn", "CAC excluding sales costs", "gross margin confused with contribution margin", "early proxy presented as mature metric"]
+    },
+    {
+      "id": "fundraising_ask",
+      "labels": ["raise", "use of funds", "runway", "milestones"],
+      "requiredEvidence": ["amount", "runway months", "spend plan", "milestones unlocked", "next financing logic"],
+      "commonErrors": ["generic use of funds", "no runway", "milestones not tied to capital", "raise amount inconsistent with operating plan"]
+    },
+    {
+      "id": "valuation_claim",
+      "labels": ["valuation", "multiple", "exit value", "return case"],
+      "requiredEvidence": ["basis of valuation", "comps or scenario logic", "revenue/margin assumptions", "dilution/ownership if return case", "timing"],
+      "commonErrors": ["valuation without basis", "public comps applied to pre-revenue company", "exit multiple without revenue quality", "return case without ownership logic"]
+    }
+  ],
+  "statusLabels": ["supported", "partially_supported", "unsupported", "inconsistent", "implausible", "missing"]
+}

@@ -1,0 +1,36 @@
+{
+  "audience_id": "corporate_strategic",
+  "primary_question": "Does this create strategic value, partnership leverage, or acquisition optionality?",
+  "cares_about": [
+    "integration fit",
+    "IP strength",
+    "enterprise readiness",
+    "strategic moat",
+    "compliance"
+  ],
+  "red_flags": [
+    "security immaturity",
+    "unclear deployment model",
+    "conflict with existing roadmap"
+  ],
+  "preferred_evidence": [
+    "technical architecture",
+    "security docs",
+    "enterprise pilots",
+    "patents/IP evidence"
+  ],
+  "output_adaptation_rules": {
+    "tone": "evidence-led, concise, commercially credible",
+    "must_surface": [
+      "why now",
+      "why this team",
+      "why this market",
+      "what could kill it"
+    ],
+    "avoid": [
+      "unsupported hype",
+      "generic AI claims",
+      "inflated TAM without method"
+    ]
+  }
+}

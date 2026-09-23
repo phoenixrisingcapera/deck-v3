@@ -1,0 +1,39 @@
+{
+  "audience_id": "series_a_vc",
+  "primary_question": "Is there repeatable growth and a credible path to scale?",
+  "cares_about": [
+    "ARR/revenue quality",
+    "retention",
+    "sales motion",
+    "ICP clarity",
+    "unit economics",
+    "hiring plan"
+  ],
+  "red_flags": [
+    "flat retention",
+    "founder-led sales only",
+    "unclear CAC",
+    "weak expansion"
+  ],
+  "preferred_evidence": [
+    "cohort retention",
+    "pipeline conversion",
+    "CAC/LTV assumptions",
+    "case studies",
+    "net revenue retention"
+  ],
+  "output_adaptation_rules": {
+    "tone": "evidence-led, concise, commercially credible",
+    "must_surface": [
+      "why now",
+      "why this team",
+      "why this market",
+      "what could kill it"
+    ],
+    "avoid": [
+      "unsupported hype",
+      "generic AI claims",
+      "inflated TAM without method"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "intent": {
+    "label": "string",
+    "confidence": "low|medium|high"
+  },
+  "patch": {
+    "beforeText": "string",
+    "afterText": "string",
+    "layoutPatch": {},
+    "elementPatches": [
+      {
+        "elementId": "element_id or __background__",
+        "properties": {"key": "value"},
+        "reason": "why this change is needed"
+      }
+    ],
+    "riskControls": ["string"],
+    "confidence": "low|medium|high",
+    "requiresReview": true,
+    "sourceFactIds": ["fact_1"],
+    "missingInputs": ["string"]
+  }
+}

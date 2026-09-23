@@ -1,0 +1,27 @@
+{
+  "targetAudience": "string",
+  "audiencePriorities": ["string"],
+  "likelyObjections": ["string"],
+  "decisionCriteria": ["string"],
+  "deckConversionPlan": {},
+  "slideLevelActions": [
+    {
+      "slideId": "string|null",
+      "slideTitle": "string|null",
+      "currentRole": "string|null",
+      "audienceNeed": "string",
+      "objection": "string|null",
+      "action": "string",
+      "evidenceNeeded": ["string"],
+      "priority": "high|medium|low"
+    }
+  ],
+  "missingEvidence": ["string"],
+  "recommendedDeckVersion": {
+    "title": "string|null",
+    "audience": "string|null",
+    "summary": "string|null",
+    "generationPrompt": "string|null"
+  },
+  "requiresReview": true
+}

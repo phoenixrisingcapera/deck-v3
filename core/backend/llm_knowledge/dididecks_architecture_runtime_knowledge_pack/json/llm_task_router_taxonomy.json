@@ -1,0 +1,65 @@
+{
+  "tasks": [
+    {
+      "key": "slide_classification",
+      "inputs": [
+        "slide_text",
+        "layout",
+        "position"
+      ],
+      "outputs": [
+        "slide_archetype",
+        "confidence",
+        "evidence"
+      ]
+    },
+    {
+      "key": "block_role_classification",
+      "inputs": [
+        "block_content",
+        "block_position",
+        "style"
+      ],
+      "outputs": [
+        "block_role",
+        "persistent_field_candidate"
+      ]
+    },
+    {
+      "key": "market_research_vigilance",
+      "inputs": [
+        "claims",
+        "sources"
+      ],
+      "outputs": [
+        "needs_research",
+        "claim_risk",
+        "source_quality"
+      ]
+    },
+    {
+      "key": "due_diligence_gap_detection",
+      "inputs": [
+        "deck_view_model",
+        "audience"
+      ],
+      "outputs": [
+        "missing_evidence",
+        "diligence_questions"
+      ]
+    },
+    {
+      "key": "architecture_drift_detection",
+      "inputs": [
+        "repo_structure",
+        "types",
+        "routes"
+      ],
+      "outputs": [
+        "blockers",
+        "warnings",
+        "architecture_drift"
+      ]
+    }
+  ]
+}

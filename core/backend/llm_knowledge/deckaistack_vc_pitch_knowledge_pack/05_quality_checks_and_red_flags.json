@@ -1,0 +1,80 @@
+{
+  "version": "1.0.0",
+  "description": "Investor-grade quality checks and red flags by slide archetype.",
+  "checks": {
+    "problem": [
+      "specific user named",
+      "pain is frequent",
+      "pain has cost or urgency",
+      "not just a trend statement"
+    ],
+    "solution": [
+      "solution directly maps to pain",
+      "clear product category",
+      "benefits not only features",
+      "not too many modules at once"
+    ],
+    "market": [
+      "bottom-up logic present",
+      "sources named",
+      "wedge market clear",
+      "TAM not inflated without path"
+    ],
+    "traction": [
+      "time period included",
+      "metric definition clear",
+      "growth quality explained",
+      "logos not used without status"
+    ],
+    "go_to_market": [
+      "ICP specific",
+      "channel has reason to work",
+      "sales cycle considered",
+      "conversion assumptions plausible"
+    ],
+    "business_model": [
+      "payer clear",
+      "pricing unit clear",
+      "gross margin or expansion path present",
+      "services vs software separated"
+    ],
+    "competition": [
+      "alternatives include status quo",
+      "axes meaningful",
+      "differentiation customer-relevant",
+      "not dismissive of competitors"
+    ],
+    "moat": [
+      "advantage compounds",
+      "evidence or mechanism shown",
+      "not just 'AI' or 'first mover'"
+    ],
+    "team": [
+      "relevance to market",
+      "execution proof",
+      "roles clear",
+      "advisor relevance not inflated"
+    ],
+    "financials": [
+      "assumptions explicit",
+      "revenue tied to GTM",
+      "costs credible",
+      "runway clear"
+    ],
+    "fundraising_ask": [
+      "amount clear",
+      "use of funds clear",
+      "milestones measurable",
+      "next-round logic present"
+    ]
+  },
+  "generic_red_flags": [
+    "too much text",
+    "unclear main message",
+    "metrics without definitions",
+    "source missing",
+    "jargon without business meaning",
+    "decorative visuals overpower content",
+    "slide answers no investor question"
+  ]
+}

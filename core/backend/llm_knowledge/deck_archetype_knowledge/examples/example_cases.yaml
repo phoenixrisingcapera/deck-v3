@@ -1,0 +1,39 @@
+examples:
+  startup_pitch_problem:
+    strong:
+      archetype: "problem"
+      headline: "Finance teams lose days reconciling fragmented payment data."
+      why_strong:
+        - "Names the user."
+        - "Names the workflow pain."
+        - "Implies business cost without inventing a metric."
+      layout_pattern: "claim_with_evidence"
+    weak:
+      headline: "Payments are broken."
+      why_weak:
+        - "No specific user."
+        - "No workflow or cost."
+        - "Too generic to guide a strong slide."
+  traction:
+    strong:
+      headline: "Usage is compounding across three signed pilots."
+      why_strong:
+        - "Uses concrete proof type."
+        - "Avoids unsupported revenue claims."
+    weak:
+      headline: "We are growing fast."
+      why_weak:
+        - "No metric."
+        - "No source."
+        - "No investor interpretation."
+  regulatory_tailwinds:
+    strong:
+      headline: "New compliance pressure is pulling budget toward auditable automation."
+      why_strong:
+        - "Connects regulation to buying behavior."
+        - "Does not claim approval or mandate unless sourced."
+    weak:
+      headline: "Regulation will make this huge."
+      why_weak:
+        - "Unsupported causal claim."
+        - "No policy, buyer, or timing detail."
