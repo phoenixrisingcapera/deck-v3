@@ -1,0 +1,36 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "services": {
+    "api": {
+      "name": "Deck V3 API",
+      "build": {
+        "context": "api",
+        "builder": "DOCKERFILE",
+        "dockerfilePath": "api/Dockerfile"
+      },
+      "deploy": {
+        "preDeployCommand": "python -m alembic upgrade heads && python -m alembic -c alembic_ai.ini upgrade heads",
+        "startCommand": "python scripts/start_railway.py",
+        "healthcheckPath": "/api/health/product-ready",
+        "healthcheckTimeout": 300,
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+      }
+    },
+    "instantdeck": {
+      "name": "Deck V3 Frontend",
+      "build": {
+        "context": "apps/instantdeck",
+        "builder": "DOCKERFILE",
+        "dockerfilePath": "apps/instantdeck/Dockerfile"
+      },
+      "deploy": {
+        "startCommand": "npm start",
+        "healthcheckPath": "/",
+        "healthcheckTimeout": 300,
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+      }
+    }
+  }
+}

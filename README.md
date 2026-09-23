@@ -83,28 +83,52 @@ pnpm dev
 
 ## Railway Deployment
 
-All services deploy to the same Railway project.
+Both services deploy to the same Railway project via `railway.json` at the root.
 
-### API Service
-- **Build:** Docker (from `api/Dockerfile`)
-- **Pre-deploy:** `python -m alembic upgrade heads && python -m alembic -c alembic_ai.ini upgrade heads`
-- **Start:** `python scripts/start_railway.py`
-- **Health check:** `/api/health/product-ready` (300s timeout)
-- **Environment variables:** Copy from `api/.env.example`, set real values:
-  - `DATABASE_URL` — Railway PostgreSQL connection string
-  - `AI_DATABASE_URL` — Railway AI database (or leave empty to use same DB)
-  - `AUTH_SECRET_KEY` — Random 32+ byte string
-  - `OPENAI_API_KEY` — Your OpenAI API key
-  - `ALLOWED_ORIGINS` — Your frontend origin(s)
-  - `CORS_ORIGIN` — Your frontend origin
+### Quick Deploy
 
-### Instant Deck Service
-- **Build:** Docker (from `apps/instantdeck/Dockerfile`)
-- **Start:** `npm start`
-- **Health check:** `/` (300s timeout)
-- **Environment variables:**
-  - `DECK_AISTACK_BACKEND_URL` — URL of the deployed API service
-  - `PUBLIC_INSTANT_HTML_ENABLED` — `true` or `false`
+1. Push to `main` on your GitHub repo
+2. In Railway, click **Deploy from GitHub** and select this repo
+3. Railway reads `railway.json` and creates two services automatically:
+   - **Deck V3 API** (from `api/`)
+   - **Deck V3 Frontend** (from `apps/instantdeck/`)
+4. Add a **PostgreSQL** database in Railway (same project)
+5. Set environment variables (see below)
+6. Deploy!
+
+### API Service Environment Variables
+Set these on the "Deck V3 API" service in Railway:
+```
+DATABASE_URL=<Railway auto-set from PostgreSQL>
+AI_DATABASE_URL=<leave empty for same DB, or set separate AI DB>
+AUTH_SECRET_KEY=<random 32+ byte string>
+OPENAI_API_KEY=<your OpenAI API key>
+ALLOWED_ORIGINS=https://your-frontend-domain.com
+CORS_ORIGIN=https://your-frontend-domain.com
+PUBLIC_SIGNUP_ENABLED=true
+```
+
+### Instant Deck Service Environment Variables
+Set these on the "Deck V3 Frontend" service in Railway:
+```
+DECK_AISTACK_BACKEND_URL={{ services.api.url }}
+PUBLIC_INSTANT_HTML_ENABLED=false
+```
+Railway's `{{ services.api.url }}` variable resolves to the API service's internal URL automatically.
+
+### Railway Project Structure
+```
+Your Railway Project
+├── PostgreSQL Database (auto-provisioned)
+├── Deck V3 API (api/ → Docker)
+│   ├── Port: 8080
+│   ├── Health: /api/health/product-ready
+│   └── Pre-deploy: alembic migrations
+└── Deck V3 Frontend (apps/instantdeck/ → Docker)
+    ├── Port: 3000
+    ├── Health: /
+    └── Depends on: API service
+```
 
 ---
 
