@@ -59,13 +59,17 @@ def _run_runtime_schema_bootstrap(migration_env: dict[str, str]) -> None:
 
 
 def _run_migrations_if_enabled() -> None:
-    # Railway pre-deploy owns schema migration. This guard is intentionally
-    # application-level because a service-level start-command override can
-    # bypass railway.toml and otherwise race the pre-deploy migration.
+    # When RUN_MIGRATIONS_ON_STARTUP is explicitly set to true, always run
+    # migrations regardless of the Railway pre-deploy convention. This allows
+    # local-upload deployments (which lack railway.json preDeployCommand) to
+    # self-migrate.
     app_role = os.getenv("APP_ROLE", "api").strip().lower()
     if _is_railway() and app_role not in {"migration", "core-migration", "ai-migration"}:
-        print("Skipping service startup migrations; Railway pre-deploy owns Alembic.", flush=True)
-        return
+        if _truthy(os.getenv("RUN_MIGRATIONS_ON_STARTUP"), default=False):
+            print("RUN_MIGRATIONS_ON_STARTUP=true overrides Railway pre-deploy convention; running Alembic at startup.", flush=True)
+        else:
+            print("Skipping service startup migrations; Railway pre-deploy owns Alembic.", flush=True)
+            return
 
     default_run_migrations = True
     if not _truthy(os.getenv("RUN_MIGRATIONS_ON_STARTUP"), default=default_run_migrations):
