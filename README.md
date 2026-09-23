@@ -1,61 +1,26 @@
-# Deck V3 — AI Deck Platform + Product Suite
+# Deck V3 — AI Deck Platform
 
-> The parent monorepo for the Deck AI platform and all companion products.
-> **deck-v2** is the core (auth provider + deck engine); every other app routes through it.
+> Unified platform: **api/** (Python/FastAPI backend, the auth provider) + **apps/instantdeck/** (SvelteKit frontend)
 
 ---
 
 ## Architecture
 
 ```
-deck-v3/                              # this repo
-├── core/                             # the deck-v2 engine (auth provider)
-│   ├── backend/                      # FastAPI + LangGraph + PostgreSQL
-│   └── frontend/                     # SvelteKit 2 + Svelte 5
-├── apps/                             # companion products
-│   ├── augment-it/                   # multi-tenant AI data augmentation
-│   ├── memopop-ai/                   # AI investment memo platform
-│   ├── id-didi-sh/                   # didi.sh identity service (Elixir/Phoenix)
-│   ├── flave/                        # agent-native document editor
-│   ├── dididecks-ai/                 # slide-deck OS with client sites
-│   └── context-vigilance-kit/        # corpus tooling + ChromaDB MCP
-├── shared/                           # cross-cutting configs & specs
-└── docs/                             # architecture docs
+deck-v3/
+├── api/                    # Unified Python backend (FastAPI + PostgreSQL + LangGraph)
+│   ├── app/                # All Python services: auth, decks, AI, workers
+│   ├── alembic/            # Core DB migrations
+│   ├── alembic_ai/         # AI/Vector DB migrations
+│   └── railway.toml        # Railway deploy config (Docker)
+└── apps/
+    ├── instantdeck/        # SvelteKit 2 + Svelte 5 frontend
+    └── ...                 # Future: augment-it, memopop-web, flave-web, etc.
 ```
 
-## Auth Model
+**Auth model:** `api/` is the auth provider. All apps authenticate through it via JWT tokens and session cookies.
 
-**deck-v2 backend is the auth provider.** All apps authenticate through it:
-
-1. User logs in via `core/backend/` (FastAPI auth endpoints)
-2. Backend issues JWT tokens / session cookies
-3. All companion apps validate tokens against the backend
-4. Shared secrets live in Railway environment variables — one source of truth
-
-The `id-didi-sh` identity service provides the cross-app SSO layer when apps need a unified `.didi.sh` session cookie. But the authority is always the deck-v2 backend.
-
-## Services & Deployment (Railway)
-
-All services deploy to the same Railway project:
-https://railway.com/project/af0ad057-2bac-4a20-84d4-92999008271c
-
-### Core (deck-v2)
-| Service | Dir | Stack | Railway Config |
-|---------|-----|-------|----------------|
-| Backend | `core/backend/` | FastAPI + LangGraph + PostgreSQL + pgvector | `railway.toml` |
-| Frontend | `core/frontend/` | SvelteKit 2 + Svelte 5 + Node adapter | `railway.toml` |
-| Worker | `core/backend/` | Celery / background worker | `railway.worker.toml` |
-| Renderer | `core/backend/` | PDF/PPTX rendering service | `railway.renderer.toml` |
-
-### Companion Apps
-| Service | Dir | Stack | Deploy Target |
-|---------|-----|-------|---------------|
-| **augment-it** | `apps/augment-it/` | 18 Svelte 5 MFs + 12 microservices + NATS + SurrealDB | Railway (multi-service) |
-| **memopop-ai** | `apps/memopop-ai/` | Tauri 2 desktop + LangGraph backend + Astro site | Desktop + Vercel |
-| **id-didi-sh** | `apps/id-didi-sh/` | Elixir/Phoenix + SQLite3 | Fly.io |
-| **flave** | `apps/flave/` | Tauri 2 + Svelte 5 + Rust | Desktop |
-| **dididecks-ai** | `apps/dididecks-ai/` | SvelteKit + Astro + 7 client sites | Railway |
-| **context-vigilance-kit** | `apps/context-vigilance-kit/` | Python + ChromaDB + MCP | Local / Railway |
+---
 
 ## Quick Start
 
@@ -65,93 +30,165 @@ https://railway.com/project/af0ad057-2bac-4a20-84d4-92999008271c
 - PostgreSQL 15+
 - Docker (for containerized services)
 
-### Core: deck-v2 Backend
+### 1. Start PostgreSQL
 ```bash
-cd core/backend
+# Ensure PostgreSQL is running
+pg_isready
+```
+
+### 2. Set up the API (backend)
+```bash
+cd api
+
+# Create and activate virtual environment
 python -m venv .venv && source .venv/bin/activate
+
+# Install dependencies
 uv pip install -r requirements.txt
-# Configure .env from Railway environment
+
+# Configure environment
 cp .env.example .env
-alembic upgrade heads && alembic -c alembic_ai.ini upgrade heads
+# Edit .env — set DATABASE_URL and OPENAI_API_KEY at minimum
+
+# Run database migrations
+python -m alembic upgrade heads
+python -m alembic -c alembic_ai.ini upgrade heads
+
+# Start the API
 python scripts/start_railway.py
+# API runs on http://localhost:8080
 ```
 
-### Core: deck-v2 Frontend
+### 3. Set up Instant Deck (frontend)
 ```bash
-cd core/frontend
+cd apps/instantdeck
+
+# Install dependencies
 pnpm install
+
+# Configure environment (already points to localhost:8080)
+cp .env.example .env.local
+
+# Start the dev server
 pnpm dev
+# Frontend runs on http://localhost:5173
 ```
 
-### augment-it
+### 4. Verify
+- Frontend: http://localhost:5173
+- API health: http://localhost:8080/health
+- Frontend health (checks backend): http://localhost:5173/api/health
+
+---
+
+## Railway Deployment
+
+All services deploy to the same Railway project.
+
+### API Service
+- **Build:** Docker (from `api/Dockerfile`)
+- **Pre-deploy:** `python -m alembic upgrade heads && python -m alembic -c alembic_ai.ini upgrade heads`
+- **Start:** `python scripts/start_railway.py`
+- **Health check:** `/api/health/product-ready` (300s timeout)
+- **Environment variables:** Copy from `api/.env.example`, set real values:
+  - `DATABASE_URL` — Railway PostgreSQL connection string
+  - `AI_DATABASE_URL` — Railway AI database (or leave empty to use same DB)
+  - `AUTH_SECRET_KEY` — Random 32+ byte string
+  - `OPENAI_API_KEY` — Your OpenAI API key
+  - `ALLOWED_ORIGINS` — Your frontend origin(s)
+  - `CORS_ORIGIN` — Your frontend origin
+
+### Instant Deck Service
+- **Build:** Docker (from `apps/instantdeck/Dockerfile`)
+- **Start:** `npm start`
+- **Health check:** `/` (300s timeout)
+- **Environment variables:**
+  - `DECK_AISTACK_BACKEND_URL` — URL of the deployed API service
+  - `PUBLIC_INSTANT_HTML_ENABLED` — `true` or `false`
+
+---
+
+## Database
+
+### Core database (`DATABASE_URL`)
+Users, workspaces, decks, slides, billing, auth sessions, workflow jobs, exports.
+
+### AI database (`AI_DATABASE_URL`)
+Vector embeddings (pgvector), AI runs, telemetry, agent learning memories. Can be the same as core database.
+
+### Migrations
 ```bash
-cd apps/augment-it
-pnpm install
-docker compose up -d  # NATS + SurrealDB
-pnpm dev
+cd api
+
+# Core migrations
+python -m alembic upgrade heads
+
+# AI/Vector migrations
+python -m alembic -c alembic_ai.ini upgrade heads
+
+# Create new migration
+python -m alembic revision --autogenerate -m "description"
+python -m alembic -c alembic_ai.ini revision --autogenerate -m "description"
 ```
 
-### memopop-ai
-```bash
-cd apps/memopop-ai
-bun install
-# Desktop app
-cd apps/memopop-native && bun run tauri dev
-# Orchestrator (LangGraph backend)
-cd apps/memopop-orchestrator && python -m pip install -r requirements.txt
-```
+---
 
-### id-didi-sh
-```bash
-cd apps/id-didi-sh
-mix deps.get
-mix ecto.setup
-mix phx.server
-```
+## API Routes
 
-### flave
-```bash
-cd apps/flave
-pnpm install
-pnpm dev
-```
+| Prefix | Purpose |
+|--------|---------|
+| `/api/auth/*` | Authentication (sign-in, sign-up, reset-password, logout) |
+| `/api/health` | Health checks |
+| `/api/decks/*` | Deck CRUD operations |
+| `/api/instant-deck/*` | Instant deck generation |
+| `/api/smart-deck/*` | Smart deck AI features |
+| `/api/slides/*` | Slide operations |
+| `/api/products/*` | Product-specific routes |
+| `/api/workspace/*` | Workspace management |
+
+---
 
 ## LLM Providers
 
-deck-v2 backend supports multiple providers (configured via `.env`):
-- OpenAI (primary)
-- Anthropic Claude
-- Qwen / DashScope
-- OpenRouter
+| Provider | Status | Default Model |
+|----------|--------|---------------|
+| OpenAI | **Active (default)** | gpt-5-2025-08-07 |
+| Qwen/DashScope | Available (explicit) | qwen3.7-plus |
+| Anthropic | Disabled | claude-sonnet-4-5 |
+| OpenRouter | Disabled | openai/gpt-4o |
 
-## API Keys
+---
 
-All keys are managed through Railway environment variables. Locally, drop them in `.env` files (gitignored).
+## Roadmap
 
-| Service | Used for |
-|---------|----------|
-| OpenAI | Text + image generation |
-| Anthropic | Agent generation (Claude) |
-| Qwen/DashScope | Alternative LLM |
-| OpenRouter | Multi-model routing |
+### Phase 1 ✅ — Instant Deck + API (this branch)
+- Unified backend (`api/`) as the auth provider
+- SvelteKit frontend (`apps/instantdeck/`)
+- Railway deployment for both services
 
-## Context Vigilance
+### Phase 2 — Identity Migration (id-didi.sh → api/)
+- Rewrite Elixir/Phoenix identity service in Python
+- Move to `api/app/identity/`
+- SQLite3 → PostgreSQL migration
+- JWT signing, JWKS, credential management
 
-Every project follows the context-v discipline:
-- `context-v/specs/` — durable design contracts
-- `context-v/explorations/` — experimental thinking
-- `context-v/plans/` — implementation plans
-- `context-v/reminders/` — stack preferences and conventions
+### Phase 3 — Augment-it Migration
+- 12 NATS microservices → Python/FastAPI in `api/`
+- SurrealDB → PostgreSQL
+- JSON file stores → PostgreSQL tables
+- Svelte 5 MF apps → SvelteKit routes
 
-Each project carries its own `context-v/` and `changelog/`.
+### Phase 4 — Desktop Apps → Web
+- memopop-ai → SvelteKit web routes + LangGraph orchestrator in api/
+- flave → SvelteKit web routes (CodeMirror 6 editor)
 
-## Branch Strategy
+### Phase 5 — Remaining Integrations
+- Context Vigilance Kit → Python service module in api/
+- DidiDecks client sites → tenant-scoped SvelteKit layouts
 
-- `main` — production-ready
-- `development` — current work
-- Feature branches — `feat/...`, `fix/...`, `recovery/...`
+---
 
 ## See Also
 
-- [lossless-group/lossless-ai-labs](https://github.com/lossless-group/lossless-ai-labs) — the original pseudomonorepo where these projects started
-- [Deck V2 (archived)](https://github.com/acpcareconnectdev-ui/deck-v2) — previous iteration with full archive branch
+- [lossless-group/lossless-ai-labs](https://github.com/lossless-group/lossless-ai-labs) — the original pseudomonorepo
+- [Deck V2 (archived)](https://github.com/acpcareconnectdev-ui/deck-v2) — previous iteration (archive branch: `archive/pre-pivot`)

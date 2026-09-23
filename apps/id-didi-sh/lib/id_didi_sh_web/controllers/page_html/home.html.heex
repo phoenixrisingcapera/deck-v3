@@ -1,0 +1,113 @@
+<Layouts.flash_group flash={@flash} />
+
+<main class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+  <header class="mb-14">
+    <p class="eyebrow mb-4">Identity plane</p>
+
+    <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight">
+      <span class="gradient-text">id.didi.sh</span>
+    </h1>
+
+    <p class="mt-4 text-lg opacity-80 max-w-xl">
+      The service that issues the credential. One login across MemoPop&nbsp;AI,
+      DidiDecks&nbsp;AI and Augment&nbsp;It — no passwords, ever.
+    </p>
+
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <span class="stamp">Invite only</span>
+      <span class="stamp" data-ink="copper">Build</span>
+    </div>
+  </header>
+
+  <section class="mb-12">
+    <p class="folio mb-4" data-num="SEC.01">The contract</p>
+
+    <p class="opacity-80 mb-5">
+      Consumers depend on three artifacts and nothing else. Changing any of them
+      is a cross-service breaking change.
+    </p>
+
+    <dl class="space-y-4">
+      <div class="border-l-2 border-base-300 pl-4">
+        <dt class="font-semibold">Session cookie</dt>
+        <dd class="mt-1 opacity-75">
+          <span class="field">didi_session</span>
+          — EdDSA-signed, <span class="field">Domain=.didi.sh</span>.
+          Only this service mints them.
+        </dd>
+      </div>
+
+      <div class="border-l-2 border-base-300 pl-4">
+        <dt class="font-semibold">JSON API</dt>
+        <dd class="mt-1 opacity-75">
+          <span class="field">id.didi.sh/api/*</span>
+          — headless. Consumer apps own their own sign-in pixels.
+        </dd>
+      </div>
+
+      <div class="border-l-2 border-base-300 pl-4">
+        <dt class="font-semibold">Public keys</dt>
+        <dd class="mt-1 opacity-75">
+          <a href="/.well-known/jwks.json" class="link link-primary field">
+            /.well-known/jwks.json
+          </a>
+          — verify with the public key; the signing key never leaves here.
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="mb-12">
+    <p class="folio mb-4" data-num="SEC.02">Your surfaces</p>
+
+    <div class="flex flex-wrap gap-3">
+      <.link href={~p"/access"} class="btn btn-primary">Redeem an invite</.link>
+      <.link href={~p"/keys"} class="btn btn-outline">Your keys</.link>
+      <a href="https://didi.sh/" class="btn btn-ghost">What didi.sh is</a>
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <p class="folio mb-4" data-num="SEC.03">Inspect</p>
+    <p class="opacity-75 mb-4 text-sm">
+      This page is the specimen. Hold it under each light.
+    </p>
+
+    <div class="join">
+      <button
+        type="button"
+        class="btn btn-sm join-item"
+        onclick="window.setDidiMode('dark')"
+        aria-label="Vault mode (dark)"
+      >
+        Vault
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm join-item"
+        onclick="window.setDidiMode('light')"
+        aria-label="Security paper mode (light)"
+      >
+        Paper
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm join-item"
+        onclick="window.setDidiMode('vibrant')"
+        aria-label="UV lamp mode (vibrant)"
+      >
+        UV lamp
+      </button>
+    </div>
+  </section>
+
+  <footer class="border-t border-base-300 pt-6 text-sm opacity-60">
+    <p class="mono">
+      Invite-only while in build. <a href="https://didi.sh/" class="link">didi.sh</a>
+      ·
+      <a href="https://lossless-group.github.io/id-didi-sh/changelog/" class="link">
+        build log
+      </a>
+    </p>
+  </footer>
+</main>

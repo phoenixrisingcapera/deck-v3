@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-mode="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title default="didi.sh" suffix=" · didi.sh" phx-no-format>{assigns[:page_title]}</.live_title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
+    </script>
+    <script>
+      // Three modes, dark by default — "the vault". Resolved before first
+      // paint so a reload never flashes the wrong surface.
+      //
+      // Both attributes are set and kept equal: daisyUI reads data-theme,
+      // the credential-posture CSS reads data-mode (the same attribute the
+      // splash uses). See assets/css/theme.css.
+      (() => {
+        const MODES = ["dark", "light", "vibrant"];
+        const KEY = "id-didi-sh-mode";
+
+        const apply = (mode) => {
+          if (!MODES.includes(mode)) mode = "dark";
+          const root = document.documentElement;
+          root.setAttribute("data-theme", mode);
+          root.setAttribute("data-mode", mode);
+        };
+
+        const setMode = (mode) => {
+          try { localStorage.setItem(KEY, mode); } catch (_) {}
+          apply(mode);
+        };
+
+        let stored = null;
+        try { stored = localStorage.getItem(KEY); } catch (_) {}
+        apply(stored || "dark");
+
+        window.addEventListener("storage", (e) => {
+          if (e.key === KEY) apply(e.newValue || "dark");
+        });
+
+        // Any element with data-didi-mode="light" cycles/sets the mode.
+        window.addEventListener("phx:set-theme", (e) => {
+          setMode(e.target.dataset.didiMode || e.target.dataset.phxTheme);
+        });
+        window.setDidiMode = setMode;
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="bg-mesh" aria-hidden="true"></div>
+    {@inner_content}
+  </body>
+</html>

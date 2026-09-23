@@ -1,0 +1,27 @@
+<div style="max-width: 26rem; margin: 14vh auto 0; padding: 0 1.5rem; font-family: ui-sans-serif, system-ui; text-align: center;">
+  <p style="font-family: ui-monospace, monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6;">
+    didi.sh · one credential
+  </p>
+  <h1 style="font-size: 1.5rem; margin-top: 0.75rem;">Confirm your sign-in</h1>
+
+  <%= if @error do %>
+    <p style="margin-top: 1rem; color: #b4552d;">{@error}</p>
+  <% else %>
+    <p style="margin-top: 0.75rem; opacity: 0.75;">
+      One click and you're signed in everywhere on didi.sh.
+    </p>
+    <form action="/access" method="post" style="margin-top: 1.5rem;">
+      <input type="hidden" name="_csrf_token" value={Plug.CSRFProtection.get_csrf_token()} />
+      <input type="hidden" name="token" value={@token} />
+      <button
+        type="submit"
+        style="padding: 0.7rem 1.6rem; font-size: 1rem; font-weight: 600; border-radius: 6px; border: 1px solid #1f9a63; background: #4ecf95; color: #06110b; cursor: pointer;"
+      >
+        Sign in →
+      </button>
+    </form>
+    <p style="margin-top: 1.25rem; font-size: 0.75rem; opacity: 0.5;">
+      Single-use link. If you didn't request it, close this page — nothing happens without the click.
+    </p>
+  <% end %>
+</div>

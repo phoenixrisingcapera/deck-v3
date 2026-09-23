@@ -1,0 +1,115 @@
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  /* RESTORED: Original navy/glass foundation from the June production UI. */
+  --bg: #020617;
+  --bg-subtle: #07111f;
+  --surface: rgba(11, 22, 48, 0.92);
+  --surface-elevated: #111f3f;
+  --surface-hover: rgba(17, 31, 63, 0.96);
+  --border: rgba(148, 163, 184, 0.22);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --text: #f8fafc;
+  --text-secondary: #c7d2e4;
+  --text-muted: #94a3b8;
+  --accent: var(--brand-blue);
+  --accent-hover: #65d6ff;
+  --accent-soft: rgba(0, 183, 255, 0.12);
+  --accent-2: var(--brand-violet);
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.12);
+  --success: #22c55e;
+  --success-soft: rgba(34, 197, 94, 0.12);
+  --warning: #f59e0b;
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --shadow-strong: 0 30px 80px rgba(0, 0, 0, 0.35);
+  --shadow-glow-blue: 0 0 30px rgba(0, 183, 255, 0.35);
+  --shadow-glow-magenta: 0 0 30px rgba(255, 62, 165, 0.28);
+  --shadow: var(--shadow-card);
+  --gradient-brand: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-violet) 55%, var(--brand-magenta) 100%);
+  --surface-strong: var(--surface-elevated);
+  --surface-input: rgba(17, 31, 63, 0.82);
+  --surface-chip: rgba(0, 183, 255, 0.1);
+  --line-contrast: rgba(255, 255, 255, 0.08);
+  --ink: var(--text);
+  --button-primary-ink: #ffffff;
+  --control-secondary-bg: var(--surface-elevated);
+  --control-secondary-text: var(--text);
+  --control-secondary-border: var(--border);
+  --control-secondary-hover-bg: var(--surface-hover);
+  --control-secondary-hover-text: var(--text);
+  --control-secondary-hover-border: var(--accent-hover);
+  --control-disabled-bg: #1f2937;
+  --control-disabled-text: #cbd5e1;
+  --control-disabled-border: #475569;
+
+  /* Marketing decorative tokens */
+  --gradient-surface: linear-gradient(180deg, rgba(12, 21, 48, 0.95), rgba(6, 12, 28, 0.98));
+  --glow-blue: rgba(59, 130, 246, 0.12);
+  --glow-pink: rgba(236, 72, 153, 0.10);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-subtle: #f9fafb;
+  --surface: #f3f4f6;
+  --surface-elevated: #ffffff;
+  --surface-hover: #e5e7eb;
+  --border: #e5e7eb;
+  --border-subtle: #f3f4f6;
+  --text: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --accent: #0077c8;
+  --accent-hover: #4ea6ea;
+  --accent-soft: rgba(0, 119, 200, 0.08);
+  --accent-2: #6d28d9;
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.08);
+  --success: #16a34a;
+  --success-soft: rgba(22, 163, 74, 0.08);
+  --warning: #d97706;
+  --shadow-card: 0 18px 45px rgba(15, 23, 42, 0.1);
+  --shadow-strong: 0 30px 80px rgba(15, 23, 42, 0.18);
+  --shadow-glow-blue: 0 0 24px rgba(0, 119, 200, 0.18);
+  --shadow-glow-magenta: 0 0 24px rgba(219, 39, 119, 0.12);
+  --shadow: var(--shadow-card);
+  --gradient-brand: linear-gradient(135deg, #0077c8 0%, #6d28d9 55%, #db2777 100%);
+  --surface-strong: var(--surface-elevated);
+  --surface-input: rgba(255, 255, 255, 0.92);
+  --surface-chip: rgba(0, 119, 200, 0.08);
+  --line-contrast: rgba(15, 23, 42, 0.1);
+  --ink: var(--text);
+  --button-primary-ink: #ffffff;
+  --control-secondary-bg: var(--surface-elevated);
+  --control-secondary-text: var(--text);
+  --control-secondary-border: var(--border);
+  --control-secondary-hover-bg: #dbeafe;
+  --control-secondary-hover-text: #0f172a;
+  --control-secondary-hover-border: var(--accent-hover);
+  --control-disabled-bg: #e2e8f0;
+  --control-disabled-text: #64748b;
+  --control-disabled-border: #cbd5e1;
+
+  /* Marketing decorative tokens */
+  --gradient-surface: linear-gradient(180deg, rgba(249, 250, 251, 0.98), rgba(243, 244, 246, 0.96));
+  --glow-blue: rgba(59, 130, 246, 0.06);
+  --glow-pink: rgba(236, 72, 153, 0.05);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 0%, var(--glow-blue), transparent 32%),
+    radial-gradient(circle at 90% 0%, var(--glow-pink), transparent 28%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

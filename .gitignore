@@ -4,23 +4,9 @@ __pycache__/
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-*.egg
-.installed.cfg
-*.egg
-MANIFEST
+dist/
+.eggs/
 
 # Virtual environments
 .venv/
@@ -34,35 +20,32 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+package-lock.json
 
 # SvelteKit
 .svelte-kit/
 .svelte-kit-dev/
 
-# Vite
+# Vite / build
 dist/
-
-# Rust / Tauri
-target/
-src-tauri/target/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-*.log
+build/
 
 # Environment files
 .env
 .env.local
 .env.*.local
 !.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # Railway
 .railway/
@@ -81,14 +64,11 @@ private-data/
 .codex/
 .agents/
 
-# Lock files (keep some for reproducibility)
-# Keep pnpm-lock.yaml, bun.lockb, Cargo.lock, uv.lock
-# Ignore package-lock.json (use pnpm)
-package-lock.json
-
-# Build artifacts
-/build/
-/out/
-
 # Elixir / Phoenix
 _build/
+
+# Rust / Tauri
+target/
+
+# ChromaDB
+.chroma/

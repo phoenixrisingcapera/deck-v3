@@ -1,0 +1,296 @@
+* { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+p { margin: 0; }
+h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 600; }
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+/* ── Shared ── */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; font-weight: 600; color: var(--accent); }
+.display { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+.muted { color: var(--text-secondary); }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  border-radius: var(--radius-full); border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem; font-size: 12px; color: var(--text-secondary);
+  background: var(--bg-subtle);
+}
+
+.button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  border: 0; border-radius: var(--radius); padding: 0.6rem 1rem;
+  /* DISABLED: Fixed white text bypassed the semantic theme contract. */
+  /* background: var(--accent); color: #fff; font-weight: 500; font-size: 13px; */
+  background: var(--accent); color: var(--button-primary-ink); font-weight: 500; font-size: 13px;
+  transition: background 0.15s;
+}
+.button:hover { background: var(--accent-hover); }
+.button.secondary {
+  /* DISABLED: These light-only values made the control ignore dark mode. */
+  /* background: #ffffff; color: #111827; border: 1px solid #cbd5e1; */
+  background: var(--control-secondary-bg);
+  color: var(--control-secondary-text);
+  border: 1px solid var(--control-secondary-border);
+  font-weight: 600;
+}
+.button.secondary:hover {
+  /* DISABLED: Fixed light hover colors did not respond to the selected theme. */
+  /* background: #dbeafe; color: #0f172a; border-color: #60a5fa; */
+  background: var(--control-secondary-hover-bg);
+  color: var(--control-secondary-hover-text);
+  border-color: var(--control-secondary-hover-border);
+}
+.button:disabled,
+.button.secondary:disabled {
+  /* DISABLED: Fixed disabled colors had insufficient contrast in light mode. */
+  /* background: #475569; color: #f8fafc; border-color: #64748b; */
+  background: var(--control-disabled-bg);
+  color: var(--control-disabled-text);
+  border-color: var(--control-disabled-border);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.error-copy { color: var(--danger); }
+
+/* ── Sidebar ── */
+.app-sidebar {
+  display: flex; flex-direction: column; gap: 0.25rem;
+  min-height: 100vh; padding: 12px 8px;
+  background: var(--bg-subtle); border-right: 1px solid var(--border-subtle);
+}
+.app-sidebar__brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; margin-bottom: 8px;
+}
+.app-sidebar__brand p { margin: 0; color: var(--text-muted); font-size: 12px; }
+.app-sidebar__cta {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 8px 12px; border-radius: var(--radius);
+  /* DISABLED: Fixed white text bypassed the semantic theme contract. */
+  /* background: var(--accent); color: #fff; font-weight: 500; font-size: 13px; */
+  background: var(--accent); color: var(--button-primary-ink); font-weight: 500; font-size: 13px;
+}
+.app-sidebar__label {
+  padding: 12px 10px 4px; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);
+}
+.app-sidebar__nav { display: flex; flex-direction: column; gap: 1px; }
+.app-sidebar__nav a {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; border-radius: var(--radius);
+  color: var(--text-secondary); font-size: 13px; font-weight: 450;
+  transition: background 0.1s, color 0.1s;
+}
+.app-sidebar__nav a:hover { background: var(--surface-hover); color: var(--text); }
+.app-sidebar__nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.app-sidebar__nav a.disabled { opacity: 0.4; }
+
+.app-sidebar__section-toggle {
+  display: flex; width: 100%; align-items: center; justify-content: space-between;
+  padding: 8px 10px; border: 0; background: transparent; cursor: pointer;
+}
+.app-sidebar__chevron { color: var(--text-muted); transition: transform 160ms ease; font-size: 12px; }
+.app-sidebar__chevron.expanded { transform: rotate(180deg); }
+.app-sidebar__nav-group { display: flex; flex-direction: column; gap: 1px; }
+
+.app-sidebar__iterations { display: flex; flex-direction: column; gap: 4px; padding-left: 10px; }
+.app-sidebar__iterations-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 4px 0; color: var(--text-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.app-sidebar__iteration-list { display: flex; flex-direction: column; gap: 2px; }
+.app-sidebar__iteration-link {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 6px 10px; border-radius: var(--radius); color: var(--text-muted);
+  background: var(--bg-subtle);
+}
+.app-sidebar__iteration-link:hover, .app-sidebar__iteration-link.active {
+  background: var(--accent-soft); color: var(--text);
+}
+.app-sidebar__iteration-title { font-weight: 600; font-size: 12px; }
+.app-sidebar__iteration-link small { font-size: 11px; }
+.app-sidebar__iteration-toggle {
+  border: 0; background: transparent; color: var(--accent);
+  padding: 4px; font-size: 12px; cursor: pointer; text-align: left;
+}
+
+.app-sidebar__assistant-trigger {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  margin-top: auto; padding: 8px 10px; border-radius: var(--radius);
+  border: 1px solid var(--border-subtle); background: var(--surface);
+  color: var(--text); font-weight: 500; font-size: 13px; cursor: pointer;
+}
+.app-sidebar__assistant-trigger:hover { border-color: var(--border); }
+.app-sidebar__assistant-icon {
+  width: 26px; height: 26px; border-radius: 8px;
+  /* DISABLED: Fixed white text bypassed the semantic theme contract. */
+  /* display: grid; place-items: center; background: var(--accent); color: #fff; */
+  display: grid; place-items: center; background: var(--accent); color: var(--button-primary-ink);
+  font-size: 11px; font-weight: 700;
+}
+.app-sidebar__footer { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 8px; border-top: 1px solid var(--border-subtle); }
+.app-sidebar__user { display: flex; align-items: center; gap: 8px; padding: 6px 10px; }
+.app-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent); font-size: 11px; font-weight: 700;
+}
+.app-sidebar__mobile-export { display: none; }
+.app-sidebar__mobile-export a {
+  display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+  border-radius: var(--radius); color: var(--text-secondary); border: 1px solid var(--border); background: var(--surface);
+}
+.app-sidebar__mobile-export a.active, .app-sidebar__mobile-export a:hover {
+  background: var(--accent-soft); color: var(--text);
+}
+.app-sidebar__item-label { white-space: nowrap; }
+
+/* Compact sidebar */
+.app-shell--compact-sidebar { grid-template-columns: 56px minmax(0, 1fr); }
+.app-shell--compact-sidebar .app-content { padding: 8px 10px 10px; }
+.app-sidebar--compact { align-items: center; gap: 6px; padding: 8px 4px; }
+.app-sidebar--compact .app-sidebar__brand { grid-template-columns: 1fr; justify-items: center; }
+.app-sidebar--compact .app-sidebar__brand-copy,
+.app-sidebar--compact .app-sidebar__label,
+.app-sidebar--compact .app-sidebar__item-label,
+.app-sidebar--compact .app-sidebar__section-toggle,
+.app-sidebar--compact .app-sidebar__iterations,
+.app-sidebar--compact .app-sidebar__user-copy,
+.app-sidebar--compact .theme-toggle span:not(.theme-toggle__dot) {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+.app-sidebar--compact .app-sidebar__cta,
+.app-sidebar--compact .app-sidebar__assistant-trigger,
+.app-sidebar--compact .app-sidebar__nav a,
+.app-sidebar--compact .app-sidebar__mobile-export a {
+  width: 40px; min-height: 40px; grid-template-columns: 1fr;
+  justify-items: center; justify-content: center; padding: 0; border-radius: var(--radius);
+}
+.app-sidebar--compact .app-sidebar__nav,
+.app-sidebar--compact .app-sidebar__nav-group,
+.app-sidebar--compact .app-sidebar__footer { width: 100%; justify-items: center; }
+.app-sidebar--compact .app-sidebar__user { justify-content: center; padding-top: 6px; }
+.app-sidebar--compact .app-avatar { width: 28px; height: 28px; }
+
+/* ── Topbar ── */
+.app-topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 16px 0; min-height: var(--header-height); }
+.app-topbar__page { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.app-topbar__page-copy { display: inline-flex; align-items: baseline; gap: 6px; color: var(--text-secondary); font-size: 12px; }
+.app-topbar__page-copy strong { color: var(--text); font-size: 14px; font-weight: 600; }
+.app-topbar__page-copy span { color: var(--text-muted); max-width: 40vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.app-topbar__meta, .app-topbar__right, .app-topbar__actions, .app-topbar__extension { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.app-topbar h1 { margin: 0; font-size: 15px; letter-spacing: -0.01em; }
+.app-topbar p { margin: 2px 0 0; color: var(--text-muted); max-width: 60ch; font-size: 12px; }
+.app-topbar .button, .app-topbar .pill { min-height: 28px; padding: 4px 10px; font-size: 12px; }
+.app-topbar .app-avatar { width: 24px; height: 24px; font-size: 10px; }
+.app-topbar__chip {
+  display: inline-flex; align-items: center; padding: 2px 8px;
+  border-radius: var(--radius-full); background: var(--accent-soft);
+  color: var(--accent); font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.app-topbar__icon { width: 28px; height: 28px; border-radius: var(--radius); border: 1px solid var(--border); color: var(--text-secondary); background: var(--surface); display: grid; place-items: center; font-size: 12px; }
+
+/* ── Route progress ── */
+.route-progress { position: fixed; inset: 0; z-index: 1000; pointer-events: none; }
+.route-progress__bar {
+  position: fixed; top: 0; left: 0; width: var(--route-progress); height: 2px;
+  background: var(--accent); transition: width 120ms ease;
+}
+
+/* ── Theme toggle ── */
+.theme-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 8px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary);
+  font-size: 12px;
+}
+.theme-toggle--compact { min-height: 22px; padding: 2px 6px; font-size: 10px; }
+.theme-toggle__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.theme-toggle--compact .theme-toggle__dot { width: 5px; height: 5px; }
+
+/* ── Utilities ── */
+.app-utilities {
+  display: flex; justify-content: space-between; gap: 8px; align-items: center;
+  padding-top: 8px; border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted); font-size: 12px;
+}
+.app-utilities__brand, .app-utilities__actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.app-utilities__status { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 0; color: inherit; padding: 0; }
+.app-utilities__status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
+
+/* ── Route progress card ── */
+.route-progress__card {
+  position: fixed; right: 16px; bottom: 16px;
+  display: grid; grid-template-columns: 48px minmax(0, 1fr); align-items: center; gap: 10px;
+  width: min(300px, calc(100vw - 32px)); padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--surface); box-shadow: var(--shadow);
+  animation: route-progress-in 160ms ease;
+}
+.route-progress__ring {
+  width: 48px; aspect-ratio: 1; display: grid; place-items: center;
+  border-radius: 50%; background: conic-gradient(var(--accent) var(--route-progress-deg), var(--surface-hover) 0);
+}
+.route-progress__ring::before {
+  content: ''; grid-area: 1/1; width: 36px; aspect-ratio: 1;
+  border-radius: 50%; background: var(--surface);
+}
+.route-progress__ring span { position: relative; z-index: 1; font-size: 11px; font-weight: 700; color: var(--text); }
+.route-progress__copy { min-width: 0; }
+.route-progress__copy strong { display: block; color: var(--text); font-size: 12px; }
+.route-progress__copy p { margin: 2px 0 0; color: var(--text-muted); font-size: 11px; }
+
+@keyframes route-progress-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Search ── */
+.app-topbar__search { position: relative; }
+.app-topbar__search-trigger {
+  width: 28px; height: 28px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-secondary); display: grid; place-items: center;
+  font-size: 12px; cursor: pointer;
+}
+.app-topbar__search-trigger:hover { border-color: var(--text-muted); }
+
+/* ── View toggle ── */
+.app-topbar__view-toggle {
+  display: inline-flex; align-items: center; gap: 0;
+  border: 1px solid var(--border); border-radius: var(--radius-full); padding: 2px;
+  background: var(--bg-subtle);
+}
+.app-topbar__view-toggle button {
+  appearance: none; border: 0; border-radius: var(--radius-full);
+  background: transparent; color: var(--text-muted); font-size: 11px;
+  font-weight: 500; padding: 3px 8px; cursor: pointer; font-family: inherit;
+}
+.app-topbar__view-toggle button:disabled { cursor: default; opacity: 1; }
+.app-topbar__view-toggle--active { background: var(--surface) !important; color: var(--text) !important; box-shadow: var(--shadow); }
+
+.action-link--compact { min-height: 32px; padding: 6px 10px; border-radius: var(--radius); }
+
+/* DISABLED: This breakpoint stacked a 100vh desktop sidebar above app content.
+@media (max-width: 1100px) {
+  .app-shell { grid-template-columns: 1fr; }
+} */
+
+@media (max-width: 768px) {
+  .app-topbar__page-copy span { display: none; }
+  .app-topbar__page-meta { display: none; }
+  .app-sidebar { min-height: auto; padding: 6px 8px; gap: 0; border-right: 0; border-bottom: 1px solid var(--border-subtle); position: sticky; top: 0; z-index: 30; }
+  .app-sidebar > :not(.app-sidebar__mobile-export) { display: none !important; }
+  .app-sidebar__mobile-export { display: grid; }
+}
